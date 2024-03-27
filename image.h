@@ -11,8 +11,8 @@ namespace Lina{ namespace Graphics{
         VkImageTiling tiling;
         VkImageUsageFlags usage;
         VkMemoryPropertyFlags properties;
-        VkImage image;
-        VkDeviceMemory imageMemory;
+        VkImage* image;
+        VkDeviceMemory* imageMemory;
     };
     class Image
     {

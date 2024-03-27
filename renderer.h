@@ -20,6 +20,8 @@ namespace Lina{ namespace Graphics{
             IndexBuffer vIndexBuffer;
 
             Texture texture;
+            VkImageView textureImageView;
+            VkSampler textureSampler;
 
             UniformBuffer vUniformBuffer;
             VkDeviceMemory uniformBuffersMemory;
@@ -75,7 +77,10 @@ namespace Lina{ namespace Graphics{
         void copyBufferToBuffer(VkBuffer src, VkBuffer dst, VkDeviceSize size);
         void copyBufferToImage(VkBuffer src, Image& image);
 
-        void transitionImageLayout(VkImage, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout);
+        void transitionImageLayout(VkImage&, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout);
+
+        void createTextureImageView();
+        void createTextureSampler();
         private:
         specs mSpecs;
         Shader vShader;

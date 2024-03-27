@@ -184,7 +184,9 @@ namespace Lina{ namespace Graphics{
             queueCreateInfos.push_back(queueCreateInfo);
         }
 
-        VkPhysicalDeviceFeatures features = {};
+        VkPhysicalDeviceFeatures features = {
+            .samplerAnisotropy = VK_TRUE
+        };
         VkDeviceCreateInfo deviceCreateInfo
         {
             .sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,

@@ -9,11 +9,11 @@ namespace Lina { namespace Graphics{
             friend class Renderer;
             b8 init(DeviceHandler* deviceHandler);
             b8 createImageFromPath(std::string&& path, bool flip = false);
-            b8 createImageFromPath(const std::string& path, bool flip = false);
+            b8 createImageFromPath(std::string& path, bool flip = false);
         public:
             std::string getPath() const {return mPath;}
         private:
-            b8 setTextureFromPath(const std::string& path, bool flip = false);
+            b8 setTextureFromPath(std::string&& path, bool flip);
         private:
             std::string mPath;
             i32 mWidth;
