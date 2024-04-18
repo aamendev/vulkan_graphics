@@ -1,13 +1,4 @@
 # Todo
-- Texture;
-
---> Create two private functions in Renderer: beginSingleTimeCommands and endSingleTimeCommands
---> modify copyBuffer code to be from the renderer, rather than the buffer.
--->
-
--> Renderer should create a texture when requested.
--> it should also handle all processing stuff (e.g. transitioing layout and stuff)
--> Renderer can also copy data between its children. No child can transfer copies to any other child except through renderer (i.e. no buffer-> image, image -> image or buffer-> buffer communication)
 
 # Current Issues
 

@@ -30,6 +30,7 @@ namespace Lina{ namespace Graphics{
             void recreate();
         private:
             b8 createSwapChain();
+            b8 createDepthResources();
             b8 createImageViews();
             b8 createRenderPass();
             b8 createFramebuffers();
