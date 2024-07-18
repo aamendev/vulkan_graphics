@@ -1,25 +1,21 @@
 #include "renderer.h"
+#include "index_buffer.h"
+#include "vertex_buffer.h"
 namespace Lina{ namespace Graphics{
-
-    void Renderer::init(std::string& name, Window* window)
-    {
-
-        mSpecs =
-        {
-            .sWindow = window,
-        };
-        vShader = Shader();
+    void Renderer::init(std::string& name, Window* window) {
+        mSpecs = {.sWindow = window};
+               mShader = Shader();
         mDeviceHandler = new DeviceHandler();
         mSwapChain = new SwapChain();
         if (createVulkanInstance(name))
         {
-            window->createWindowSurface(mSpecs.vInstance, &mSpecs.vSurface);
+            window->createWindowSurface(mSpecs.instance, &mSpecs.surface);
 
-            mDeviceHandler->init(&mSpecs.vInstance, &mSpecs.vSurface);
+            mDeviceHandler->init(&mSpecs.instance, &mSpecs.surface);
 
-            mSpecs.vSwapChainDetails = mDeviceHandler->vSpecs.vSwapChainDetails;
+            mSpecs.swapChainDetails = mDeviceHandler->mSpecs.swapChainDetails;
 
-            mSwapChain->init(&mSpecs.vSwapChainDetails, &mSpecs.vSurface, window, mDeviceHandler);
+            mSwapChain->init(&mSpecs.swapChainDetails, &mSpecs.surface, window, mDeviceHandler);
 
             createCommandPool();
             createCommandBuffer();
@@ -28,6 +24,10 @@ namespace Lina{ namespace Graphics{
 
     b8 Renderer::createVulkanInstance(std::string& name)
     {
+        if (mSpecs.enableValidationLayers && !supportsValidationLayer())
+        {
+            std::cerr<<"Does not Support Validation\n";
+        }
         VkApplicationInfo appInfo
         {
             .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
@@ -48,9 +48,14 @@ namespace Lina{ namespace Graphics{
                 .enabledExtensionCount = glfwExtensionCount,
                 .ppEnabledExtensionNames = glfwExtensions,
         };
-        if (vkCreateInstance(&createInfo,nullptr, &(mSpecs.vInstance)) != VK_SUCCESS)
+        if (mSpecs.enableValidationLayers)
         {
-            std::cout<<"Failed to create Instance\n";
+            createInfo.enabledLayerCount = static_cast<u32>(mSpecs.valdiationLayers.size());
+            createInfo.ppEnabledLayerNames = mSpecs.valdiationLayers.data();
+        }
+        if (vkCreateInstance(&createInfo,nullptr, &(mSpecs.instance)) != VK_SUCCESS)
+        {
+            std::cerr<<"Failed to create Instance\n";
             return false;
         }
         return true;
@@ -61,10 +66,10 @@ namespace Lina{ namespace Graphics{
         VkCommandPoolCreateInfo poolInfo
         {
             .sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
-            .flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT,
-            .queueFamilyIndex = (u32)mDeviceHandler->vSpecs.vFamilyIndices.graphicsFamily
+                .flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT,
+                .queueFamilyIndex = (u32)mDeviceHandler->mSpecs.familyIndices.graphicsFamily
         };
-        vkCreateCommandPool(mDeviceHandler->vSpecs.vDevice, &poolInfo, nullptr, &(mSpecs.vCommandPool));
+        vkCreateCommandPool(mDeviceHandler->mSpecs.device, &poolInfo, nullptr, &(mSpecs.commandPool));
     }
 
     void Renderer::createCommandBuffer()
@@ -72,24 +77,24 @@ namespace Lina{ namespace Graphics{
         VkCommandBufferAllocateInfo allocInfo
         {
             .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO,
-            .commandPool = mSpecs.vCommandPool,
-            .level = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
-            .commandBufferCount = 1
+                .commandPool = mSpecs.commandPool,
+                .level = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
+                .commandBufferCount = 1
         };
 
-        vkAllocateCommandBuffers(mDeviceHandler->vSpecs.vDevice, &allocInfo, &(mSpecs.vCommandBuffer));
+        vkAllocateCommandBuffers(mDeviceHandler->mSpecs.device, &allocInfo, &(mSpecs.commandBuffer));
     }
 
     void Renderer::createVertexBuffer(VertexBufferLayout& layout,
             const std::vector<float>& vertices) {
-        mSpecs.vBuffer.init(mDeviceHandler, layout);
-        mSpecs.vBuffer.constructFromDataPointer(&vertices[0],
+        mSpecs.vertexBuffer.init(mDeviceHandler, layout);
+        mSpecs.vertexBuffer.constructFromDataPointer(&vertices[0],
                 vertices.size() * sizeof(vertices[0]));
     }
     void Renderer::createIndexBuffer(const std::vector<u32> indices)
     {
-        mSpecs.vIndexBuffer.init(mDeviceHandler);
-        mSpecs.vIndexBuffer.constructFromDataPointer(&indices[0],
+        mSpecs.indexBuffer.init(mDeviceHandler);
+        mSpecs.indexBuffer.constructFromDataPointer(&indices[0],
                 indices.size() * sizeof(indices[0]));
     }
     VkShaderModule Renderer::createShaderModule(const std::vector<char>& code)
@@ -97,11 +102,11 @@ namespace Lina{ namespace Graphics{
         VkShaderModuleCreateInfo createInfo
         {
             .sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
-                .codeSize = code.size(),
-                .pCode = reinterpret_cast<const u32*>(code.data())
+            .codeSize = code.size(),
+            .pCode = reinterpret_cast<const u32*>(code.data())
         };
         VkShaderModule module;
-        vkCreateShaderModule(mDeviceHandler->vSpecs.vDevice,
+        vkCreateShaderModule(mDeviceHandler->mSpecs.device,
                 &createInfo, nullptr, &module);
         return module;
     }
@@ -111,63 +116,63 @@ namespace Lina{ namespace Graphics{
         VkDescriptorSetLayoutBinding uboLayoutBinding
         {
             .binding = 0,
-            .descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
-            .descriptorCount = 1,
-            .stageFlags = VK_SHADER_STAGE_VERTEX_BIT,
-            .pImmutableSamplers = nullptr
+                .descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+                .descriptorCount = 1,
+                .stageFlags = VK_SHADER_STAGE_VERTEX_BIT,
+                .pImmutableSamplers = nullptr
         };
         VkDescriptorSetLayoutBinding samplerLayoutBinding
         {
             .binding = 1,
-            .descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
-            .descriptorCount = 1,
-            .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
-            .pImmutableSamplers = nullptr
+                .descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+                .descriptorCount = 1,
+                .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
+                .pImmutableSamplers = nullptr
         };
 
         std::array<VkDescriptorSetLayoutBinding, 2> bindings = {uboLayoutBinding, samplerLayoutBinding};
         VkDescriptorSetLayoutCreateInfo layoutInfo
         {
             .sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO,
-            .bindingCount = static_cast<u32>(bindings.size()),
-            .pBindings = bindings.data()
+                .bindingCount = static_cast<u32>(bindings.size()),
+                .pBindings = bindings.data()
         };
         if(vkCreateDescriptorSetLayout(
-                mDeviceHandler->vSpecs.vDevice,
-                &layoutInfo,
-                nullptr,
-                &mSpecs.descriptorSetLayout) != VK_SUCCESS)
-            std::cout<<"No layout created!\n";
+                    mDeviceHandler->mSpecs.device,
+                    &layoutInfo,
+                    nullptr,
+                    &mSpecs.descriptorSetLayout) != VK_SUCCESS)
+            std::cerr<<"No layout created!\n";
     }
 
     void Renderer::createDescriptorPool()
     {
         std::array<VkDescriptorPoolSize, 2> poolSizes{};
 
-       poolSizes[0] =
-       {
-        .type =  VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
-        .descriptorCount = 1
-       };
-       poolSizes[1] =
-       {
-        .type =  VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
-        .descriptorCount = 1
-       };
+        poolSizes[0] =
+        {
+            .type =  VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+            .descriptorCount = 1
+        };
+        poolSizes[1] =
+        {
+            .type =  VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+            .descriptorCount = 1
+        };
         VkDescriptorPoolCreateInfo poolInfo
         {
             .sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO,
                 .maxSets = 1,
-            .poolSizeCount = static_cast<u32>(poolSizes.size()),
-            .pPoolSizes = poolSizes.data(),
+                .poolSizeCount = static_cast<u32>(poolSizes.size()),
+                .pPoolSizes = poolSizes.data(),
         };
 
         if(vkCreateDescriptorPool(
-                mDeviceHandler->vSpecs.vDevice,
-                &poolInfo,
-                nullptr,
-                &mSpecs.descriptorPool) != VK_SUCCESS)
-            std::cout<<"Error creating set\n";
+                    mDeviceHandler->mSpecs.device,
+                    &poolInfo,
+                    nullptr,
+                    &mSpecs.descriptorPool) != VK_SUCCESS)
+            std::cerr<<"Error creating set\n";
     }
 
     void Renderer::createDescriptorSet()
@@ -176,28 +181,28 @@ namespace Lina{ namespace Graphics{
         VkDescriptorSetAllocateInfo allocInfo
         {
             .sType= VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO,
-            .descriptorPool = mSpecs.descriptorPool,
-            .descriptorSetCount = 1,
-            .pSetLayouts = layouts.data()
+                .descriptorPool = mSpecs.descriptorPool,
+                .descriptorSetCount = 1,
+                .pSetLayouts = layouts.data()
         };
         mSpecs.descriptorSets.reserve(1);
         if(vkAllocateDescriptorSets(
-                mDeviceHandler->vSpecs.vDevice,
-                &allocInfo,
-                mSpecs.descriptorSets.data()) != VK_SUCCESS)
-            std::cout<<"Failed to allocate sets\n";
+                    mDeviceHandler->mSpecs.device,
+                    &allocInfo,
+                    mSpecs.descriptorSets.data()) != VK_SUCCESS)
+            std::cerr<<"Failed to allocate sets\n";
         VkDescriptorBufferInfo bufferInfo
         {
-            .buffer = mSpecs.vUniformBuffer.mSpecs.buffer,
-            .offset = 0,
-            .range = mSpecs.vUniformBuffer.mSpecs.size
+            .buffer = mSpecs.uniformBuffer.mSpecs.buffer,
+                .offset = 0,
+                .range = mSpecs.uniformBuffer.mSpecs.size
         };
 
         VkDescriptorImageInfo imageInfo
         {
             .sampler = mSpecs.textureSampler,
                 .imageView = mSpecs.textureImageView,
-            .imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
+                .imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
         };
 
         std::array<VkWriteDescriptorSet, 2> descriptorWrite;
@@ -225,7 +230,7 @@ namespace Lina{ namespace Graphics{
         };
 
         vkUpdateDescriptorSets(
-                mDeviceHandler->vSpecs.vDevice,
+                mDeviceHandler->mSpecs.device,
                 static_cast<u32>(descriptorWrite.size()),
                 descriptorWrite.data(),
                 0,
@@ -233,63 +238,62 @@ namespace Lina{ namespace Graphics{
     }
     void Renderer::createUniformBuffers(u32 size)
     {
-        mSpecs.vUniformBuffer.init(mDeviceHandler);
-        mSpecs.vUniformBuffer.constructFromUniformSize(size);
+        mSpecs.uniformBuffer.init(mDeviceHandler);
+        mSpecs.uniformBuffer.constructFromUniformSize(size);
         createDescriptorPool();
         createDescriptorSet();
     }
 
-    void Renderer::createDepthResources()
-    {
-        VkImage vDepthImage;
-        mSpecs.depthImage.init
-            (
-             mDeviceHandler,
-             vDepthImage,
-             mSpecs.depthImageMemory,
-             mSwapChain->vSpecs.vExtent.width,
-             mSwapChain->vSpecs.vExtent.height
-            );
-        ImageSpecs imSpec = mSpecs.depthImage.getSpecs();
-        transitionImageLayout(*imSpec.image, imSpec.format, VK_IMAGE_LAYOUT_UNDEFINED,
-                VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL);
-    }
     void Renderer::createGraphicsPipeline()
     {
         createDescriptorSetLayout();
-        vShader.init("../shaders/shader.vert.spv", "../shaders/shader.frag.spv");
-        mSpecs.vVertexShaderModule =  createShaderModule(vShader.getVertexShader());
-        mSpecs.vFragmentShaderModule = createShaderModule(vShader.getFragmentShader());
+        mShader.init("../shaders/shader.vert.spv", "../shaders/shader.frag.spv");
+        mSpecs.vertexShaderModule =  createShaderModule(mShader.getVertexShader());
+        mSpecs.fragmentShaderModule = createShaderModule(mShader.getFragmentShader());
 
         VkPipelineShaderStageCreateInfo vertShaderCreateInfo
         {
             .sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
                 .stage = VK_SHADER_STAGE_VERTEX_BIT,
-                .module = mSpecs.vVertexShaderModule,
+                .module = mSpecs.vertexShaderModule,
                 .pName = "main"
         };
         VkPipelineShaderStageCreateInfo fragShaderCreateInfo
         {
             .sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
                 .stage = VK_SHADER_STAGE_FRAGMENT_BIT,
-                .module = mSpecs.vFragmentShaderModule,
+                .module = mSpecs.fragmentShaderModule,
                 .pName = "main"
         };
 
         VkPipelineShaderStageCreateInfo shaderStages[] = {vertShaderCreateInfo, fragShaderCreateInfo};
+
         /* Vertex Buffer */
-        VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
-        auto attributeDescriptions = mSpecs.vBuffer.getAttributeDescriptions();
-        auto bindingDescription = mSpecs.vBuffer.getBindingDescription();
+        auto attributeDescriptions = mSpecs.vertexBuffer.getAttributeDescriptions();
+        auto bindingDescription = mSpecs.vertexBuffer.getBindingDescription();
 
-        vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-
-        vertexInputInfo.vertexBindingDescriptionCount = 1;
-        vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
-        vertexInputInfo.pVertexBindingDescriptions = &bindingDescription;
-        vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
-
+        VkPipelineVertexInputStateCreateInfo vertexInputInfo
+        {
+            .sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO,
+                .vertexBindingDescriptionCount = 1,
+                .pVertexBindingDescriptions = &bindingDescription,
+                .vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size()),
+                .pVertexAttributeDescriptions = attributeDescriptions.data(),
+        };
         /* End of Vertex Buffer */
+
+        /* Depth and Stencil */
+        VkPipelineDepthStencilStateCreateInfo depthStencil
+        {
+            .sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO,
+                .depthTestEnable = VK_TRUE,
+                .depthWriteEnable = VK_TRUE,
+                .depthCompareOp = VK_COMPARE_OP_LESS,
+                .depthBoundsTestEnable = VK_FALSE,
+                .stencilTestEnable = VK_FALSE,
+        };
+
+        /* End Depth and Stencil*/
         VkPipelineInputAssemblyStateCreateInfo inputAssembly{};
         inputAssembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
         inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
@@ -306,7 +310,7 @@ namespace Lina{ namespace Graphics{
         rasterizer.rasterizerDiscardEnable = VK_FALSE;
         rasterizer.polygonMode = VK_POLYGON_MODE_FILL;
         rasterizer.lineWidth = 1.0f;
-        rasterizer.cullMode = VK_CULL_MODE_NONE;
+        rasterizer.cullMode = VK_CULL_MODE_BACK_BIT;
         rasterizer.frontFace = VK_FRONT_FACE_CLOCKWISE;
         rasterizer.depthBiasEnable = VK_FALSE;
 
@@ -315,80 +319,89 @@ namespace Lina{ namespace Graphics{
         multisampling.sampleShadingEnable = VK_FALSE;
         multisampling.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
 
-        VkPipelineColorBlendAttachmentState colorBlendAttachment{};
-        colorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
-        colorBlendAttachment.blendEnable = VK_FALSE;
-
-        VkPipelineColorBlendStateCreateInfo colorBlending{};
-        colorBlending.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
-        colorBlending.logicOpEnable = VK_FALSE;
-        colorBlending.logicOp = VK_LOGIC_OP_COPY;
-        colorBlending.attachmentCount = 1;
-        colorBlending.pAttachments = &colorBlendAttachment;
-        colorBlending.blendConstants[0] = 0.0f;
-        colorBlending.blendConstants[1] = 0.0f;
-        colorBlending.blendConstants[2] = 0.0f;
-        colorBlending.blendConstants[3] = 0.0f;
+        VkPipelineColorBlendAttachmentState colorBlendAttachment
+        {
+            .blendEnable = VK_FALSE,
+            .colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT,
+        };
+        VkPipelineColorBlendStateCreateInfo colorBlending =
+        {
+            .sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO,
+            .logicOpEnable = VK_FALSE,
+            .logicOp = VK_LOGIC_OP_COPY,
+            .attachmentCount = 1,
+            .pAttachments = &colorBlendAttachment,
+            .blendConstants = { 0.0f, 0.0f, 0.0f, 0.0f},
+        };
 
         std::vector<VkDynamicState> dynamicStates = {
             VK_DYNAMIC_STATE_VIEWPORT,
             VK_DYNAMIC_STATE_SCISSOR,
-            VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY
+            VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY,
+            //VK_DYNAMIC_STATE_DEPTH_TEST_ENABLE
         };
         VkPipelineDynamicStateCreateInfo dynamicState{};
         dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
         dynamicState.dynamicStateCount = static_cast<uint32_t>(dynamicStates.size());
         dynamicState.pDynamicStates = dynamicStates.data();
 
+        VkPushConstantRange psRange =
+        {
+            .stageFlags = VK_SHADER_STAGE_VERTEX_BIT,
+            .offset = 0,
+            .size = sizeof(Lina::Math::Transform4D),
+        };
         VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
         pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
         pipelineLayoutInfo.setLayoutCount = 1;
         pipelineLayoutInfo.pSetLayouts = &mSpecs.descriptorSetLayout;
-        pipelineLayoutInfo.pushConstantRangeCount = 0;
+        pipelineLayoutInfo.pushConstantRangeCount = 1;
+        pipelineLayoutInfo.pPushConstantRanges = &psRange;
 
         if (vkCreatePipelineLayout(
-                    mDeviceHandler->vSpecs.vDevice,
-                    &pipelineLayoutInfo, nullptr, &(mSpecs.vPipelineLayout)) != VK_SUCCESS) {
+                    mDeviceHandler->mSpecs.device,
+                    &pipelineLayoutInfo, nullptr, &(mSpecs.pipelineLayout)) != VK_SUCCESS) {
             throw std::runtime_error("failed to create pipeline layout!");
         }
 
         VkGraphicsPipelineCreateInfo pipeLineInfo
         {
-                .sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO,
-                .stageCount = 2,
-                .pStages = shaderStages,
+            .sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO,
+            .stageCount = 2,
+            .pStages = shaderStages,
 
-                .pVertexInputState = &vertexInputInfo,
-                .pViewportState = &viewportState,
-                .pRasterizationState = &rasterizer,
-                .pMultisampleState = &multisampling,
-                .pDepthStencilState = nullptr,
-                .pColorBlendState = &colorBlending,
-                .pDynamicState = &dynamicState,
+            .pVertexInputState = &vertexInputInfo,
+            .pInputAssemblyState = &inputAssembly,
+            .pViewportState = &viewportState,
+            .pRasterizationState = &rasterizer,
+            .pMultisampleState = &multisampling,
+            .pDepthStencilState = &depthStencil,
+            .pColorBlendState = &colorBlending,
+            .pDynamicState = &dynamicState,
 
-                .layout = mSpecs.vPipelineLayout,
-                .renderPass = mSwapChain->vSpecs.vRenderPass,
-                .subpass = 0,
+            .layout = mSpecs.pipelineLayout,
+            .renderPass = mSwapChain->mSpecs.renderPass,
+            .subpass = 0,
 
-                .basePipelineHandle = VK_NULL_HANDLE,
-                .basePipelineIndex = -1
+            .basePipelineHandle = VK_NULL_HANDLE,
+            .basePipelineIndex = -1
         };
 
         vkCreateGraphicsPipelines(
-                mDeviceHandler->vSpecs.vDevice,
+                mDeviceHandler->mSpecs.device,
                 VK_NULL_HANDLE,
                 1,
                 &pipeLineInfo,
                 nullptr,
-                &(mSpecs.vGraphicsPipeline)
+                &(mSpecs.graphicsPipeline)
                 );
-        vkDestroyShaderModule(mDeviceHandler->vSpecs.vDevice,
-                mSpecs.vVertexShaderModule, nullptr);
+        vkDestroyShaderModule(mDeviceHandler->mSpecs.device,
+                mSpecs.vertexShaderModule, nullptr);
         vkDestroyShaderModule(
-                mDeviceHandler->vSpecs.vDevice,
-                mSpecs.vFragmentShaderModule, nullptr);
+                mDeviceHandler->mSpecs.device,
+                mSpecs.fragmentShaderModule, nullptr);
     }
-    void Renderer::beginRecordCommandBuffer(u32 imageIndex)
+    void Renderer::recordCommandBuffer()
     {
         VkCommandBufferBeginInfo beginInfo
         {
@@ -396,76 +409,73 @@ namespace Lina{ namespace Graphics{
                 .flags = 0,
                 .pInheritanceInfo = nullptr
         };
-        vkBeginCommandBuffer(mSpecs.vCommandBuffer, &beginInfo);
-    }
-    void Renderer::recordCommandBuffer(u32 imageIndex)
-    {
-        VkClearValue clearColor = {{{0.0f, 0.0f, 0.0f, 1.0f}}};
+        vkBeginCommandBuffer(mSpecs.commandBuffer, &beginInfo);
+        std::array<VkClearValue, 2> clearValues = {};
+        clearValues[0].color = {{0.0f, 0.0f, 0.0f, 1.0f}};
+        clearValues[1].depthStencil = {1.0f, 0};
         VkRenderPassBeginInfo renderPassInfo
         {
             .sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO,
-                .renderPass = mSwapChain->vSpecs.vRenderPass,
-                .framebuffer = mSwapChain->vSpecs.vSwapChainFrameBuffers[imageIndex],
-                .renderArea = {.offset = {0, 0}, .extent = mSwapChain->vSpecs.vExtent},
-                .clearValueCount = 1,
-                .pClearValues = &clearColor
+                .renderPass = mSwapChain->mSpecs.renderPass,
+                .framebuffer = mSwapChain->mSpecs.swapChainFrameBuffers[mHiddenDrawData.hImage],
+                .renderArea = {.offset = {0, 0}, .extent = mSwapChain->mSpecs.extent},
+                .clearValueCount = clearValues.size(),
+                .pClearValues = clearValues.data() 
         };
 
         vkCmdBeginRenderPass(
-                mSpecs.vCommandBuffer,
+                mSpecs.commandBuffer,
                 &renderPassInfo,
                 VK_SUBPASS_CONTENTS_INLINE);
+
         vkCmdBindPipeline(
-                mSpecs.vCommandBuffer,
+                mSpecs.commandBuffer,
                 VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.vGraphicsPipeline);
+                mSpecs.graphicsPipeline);
         VkViewport viewport
         {
             .x = 0.0f,
                 .y = 0.0f,
-                .width = (f32)mSwapChain->vSpecs.vExtent.width,
-                .height = (f32)mSwapChain->vSpecs.vExtent.height,
-                .minDepth = 0.0f,
-                .maxDepth = 100.0f
+                .width = (f32)mSwapChain->mSpecs.extent.width,
+                .height = (f32)mSwapChain->mSpecs.extent.height,
+                .minDepth = 0.04f,
+                .maxDepth = 1.0f
         };
-        vkCmdSetViewport(mSpecs.vCommandBuffer, 0, 1, &viewport);
+        vkCmdSetViewport(mSpecs.commandBuffer, 0, 1, &viewport);
 
         VkRect2D scissor
         {
             .offset = {0, 0},
-                .extent = mSwapChain->vSpecs.vExtent
+                .extent = mSwapChain->mSpecs.extent
         };
 
-        vkCmdSetScissor(mSpecs.vCommandBuffer, 0, 1, &scissor);
-        vkCmdBindPipeline(mSpecs.vCommandBuffer,
-                VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.vGraphicsPipeline);
+        vkCmdSetScissor(mSpecs.commandBuffer, 0, 1, &scissor);
 
-        VkBuffer vertexBuffers[] = {mSpecs.vBuffer.mSpecs.buffer};
-        VkDeviceSize offsets[] = {0};
-        vkCmdBindVertexBuffers(mSpecs.vCommandBuffer, 0, 1, vertexBuffers, offsets);
-        vkCmdBindIndexBuffer(mSpecs.vCommandBuffer,
-                mSpecs.vIndexBuffer.mSpecs.buffer, 0, VK_INDEX_TYPE_UINT32);
-        auto vertexCount = mSpecs.vBuffer.getSize() / mSpecs.vBuffer.getStride();
-       //vkCmdDraw(mSpecs.vCommandBuffer,
-         //       vertexCount , 1, 0, 0);
         vkCmdBindDescriptorSets(
-                mSpecs.vCommandBuffer,
+                mSpecs.commandBuffer,
                 VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.vPipelineLayout,
+                mSpecs.pipelineLayout,
                 0,
                 1,
                 &mSpecs.descriptorSets[0],
                 0,
                 nullptr);
-        vkCmdDrawIndexed(
-                mSpecs.vCommandBuffer,
-                mSpecs.vIndexBuffer.mCount, 1, 0, 0, 0);
     }
-    void Renderer::endRecordCommandBuffer(u32 image)
+    void Renderer::render(VertexBuffer* vb, IndexBuffer* ib)
     {
-        vkCmdEndRenderPass(mSpecs.vCommandBuffer);
-        vkEndCommandBuffer(mSpecs.vCommandBuffer);
+        if (vb == nullptr)
+            vb = &mSpecs.vertexBuffer;
+        if (ib == nullptr)
+            ib = &mSpecs.indexBuffer;
+        VkBuffer vertexBuffers[] = {vb->mSpecs.buffer};
+        VkDeviceSize offsets[] = {0};
+        vkCmdBindVertexBuffers(mSpecs.commandBuffer, 0,  1, vertexBuffers, offsets);
+        vkCmdBindIndexBuffer(mSpecs.commandBuffer,
+                    ib->mSpecs.buffer, 0, VK_INDEX_TYPE_UINT32);
+
+            vkCmdDrawIndexed(
+                    mSpecs.commandBuffer,
+                    ib->mCount, 1, 0, 0, 0);
     }
 
     void Renderer::createTexture(std::string& path)
@@ -475,110 +485,115 @@ namespace Lina{ namespace Graphics{
 
     void Renderer::createTexture(std::string&& path)
     {
-       mSpecs.texture.init(mDeviceHandler);
-       if(mSpecs.texture.createImageFromPath(path, false))
-       {
-       transitionImageLayout(
-               mSpecs.texture.mImage,
-               VK_FORMAT_R8G8B8A8_SRGB,
-               VK_IMAGE_LAYOUT_UNDEFINED,
-               VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
-               );
-       copyBufferToImage(mSpecs.texture.mStagingBuffer.mSpecs.buffer, mSpecs.texture.mTextureImage);
-       transitionImageLayout(
+        mSpecs.texture.init(mDeviceHandler);
+        if(mSpecs.texture.createImageFromPath(path, false))
+        {
+            transitionImageLayout(
+                    mSpecs.texture.mImage,
+                    VK_FORMAT_R8G8B8A8_SRGB,
+                    VK_IMAGE_LAYOUT_UNDEFINED,
+                    VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
+                    );
+            copyBufferToImage(mSpecs.texture.mStagingBuffer.mSpecs.buffer, mSpecs.texture.mTextureImage);
+            transitionImageLayout(
                     mSpecs.texture.mImage,
                     VK_FORMAT_R8G8B8A8_SRGB,
                     VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
                     VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
-               );
-       createImageView(mSpecs.texture.mImage, VK_FORMAT_R8G8B8A8_SRGB,
-               VK_IMAGE_ASPECT_COLOR_BIT);
-       createTextureSampler();
-       }
+                    );
+            createImageView(mSpecs.texture.mImage, VK_FORMAT_R8G8B8A8_SRGB,
+                    VK_IMAGE_ASPECT_COLOR_BIT);
+            createTextureSampler();
+        }
     }
 
     void Renderer::beginDraw()
     {
         vkWaitForFences(
-                mDeviceHandler->vSpecs.vDevice,
+                mDeviceHandler->mSpecs.device,
                 1,
-                &mSwapChain->vSpecs.vInFlightFence,
+                &mSwapChain->mSpecs.inFlightFence,
                 VK_TRUE,
                 UINT64_MAX);
 
         uint32_t imageIndex;
         auto result = vkAcquireNextImageKHR(
-                mDeviceHandler->vSpecs.vDevice,
-                mSwapChain->vSpecs.vSwapChain,
+                mDeviceHandler->mSpecs.device,
+                mSwapChain->mSpecs.swapChain,
                 UINT64_MAX,
-                mSwapChain->vSpecs.vImageAvailableSemaphore,
+                mSwapChain->mSpecs.imageAvailableSemaphore,
                 VK_NULL_HANDLE,
                 &imageIndex);
 
-        if (result == VK_ERROR_OUT_OF_DATE_KHR || mSpecs.sWindow->isResized())
+        if (result == VK_ERROR_OUT_OF_DATE_KHR)
         {
-            mSpecs.sWindow->setResized(false);
             mSwapChain->recreate();
             return;
         }
-
-        vkResetFences(
-                mDeviceHandler->vSpecs.vDevice,
-                1,
-                &(mSwapChain->vSpecs.vInFlightFence)
-                );
-
-        vkResetCommandBuffer(mSpecs.vCommandBuffer, 0);
-
-
-        beginRecordCommandBuffer(imageIndex);
         mHiddenDrawData.hImage = imageIndex;
+        recordCommandBuffer();
+    //    vkResetCommandBuffer(mSpecs.commandBuffer, 0);
     }
     void Renderer::endDraw()
     {
-        recordCommandBuffer(mHiddenDrawData.hImage);
-        endRecordCommandBuffer(mHiddenDrawData.hImage);
+        vkCmdEndRenderPass(mSpecs.commandBuffer);
+        vkEndCommandBuffer(mSpecs.commandBuffer);
+        vkResetFences(
+                mDeviceHandler->mSpecs.device,
+                1,
+                &(mSwapChain->mSpecs.inFlightFence)
+                );
 
-        VkSubmitInfo submitInfo{};
-        submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-
-        VkSemaphore waitSemaphores[] = {mSwapChain->vSpecs.vImageAvailableSemaphore};
         VkPipelineStageFlags waitStages[] = {VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT};
-        submitInfo.waitSemaphoreCount = 1;
-        submitInfo.pWaitSemaphores = waitSemaphores;
-        submitInfo.pWaitDstStageMask = waitStages;
 
-        submitInfo.commandBufferCount = 1;
-        submitInfo.pCommandBuffers = &mSpecs.vCommandBuffer;
+        VkSemaphore waitSemaphores[] = {mSwapChain->mSpecs.imageAvailableSemaphore};
+        VkSemaphore signalSemaphores[] = {mSwapChain->mSpecs.renderFinishedSemaphore};
 
-        VkSemaphore signalSemaphores[] = {mSwapChain->vSpecs.vRenderFinishedSemaphore};
-        submitInfo.signalSemaphoreCount = 1;
-        submitInfo.pSignalSemaphores = signalSemaphores;
+
+        VkSubmitInfo submitInfo = 
+        {
+            .sType = VK_STRUCTURE_TYPE_SUBMIT_INFO,
+            .waitSemaphoreCount = 1,
+            .pWaitSemaphores = waitSemaphores,
+            .pWaitDstStageMask = waitStages,
+
+            .commandBufferCount = 1,
+            .pCommandBuffers = &mSpecs.commandBuffer,
+            .signalSemaphoreCount = 1,
+            .pSignalSemaphores = signalSemaphores,
+        };
 
         if (vkQueueSubmit
-                (mDeviceHandler->vSpecs.vGraphicsQueue,
+                (mDeviceHandler->mSpecs.graphicsQueue,
                  1,
                  &submitInfo,
-                 mSwapChain->vSpecs.vInFlightFence) != VK_SUCCESS) {
+                 mSwapChain->mSpecs.inFlightFence) != VK_SUCCESS) {
             throw std::runtime_error("failed to submit draw command buffer!");
         }
+        VkSwapchainKHR swapChains[] = {mSwapChain->mSpecs.swapChain};
 
-        VkPresentInfoKHR presentInfo{};
-        presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+        VkPresentInfoKHR presentInfo =
+        {
+            .sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
 
-        presentInfo.waitSemaphoreCount = 1;
-        presentInfo.pWaitSemaphores = signalSemaphores;
+            .waitSemaphoreCount = 1,
+            .pWaitSemaphores = signalSemaphores,
 
-        VkSwapchainKHR swapChains[] = {mSwapChain->vSpecs.vSwapChain};
-        presentInfo.swapchainCount = 1;
-        presentInfo.pSwapchains = swapChains;
+            .swapchainCount = 1,
+            .pSwapchains = swapChains,
 
-        presentInfo.pImageIndices = &mHiddenDrawData.hImage;
+            .pImageIndices = &mHiddenDrawData.hImage,
+        };
 
-        vkQueuePresentKHR(
-                mDeviceHandler->vSpecs.vPresentQueue,
+        VkResult res = vkQueuePresentKHR(
+                mDeviceHandler->mSpecs.presentQueue,
                 &presentInfo
                 );
+        if (res == VK_ERROR_OUT_OF_DATE_KHR || res == VK_SUBOPTIMAL_KHR || mSpecs.sWindow->isResized())
+        {
+            mSpecs.sWindow->setResized(false);
+            mSwapChain->recreate();
+        }
     }
 
     VkCommandBuffer Renderer::beginSingleTimeCommands()
@@ -587,14 +602,14 @@ namespace Lina{ namespace Graphics{
         VkCommandBufferAllocateInfo allocInfo =
         {
             .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO,
-            .commandPool = mSpecs.vCommandPool,
+            .commandPool = mSpecs.commandPool,
             .level = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
             .commandBufferCount = 1
         };
 
         VkCommandBuffer commandBuffer;
 
-        vkAllocateCommandBuffers(mDeviceHandler->vSpecs.vDevice,
+        vkAllocateCommandBuffers(mDeviceHandler->mSpecs.device,
                 &allocInfo, &commandBuffer);
 
         VkCommandBufferBeginInfo beginInfo =
@@ -609,7 +624,6 @@ namespace Lina{ namespace Graphics{
     }
     void Renderer::endSingleTimeCommands(VkCommandBuffer commandBuffer)
     {
-
         vkEndCommandBuffer(commandBuffer);
 
         VkSubmitInfo submitInfo =
@@ -620,12 +634,12 @@ namespace Lina{ namespace Graphics{
         };
 
         vkQueueSubmit(
-                mDeviceHandler->vSpecs.vGraphicsQueue,
+                mDeviceHandler->mSpecs.graphicsQueue,
                 1, &submitInfo, VK_NULL_HANDLE);
 
-        vkQueueWaitIdle(mDeviceHandler->vSpecs.vGraphicsQueue);
-        vkFreeCommandBuffers(mDeviceHandler->vSpecs.vDevice,
-                mSpecs.vCommandPool, 1, &commandBuffer);
+        vkQueueWaitIdle(mDeviceHandler->mSpecs.graphicsQueue);
+        vkFreeCommandBuffers(mDeviceHandler->mSpecs.device,
+                mSpecs.commandPool, 1, &commandBuffer);
     }
 
     void Renderer::copyBufferToBuffer(VkBuffer src, VkBuffer dst, VkDeviceSize size)
@@ -666,7 +680,7 @@ namespace Lina{ namespace Graphics{
         vkCmdCopyBufferToImage(
                 commandBuffer,
                 src,
-                image.getImage(),
+                *image.getImage(),
                 VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
                 1,
                 &region
@@ -707,8 +721,8 @@ namespace Lina{ namespace Graphics{
 
         u32 dstAccessMask  =
             VK_ACCESS_TRANSFER_WRITE_BIT * case1
-        + VK_ACCESS_SHADER_READ_BIT * case2
-        + (VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT) * case3;
+            + VK_ACCESS_SHADER_READ_BIT * case2
+            + (VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT) * case3;
 
         VkImageMemoryBarrier barrier =
         {
@@ -765,16 +779,16 @@ namespace Lina{ namespace Graphics{
             }
         };
         vkCreateImageView
-            (mDeviceHandler->vSpecs.vDevice,
+            (mDeviceHandler->mSpecs.device,
              &imageCreateInfo, nullptr, &mSpecs.textureImageView
-                );
+            );
     }
 
     void Renderer::createTextureSampler()
     {
         VkPhysicalDeviceProperties pdProperties;
         vkGetPhysicalDeviceProperties(
-                mDeviceHandler->vSpecs.vPhysicalDevice,
+                mDeviceHandler->mSpecs.physicalDevice,
                 &pdProperties);
         VkSamplerCreateInfo samplerInfo =
         {
@@ -795,37 +809,65 @@ namespace Lina{ namespace Graphics{
             .unnormalizedCoordinates = VK_FALSE,
         };
         vkCreateSampler(
-                mDeviceHandler->vSpecs.vDevice,
+                mDeviceHandler->mSpecs.device,
                 &samplerInfo, nullptr, &mSpecs.textureSampler);
     }
     void Renderer::setPrimitive(Primitive p)
     {
-        vkCmdSetPrimitiveTopology(mSpecs.vCommandBuffer
+            vkCmdSetPrimitiveTopology(mSpecs.commandBuffer
                 , static_cast<VkPrimitiveTopology>(p));
     }
-    /*void VulkanInitializer::clean()
+    
+    void Renderer::enableDepthTest(bool val)
     {
-        vkDestroySemaphore(vDeviceHandler->vSpecs.vDevice, vSpecs.vImageAvailableSemaphore, nullptr);
-        vkDestroySemaphore(vDeviceHandler->vSpecs.vDevice, vSpecs.vRenderFinishedSemaphore, nullptr);
-        vkDestroyFence(vDeviceHandler->vSpecs.vDevice, vSpecs.vInFlightFence, nullptr);
-        for (auto frameBuffer : vSpecs.vSwapChainFrameBuffers)
+        vkCmdSetDepthTestEnable(mSpecs.commandBuffer, static_cast<VkBool32>(val));
+    }
+
+    b8 Renderer::supportsValidationLayer()
+    {
+        u32 layerCount;
+        vkEnumerateInstanceLayerProperties(&layerCount,nullptr);
+        std::vector<VkLayerProperties> availableLayers(layerCount);
+        vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+        for (const char* layerName : mSpecs.valdiationLayers)
         {
-            vkDestroyFramebuffer(vDeviceHandler->vSpecs.vDevice, frameBuffer, nullptr);
+            bool layerFound = false;
+            for (const auto& p : availableLayers)
+            {
+                std::cerr<<p.layerName<<'\n';
+                if (strcmp(layerName, p.layerName) == 0)
+                {
+                    layerFound = true;
+                    break;
+                }
+            }
+            if (!layerFound) return false;
         }
-        vkDestroyPipeline(vDeviceHandler->vSpecs.vDevice, vSpecs.vGraphicsPipeline, nullptr);
-        vkDestroyPipelineLayout(vDeviceHandler->vSpecs.vDevice, vSpecs.vPipelineLayout, nullptr);
-        vkDestroyRenderPass(vDeviceHandler->vSpecs.vDevice, vSpecs.vRenderPass, nullptr);
+        return true;
+    }
+    /*void VulkanInitializer::clean()
+      {
+      vkDestroySemaphore(vDeviceHandler->mSpecs.device, mSpecs.imageAvailableSemaphore, nullptr);
+      vkDestroySemaphore(vDeviceHandler->mSpecs.device, mSpecs.renderFinishedSemaphore, nullptr);
+      vkDestroyFence(vDeviceHandler->mSpecs.device, mSpecs.inFlightFence, nullptr);
+      for (auto frameBuffer : mSpecs.swapChainFrameBuffers)
+      {
+      vkDestroyFramebuffer(vDeviceHandler->mSpecs.device, frameBuffer, nullptr);
+      }
+      vkDestroyPipeline(vDeviceHandler->mSpecs.device, mSpecs.graphicsPipeline, nullptr);
+      vkDestroyPipelineLayout(vDeviceHandler->mSpecs.device, mSpecs.pipelineLayout, nullptr);
+      vkDestroyRenderPass(vDeviceHandler->mSpecs.device, mSpecs.renderPass, nullptr);
 
-        for (auto imageView : vSpecs.vSwapImageViews) {
-            vkDestroyImageView(vDeviceHandler->vSpecs.vDevice, imageView, nullptr);
-        }
+      for (auto imageView : mSpecs.swapImageViews) {
+      vkDestroyImageView(vDeviceHandler->mSpecs.device, imageView, nullptr);
+      }
 
-        vkDestroySwapchainKHR(vDeviceHandler->vSpecs.vDevice, vSpecs.vSwapChain, nullptr);
-        vkDestroyDevice(vDeviceHandler->vSpecs.vDevice, nullptr);
+      vkDestroySwapchainKHR(vDeviceHandler->mSpecs.device, mSpecs.swapChain, nullptr);
+      vkDestroyDevice(vDeviceHandler->mSpecs.device, nullptr);
 
-        vkDestroySurfaceKHR(vSpecs.vInstance, vSpecs.vSurface, nullptr);
-        vkDestroyInstance(vSpecs.vInstance, nullptr);
+      vkDestroySurfaceKHR(mSpecs.instance, mSpecs.surface, nullptr);
+      vkDestroyInstance(mSpecs.instance, nullptr);
 
 
-    }*/
+      }*/
 }}

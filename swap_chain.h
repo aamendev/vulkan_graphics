@@ -2,24 +2,31 @@
 #include "common.h"
 #include "devices_handler.h"
 #include "window.h"
+#include "./depth_image.h"
 namespace Lina{ namespace Graphics{
     struct SwapChainSpecs
     {
-        VkSurfaceFormatKHR vFormat;
-        VkPresentModeKHR vPresentMode;
-        VkExtent2D vExtent;
-        VkSwapchainKHR vSwapChain;
-        std::vector<VkImage> vSwapImages;
-        std::vector<VkImageView> vSwapImageViews;
-        VkRenderPass vRenderPass;
-        std::vector<VkFramebuffer> vSwapChainFrameBuffers;
+        VkSurfaceFormatKHR format;
+        VkPresentModeKHR presentMode;
+        VkExtent2D extent;
+        VkSwapchainKHR swapChain;
 
-        VkSemaphore vImageAvailableSemaphore;
-        VkSemaphore vRenderFinishedSemaphore;
-        VkFence vInFlightFence;
+        std::vector<VkImage> swapImages;
+        std::vector<VkImageView> swapImageViews;
 
-        SwapChainSupportDetails* vSwapChainDetails;
-        VkSurfaceKHR* vSurface;
+        DepthImage depthImage;
+        VkDeviceMemory depthImageMemory;
+        VkImageView depthImageView;
+
+        VkRenderPass renderPass;
+        std::vector<VkFramebuffer> swapChainFrameBuffers;
+
+        VkSemaphore imageAvailableSemaphore;
+        VkSemaphore renderFinishedSemaphore;
+        VkFence inFlightFence;
+
+        SwapChainSupportDetails* swapChainDetails;
+        VkSurfaceKHR* surface;
     };
     class SwapChain
     {
@@ -42,8 +49,7 @@ namespace Lina{ namespace Graphics{
             VkPresentModeKHR chooseSwapPresentMode();
             VkExtent2D chooseSwapExtent();
         private:
-            SwapChainSpecs vSpecs;
-            DeviceHandler* vDeviceHandler;
-            Window* vWindow;
-    };
-}}
+            SwapChainSpecs mSpecs;
+            DeviceHandler* mDeviceHandler;
+            Window* mWindow;
+    }; }}

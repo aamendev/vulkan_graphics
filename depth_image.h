@@ -6,6 +6,6 @@ namespace Lina{ namespace Graphics{
     class DepthImage : public Image
     {
         public:
-       void init(DeviceHandler* deviceHandler, VkImage& image, VkDeviceMemory& memory, i32 width, i32 height);
+       void init(DeviceHandler* deviceHandler, VkImage* image, VkDeviceMemory* memory, i32 width, i32 height);
     };
 }}

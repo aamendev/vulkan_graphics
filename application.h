@@ -7,12 +7,13 @@ namespace Lina{
     {
         public:
             void run();
-            void drawFrame();
+            void drawFrame(void* data = nullptr);
         private:
             void initWindow();
             void initRenderer();
             void mainLoop();
             void cleanUp();
+            void preprocess();
         private:
             Graphics::Window* mWindow;
             Graphics::Renderer* mRenderer;

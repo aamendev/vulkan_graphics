@@ -3,8 +3,8 @@
 namespace Lina{ namespace Graphics{
    void DepthImage::init(
            DeviceHandler* deviceHandler,
-           VkImage& image,
-           VkDeviceMemory& memory,
+           VkImage* image,
+           VkDeviceMemory* memory,
            i32 width,
            i32 height)
    {
@@ -15,8 +15,8 @@ namespace Lina{ namespace Graphics{
         mSpecs.tiling = VK_IMAGE_TILING_OPTIMAL;
         mSpecs.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT,
         mSpecs.properties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
-        mSpecs.image = &image;
-        mSpecs.imageMemory = &memory;
+        mSpecs.image = image;
+        mSpecs.imageMemory = memory;
         createImage();
    }
 }}

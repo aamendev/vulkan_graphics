@@ -9,23 +9,23 @@ namespace Lina{ namespace Graphics{
         bufferInfo.usage = mSpecs.usage;
         bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
-        if (vkCreateBuffer(mDeviceHandler->vSpecs.vDevice, &bufferInfo, nullptr, &mSpecs.buffer) != VK_SUCCESS) {
+        if (vkCreateBuffer(mDeviceHandler->mSpecs.device, &bufferInfo, nullptr, &mSpecs.buffer) != VK_SUCCESS) {
             throw std::runtime_error("failed to create buffer!");
         }
 
         VkMemoryRequirements memRequirements;
-        vkGetBufferMemoryRequirements(mDeviceHandler->vSpecs.vDevice, mSpecs.buffer, &memRequirements);
+        vkGetBufferMemoryRequirements(mDeviceHandler->mSpecs.device, mSpecs.buffer, &memRequirements);
 
         VkMemoryAllocateInfo allocInfo{};
         allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
         allocInfo.allocationSize = memRequirements.size;
         allocInfo.memoryTypeIndex =
-            Utils::findMemoryType(mDeviceHandler->vSpecs.vPhysicalDevice,
+            Utils::findMemoryType(mDeviceHandler->mSpecs.physicalDevice,
                         memRequirements.memoryTypeBits,
                         mSpecs.properties
                         );
 
-        auto allocResult = (vkAllocateMemory(mDeviceHandler->vSpecs.vDevice,
+        auto allocResult = (vkAllocateMemory(mDeviceHandler->mSpecs.device,
                     &allocInfo,
                     nullptr,
                     &mSpecs.bufferMemory));
@@ -34,6 +34,6 @@ namespace Lina{ namespace Graphics{
             throw std::runtime_error("failed to allocate buffer memory!");
         }
 
-        vkBindBufferMemory(mDeviceHandler->vSpecs.vDevice, mSpecs.buffer, mSpecs.bufferMemory, 0);
+        vkBindBufferMemory(mDeviceHandler->mSpecs.device, mSpecs.buffer, mSpecs.bufferMemory, 0);
     }
 }}

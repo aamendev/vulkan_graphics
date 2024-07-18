@@ -11,34 +11,35 @@
 #include "texture.h"
 #include "./Math/Point3D.h"
 #include "./Math/Transform4D.h"
+#include <vulkan/vulkan_core.h>
 namespace Lina{ namespace Graphics{
 
     class Renderer
     {
         struct RenderSpecs
         {
-            VkInstance vInstance;
 
-            VkSurfaceKHR vSurface;
+            std::vector<const char*> valdiationLayers = {"VK_LAYER_KHRONOS_validation"};
+            bool enableValidationLayers = true;
+            VkInstance instance;
 
-            SwapChainSupportDetails vSwapChainDetails;
+            VkSurfaceKHR surface;
 
-            VkCommandPool vCommandPool;
-            VkCommandBuffer vCommandBuffer;
+            SwapChainSupportDetails swapChainDetails;
+
+            VkCommandPool commandPool;
+            VkCommandBuffer commandBuffer;
 
             Window* sWindow;
-            VertexBuffer vBuffer;
-            IndexBuffer vIndexBuffer;
+            VertexBuffer vertexBuffer;
+            IndexBuffer indexBuffer;
 
             Texture texture;
             VkImageView textureImageView;
             VkSampler textureSampler;
 
-            DepthImage depthImage;
-            VkDeviceMemory depthImageMemory;
-            VkImageView depthImageView;
 
-            UniformBuffer vUniformBuffer;
+            UniformBuffer uniformBuffer;
             VkDeviceMemory uniformBuffersMemory;
             void* uniformBuffersMapped;
 
@@ -46,11 +47,11 @@ namespace Lina{ namespace Graphics{
             VkDescriptorPool descriptorPool;
             std::vector<VkDescriptorSet> descriptorSets;
 
-            VkPipelineLayout vPipelineLayout;
-            VkPipeline vGraphicsPipeline;
+            VkPipelineLayout pipelineLayout;
+            VkPipeline graphicsPipeline;
 
-            VkShaderModule vVertexShaderModule;
-            VkShaderModule vFragmentShaderModule;
+            VkShaderModule vertexShaderModule;
+            VkShaderModule fragmentShaderModule;
         };
         struct HiddenDrawData
         {
@@ -59,9 +60,6 @@ namespace Lina{ namespace Graphics{
 
         public:
         void init(std::string& name, Window* window);
-        RenderSpecs* getSpecs() {return &mSpecs;}
-
-        void setPrimitive(Primitive p);
         void beginDraw();
         void endDraw();
         void createVertexBuffer(
@@ -74,15 +72,27 @@ namespace Lina{ namespace Graphics{
         void createTexture(std::string&& path);
         void updateUniform(void* data)
         {
-            mSpecs.vUniformBuffer.updateUniform(data);
+            mSpecs.uniformBuffer.updateUniform(data);
+            vkCmdPushConstants(
+                    mSpecs.commandBuffer,
+                    mSpecs.pipelineLayout,
+                    VK_SHADER_STAGE_VERTEX_BIT,
+                    0,
+                    sizeof(Math::Transform4D),
+                    data);
         }
+        
+        void pushConstants(u32 size);
+        void render(VertexBuffer* vb = nullptr, IndexBuffer* ib = nullptr);
+        // Options //
+        void setPrimitive(Primitive p);
+        void enableDepthTest(bool);
 
-        void createDepthResources();
-
+        // GET //
+        RenderSpecs* getSpecs() {return &mSpecs;}
         private:
-        void beginRecordCommandBuffer(u32);
-        void recordCommandBuffer(u32);
-        void endRecordCommandBuffer(u32);
+        void createDepthResources();
+        void recordCommandBuffer();
         VkShaderModule createShaderModule(const std::vector<char>& code);
 
         void createDescriptorSetLayout();
@@ -103,11 +113,14 @@ namespace Lina{ namespace Graphics{
         void createCommandPool();
         b8 createVulkanInstance(std::string& appName);
         void createWindowSurface();
+
+        b8 supportsValidationLayer();
         private:
         RenderSpecs mSpecs;
-        Shader vShader;
+        Shader mShader;
         HiddenDrawData mHiddenDrawData;
         DeviceHandler* mDeviceHandler;
         SwapChain* mSwapChain;
+        bool mSwapChainRecreated;
     };
 }}

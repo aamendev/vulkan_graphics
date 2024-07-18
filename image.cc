@@ -24,14 +24,14 @@ namespace Lina{ namespace Graphics{
                 .initialLayout = VK_IMAGE_LAYOUT_UNDEFINED,
             };
             vkCreateImage(
-                    mDeviceHandler->vSpecs.vDevice,
+                    mDeviceHandler->mSpecs.device,
                     &imageInfo,
                     nullptr,
                     mSpecs.image
                     );
             VkMemoryRequirements memRequirements;
             vkGetImageMemoryRequirements(
-                    mDeviceHandler->vSpecs.vDevice,
+                    mDeviceHandler->mSpecs.device,
                     *mSpecs.image,
                     &memRequirements
                     );
@@ -40,28 +40,28 @@ namespace Lina{ namespace Graphics{
                 .sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO,
                 .allocationSize = memRequirements.size,
                 .memoryTypeIndex = Utils::findMemoryType(
-                        mDeviceHandler->vSpecs.vPhysicalDevice,
+                        mDeviceHandler->mSpecs.physicalDevice,
                         memRequirements.memoryTypeBits,
                         VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT
                         )
             };
             vkAllocateMemory(
-                    mDeviceHandler->vSpecs.vDevice,
+                    mDeviceHandler->mSpecs.device,
                     &memAllocInfo,
                     nullptr,
                     mSpecs.imageMemory
                     );
             vkBindImageMemory(
-                    mDeviceHandler->vSpecs.vDevice,
+                    mDeviceHandler->mSpecs.device,
                     *mSpecs.image,
                     *mSpecs.imageMemory,
                     0
                     );
     }
 
-    const VkImage& Image::getImage() const
+    VkImage* Image::getImage() const
     {
-        return *mSpecs.image;
+        return mSpecs.image;
     }
 
     u32 Image::getWidth() const

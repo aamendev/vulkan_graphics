@@ -1,27 +1,28 @@
 #pragma once
 #include "common.h"
+#include <vulkan/vulkan_core.h>
 namespace Lina{ namespace Graphics{
-    struct specs
+    struct DeviceSpecs
     {
-        VkInstance* vInstance;
-        std::vector<VkPhysicalDevice> vPhysicalDevices;
+        VkInstance* instance;
+        std::vector<VkPhysicalDevice> physicalDevices;
 
         std::vector
         <
             std::vector<VkQueueFamilyProperties>
-        > vQueueFamilyProperties;
+        > queueFamilyProperties;
 
-        VkPhysicalDevice vPhysicalDevice;
-        VkDevice vDevice;
-        const std::vector<const char *> vRequiredExensions =
+        VkPhysicalDevice physicalDevice;
+        VkDevice device;
+        const std::vector<const char *> requiredExensions =
         {
-            VK_KHR_SWAPCHAIN_EXTENSION_NAME
+            VK_KHR_SWAPCHAIN_EXTENSION_NAME,
         };
-        SwapChainSupportDetails vSwapChainDetails;
-        QueueFamilyIndices vFamilyIndices;
-        VkSurfaceKHR vSurface;
-        VkQueue vGraphicsQueue;
-        VkQueue vPresentQueue;
+        SwapChainSupportDetails swapChainDetails;
+        QueueFamilyIndices familyIndices;
+        VkSurfaceKHR surface;
+        VkQueue graphicsQueue;
+        VkQueue presentQueue;
     };
     class DeviceHandler
     {
@@ -40,7 +41,7 @@ namespace Lina{ namespace Graphics{
         friend class TextureImage;
 
         public:
-            b8 init(VkInstance* vInstance, VkSurfaceKHR* surface);
+            b8 init(VkInstance* mInstance, VkSurfaceKHR* surface);
         private:
 
             b8 setVulkanDevices();
@@ -54,6 +55,6 @@ namespace Lina{ namespace Graphics{
             b8 checkRequiredExtensions(VkPhysicalDevice device);
             SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
         private:
-            specs vSpecs;
+            DeviceSpecs mSpecs;
     };
 }}

@@ -36,7 +36,7 @@ namespace Lina { namespace Graphics{
         }
         else
         {
-            std::cout<<"a7a";
+            std::cerr<<"a7a";
         }
         return false;
     }

@@ -17,13 +17,13 @@ namespace Lina{ namespace Graphics{
 
             void* bindAddress;
             vkMapMemory(
-                    mDeviceHandler->vSpecs.vDevice,
+                    mDeviceHandler->mSpecs.device,
                     mSpecs.bufferMemory,
                     0,
                     size,
                     0,
                     &bindAddress);
             std::memcpy(bindAddress, data, size);
-            vkUnmapMemory(mDeviceHandler->vSpecs.vDevice, mSpecs.bufferMemory);
+            vkUnmapMemory(mDeviceHandler->mSpecs.device, mSpecs.bufferMemory);
         }
 }}

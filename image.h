@@ -20,7 +20,7 @@ namespace Lina{ namespace Graphics{
             virtual void createImage();
 
             /*Getters */
-            const VkImage& getImage() const;
+            VkImage* getImage() const;
             u32 getWidth() const;
             u32 getHeight() const;
             const ImageSpecs& getSpecs() const;

@@ -15,7 +15,7 @@ namespace Lina{ namespace Graphics{
         createBuffer();
 
         vkMapMemory(
-                mDeviceHandler->vSpecs.vDevice,
+                mDeviceHandler->mSpecs.device,
                 mSpecs.bufferMemory,
                 0,
                 size,
@@ -27,7 +27,7 @@ namespace Lina{ namespace Graphics{
     b8 StagingBuffer::copyMemory(void* dist)
     {
         std::memcpy(mDataPointer, dist, mSpecs.size);
-        vkUnmapMemory(mDeviceHandler->vSpecs.vDevice, mSpecs.bufferMemory);
+        vkUnmapMemory(mDeviceHandler->mSpecs.device, mSpecs.bufferMemory);
         return true;
     }
 }}

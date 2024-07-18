@@ -1,9 +1,11 @@
 #include "devices_handler.h"
+#include <cstring>
+#include <vulkan/vulkan_core.h>
 namespace Lina{ namespace Graphics{
     b8 DeviceHandler::init(VkInstance* instance, VkSurfaceKHR* surface)
     {
-        vSpecs.vInstance = instance;
-        vSpecs.vSurface = *surface;
+        mSpecs.instance = instance;
+        mSpecs.surface = *surface;
         return
             setVulkanDevices()
             && setQueueFamilyProperties()
@@ -15,13 +17,13 @@ namespace Lina{ namespace Graphics{
     {
         u32 physicalDeviceCount = 0;
         vkEnumeratePhysicalDevices(
-                *vSpecs.vInstance,
+                *mSpecs.instance,
                 &physicalDeviceCount ,
                 nullptr
                 );
-        vSpecs.vPhysicalDevices.resize(physicalDeviceCount);
-        vSpecs.vQueueFamilyProperties.resize(physicalDeviceCount);
-        return vkEnumeratePhysicalDevices(*vSpecs.vInstance, &physicalDeviceCount, &(vSpecs.vPhysicalDevices[0])) == VK_SUCCESS;
+        mSpecs.physicalDevices.resize(physicalDeviceCount);
+        mSpecs.queueFamilyProperties.resize(physicalDeviceCount);
+        return vkEnumeratePhysicalDevices(*mSpecs.instance, &physicalDeviceCount, &(mSpecs.physicalDevices[0])) == VK_SUCCESS;
     }
 
     b8 DeviceHandler::setQueueFamilyProperties()
@@ -29,16 +31,16 @@ namespace Lina{ namespace Graphics{
         u32 queueFamilyPropertiesCount;
         VkPhysicalDeviceMemoryProperties pDeviceProperties;
         u16 index = 0;
-        for (auto d : vSpecs.vPhysicalDevices)
+        for (auto d : mSpecs.physicalDevices)
         {
             vkGetPhysicalDeviceMemoryProperties(d, &pDeviceProperties);
 
             vkGetPhysicalDeviceQueueFamilyProperties(d, &queueFamilyPropertiesCount, nullptr);
-            vSpecs.vQueueFamilyProperties[index].resize(queueFamilyPropertiesCount);
+            mSpecs.queueFamilyProperties[index].resize(queueFamilyPropertiesCount);
             vkGetPhysicalDeviceQueueFamilyProperties(
                     d,
                     &queueFamilyPropertiesCount,
-                    vSpecs.vQueueFamilyProperties[index++].data());
+                    mSpecs.queueFamilyProperties[index++].data());
         }
         return true;
     }
@@ -46,11 +48,11 @@ namespace Lina{ namespace Graphics{
     b8 DeviceHandler::setCurrentDevice()
     {
         i32 index = 0;
-        for (const auto& d : vSpecs.vPhysicalDevices)
+        for (const auto& d : mSpecs.physicalDevices)
         {
             if (isDeviceSuitable(d, index++))
             {
-                vSpecs.vPhysicalDevice = d;
+                mSpecs.physicalDevice = d;
                 return true;
             }
         }
@@ -63,10 +65,10 @@ namespace Lina{ namespace Graphics{
         b8 swapChainAdequate = false;
         if (extensionSupported)
         {
-            vSpecs.vSwapChainDetails = querySwapChainSupport(device);
+            mSpecs.swapChainDetails = querySwapChainSupport(device);
             swapChainAdequate =
-                !vSpecs.vSwapChainDetails.formats.empty() &&
-                !vSpecs.vSwapChainDetails.presnetModes.empty();
+                !mSpecs.swapChainDetails.formats.empty() &&
+                !mSpecs.swapChainDetails.presnetModes.empty();
         }
         return familyWithGraphicsBit(device, index) &&
             extensionSupported &&
@@ -75,19 +77,19 @@ namespace Lina{ namespace Graphics{
     b8 DeviceHandler::familyWithGraphicsBit(VkPhysicalDevice device ,i32 index)
     {
         int currentIndex = 0;
-        for (auto& f : vSpecs.vQueueFamilyProperties[index])
+        for (auto& f : mSpecs.queueFamilyProperties[index])
         {
             if (f.queueFlags & VK_QUEUE_GRAPHICS_BIT)
             {
-                vSpecs.vFamilyIndices.graphicsFamily = currentIndex;
+                mSpecs.familyIndices.graphicsFamily = currentIndex;
             }
             VkBool32 presentSupport = false;
-            vkGetPhysicalDeviceSurfaceSupportKHR(device, currentIndex, vSpecs.vSurface, &presentSupport);
+            vkGetPhysicalDeviceSurfaceSupportKHR(device, currentIndex, mSpecs.surface, &presentSupport);
             if (presentSupport)
             {
-                vSpecs.vFamilyIndices.presentFamily = index;
+                mSpecs.familyIndices.presentFamily = index;
             }
-            if (vSpecs.vFamilyIndices.isComplete())
+            if (mSpecs.familyIndices.isComplete())
             {
                 return true;
             }
@@ -106,8 +108,8 @@ namespace Lina{ namespace Graphics{
 
         std::set<std::string> requiredExtensions
             (
-             vSpecs.vRequiredExensions.begin(),
-             vSpecs.vRequiredExensions.end()
+             mSpecs.requiredExensions.begin(),
+             mSpecs.requiredExensions.end()
             );
         for (const auto& e: availableExtensions)
         {
@@ -120,7 +122,7 @@ namespace Lina{ namespace Graphics{
         SwapChainSupportDetails details;
         vkGetPhysicalDeviceSurfaceCapabilitiesKHR
             (
-             device,vSpecs.vSurface,
+             device,mSpecs.surface,
              &details.capabilities
             );
         u32 formatCount;
@@ -128,7 +130,7 @@ namespace Lina{ namespace Graphics{
         vkGetPhysicalDeviceSurfaceFormatsKHR
             (
              device,
-             vSpecs.vSurface,
+             mSpecs.surface,
              &formatCount,
              nullptr
             );
@@ -137,7 +139,7 @@ namespace Lina{ namespace Graphics{
         vkGetPhysicalDeviceSurfaceFormatsKHR
             (
              device,
-             vSpecs.vSurface,
+             mSpecs.surface,
              &formatCount,
              details.formats.data()
             );
@@ -146,7 +148,7 @@ namespace Lina{ namespace Graphics{
         vkGetPhysicalDeviceSurfacePresentModesKHR
             (
              device,
-             vSpecs.vSurface,
+             mSpecs.surface,
              &presentModeCount,
              nullptr
             );
@@ -156,7 +158,7 @@ namespace Lina{ namespace Graphics{
         vkGetPhysicalDeviceSurfacePresentModesKHR
             (
              device,
-             vSpecs.vSurface,
+             mSpecs.surface,
              &presentModeCount,
              details.presnetModes.data()
             );
@@ -167,8 +169,8 @@ namespace Lina{ namespace Graphics{
         std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
         std::set<u32> uniqueQueueFamilies=
         {
-            (u32)vSpecs.vFamilyIndices.graphicsFamily,
-            (u32)vSpecs.vFamilyIndices.presentFamily
+            (u32)mSpecs.familyIndices.graphicsFamily,
+            (u32)mSpecs.familyIndices.presentFamily
         };
 
         f32 priority = 1.0f;
@@ -185,7 +187,8 @@ namespace Lina{ namespace Graphics{
         }
 
         VkPhysicalDeviceFeatures features = {
-            .samplerAnisotropy = VK_TRUE
+            .depthClamp = VK_TRUE,
+            .samplerAnisotropy = VK_TRUE,
         };
         VkDeviceCreateInfo deviceCreateInfo
         {
@@ -194,29 +197,29 @@ namespace Lina{ namespace Graphics{
                 .pQueueCreateInfos = queueCreateInfos.data(),
                 .enabledLayerCount = 0,
                 .ppEnabledLayerNames = nullptr,
-                .enabledExtensionCount = (u32)vSpecs.vRequiredExensions.size(),
-                .ppEnabledExtensionNames = vSpecs.vRequiredExensions.data(),
+                .enabledExtensionCount = (u32)mSpecs.requiredExensions.size(),
+                .ppEnabledExtensionNames = mSpecs.requiredExensions.data(),
                 .pEnabledFeatures = &features
         };
 
         vkCreateDevice(
-                vSpecs.vPhysicalDevice,
+                mSpecs.physicalDevice,
                 &deviceCreateInfo,
                 nullptr,
-                &(vSpecs.vDevice)
+                &(mSpecs.device)
                 );
 
         vkGetDeviceQueue(
-                vSpecs.vDevice,
-                (u32)vSpecs.vFamilyIndices.graphicsFamily,
+                mSpecs.device,
+                (u32)mSpecs.familyIndices.graphicsFamily,
                 0,
-                &(vSpecs.vGraphicsQueue)
+                &(mSpecs.graphicsQueue)
                 );
         vkGetDeviceQueue(
-                vSpecs.vDevice,
-                (u32)vSpecs.vFamilyIndices.presentFamily,
+                mSpecs.device,
+                (u32)mSpecs.familyIndices.presentFamily,
                 0,
-                &(vSpecs.vPresentQueue)
+                &(mSpecs.presentQueue)
                 );
         return true;
     }

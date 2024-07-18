@@ -14,7 +14,7 @@ namespace Lina{ namespace Graphics{
             createBuffer();
 
             vkMapMemory(
-                    mDeviceHandler->vSpecs.vDevice,
+                    mDeviceHandler->mSpecs.device,
                     mSpecs.bufferMemory,
                     0,
                     size,
@@ -24,6 +24,5 @@ namespace Lina{ namespace Graphics{
     void UniformBuffer::updateUniform(void *data)
     {
         std::memcpy(mDataPointer, data, mSpecs.size);
-        f32* newData = (float*)mDataPointer;
     }
 }}
