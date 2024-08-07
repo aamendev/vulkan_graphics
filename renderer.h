@@ -34,10 +34,9 @@ namespace Lina{ namespace Graphics{
             VertexBuffer vertexBuffer;
             IndexBuffer indexBuffer;
 
-            Texture texture;
-            VkImageView textureImageView;
+            std::vector<Texture> textures;
+            std::vector<VkImageView> textureImageViews;
             VkSampler textureSampler;
-
 
             UniformBuffer uniformBuffer;
             VkDeviceMemory uniformBuffersMemory;
@@ -69,7 +68,7 @@ namespace Lina{ namespace Graphics{
         void createUniformBuffers(u32 size);
         void createGraphicsPipeline();
         void createTexture(std::string& path);
-        void createTexture(std::string&& path);
+        void createTexture(std::vector<std::string> path);
         void updateUniform(void* data)
         {
             mSpecs.uniformBuffer.updateUniform(data);
@@ -83,7 +82,7 @@ namespace Lina{ namespace Graphics{
         }
         
         void pushConstants(u32 size);
-        void render(VertexBuffer* vb = nullptr, IndexBuffer* ib = nullptr);
+        void render(VertexBuffer* vb = nullptr, IndexBuffer* ib = nullptr, int texId = 0);
         // Options //
         void setPrimitive(Primitive p);
         void enableDepthTest(bool);
@@ -107,7 +106,7 @@ namespace Lina{ namespace Graphics{
 
         void transitionImageLayout(VkImage&, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout);
 
-        void createImageView(VkImage&, VkFormat, VkImageAspectFlags);
+        void createImageView(VkImage&, VkFormat, VkImageAspectFlags, int);
         void createTextureSampler();
         void createCommandBuffer();
         void createCommandPool();

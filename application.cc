@@ -2,13 +2,7 @@
 #include "./Math/Utilities.h"
 #include "./Math/Matrix3D.h"
 #include "./Math/Vector4D.h"
-#include "index_buffer.h"
-#include "vertex_buffer.h"
 Lina::Math::Matrix4D fulltransMat;
-Lina::Graphics::VertexBuffer vb1;
-Lina::Graphics::VertexBuffer vb2;
-Lina::Graphics::IndexBuffer ib1;
-Lina::Graphics::IndexBuffer ib2;
 namespace Lina{
     void App::run()
     {
@@ -31,7 +25,12 @@ namespace Lina{
 
     void App::preprocess()
     {
-        mRenderer->createTexture("../assets/psycopass1.jpg");
+        mRenderer->createTexture(
+                {
+                "/home/aamen/Downloads/WhatSie/friends/Lina/lina2.png",
+                "/home/aamen/Downloads/WhatSie/friends/Insaf.jpg",
+                "/home/aamen/Downloads/WhatSie/friends/Ela.jpg"
+                });
         std::vector<float> vertices =
         {
             -0.5f, -0.5f, 0.1f, 1.0f, 1.0f,1.0f, 1.0f, 0.0f,
@@ -45,22 +44,10 @@ namespace Lina{
             -0.5f, 0.5f, 0.3f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f
         };
 
-        std::vector<float> vertices2 =
-        {
-            -0.8f, -0.5f, 0.5f, 1.0f, 1.0f,1.0f, 1.0f, 0.0f,
-            0.3f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-            0.3f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
-            -0.8f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-        };
         std::vector<u32> indices =
         {
             0, 1, 2, 2, 3, 0,
             6, 5, 4, 4, 7, 6,
-        };
-
-        std::vector<u32> indices2 =
-        {
-            0, 1, 2, 2, 3, 0,
         };
 
         Graphics::VertexBufferLayout layout; 
@@ -70,17 +57,9 @@ namespace Lina{
         layout.push(Graphics::Format::FLOAT2, 2);
           
         mRenderer->createVertexBuffer(layout, vertices);
-        vb1 = mRenderer->getSpecs()->vertexBuffer;
-        mRenderer->createVertexBuffer(layout, vertices2);
-        vb2 = mRenderer->getSpecs()->vertexBuffer;
         mRenderer->createIndexBuffer(indices);
-        ib1 = mRenderer->getSpecs()->indexBuffer;
-        mRenderer->createIndexBuffer(indices);
-        ib2 = mRenderer->getSpecs()->indexBuffer;
         mRenderer->createGraphicsPipeline();
         mRenderer->createUniformBuffers(sizeof(fulltransMat));
-
-
     }
     void App::initRenderer()
     {
@@ -111,7 +90,7 @@ namespace Lina{
                 proj *
                 Math::Util::transMatrix(rotMat, {0,0.3,2.0}) * Math::Util::scaleMatrix({2.0, 2.0, 2.0});
             mRenderer->updateUniform(&fulltransMat);
-            mRenderer->render();
+            mRenderer->render(nullptr, nullptr, 2);
 
              rotMat =
                 Math::Util::rotationMatrix(theta * 3.1415 / 180, Math::Util::xAxis());
@@ -120,7 +99,7 @@ namespace Lina{
                 Math::Util::transMatrix(rotMat, {0,0.3,2.0}) * Math::Util::scaleMatrix({2.0, 2.0, 2.0});
 
             mRenderer->updateUniform(&fulltransMat);
-            mRenderer->render(&vb1, &ib1);
+            mRenderer->render(nullptr, nullptr, 1);
 
             mRenderer->endDraw();
             mWindow->update();
