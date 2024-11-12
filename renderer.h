@@ -12,6 +12,7 @@
 #include "./Math/Point3D.h"
 #include "./Math/Transform4D.h"
 #include <vulkan/vulkan_core.h>
+#include <utility>
 namespace Lina{ namespace Graphics{
 
     class Renderer
@@ -20,7 +21,7 @@ namespace Lina{ namespace Graphics{
         {
 
             std::vector<const char*> valdiationLayers = {"VK_LAYER_KHRONOS_validation"};
-            bool enableValidationLayers = true;
+            bool enableValidationLayers = false;
             VkInstance instance;
 
             VkSurfaceKHR surface;
@@ -67,8 +68,8 @@ namespace Lina{ namespace Graphics{
         void createIndexBuffer(const std::vector<u32> indices);
         void createUniformBuffers(u32 size);
         void createGraphicsPipeline();
-        void createTexture(std::string& path);
-        void createTexture(std::vector<std::string> path);
+        void createTexture(std::string& path, b8 flip);
+        void createTexture(std::vector<std::pair<std::string, b8>> paths);
         void updateUniform(void* data)
         {
             mSpecs.uniformBuffer.updateUniform(data);
@@ -89,6 +90,7 @@ namespace Lina{ namespace Graphics{
 
         // GET //
         RenderSpecs* getSpecs() {return &mSpecs;}
+        void toggleValidation() {mSpecs.enableValidationLayers = !mSpecs.enableValidationLayers;};
         private:
         void createDepthResources();
         void recordCommandBuffer();

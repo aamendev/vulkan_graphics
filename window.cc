@@ -1,3 +1,4 @@
+#include "./callbacks.h"
 #include "./window.h"
 #include "./WindowCallbacks.h"
 namespace Lina{ namespace Graphics{
@@ -46,7 +47,14 @@ namespace Lina{ namespace Graphics{
         glfwSetWindowUserPointer(mWindow, &mSpecs);
         glfwSetFramebufferSizeCallback(mWindow, Callbacks::WindowResize);
         glfwSwapInterval(4);
+        registerEventCallbacks();
        return true;
+    }
+    void Window::registerEventCallbacks()
+    {
+        glfwSetWindowUserPointer(mWindow, &mSpecs);
+        glfwSetKeyCallback(mWindow, Callbacks::Key);
+        glfwSetMouseButtonCallback(mWindow, Callbacks::MouseButton);
     }
     b8 Window::isResized()
     {

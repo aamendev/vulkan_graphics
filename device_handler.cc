@@ -30,7 +30,7 @@ namespace Lina{ namespace Graphics{
     {
         u32 queueFamilyPropertiesCount;
         VkPhysicalDeviceMemoryProperties pDeviceProperties;
-        u16 index = 0;
+        u32 index = 0;
         for (auto d : mSpecs.physicalDevices)
         {
             vkGetPhysicalDeviceMemoryProperties(d, &pDeviceProperties);
@@ -87,7 +87,7 @@ namespace Lina{ namespace Graphics{
             vkGetPhysicalDeviceSurfaceSupportKHR(device, currentIndex, mSpecs.surface, &presentSupport);
             if (presentSupport)
             {
-                mSpecs.familyIndices.presentFamily = index;
+                mSpecs.familyIndices.presentFamily = currentIndex;
             }
             if (mSpecs.familyIndices.isComplete())
             {

@@ -1,0 +1,45 @@
+#include "renderable.h"
+#include <algorithm>
+
+namespace Lina{ namespace Graphics{
+    void Renderable::computeFullVertices()
+    {
+        mFullVertices.resize(mVertices.size() * 8);
+        int currIndex = 0;
+        for (int i = 0; i < mVertices.size(); i++)
+        {
+            mFullVertices[currIndex++] = mVertices[i].x;
+            mFullVertices[currIndex++] = mVertices[i].y;
+            mFullVertices[currIndex++] = mVertices[i].z;
+            mFullVertices[currIndex++] = 1.0f;
+            mFullVertices[currIndex++] = 1.0f; 
+            mFullVertices[currIndex++] = 1.0f; 
+            mFullVertices[currIndex++] = (mTextureCoordinates[i].u);
+            mFullVertices[currIndex++] = (mTextureCoordinates[i].v);
+        }
+    }
+    std::vector<float> Renderable::getTextureDebug() const
+    {
+        std::vector<float> tex(mTextureCoordinates.size() * 8, 0);
+
+        int currIndex = 0;
+        std::cerr << std::max_element(mTextureCoordinates.begin(), mTextureCoordinates.end(),
+                [](const uv uv0, const uv uv1){return uv0.u < uv1.u;})->u<<',';
+
+        std::cerr << std::max_element(mTextureCoordinates.begin(), mTextureCoordinates.end(),
+                [](const uv uv0, const uv uv1){return uv0.v < uv1.v;})->v<<'\n';
+        for (int i = 0; i < mTextureCoordinates.size(); i++)
+        {
+            tex[currIndex++] = (mTextureCoordinates[i].u) - 0.5;
+            tex[currIndex++] = (mTextureCoordinates[i].v) - 0.5;
+            tex[currIndex++] = 0; 
+            tex[currIndex++] = 1.0f;
+            tex[currIndex++] = 1.0f;
+            tex[currIndex++] = 1.0f;
+            tex[currIndex++] = (mTextureCoordinates[i].u);
+            tex[currIndex++] = (mTextureCoordinates[i].v);
+        }
+        return tex;
+    }
+}}
+

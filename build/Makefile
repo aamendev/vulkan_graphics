@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /media/aamen/main/Projects/C++/Learning/Vulkan/build
+CMAKE_SOURCE_DIR = /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /media/aamen/main/Projects/C++/Learning/Vulkan/build
+CMAKE_BINARY_DIR = /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles /media/aamen/main/Projects/C++/Learning/Vulkan/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,821 +129,917 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.o: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.i: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.s: media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.o: media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.i: media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.s: media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/application.o: media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/application.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/application.i: media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/application.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/application.s: media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/application.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/buffer.o: media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/buffer.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/buffer.i: media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/buffer.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/buffer.s: media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/buffer.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.o: media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.i: media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.s: media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.o: media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.i: media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.s: media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/image.o: media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/image.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/image.i: media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/image.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/image.s: media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/image.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.o: media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.i: media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.s: media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/main.o: media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/main.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/main.i: media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/main.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/main.s: media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/main.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/renderer.o: media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/renderer.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/renderer.i: media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/renderer.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/renderer.s: media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/renderer.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/shader.o: media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/shader.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/shader.i: media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/shader.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/shader.s: media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/shader.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.o: media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.i: media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.s: media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.o: media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.i: media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.s: media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/texture.o: media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/texture.i: media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/texture.s: media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.o: media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.i: media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.s: media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.o: media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.i: media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.s: media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.o: media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.i: media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.s: media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/utils.o: media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/utils.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/utils.i: media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/utils.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/utils.s: media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/utils.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.o: media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.i: media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.s: media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.s
 
-media/aamen/main/Projects/C++/Learning/Vulkan/window.o: media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/window.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.o
 
 # target to build an object file
-media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o
 
-media/aamen/main/Projects/C++/Learning/Vulkan/window.i: media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/window.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.i
 
 # target to preprocess a source file
-media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.i
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.i
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i
 
-media/aamen/main/Projects/C++/Learning/Vulkan/window.s: media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/window.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.s
 
 # target to generate assembly for a file
-media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.s
-.PHONY : media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.s
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.o
+
+# target to build an object file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.i
+
+# target to preprocess a source file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.s
+
+# target to generate assembly for a file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.o
+
+# target to build an object file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.i
+
+# target to preprocess a source file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.i
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.s
+
+# target to generate assembly for a file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.s
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.o
+
+# target to build an object file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.i
+
+# target to preprocess a source file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.s
+
+# target to generate assembly for a file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.o: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.o
+
+# target to build an object file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.i: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.i
+
+# target to preprocess a source file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.i
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.i
+
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.s: home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.s
+
+# target to generate assembly for a file
+home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.s
+.PHONY : home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.s
 
 # Help Target
 help:
@@ -954,108 +1050,120 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/application.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/application.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/application.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/buffer.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/buffer.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/buffer.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/image.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/image.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/image.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/main.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/main.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/main.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/renderer.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/renderer.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/renderer.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/shader.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/shader.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/shader.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/texture.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/texture.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/texture.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/utils.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/utils.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/utils.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.s"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/window.o"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/window.i"
-	@echo "... media/aamen/main/Projects/C++/Learning/Vulkan/window.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.s"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.o"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.i"
+	@echo "... home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.s"
 .PHONY : help
 
 

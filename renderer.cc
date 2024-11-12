@@ -8,8 +8,7 @@ namespace Lina{ namespace Graphics{
         mSpecs = {.sWindow = window};
         mShader = Shader();
         mDeviceHandler = new DeviceHandler();
-        mSwapChain = new SwapChain();
-        if (createVulkanInstance(name))
+        mSwapChain = new SwapChain(); if (createVulkanInstance(name))
         {
             window->createWindowSurface(mSpecs.instance, &mSpecs.surface);
 
@@ -329,6 +328,7 @@ namespace Lina{ namespace Graphics{
         inputAssembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
         inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
         inputAssembly.primitiveRestartEnable = VK_FALSE;
+        
 
         VkPipelineViewportStateCreateInfo viewportState{};
         viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
@@ -342,7 +342,7 @@ namespace Lina{ namespace Graphics{
         rasterizer.polygonMode = VK_POLYGON_MODE_FILL;
         rasterizer.lineWidth = 1.0f;
         rasterizer.cullMode = VK_CULL_MODE_BACK_BIT;
-        rasterizer.frontFace = VK_FRONT_FACE_CLOCKWISE;
+        rasterizer.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
         rasterizer.depthBiasEnable = VK_FALSE;
 
         VkPipelineMultisampleStateCreateInfo multisampling{};
@@ -477,7 +477,7 @@ namespace Lina{ namespace Graphics{
                 .y = 0.0f,
                 .width = (f32)mSwapChain->mSpecs.extent.width,
                 .height = (f32)mSwapChain->mSpecs.extent.height,
-                .minDepth = 0.04f,
+                .minDepth = 0.00f,
                 .maxDepth = 1.0f
         };
         vkCmdSetViewport(mSpecs.commandBuffer, 0, 1, &viewport);
@@ -526,20 +526,21 @@ namespace Lina{ namespace Graphics{
                 ib->mCount, 1, 0, 0, 0);
     }
 
-    void Renderer::createTexture(std::string& path)
+    void Renderer::createTexture(std::string& path, b8 flip)
     {
-        createTexture({std::move(path)});
+        createTexture({{std::move(path), flip}});
     }
 
-    void Renderer::createTexture(std::vector<std::string> paths)
+    void Renderer::createTexture(std::vector<std::pair<std::string, b8>> paths)
     {
         mSpecs.textures.resize(paths.size());
         mSpecs.textureImageViews.resize(paths.size());
         for (int i = 0; i < mSpecs.textures.size(); i++)
         {
-            auto path = paths[i];
+            auto [path, flip] = paths[i];
+            
             mSpecs.textures[i].init(mDeviceHandler);
-            if(mSpecs.textures[i].createImageFromPath(path, false))
+            if(mSpecs.textures[i].createImageFromPath(path, flip))
             {
                 transitionImageLayout(
                         mSpecs.textures[i].mImage,

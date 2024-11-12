@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /media/aamen/main/Projects/C++/Learning/Vulkan/build
+CMAKE_SOURCE_DIR = /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /media/aamen/main/Projects/C++/Learning/Vulkan/build
+CMAKE_BINARY_DIR = /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -69,559 +69,623 @@ include CMakeFiles/main.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/main.dir/flags.make
 
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o: /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/application.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/application.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/application.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/application.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/image.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/image.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/image.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/image.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/main.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/main.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/main.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/main.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o: /media/aamen/main/Projects/C++/Learning/Vulkan/window.cc
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o -MF CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o.d -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o -c /media/aamen/main/Projects/C++/Learning/Vulkan/window.cc
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/aamen/main/Projects/C++/Learning/Vulkan/window.cc > CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.i
-
-CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/aamen/main/Projects/C++/Learning/Vulkan/window.cc -o CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.s
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.s
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o: /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o -MF CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o.d -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o -c /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.i"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc > CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.i
+
+CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.s"
+	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc -o CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.s
 
 # Object files for target main
 main_OBJECTS = \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o" \
-"CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o"
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o" \
+"CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o"
 
 # External object files for target main
 main_EXTERNAL_OBJECTS =
 
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/application.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/buffer.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/depth_image.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/device_handler.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/image.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/index_buffer.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/main.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/renderer.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/shader.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/staging_buffer.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/swap_chain.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/texture_image.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/utils.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o
-main: CMakeFiles/main.dir/media/aamen/main/Projects/C++/Learning/Vulkan/window.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/AABB.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Frustum.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Line.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix3D.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Matrix4D.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Plane.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Point3D.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Quatrention.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Ray.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Sphere.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Transform4D.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector3D.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/Vector4D.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/segment.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/Math/src/utilities.cpp.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/WindowCallbacks.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/application.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/buffer.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/callbacks.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/depth_image.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/device_handler.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/image.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/index_buffer.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/main.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/renderer.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shader.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/icosphere.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shapes/renderable.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/shuttle.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/staging_buffer.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/swap_chain.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/texture_image.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/third_party/stb_image.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/uniform_buffer.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/utils.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/vertex_buffer.cc.o
+main: CMakeFiles/main.dir/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/window.cc.o
 main: CMakeFiles/main.dir/build.make
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -633,6 +697,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /media/aamen/main/Projects/C++/Learning/Vulkan/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /media/aamen/main/Projects/C++/Learning/Vulkan/build /media/aamen/main/Projects/C++/Learning/Vulkan/build /media/aamen/main/Projects/C++/Learning/Vulkan/build /media/aamen/main/Projects/C++/Learning/Vulkan/build /media/aamen/main/Projects/C++/Learning/Vulkan/build/CMakeFiles/main.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build /home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles/main.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/main.dir/depend
 
