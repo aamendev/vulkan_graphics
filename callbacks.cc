@@ -1,5 +1,5 @@
 #include "callbacks.h"
-#include "Types.h"
+#include "types.h"
 #include "events/mouse.h"
 namespace Lina{ namespace Callbacks{
     void Key(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -48,5 +48,13 @@ namespace Lina{ namespace Callbacks{
                     break;
                 }
         }
+    }
+    void WindowResize(GLFWwindow* window, int width, int height)
+    {
+       auto pWindow = reinterpret_cast<Graphics::Window::specs*>
+           (glfwGetWindowUserPointer(window));
+       auto* event = new Events::WindowResize(width, height);
+       pWindow->mEvents.push_back(event);
+       pWindow->resized = true;
     }
 }}

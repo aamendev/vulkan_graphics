@@ -15,7 +15,7 @@ namespace Lina{
             .name="Lina Main Screen",
             .width = 700,
             .height = 600,
-            .resizable = false,
+            .resizable = true,
             .mEvents = {}
         };
         mWindow = new Graphics::Window(s);

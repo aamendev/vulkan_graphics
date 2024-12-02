@@ -1,6 +1,6 @@
 #ifndef EVENT_H
 #define EVENT_H
-#include "../Types.h"
+#include "../types.h"
 #include <functional>
 #include <string>
 namespace Lina{ namespace Events{

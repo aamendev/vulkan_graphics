@@ -5,7 +5,7 @@
 #include "../Math/Vector3D.h"
 #include "../events/key.h"
 #include "../events/mouse.h"
-#include "../Types.h"
+#include "../types.h"
 #include "../renderer.h"
 #include "../shapes/icosphere.h"
 #include "../shuttle.h"

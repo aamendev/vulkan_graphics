@@ -5,5 +5,6 @@
 namespace Lina{ namespace Callbacks{
     void Key(GLFWwindow* window, int key, int scancode, int action, int modes);
     void MouseButton(GLFWwindow* window, int button, int action, int mod);
+    void WindowResize(GLFWwindow* window, int width, int height);
 }}
 #endif

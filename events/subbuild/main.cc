@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../mouse.h"
-#include "../../Types.h"
+#include "../../types.h"
 #include "../key.h"
 
 b8 printMouse(Lina::Events::MouseMove& e)

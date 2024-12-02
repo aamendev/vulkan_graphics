@@ -6,13 +6,14 @@ namespace Lina{ namespace Events{
     class WindowResize : public Event
     {
         public:
-            WindowResize(u32 width, u32 height) : mWidth(width), mHeight(height){}
-            u32 getWidth() const {return mWidth;}
-            u32 getHeight() const {return mHeight;}
+            WindowResize(i32 width, i32 height) : mWidth(width), mHeight(height){}
+            i32 getWidth() const {return mWidth;}
+            i32 getHeight() const {return mHeight;}
+            virtual Type getType() const override {return getStaticType();}
+            static Type getStaticType() {return Type::WindowResize;}
         private:
-            u32 mWidth;
-            u32 mHeight;
-
+            i32 mWidth;
+            i32 mHeight;
     };
     class WindowClose : public Event
     {
