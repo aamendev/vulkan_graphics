@@ -20,9 +20,9 @@ namespace Lina{ namespace Events{
             virtual Type getType() const {return Type::None;};
             //virtual std::string getName() const = 0;
             template<typename ...Args, typename ...fArgs>
-            void subscribe(std::function<b8(Args...)>f, fArgs&&... args) 
+            void subscribe(std::function<void(Args...)>f, fArgs&&... args) 
             {
-                std::function<bool()> f2 = std::bind(f, args...);
+                std::function<void()> f2 = std::bind(f, args...);
                 subscribers.push_back(f2);
             }
             u32 remainingSubs() const {return subscribers.size();}
@@ -38,7 +38,7 @@ namespace Lina{ namespace Events{
             }
         protected:
             bool handled = false;
-            std::vector<std::function<bool()>> subscribers;
+            std::vector<std::function<void()>> subscribers;
     };
 }}
 #endif

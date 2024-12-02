@@ -1,2 +1,5 @@
 Math*
 assets*
+build/bin
+shaders/*.spv
+*.md

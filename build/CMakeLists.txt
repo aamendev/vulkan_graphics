@@ -13,6 +13,8 @@ FILE(GLOB SRC
         "../Math/src/*.cpp"
         "../third_party/*.h"
         "../third_party/*.cc"
+        "../layers/*.h"
+        "../layers/*.cc"
     )
 add_executable(${PROJECT_NAME} ${SRC})
 set(CMAKE_BUILD_TYPE Debug)

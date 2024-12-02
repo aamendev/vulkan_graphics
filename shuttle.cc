@@ -60,7 +60,7 @@ namespace Lina{ namespace Graphics{
         }
         return true;
     }
-    Math::Transform4D Shuttle::initMatrix(const Math::Vector3D& pos, const Math::Vector3D& target, const Math::Vector3D& up)
+    Math::Transform4D Shuttle::initMatrix(const Math::Vector3D& target, const Math::Vector3D& up)
     {
         Math::Vector3D n = target.normalise();
         Math::Vector3D u = up.cross(n).normalise();
@@ -73,7 +73,7 @@ namespace Lina{ namespace Graphics{
 
     Math::Transform4D Shuttle::getMatrix()
     {
-        return initMatrix(mPos, mTarget, mUp);
+        return initMatrix(mTarget, mUp);
     }
 }}
 

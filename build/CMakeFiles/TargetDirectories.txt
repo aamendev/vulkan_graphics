@@ -1,3 +1,0 @@
-/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles/main.dir
-/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles/edit_cache.dir
-/home/aamen/oldlaptop/Projects/C++/Learning/Vulkan/build/CMakeFiles/rebuild_cache.dir

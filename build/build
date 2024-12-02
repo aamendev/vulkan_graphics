@@ -1,0 +1,10 @@
+clear;
+../shaders/compile.sh;
+cmake -B./bin/ .;
+make -C ./bin/;
+
+while getopts "r" flag ; do
+    case $flag in
+        r) ./bin/main
+    esac
+done

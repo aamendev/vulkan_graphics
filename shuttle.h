@@ -20,13 +20,13 @@ namespace Lina{ namespace Graphics{
             void init();
 
         private:
-            Math::Transform4D initMatrix(const Math::Vector3D& pos, const Math::Vector3D& target, const Math::Vector3D& up);
+            Math::Transform4D initMatrix(const Math::Vector3D& target, const Math::Vector3D& up);
         private:
             Math::Point3D mPos;
             Math::Point3D mTarget;
             Math::Vector3D mUp;
             Math::Transform4D mCamMatrix;
-            float mSpeed = 0.01f;
+            float mSpeed = 0.1f;
     };
 }}
 #endif
