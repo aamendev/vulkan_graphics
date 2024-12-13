@@ -1,7 +1,7 @@
-#include "./scene_layer.h"
+#include "./test_scene.h"
 
 namespace Lina{ namespace Graphics{
-    void SceneLayer::onKeyDown(Events::KeyPress& e)
+    void TestSceneLayer::onKeyDown(Events::KeyPress& e)
     {
         auto k = e.key();
         switch(k)
@@ -33,7 +33,7 @@ namespace Lina{ namespace Graphics{
             shuttles[shuttleIndex].update(e);
         }
     }
-    void SceneLayer::init()
+    void TestSceneLayer::init()
     {
         fin.open("../assets/planets.csv", std::ios::in);
         fin >> temp; //reomve header
@@ -71,7 +71,8 @@ namespace Lina{ namespace Graphics{
         layout.push(Graphics::Format::FLOAT3, 0);
         layout.push(Graphics::Format::FLOAT3, 1);
         layout.push(Graphics::Format::FLOAT2, 2);
-          
+
+
         mRenderer->createVertexBuffer(layout, verts);
         mRenderer->createIndexBuffer(ind);
         mRenderer->createGraphicsPipeline();
@@ -86,11 +87,31 @@ namespace Lina{ namespace Graphics{
         float speed = 4.0f;
         int i = 0;
     }
-    void SceneLayer::run()
+    void TestSceneLayer::run()
     {
+        std::vector<f32> planeVerts = 
+        {0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+            0.0, 1.0, 0.0, 1.0, 0.0, 0.0,
+            1.0, 1.0, 0.0, 1.0, 0.0, 0.0,
+            1.0, 0.0, 0.0, 1.0, 0.0, 0.0};
+        std::vector<u32> planInds = {
+            0, 1, 2, 
+            2, 3, 0}; 
+
+        Graphics::VertexBufferLayout planLayout;
+        planLayout.push(Graphics::Format::FLOAT3, 0);
+        planLayout.push(Graphics::Format::FLOAT3, 1);
+
+        VertexBuffer* planevertBuffer = new VertexBuffer();
+        IndexBuffer* planeindBuffer = new IndexBuffer();
+        mRenderer->createVertexBuffer(planLayout, planeVerts, planevertBuffer);
+        mRenderer->createIndexBuffer(planInds, planeindBuffer);
+
         auto proj = Math::Util::projMatrix(135, mWindow->getWidth() / mWindow-> getHeight(), true);
         mRenderer->beginDraw();
         mRenderer->setPrimitive(Primitive::Triangle);
+
+        mRenderer->render(nullptr, nullptr, 2);
         for (int i = 0; i < 9; i++)
         {
             auto followTransform = currTransforms[followIndex].getTranslation();
@@ -101,8 +122,8 @@ namespace Lina{ namespace Graphics{
                 currTransforms[i] *
                 Math::Util::scaleMatrix({radii[i], radii[i], radii[i]});
             mRenderer->updateUniform(&fulltransMat);
-            mRenderer->render(nullptr, nullptr, i);
-
+            //            mRenderer->render(nullptr, nullptr, i);
+            mRenderer->render(planevertBuffer, planeindBuffer, i);
             auto curr = currTransforms[i].getTranslation();
             auto c = currTransforms[0].getTranslation();
             Math::Transform4D rotMat =
@@ -113,6 +134,8 @@ namespace Lina{ namespace Graphics{
 
             currTransforms[i] = rotMat * currTransforms[i];
         }
+            //mRenderer->updateUniform(&currTransforms[0]);
+            //mRenderer->render(planevertBuffer, planeindBuffer, 0);
         mRenderer->endDraw();
     }
 }}

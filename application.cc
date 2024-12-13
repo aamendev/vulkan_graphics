@@ -1,6 +1,7 @@
 #include "application.h"
 #include "events/events.h"
 #include "events/key.h"
+#include "layers/test_scene.h"
 #include <string>
 
 namespace Lina{
@@ -23,10 +24,17 @@ namespace Lina{
         mRenderer = new Graphics::Renderer();
         std::string mainName = "Lina Main Application";
         mRenderer->init(mainName, mWindow);
+
         Graphics::SceneLayer* mainSceneLayer = 
             new Graphics::SceneLayer(mRenderer, mWindow);
 
+        Graphics::TestSceneLayer* testLayer = 
+            new Graphics::TestSceneLayer(mRenderer, mWindow);
+
         mLayers.push_back(mainSceneLayer);
+        mLayers.push_back(testLayer);
+        mCurrentLayer = 0;
+        for (int i = 0; i < mLayers.size(); i++) mLayers[i]->init();
     }
 
     void App::handleEvents()
@@ -42,8 +50,6 @@ namespace Lina{
 
     void App::mainLoop()
     {
-        Graphics::SceneLayer sLayer(mRenderer, mWindow);
-        for (int i = 0; i < mLayers.size(); i++) mLayers[i]->init();
 
         while(!mWindow->isClosed())
         { 
@@ -52,8 +58,12 @@ namespace Lina{
 
             mEvents = mWindow->getEvents();
 
-            std::function<void(Events::KeyPress&)> f1 = std::bind(
-                    &Graphics::Layer::onKeyDown, mLayers[mCurrentLayer], std::placeholders::_1);
+            std::function<void(Events::KeyPress&)> f1 = 
+                std::bind(
+                        &Graphics::Layer::onKeyDown, 
+                        mLayers[mCurrentLayer], 
+                        std::placeholders::_1);
+
             catSub<Events::KeyPress>(f1);
             handleEvents();
         }

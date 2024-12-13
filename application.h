@@ -6,6 +6,7 @@
 #include "window.h"
 #include "renderer.h"
 #include "shuttle.h"
+#include "./layers/test_scene.h"
 namespace Lina{
     class App
     {

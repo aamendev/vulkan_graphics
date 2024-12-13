@@ -45,6 +45,19 @@ enum class Primitive
     Point = VK_PRIMITIVE_TOPOLOGY_POINT_LIST
 };
 
+enum class Descriptor 
+{
+    Uniform = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+    Sampler = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+    Image = VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE
+};
+
+enum class Stageg
+{
+    Vertex = VK_SHADER_STAGE_VERTEX_BIT,
+    Fragment = VK_SHADER_STAGE_FRAGMENT_BIT
+};
+
 namespace Input
 {
     enum class KeyCode : u16

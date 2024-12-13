@@ -64,8 +64,10 @@ namespace Lina{ namespace Graphics{
         void endDraw();
         void createVertexBuffer(
                 VertexBufferLayout& layout,
-                const std::vector<float>& data);
-        void createIndexBuffer(const std::vector<u32> indices);
+                const std::vector<float>& data,
+                VertexBuffer* vb = nullptr);
+        void createIndexBuffer(const std::vector<u32> indices,
+                IndexBuffer* ib = nullptr);
         void createUniformBuffers(u32 size);
         void createGraphicsPipeline();
         void createTexture(std::string& path, b8 flip);

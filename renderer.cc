@@ -8,7 +8,8 @@ namespace Lina{ namespace Graphics{
         mSpecs = {.sWindow = window};
         mShader = Shader();
         mDeviceHandler = new DeviceHandler();
-        mSwapChain = new SwapChain(); if (createVulkanInstance(name))
+        mSwapChain = new SwapChain(); 
+        if (createVulkanInstance(name))
         {
             window->createWindowSurface(mSpecs.instance, &mSpecs.surface);
 
@@ -86,15 +87,20 @@ namespace Lina{ namespace Graphics{
     }
 
     void Renderer::createVertexBuffer(VertexBufferLayout& layout,
-            const std::vector<float>& vertices) {
-        mSpecs.vertexBuffer.init(mDeviceHandler, layout);
-        mSpecs.vertexBuffer.constructFromDataPointer(&vertices[0],
+            const std::vector<float>& vertices, VertexBuffer* vb) {
+        if (vb == nullptr)
+            vb = &mSpecs.vertexBuffer;
+        vb->init(mDeviceHandler, layout);
+        vb->constructFromDataPointer(&vertices[0],
                 vertices.size() * sizeof(vertices[0]));
     }
-    void Renderer::createIndexBuffer(const std::vector<u32> indices)
+    void Renderer::createIndexBuffer(const std::vector<u32> indices, 
+            IndexBuffer* ib)
     {
-        mSpecs.indexBuffer.init(mDeviceHandler);
-        mSpecs.indexBuffer.constructFromDataPointer(&indices[0],
+        if (ib == nullptr)
+            ib = &mSpecs.indexBuffer;
+        ib->init(mDeviceHandler);
+        ib->constructFromDataPointer(&indices[0],
                 indices.size() * sizeof(indices[0]));
     }
     VkShaderModule Renderer::createShaderModule(const std::vector<char>& code)
@@ -124,7 +130,7 @@ namespace Lina{ namespace Graphics{
         VkDescriptorSetLayoutBinding samplerLayoutBinding
         {
             .binding = 1,
-                .descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+                .descriptorType = VK_DESCRIPTOR_TYPE_SAMPLER,
                 .descriptorCount = 1,
                 .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
                 .pImmutableSamplers = nullptr
@@ -165,7 +171,7 @@ namespace Lina{ namespace Graphics{
         };
         poolSizes[1] =
         {
-            .type =  VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+            .type =  VK_DESCRIPTOR_TYPE_SAMPLER,
             .descriptorCount = 1
         };
         poolSizes[2] =
@@ -244,7 +250,7 @@ namespace Lina{ namespace Graphics{
                 .dstBinding = 1,
                 .dstArrayElement = 0,
                 .descriptorCount = 1, 
-                .descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+                .descriptorType = VK_DESCRIPTOR_TYPE_SAMPLER,
                 .pImageInfo = &imageInfos[0],
             };
 
@@ -786,9 +792,7 @@ namespace Lina{ namespace Graphics{
             .dstAccessMask = dstAccessMask,
             .oldLayout = oldLayout,
             .newLayout = newLayout,
-            .srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
-            .dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
-            .image = image,
+            .srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED, .dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED, .image = image,
             .subresourceRange =
             {
                 .aspectMask = VK_IMAGE_ASPECT_COLOR_BIT,
@@ -902,7 +906,7 @@ namespace Lina{ namespace Graphics{
         return true;
     }
     /*void VulkanInitializer::clean()
-      {
+      
       vkDestroySemaphore(vDeviceHandler->mSpecs.device, mSpecs.imageAvailableSemaphore, nullptr);
       vkDestroySemaphore(vDeviceHandler->mSpecs.device, mSpecs.renderFinishedSemaphore, nullptr);
       vkDestroyFence(vDeviceHandler->mSpecs.device, mSpecs.inFlightFence, nullptr);
