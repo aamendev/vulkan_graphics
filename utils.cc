@@ -18,43 +18,5 @@ namespace Lina{ namespace Graphics{
             }
             throw std::runtime_error("failed to find suitable memory type!");
         }
-
-//        void transitionImageLayout(VkCommandPool commandPool, VkDevice device, VkQueue graphicsQueue, VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout)
-//        {
-//            VkCommandBuffer commandBuffer = beginSingleTimeCommands(commandPool, device);
-//
-//            endSingleTimeCommand(commandPool, device, graphicsQueue, commandBuffer);
-//
-//
-//            VkImageMemoryBarrier barrier =
-//            {
-//                .sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER,
-//                .srcAccessMask = 0,
-//                .dstAccessMask = 0,
-//                .oldLayout = oldLayout,
-//                .newLayout = newLayout,
-//                .srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
-//                .dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
-//                .image = image,
-//                .subresourceRange =
-//                {
-//                    .aspectMask = VK_IMAGE_ASPECT_COLOR_BIT,
-//                    .baseMipLevel = 0,
-//                    .levelCount = 1,
-//                    .baseArrayLayer = 0,
-//                    .layerCount = 1
-//                }
-//            };
-//
-//            vkCmdPipelineBarrier(
-//                    commandBuffer,
-//                    0,
-//                    0,
-//                    0,
-//                    0, nullptr,
-//                    0, nullptr,
-//                    1, &barrier
-//                    );
-//        }
     }
 }}

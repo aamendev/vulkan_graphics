@@ -55,6 +55,8 @@ namespace Lina{ namespace Callbacks{
            (glfwGetWindowUserPointer(window));
        auto* event = new Events::WindowResize(width, height);
        pWindow->mEvents.push_back(event);
+       pWindow->width = width;
+       pWindow->height = height;
        pWindow->resized = true;
     }
 }}

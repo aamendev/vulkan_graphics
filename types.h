@@ -45,6 +45,14 @@ enum class Primitive
     Point = VK_PRIMITIVE_TOPOLOGY_POINT_LIST
 };
 
+enum ShaderType
+{
+    Empty = 0,
+    Uniform = 1,
+    Textured = 2,
+    some = 3,
+};
+
 enum class Descriptor 
 {
     Uniform = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,

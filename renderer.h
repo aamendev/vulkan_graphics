@@ -21,7 +21,7 @@ namespace Lina{ namespace Graphics{
         {
 
             std::vector<const char*> valdiationLayers = {"VK_LAYER_KHRONOS_validation"};
-            bool enableValidationLayers = false;
+            bool enableValidationLayers = true;
             VkInstance instance;
 
             VkSurfaceKHR surface;
@@ -32,26 +32,26 @@ namespace Lina{ namespace Graphics{
             VkCommandBuffer commandBuffer;
 
             Window* sWindow;
-            VertexBuffer vertexBuffer;
-            IndexBuffer indexBuffer;
+            std::vector<VertexBuffer> vertexBuffer;
+            std::vector<IndexBuffer> indexBuffer;
 
             std::vector<Texture> textures;
             std::vector<VkImageView> textureImageViews;
             VkSampler textureSampler;
 
-            UniformBuffer uniformBuffer;
+            std::vector<UniformBuffer> uniformBuffers;
             VkDeviceMemory uniformBuffersMemory;
             void* uniformBuffersMapped;
 
-            VkDescriptorSetLayout descriptorSetLayout;
-            VkDescriptorPool descriptorPool;
+            std::vector<VkDescriptorSetLayout> descriptorSetLayout;
+            std::vector<VkDescriptorPool> descriptorPool;
             std::vector<VkDescriptorSet> descriptorSets;
 
-            VkPipelineLayout pipelineLayout;
-            VkPipeline graphicsPipeline;
+            std::vector<VkPipelineLayout> pipelineLayouts;
+            std::vector<VkPipeline> graphicsPipelines;
 
-            VkShaderModule vertexShaderModule;
-            VkShaderModule fragmentShaderModule;
+            std::vector<VkShaderModule> vertexShaderModules;
+            std::vector<VkShaderModule> fragmentShaderModules;
         };
         struct HiddenDrawData
         {
@@ -62,25 +62,27 @@ namespace Lina{ namespace Graphics{
         void init(std::string& name, Window* window);
         void beginDraw();
         void endDraw();
+        void bindShader(int idx); 
+        void bindPipeline(int idx);
+        void addShader(std::string&&, std::string&&);
         void createVertexBuffer(
                 VertexBufferLayout& layout,
-                const std::vector<float>& data,
-                VertexBuffer* vb = nullptr);
-        void createIndexBuffer(const std::vector<u32> indices,
-                IndexBuffer* ib = nullptr);
+                const std::vector<float>& data);
+        void createIndexBuffer(const std::vector<u32> indices);
         void createUniformBuffers(u32 size);
-        void createGraphicsPipeline();
+        void createGraphicsPipelines();
         void createTexture(std::string& path, b8 flip);
         void createTexture(std::vector<std::pair<std::string, b8>> paths);
-        void updateUniform(void* data)
+        void updateUniform(void* data, int idx)
         {
-            mSpecs.uniformBuffer.updateUniform(data);
+            mSpecs.uniformBuffers[idx].updateUniform(data);
             vkCmdPushConstants(
                     mSpecs.commandBuffer,
-                    mSpecs.pipelineLayout,
-                    VK_SHADER_STAGE_VERTEX_BIT,
+                    mSpecs.pipelineLayouts[currentShader],
+                    VK_SHADER_STAGE_VERTEX_BIT * (currentShader == 0) +
+                    VK_SHADER_STAGE_FRAGMENT_BIT * !(currentShader == 0),
                     0,
-                    sizeof(Math::Transform4D),
+                    mSpecs.uniformBuffers[idx].getSize(),
                     data);
         }
         
@@ -98,9 +100,9 @@ namespace Lina{ namespace Graphics{
         void recordCommandBuffer();
         VkShaderModule createShaderModule(const std::vector<char>& code);
 
-        void createDescriptorSetLayout();
-        void createDescriptorPool();
-        void createDescriptorSet();
+        void createDescriptorSetLayout(int idx);
+        void createDescriptorPool(int idx);
+        void createDescriptorSet(int idx);
 
         VkCommandBuffer beginSingleTimeCommands();
         void endSingleTimeCommands(VkCommandBuffer buffer);
@@ -120,10 +122,12 @@ namespace Lina{ namespace Graphics{
         b8 supportsValidationLayer();
         private:
         RenderSpecs mSpecs;
-        Shader mShader;
+        std::vector<Shader> mShaders;
         HiddenDrawData mHiddenDrawData;
         DeviceHandler* mDeviceHandler;
         SwapChain* mSwapChain;
         bool mSwapChainRecreated;
+
+        int currentShader;
     };
 }}

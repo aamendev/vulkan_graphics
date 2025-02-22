@@ -51,7 +51,7 @@ namespace Lina{
     void App::mainLoop()
     {
 
-        while(!mWindow->isClosed())
+       while(!mWindow->isClosed())
         { 
             mLayers[mCurrentLayer]->run();
             mWindow->update();

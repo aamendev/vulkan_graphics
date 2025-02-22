@@ -40,6 +40,14 @@ namespace Lina { namespace Graphics{
             std::vector<Shuttle> shuttles;
             Renderer* mRenderer;
             Window* mWindow;
+            typedef struct EffectUniform
+            {
+                float width = 0;
+                float height = 0;
+                float time = 0;
+            } EffectUniform;
+            EffectUniform effectUniform;
+            
     };
 }}
 #endif

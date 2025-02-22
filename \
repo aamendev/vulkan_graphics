@@ -129,19 +129,14 @@ namespace Lina{ namespace Graphics{
         return module;
     }
 
-    void Renderer::createDescriptorSetLayout(int idx)
+    void Renderer::createDescriptorSetLayout()
     {
-
-        VkDescriptorSetLayout setLayout;
-        VkShaderStageFlagBits uniformFlag = (VkShaderStageFlagBits)
-            (VK_SHADER_STAGE_VERTEX_BIT * (idx == 0) +
-            VK_SHADER_STAGE_FRAGMENT_BIT * !(idx == 0));
         VkDescriptorSetLayoutBinding uboLayoutBinding
         {
             .binding = 0,
                 .descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
                 .descriptorCount = 1,
-                .stageFlags = uniformFlag, 
+                .stageFlags = VK_SHADER_STAGE_VERTEX_BIT,
                 .pImmutableSamplers = nullptr
         };
         VkDescriptorSetLayoutBinding samplerLayoutBinding
@@ -173,15 +168,13 @@ namespace Lina{ namespace Graphics{
                     mDeviceHandler->mSpecs.device,
                     &layoutInfo,
                     nullptr,
-                    &setLayout) != VK_SUCCESS)
+                    &mSpecs.descriptorSetLayout) != VK_SUCCESS)
             std::cerr<<"No layout created!\n";
-        mSpecs.descriptorSetLayout[idx] = setLayout;
     }
 
     void Renderer::createDescriptorPool(int idx)
     {
         std::array<VkDescriptorPoolSize, 3> poolSizes{};
-        VkDescriptorPool vkPool;
 
         poolSizes[0] =
         {
@@ -210,14 +203,13 @@ namespace Lina{ namespace Graphics{
                     mDeviceHandler->mSpecs.device,
                     &poolInfo,
                     nullptr,
-                    &vkPool) != VK_SUCCESS)
+                    &mSpecs.descriptorPool[idx]) != VK_SUCCESS)
             std::cerr<<"Error creating set\n";
-        mSpecs.descriptorPool[idx] = vkPool;
     }
 
     void Renderer::createDescriptorSet(int idx)
     {
-        std::vector<VkDescriptorSetLayout> layouts(1, mSpecs.descriptorSetLayout[idx]);
+        std::vector<VkDescriptorSetLayout> layouts(1, mSpecs.descriptorSetLayout);
         VkDescriptorSetAllocateInfo allocInfo
         {
             .sType= VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO,
@@ -228,7 +220,7 @@ namespace Lina{ namespace Graphics{
         if(vkAllocateDescriptorSets(
                     mDeviceHandler->mSpecs.device,
                     &allocInfo,
-                    &mSpecs.descriptorSets[idx]) != VK_SUCCESS)
+                    mSpecs.descriptorSets.data()) != VK_SUCCESS)
             std::cerr<<"Failed to allocate sets\n";
         VkDescriptorBufferInfo bufferInfo
         {
@@ -301,15 +293,13 @@ namespace Lina{ namespace Graphics{
 
     void Renderer::createGraphicsPipelines()
     {
+        createDescriptorSetLayout();
         mSpecs.graphicsPipelines.resize(mShaders.size());
-        mSpecs.pipelineLayouts.resize(mShaders.size());
-        mSpecs.descriptorSetLayout.resize(mSpecs.uniformBuffers.size());
-        mSpecs.descriptorSets.resize(mSpecs.uniformBuffers.size());
-        mSpecs.descriptorPool.resize(mSpecs.uniformBuffers.size());
+        mSpecs.pipelineLayouts.resize(1);
+        mSpecs.descriptorSets.resize(mUniforms.size());
 
         for (int i = 0; i < mShaders.size(); i++)
         {
-            createDescriptorSetLayout(i);
             createDescriptorPool(i);
             createDescriptorSet(i);
         VkPipelineShaderStageCreateInfo vertShaderCreateInfo
@@ -384,16 +374,8 @@ namespace Lina{ namespace Graphics{
 
         VkPipelineColorBlendAttachmentState colorBlendAttachment
         {
-            .blendEnable = VK_TRUE,
-                .srcColorBlendFactor = VK_BLEND_FACTOR_SRC_ALPHA,
-                .dstColorBlendFactor = VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA,
-                .colorBlendOp = VK_BLEND_OP_ADD,
-                .srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE,
-                .dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO,
-                .alphaBlendOp = VK_BLEND_OP_ADD,
-                .colorWriteMask = 
-                    VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT 
-                    | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT,
+            .blendEnable = VK_FALSE,
+                .colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT,
         };
         VkPipelineColorBlendStateCreateInfo colorBlending =
         {
@@ -416,45 +398,30 @@ namespace Lina{ namespace Graphics{
         dynamicState.dynamicStateCount = static_cast<uint32_t>(dynamicStates.size());
         dynamicState.pDynamicStates = dynamicStates.data();
 
-        std::vector<VkPushConstantRange> psRanges;
-        if (i == 0)
-        {
         VkPushConstantRange psRange =
         {
             .stageFlags = VK_SHADER_STAGE_VERTEX_BIT,
             .offset = 0,
-            .size = (u32)sizeof(Lina::Math::Transform4D),
+            .size = sizeof(Lina::Math::Transform4D),
         };
 
         VkPushConstantRange psRangeTexture =
         {
             .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
-            .offset = (u32)sizeof(Lina::Math::Transform4D),
-            .size = (u32)sizeof(int) * (i == 0) + (u32)sizeof(float)*3  * !(i == 0),
+            .offset = sizeof(Lina::Math::Transform4D),
+            .size = sizeof(int),
         };
-        psRanges.push_back(psRange);
-        psRanges.push_back(psRangeTexture);
-        }
-        else {
-        VkPushConstantRange psRange =
-        {
-            .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
-            .offset = 0,
-            .size = (u32)sizeof(float) * 3,
-        };
-
-        psRanges.push_back(psRange);
-        }
+        std::array<VkPushConstantRange, 2> psRanges = {psRange, psRangeTexture};
         VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
         pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
         pipelineLayoutInfo.setLayoutCount = 1;
-        pipelineLayoutInfo.pSetLayouts = &mSpecs.descriptorSetLayout[i];
-        pipelineLayoutInfo.pushConstantRangeCount = psRanges.size();
+        pipelineLayoutInfo.pSetLayouts = &mSpecs.descriptorSetLayout;
+        pipelineLayoutInfo.pushConstantRangeCount = 2;
         pipelineLayoutInfo.pPushConstantRanges = &psRanges[0];
 
         if (vkCreatePipelineLayout(
                     mDeviceHandler->mSpecs.device,
-                    &pipelineLayoutInfo, nullptr, &(mSpecs.pipelineLayouts[i])) != VK_SUCCESS) {
+                    &pipelineLayoutInfo, nullptr, &(mSpecs.pipelineLayouts[0])) != VK_SUCCESS) {
             throw std::runtime_error("failed to create pipeline layout!");
         }
         VkGraphicsPipelineCreateInfo pipeLineInfo
@@ -472,7 +439,7 @@ namespace Lina{ namespace Graphics{
             .pColorBlendState = &colorBlending,
             .pDynamicState = &dynamicState,
 
-            .layout = mSpecs.pipelineLayouts[i],
+            .layout = mSpecs.pipelineLayouts[0],
             .renderPass = mSwapChain->mSpecs.renderPass,
             .subpass = 0,
 
@@ -548,10 +515,10 @@ namespace Lina{ namespace Graphics{
         vkCmdBindDescriptorSets(
                 mSpecs.commandBuffer,
                 VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.pipelineLayouts[currentShader],
+                mSpecs.pipelineLayouts[0],
                 0,
                 1,
-                &mSpecs.descriptorSets[currentShader],
+                &mSpecs.descriptorSets[0],
                 0,
                 nullptr);
     }
@@ -570,10 +537,10 @@ namespace Lina{ namespace Graphics{
         vkCmdBindDescriptorSets(
                 mSpecs.commandBuffer,
                 VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.pipelineLayouts[currentShader],
+                mSpecs.pipelineLayouts[0],
                 0,
                 1,
-                &mSpecs.descriptorSets[currentShader],
+                &mSpecs.descriptorSets[0],
                 0,
                 nullptr);
     }
@@ -589,8 +556,6 @@ namespace Lina{ namespace Graphics{
         vkCmdBindVertexBuffers(mSpecs.commandBuffer, 0,  1, vertexBuffers, offsets);
         vkCmdBindIndexBuffer(mSpecs.commandBuffer,
                 ib->mSpecs.buffer, 0, VK_INDEX_TYPE_UINT32);
-        if (currentShader == 0)
-        {
         vkCmdPushConstants
             (
                 mSpecs.commandBuffer,
@@ -600,7 +565,7 @@ namespace Lina{ namespace Graphics{
                 sizeof(int),
                 (void*)(&texId)
             );
-        }
+
         vkCmdDrawIndexed(
                 mSpecs.commandBuffer,
                 ib->mCount, 1, 0, 0, 0);

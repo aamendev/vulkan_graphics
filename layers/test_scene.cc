@@ -75,8 +75,8 @@ namespace Lina{ namespace Graphics{
 
         mRenderer->createVertexBuffer(layout, verts);
         mRenderer->createIndexBuffer(ind);
-        mRenderer->createGraphicsPipeline();
-        mRenderer->createUniformBuffers(sizeof(fulltransMat));
+       // mRenderer->createGraphicsPipeline();
+        //mRenderer->createUniformBuffers(sizeof(fulltransMat));
 
         Shuttle shuttle;
         Shuttle movingShuttle;
@@ -104,8 +104,6 @@ namespace Lina{ namespace Graphics{
 
         VertexBuffer* planevertBuffer = new VertexBuffer();
         IndexBuffer* planeindBuffer = new IndexBuffer();
-        mRenderer->createVertexBuffer(planLayout, planeVerts, planevertBuffer);
-        mRenderer->createIndexBuffer(planInds, planeindBuffer);
 
         auto proj = Math::Util::projMatrix(135, mWindow->getWidth() / mWindow-> getHeight(), true);
         mRenderer->beginDraw();
@@ -121,7 +119,7 @@ namespace Lina{ namespace Graphics{
                 shuttles[shuttleIndex].getMatrix()*
                 currTransforms[i] *
                 Math::Util::scaleMatrix({radii[i], radii[i], radii[i]});
-            mRenderer->updateUniform(&fulltransMat);
+            //mRenderer->updateUniform(&fulltransMat);
             //            mRenderer->render(nullptr, nullptr, i);
             mRenderer->render(planevertBuffer, planeindBuffer, i);
             auto curr = currTransforms[i].getTranslation();

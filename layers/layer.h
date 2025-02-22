@@ -10,7 +10,6 @@ class Layer
         virtual void init() = 0;
         virtual void onKeyDown(Events::KeyPress& e) = 0;
         virtual void onMouseMove(Events::MouseMove& m) = 0;
-
 };
 }}
 #endif

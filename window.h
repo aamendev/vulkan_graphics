@@ -9,8 +9,8 @@ namespace Lina{ namespace Graphics{
             struct specs
             {
                 const char* name;
-                f32 width;
-                f32 height;
+                f64 width;
+                f64 height;
                 b8 resizable = false;
                 b8 resized = false;
                 std::vector<Events::Event*> mEvents;
