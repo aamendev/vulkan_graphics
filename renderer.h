@@ -65,27 +65,37 @@ namespace Lina{ namespace Graphics{
         void bindShader(int idx); 
         void bindPipeline(int idx);
         void addShader(std::string&&, std::string&&);
+        void addShader(const Shader& shader);
         void createVertexBuffer(
                 VertexBufferLayout& layout,
                 const std::vector<float>& data);
         void createIndexBuffer(const std::vector<u32> indices);
-        void createUniformBuffers(u32 size);
         void createGraphicsPipelines();
         void createTexture(std::string& path, b8 flip);
         void createTexture(std::vector<std::pair<std::string, b8>> paths);
-        void updateUniform(void* data, int idx)
+        void updateUniform(void* data, int shaderId, int uniformId)
         {
-            mSpecs.uniformBuffers[idx].updateUniform(data);
+            auto currIndex = 0;
+            for (int i = 0; i < shaderId; i++) 
+            {currIndex += mShaders[i].getBindingSize();}
+
+            mSpecs.uniformBuffers[currIndex + uniformId].updateUniform(data);
+        }
+
+        void updatePushConstant(void* data, int shaderId, int pushConstantId)
+        {
+            auto currIndex = 0;
+            for (int i = 0; i < shaderId; i++) {currIndex += mShaders[i].getPushConstantSize();}
+            auto& ps = mShaders[shaderId].getPushConstants();
             vkCmdPushConstants(
                     mSpecs.commandBuffer,
                     mSpecs.pipelineLayouts[currentShader],
-                    VK_SHADER_STAGE_VERTEX_BIT * (currentShader == 0) +
-                    VK_SHADER_STAGE_FRAGMENT_BIT * !(currentShader == 0),
+                    (VkPipelineStageFlags)ps[pushConstantId].stage,
                     0,
-                    mSpecs.uniformBuffers[idx].getSize(),
+                    ps[pushConstantId].size,
                     data);
         }
-        
+
         void pushConstants(u32 size);
         void render(VertexBuffer* vb = nullptr, IndexBuffer* ib = nullptr, int texId = 0);
         // Options //
@@ -95,14 +105,19 @@ namespace Lina{ namespace Graphics{
         // GET //
         RenderSpecs* getSpecs() {return &mSpecs;}
         void toggleValidation() {mSpecs.enableValidationLayers = !mSpecs.enableValidationLayers;};
+
+        f32 getWidth() {return mSpecs.sWindow->getWidth();}
+        f32 getHeight() {return mSpecs.sWindow->getHeight();}
+
         private:
+        void createUniformBuffers();
         void createDepthResources();
         void recordCommandBuffer();
         VkShaderModule createShaderModule(const std::vector<char>& code);
 
         void createDescriptorSetLayout(int idx);
         void createDescriptorPool(int idx);
-        void createDescriptorSet(int idx);
+        void createDescriptorSet(int shaderIndex, int uniformStartIndex);
 
         VkCommandBuffer beginSingleTimeCommands();
         void endSingleTimeCommands(VkCommandBuffer buffer);
@@ -118,8 +133,8 @@ namespace Lina{ namespace Graphics{
         void createCommandPool();
         b8 createVulkanInstance(std::string& appName);
         void createWindowSurface();
-
         b8 supportsValidationLayer();
+
         private:
         RenderSpecs mSpecs;
         std::vector<Shader> mShaders;

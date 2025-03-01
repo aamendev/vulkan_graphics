@@ -3,6 +3,7 @@
 #include "events/events.h"
 #include "./layers/layer.h"
 #include "./layers//scene_layer.h"
+#include "events/key.h"
 #include "window.h"
 #include "renderer.h"
 #include "shuttle.h"
@@ -35,6 +36,7 @@ namespace Lina{
             void cleanUp();
             void preprocess();
             void handleEvents();
+            void onKeyDown(Events::KeyPress& e);
         private:
             Graphics::Window* mWindow;
             Graphics::Renderer* mRenderer;

@@ -1,4 +1,6 @@
 #include "./scene_layer.h"
+#include "../ecs/components/colliders/cylinder_collider.h"
+#include <cassert>
 
 namespace Lina{ namespace Graphics{
     void SceneLayer::onKeyDown(Events::KeyPress& e)
@@ -37,7 +39,7 @@ namespace Lina{ namespace Graphics{
     {
         fin.open("../assets/planets.csv", std::ios::in);
         fin >> temp; //reomve header
-        float damp = 0.06f;
+        float damp = 0.01f;
         while (fin >> temp)
         {
             data.clear();
@@ -58,14 +60,19 @@ namespace Lina{ namespace Graphics{
         }
         fin.close();
 
-        mRenderer->createTexture(texData);
+        //mRenderer->createTexture(texData);
 
-        Graphics::Shapes::Icosphere ico(3.0f);
+      /*  Graphics::Shapes::Icosphere ico(3.0f);
         ico.subdivide(5);
 
         auto verts = ico.getFullVertices();
         auto ind = ico.getIndices();
-
+*/
+        Graphics::Shapes::Cylinder cyl(5, 10, 20, 
+                MeshMode::Pos3Col3, {.col = {0.0f, 0.2f, 0.3f}});
+        auto verts = cyl.getFullVertices();
+        auto ind = cyl.getIndices();
+                
         std::vector<float> verts2 = {
             -1, 1, 0, 0, 1,
             1, 1, 1, 0, 0,
@@ -80,42 +87,89 @@ namespace Lina{ namespace Graphics{
 
         layout.push(Graphics::Format::FLOAT3, 0);
         layout.push(Graphics::Format::FLOAT3, 1);
-        layout.push(Graphics::Format::FLOAT2, 2);
+       // layout.push(Graphics::Format::FLOAT2, 2);
 
         layout2.push(Graphics::Format::FLOAT2, 0);
         layout2.push(Graphics::Format::FLOAT3, 1);
           
         mRenderer->createVertexBuffer(layout, verts);
         mRenderer->createIndexBuffer(ind);
-        mRenderer->createVertexBuffer(layout2, verts2);
-        mRenderer->createIndexBuffer(ind2);
+  //      mRenderer->createVertexBuffer(layout2, verts2);
+   //     mRenderer->createIndexBuffer(ind2);
 
 
-        mRenderer->createUniformBuffers(sizeof(fulltransMat));
-        mRenderer->createUniformBuffers(sizeof(EffectUniform));
+        Shader defaultShader;
+        Shader effectShader;
+
+        Uniform mvpUniform = 
+        {
+            .name = "mvp",
+            .size = sizeof(Math::Transform4D),
+            .binding = 0,
+            .stage = ShaderStage::Vertex
+        };
+
+        Uniform effuniform = 
+        {
+            .name = "effect",
+            .size = sizeof(EffectUniform),
+            .binding = 0,
+            .stage = ShaderStage::Fragment
+        };
+        
+        PushConstant mvp = 
+        {
+            .stage = ShaderStage::Vertex, 
+            .offset = 0,
+            .size = sizeof(Math::Transform4D),
+        };
+
+        PushConstant textureId = 
+        {
+            .stage = ShaderStage::Fragment,
+            .offset = sizeof(Math::Transform4D),
+            .size = sizeof(int),
+        };
+
+        PushConstant effectPS
+        {
+            .stage = ShaderStage::Fragment,
+                .offset = 0,
+                .size = sizeof(EffectUniform)
+        };
+
+        defaultShader.init("../shaders/compiled/shader.vert.spv",
+                "../shaders/compiled/simple.frag.spv", "shader");
+
+        defaultShader.addUniform(mvpUniform);
+        defaultShader.addPushConstant(mvp);
+        defaultShader.addPushConstant(textureId);
+/*
+        effectShader.init("../shaders/compiled/effect.vert.spv",
+                "../shaders/compiled/effect.frag.spv", "effect");
+
+        effectShader.addUniform(effuniform);
+        effectShader.addPushConstant(effectPS);
+
+       // mRenderer->createUniformBuffers(sizeof(fulltransMat));
+       // mRenderer->createUniformBuffers(sizeof(EffectUniform));
         effectUniform.width = mWindow->getWidth();
         effectUniform.height = mWindow->getHeight();
         effectUniform.time = 0;
-
-        mRenderer->addShader("../shaders/compiled/shader.vert.spv",
-                "../shaders/compiled/shader.frag.spv"); 
-        mRenderer->addShader("../shaders/compiled/effect.vert.spv",
-                "../shaders/compiled/effect.frag.spv"); 
+*/
+        mRenderer->addShader(defaultShader); 
+ //       mRenderer->addShader(effectShader); 
 
         mRenderer->createGraphicsPipelines();
-
-
-
 
         Shuttle shuttle;
         Shuttle movingShuttle;
 
         shuttles = {shuttle, movingShuttle};
-        shuttles[1].setPosition(0.0, 0.0, -50.0);
+        shuttles[1].setPosition(pos[0].x, pos[0].y, pos[0].z - 15 * radii[0]);
         float theta = 0.0f;
         float speed = 4.0f;
         int i = 0;
-        
     }
     void SceneLayer::run()
     {
@@ -127,7 +181,7 @@ namespace Lina{ namespace Graphics{
         mRenderer->beginDraw();
         mRenderer->bindShader(0);
         mRenderer->setPrimitive(Primitive::Triangle);
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 1; i++)
         {
         
             fulltransMat = 
@@ -135,33 +189,38 @@ namespace Lina{ namespace Graphics{
                 shuttles[shuttleIndex].getMatrix()*
                 currTransforms[i] *
                 Math::Util::scaleMatrix({radii[i], radii[i], radii[i]});
-            mRenderer->updateUniform(&fulltransMat, 0);
-            mRenderer->render(nullptr, nullptr, i);
+
+            //std::cerr << fulltransMat << '\n';
+
+            mRenderer->updateUniform(&fulltransMat, 0,0);
+            //mRenderer->render(nullptr, nullptr, i);
+            mRenderer->render();
 
 
             // script
-            auto curr = currTransforms[i].getTranslation();
+           /* auto curr = currTransforms[i].getTranslation();
             auto c = currTransforms[0].getTranslation();
-            Math::Transform4D rotMat =
+            Math::Transform4D rotMat = 
                 Math::Util::rotationMatrix4D(selforbital_speeds[i], Math::Util::yAxis())
                 * Math::Util::translationMatrix(c - curr)
                 * Math::Util::rotationMatrix4D(orbital_speeds[i], Math::Util::yAxis())
                 * Math::Util::translationMatrix(curr - c);
             currTransforms[i] = rotMat * currTransforms[i];
-            // end script
+            // end script*/
         }
         //script
         auto followTransform = currTransforms[followIndex].getTranslation();
         shuttles[0].setPosition(followTransform.x, followTransform.y, followTransform.z - 15*radii[followIndex]);
         // end script
 
-        mRenderer->bindShader(1);
+      /*  mRenderer->bindShader(1);
         effectUniform.width = mWindow->getWidth();
         effectUniform.height = mWindow->getHeight();
         effectUniform.time += 0.001f;
         mRenderer->updateUniform(&effectUniform, 1);
 
         mRenderer->render();
+        */
 
         mRenderer->endDraw();
     }

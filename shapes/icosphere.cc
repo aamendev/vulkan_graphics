@@ -9,7 +9,6 @@ namespace Lina{ namespace Graphics { namespace Shapes{
     {
         mRadius = radius;
 
-        const float PI = 3.1415926f;
         const float H_ANGLE = PI / 180 * 72;
         const float V_ANGLE = atanf(1.0f / 2);
 
@@ -265,7 +264,6 @@ namespace Lina{ namespace Graphics { namespace Shapes{
         mTextureCoordinates.resize(mVertices.size());
         for (int i = 0; i < mVertices.size(); i++)
         { 
-            float PI = 3.1415f;
             mTextureCoordinates[i].u = atan2f(mVertices[i].normalise().z, mVertices[i].normalise().x) / (2 * PI);
             mTextureCoordinates[i].v = acosf(mVertices[i].normalise().y) / PI;
         }

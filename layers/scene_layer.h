@@ -9,6 +9,7 @@
 #include "../renderer.h"
 #include "../shapes/icosphere.h"
 #include "../shuttle.h"
+#include "../shapes/cylinder.h"
 #include <fstream>
 #include <sstream>
 namespace Lina { namespace Graphics{
@@ -22,6 +23,7 @@ namespace Lina { namespace Graphics{
         public:
             void onMouseMove(Events::MouseMove& m) override{};
             void onKeyDown(Events::KeyPress& k) override;
+            void onKeyUp(Events::KeyRelease& k) override{}
         private:
             Math::Matrix4D fulltransMat;
             std::vector<std::pair<std::string, b8>> texData;

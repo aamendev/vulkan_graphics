@@ -1,10 +1,15 @@
 #pragma once
 #include "../Math/math.h"
 #include <vector>
+#include "../types.h"
 namespace Lina{ namespace Graphics{
     struct uv
     {
         float u, v;
+    };
+    struct Material
+    {
+        Math::Vector3D col;
     };
     class Renderable
     {
@@ -21,6 +26,8 @@ namespace Lina{ namespace Graphics{
             std::vector<uv> mTextureCoordinates;
             std::vector<float> mFullVertices;
             std::vector<float> mDebugVertices;
+            MeshMode mMeshMode = MeshMode::Pos3Col3Tex2;
+            Material mMaterial = {.col = {1.0f, 1.0f, 1.0f}};
         protected:
             void computeFullVertices();
 

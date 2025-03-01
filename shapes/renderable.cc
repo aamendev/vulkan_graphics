@@ -4,18 +4,45 @@
 namespace Lina{ namespace Graphics{
     void Renderable::computeFullVertices()
     {
-        mFullVertices.resize(mVertices.size() * 8);
-        int currIndex = 0;
-        for (int i = 0; i < mVertices.size(); i++)
+        switch(mMeshMode)
         {
-            mFullVertices[currIndex++] = mVertices[i].x;
-            mFullVertices[currIndex++] = mVertices[i].y;
-            mFullVertices[currIndex++] = mVertices[i].z;
-            mFullVertices[currIndex++] = 1.0f;
-            mFullVertices[currIndex++] = 1.0f; 
-            mFullVertices[currIndex++] = 1.0f; 
-            mFullVertices[currIndex++] = (mTextureCoordinates[i].u);
-            mFullVertices[currIndex++] = (mTextureCoordinates[i].v);
+            case MeshMode::Pos3Col3Tex2:
+                {
+                    mFullVertices.resize(mVertices.size() * 8);
+                    int currIndex = 0;
+                    for (int i = 0; i < mVertices.size(); i++)
+                    {
+                        mFullVertices[currIndex++] = mVertices[i].x;
+                        mFullVertices[currIndex++] = mVertices[i].y;
+                        mFullVertices[currIndex++] = mVertices[i].z;
+                        mFullVertices[currIndex++] = mMaterial.col.x;
+                        mFullVertices[currIndex++] = mMaterial.col.y; 
+                        mFullVertices[currIndex++] = mMaterial.col.z; 
+                        mFullVertices[currIndex++] = (mTextureCoordinates[i].u);
+                        mFullVertices[currIndex++] = (mTextureCoordinates[i].v);
+                    }
+                }
+                break;
+
+            case MeshMode::Pos3Col3:
+                {
+                    mFullVertices.resize(mVertices.size() * 6);
+                    int currIndex = 0;
+                    for (int i = 0; i < mVertices.size(); i++)
+                    {
+                        mFullVertices[currIndex++] = mVertices[i].x;
+                        mFullVertices[currIndex++] = mVertices[i].y;
+                        mFullVertices[currIndex++] = mVertices[i].z;
+                        mFullVertices[currIndex++] = mMaterial.col.x;
+                        mFullVertices[currIndex++] = mMaterial.col.y; 
+                        mFullVertices[currIndex++] = mMaterial.col.z; 
+                    }
+                }
+                break;
+            default: 
+                {
+
+                }
         }
     }
     std::vector<float> Renderable::getTextureDebug() const

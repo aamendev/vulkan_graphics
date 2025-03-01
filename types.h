@@ -2,7 +2,11 @@
 #include <cstdint>
 #include <vector>
 #include <vulkan/vulkan_core.h>
+#include <string>
+#include "Math/math.h"
 
+
+#define PI (3.1415926f)
 
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -26,6 +30,7 @@ struct SwapChainSupportDetails
     std::vector<VkSurfaceFormatKHR> formats;
     std::vector<VkPresentModeKHR> presnetModes;
 };
+
 struct QueueFamilyIndices
 {
     i32 graphicsFamily;
@@ -45,14 +50,65 @@ enum class Primitive
     Point = VK_PRIMITIVE_TOPOLOGY_POINT_LIST
 };
 
-enum ShaderType
+enum class MeshMode
 {
-    Empty = 0,
-    Uniform = 1,
-    Textured = 2,
-    some = 3,
+    Pos3,
+    Pos3Col3,
+    Pos3Col4,
+    Pos3Col3Tex2,
+    Pos3Col3Norm3Tex2,
 };
 
+enum class ShaderStage
+{
+    Vertex = VK_SHADER_STAGE_VERTEX_BIT,
+    Fragment = VK_SHADER_STAGE_FRAGMENT_BIT,
+    All = VK_SHADER_STAGE_ALL
+};
+
+enum class ComponentType
+{
+    None,
+    Transform,
+    Material,
+
+    SphereCollider,
+    CylinderCollider,
+    PlaneCollider,
+
+    Health,
+};
+
+struct PushConstant
+{
+    ShaderStage stage;   
+    u32 offset;
+    u32 size;
+};
+
+struct Uniform
+{
+    std::string name = "";
+    u32 size;
+    u32 binding;
+    ShaderStage stage;
+};
+
+
+enum class ColliderGeometry
+{
+   Cylinder,
+   Sphere,
+   Box,
+   Plane,
+};
+
+enum class MeshGeometry
+{
+    Cylinder,
+    Sphere
+};
+/*
 enum class Descriptor 
 {
     Uniform = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
@@ -65,6 +121,7 @@ enum class Stageg
     Vertex = VK_SHADER_STAGE_VERTEX_BIT,
     Fragment = VK_SHADER_STAGE_FRAGMENT_BIT
 };
+*/
 
 namespace Input
 {
