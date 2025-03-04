@@ -24,21 +24,6 @@ namespace Lina { namespace Graphics{
             void onKeyDown(Events::KeyPress& k) override;
             void onKeyUp(Events::KeyRelease& k) override {}
         private:
-            Math::Matrix4D fulltransMat;
-            std::vector<std::pair<std::string, b8>> texData;
-            std::vector<Lina::Math::Vector3D> pos;
-            std::vector<f32> radii;
-            std::vector<f32> orbital_speeds;
-            std::vector<f32> selforbital_speeds;
-            std::fstream fin;
-            std::string line;
-            std::string temp;
-            std::string word;
-            std::vector<std::string> data;
-            std::vector<Lina::Math::Transform4D> currTransforms;
-            int followIndex= 0;
-            int shuttleIndex = 0;
-            std::vector<Shuttle> shuttles;
             Renderer* mRenderer;
             Window* mWindow;
     };

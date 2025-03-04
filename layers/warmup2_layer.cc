@@ -61,7 +61,6 @@ namespace Lina{ namespace Graphics{
 
         mRenderer->addShader(defaultShader); 
         mRenderer->addShader(defaultShader2); 
-        mRenderer->createGraphicsPipelines();
         
         // Game World
         mGameWorld.setRenderer(mRenderer);

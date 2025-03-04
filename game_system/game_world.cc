@@ -196,7 +196,7 @@ namespace Lina { namespace GameSystem {
 
         mMaterialComponents["p1"].setColour({(float)0x73 / 0xff, 
                 (float)0x87 / 0xff, (float)0x57 / 0xff, (float)0xff / 0xff});
-        mMaterialComponents["p1"].setShader(0);
+        mMaterialComponents["p1"].setShader(2);
 
         mTransformComponents["p2"].setScale({20, 20, 10});
         mMaterialComponents["p2"].setColour(
@@ -206,7 +206,7 @@ namespace Lina { namespace GameSystem {
                 (float)0xff / 0xff}
                 );
 
-        mMaterialComponents["p2"].setShader(0);
+        mMaterialComponents["p2"].setShader(2);
         mCylinderColliderComponents["p2"].setHeight(10);
         mCylinderColliderComponents["p2"].setRadius(10);
         mTransformComponents["p2"].setPosition({0, -8, 0});
@@ -219,7 +219,7 @@ namespace Lina { namespace GameSystem {
         mTransformComponents["plane"].setScale({1000, 1, 1000});
         mMaterialComponents["plane"].setColour({(float)0x6B / 0xff, 
                 (float)0x57 / 0xff, (float)0x87 / 0xff, (float)0xff / 0xff});
-        mMaterialComponents["plane"].setShader(1);
+        mMaterialComponents["plane"].setShader(3);
 
         mTransformComponents["lose"].disable();
         mPlaneColliderComponents["lose"].setLength(2000);

@@ -60,18 +60,18 @@ namespace Lina{ namespace Graphics{
         }
         fin.close();
 
-        //mRenderer->createTexture(texData);
+        mRenderer->createTexture(texData);
 
-      /*  Graphics::Shapes::Icosphere ico(3.0f);
+       Graphics::Shapes::Icosphere ico(3.0f);
         ico.subdivide(5);
 
         auto verts = ico.getFullVertices();
         auto ind = ico.getIndices();
-*/
-        Graphics::Shapes::Cylinder cyl(5, 10, 20, 
+
+        /*Graphics::Shapes::Cylinder cyl(5, 10, 20, 
                 MeshMode::Pos3Col3, {.col = {0.0f, 0.2f, 0.3f}});
         auto verts = cyl.getFullVertices();
-        auto ind = cyl.getIndices();
+        auto ind = cyl.getIndices();*/
                 
         std::vector<float> verts2 = {
             -1, 1, 0, 0, 1,
@@ -83,14 +83,14 @@ namespace Lina{ namespace Graphics{
         std::vector<u32> ind2 = {0, 1, 2, 1, 3, 2};
 
         Graphics::VertexBufferLayout layout; 
-        Graphics::VertexBufferLayout layout2;
+       // Graphics::VertexBufferLayout layout2;
 
         layout.push(Graphics::Format::FLOAT3, 0);
         layout.push(Graphics::Format::FLOAT3, 1);
-       // layout.push(Graphics::Format::FLOAT2, 2);
+        layout.push(Graphics::Format::FLOAT2, 2);
 
-        layout2.push(Graphics::Format::FLOAT2, 0);
-        layout2.push(Graphics::Format::FLOAT3, 1);
+     //   layout2.push(Graphics::Format::FLOAT2, 0);
+      //  layout2.push(Graphics::Format::FLOAT3, 1);
           
         mRenderer->createVertexBuffer(layout, verts);
         mRenderer->createIndexBuffer(ind);
@@ -139,9 +139,9 @@ namespace Lina{ namespace Graphics{
         };
 
         defaultShader.init("../shaders/compiled/shader.vert.spv",
-                "../shaders/compiled/simple.frag.spv", "shader");
+                "../shaders/compiled/shader.frag.spv", "shader");
 
-        defaultShader.addUniform(mvpUniform);
+        //defaultShader.addUniform(mvpUniform);
         defaultShader.addPushConstant(mvp);
         defaultShader.addPushConstant(textureId);
 /*
@@ -160,7 +160,7 @@ namespace Lina{ namespace Graphics{
         mRenderer->addShader(defaultShader); 
  //       mRenderer->addShader(effectShader); 
 
-        mRenderer->createGraphicsPipelines();
+        //mRenderer->createGraphicsPipelines();
 
         Shuttle shuttle;
         Shuttle movingShuttle;
@@ -181,7 +181,8 @@ namespace Lina{ namespace Graphics{
         mRenderer->beginDraw();
         mRenderer->bindShader(0);
         mRenderer->setPrimitive(Primitive::Triangle);
-        for (int i = 0; i < 1; i++)
+        int i = 0;
+        for (i = 0; i < 9; i++)
         {
         
             fulltransMat = 
@@ -190,15 +191,14 @@ namespace Lina{ namespace Graphics{
                 currTransforms[i] *
                 Math::Util::scaleMatrix({radii[i], radii[i], radii[i]});
 
-            //std::cerr << fulltransMat << '\n';
-
-            mRenderer->updateUniform(&fulltransMat, 0,0);
+            mRenderer->updatePushConstant(&fulltransMat, 0, 0);
+            mRenderer->updatePushConstant(&i, 0, 1);
             //mRenderer->render(nullptr, nullptr, i);
             mRenderer->render();
 
 
             // script
-           /* auto curr = currTransforms[i].getTranslation();
+            auto curr = currTransforms[i].getTranslation();
             auto c = currTransforms[0].getTranslation();
             Math::Transform4D rotMat = 
                 Math::Util::rotationMatrix4D(selforbital_speeds[i], Math::Util::yAxis())
@@ -206,7 +206,7 @@ namespace Lina{ namespace Graphics{
                 * Math::Util::rotationMatrix4D(orbital_speeds[i], Math::Util::yAxis())
                 * Math::Util::translationMatrix(curr - c);
             currTransforms[i] = rotMat * currTransforms[i];
-            // end script*/
+            // end script
         }
         //script
         auto followTransform = currTransforms[followIndex].getTranslation();

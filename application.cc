@@ -32,18 +32,20 @@ namespace Lina{
             new Graphics::SceneLayer(mRenderer, mWindow);
         Graphics::WarmUp2Layer* warmup = new Graphics::WarmUp2Layer(mRenderer, mWindow);
 
-       /* Graphics::TestSceneLayer* testLayer = 
-            new Graphics::TestSceneLayer(mRenderer, mWindow);*/
+        Graphics::TestSceneLayer* testLayer = 
+            new Graphics::TestSceneLayer(mRenderer, mWindow);
 
         Graphics::ValidationLayer* validLayer = new Graphics::ValidationLayer();
 
-        //mLayers.push_back(mainSceneLayer);
-       // mLayers.push_back(testLayer);
+        mLayers.push_back(mainSceneLayer);
+        mLayers.push_back(testLayer);
        mLayers.push_back(warmup);
      //   mLayers.push_back(validLayer);
 
         mCurrentLayer = 0;
         for (int i = 0; i < mLayers.size(); i++) mLayers[i]->init();
+
+        mRenderer->createGraphicsPipelines();
     }
 
     void App::handleEvents()
@@ -63,8 +65,9 @@ namespace Lina{
         {
             case Input::KeyCode::N:
             {
-                mCurrentLayer = !(mCurrentLayer == 1);
+                mCurrentLayer = (mCurrentLayer + 1) % mLayers.size();
             }
+            break;
             default:{}
         }
     }
@@ -80,11 +83,11 @@ namespace Lina{
                         mLayers[mCurrentLayer], 
                         std::placeholders::_1);
 
-            /*   std::function<void(Events::KeyPress&)> appDown = 
+               std::function<void(Events::KeyPress&)> appDown = 
                  std::bind(
                  &App::onKeyDown, 
                  this, 
-                 std::placeholders::_1);*/
+                 std::placeholders::_1);
 
             std::function<void(Events::KeyRelease&)> f2 = 
                 std::bind(
@@ -93,7 +96,7 @@ namespace Lina{
                         std::placeholders::_1);
 
             catSub<Events::KeyPress>(f1);
-            //catSub<Events::KeyPress>(appDown);
+            catSub<Events::KeyPress>(appDown);
             catSub<Events::KeyRelease>(f2);
 
             handleEvents();

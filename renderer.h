@@ -19,9 +19,11 @@ namespace Lina{ namespace Graphics{
     {
         struct RenderSpecs
         {
+            std::vector<const char*> valdiationLayers = 
+            {"VK_LAYER_KHRONOS_validation"};
 
-            std::vector<const char*> valdiationLayers = {"VK_LAYER_KHRONOS_validation"};
-            bool enableValidationLayers = true;
+            b8 enableValidationLayers = false;
+
             VkInstance instance;
 
             VkSurfaceKHR surface;
@@ -40,8 +42,6 @@ namespace Lina{ namespace Graphics{
             VkSampler textureSampler;
 
             std::vector<UniformBuffer> uniformBuffers;
-            VkDeviceMemory uniformBuffersMemory;
-            void* uniformBuffersMapped;
 
             std::vector<VkDescriptorSetLayout> descriptorSetLayout;
             std::vector<VkDescriptorPool> descriptorPool;
@@ -53,6 +53,7 @@ namespace Lina{ namespace Graphics{
             std::vector<VkShaderModule> vertexShaderModules;
             std::vector<VkShaderModule> fragmentShaderModules;
         };
+
         struct HiddenDrawData
         {
             u32 hImage;
@@ -63,53 +64,37 @@ namespace Lina{ namespace Graphics{
         void beginDraw();
         void endDraw();
         void bindShader(int idx); 
-        void bindPipeline(int idx);
         void addShader(std::string&&, std::string&&);
         void addShader(const Shader& shader);
+
         void createVertexBuffer(
                 VertexBufferLayout& layout,
                 const std::vector<float>& data);
+
         void createIndexBuffer(const std::vector<u32> indices);
+
         void createGraphicsPipelines();
+
         void createTexture(std::string& path, b8 flip);
         void createTexture(std::vector<std::pair<std::string, b8>> paths);
-        void updateUniform(void* data, int shaderId, int uniformId)
-        {
-            auto currIndex = 0;
-            for (int i = 0; i < shaderId; i++) 
-            {currIndex += mShaders[i].getBindingSize();}
 
-            mSpecs.uniformBuffers[currIndex + uniformId].updateUniform(data);
-        }
+        void updateUniform(void* data, int shaderId, int uniformId);
+        void updatePushConstant(void* data, int shaderId, int pushConstantId);
+        void render();
 
-        void updatePushConstant(void* data, int shaderId, int pushConstantId)
-        {
-            auto currIndex = 0;
-            for (int i = 0; i < shaderId; i++) {currIndex += mShaders[i].getPushConstantSize();}
-            auto& ps = mShaders[shaderId].getPushConstants();
-            vkCmdPushConstants(
-                    mSpecs.commandBuffer,
-                    mSpecs.pipelineLayouts[currentShader],
-                    (VkPipelineStageFlags)ps[pushConstantId].stage,
-                    0,
-                    ps[pushConstantId].size,
-                    data);
-        }
-
-        void pushConstants(u32 size);
-        void render(VertexBuffer* vb = nullptr, IndexBuffer* ib = nullptr, int texId = 0);
         // Options //
         void setPrimitive(Primitive p);
         void enableDepthTest(bool);
-
-        // GET //
-        RenderSpecs* getSpecs() {return &mSpecs;}
         void toggleValidation() {mSpecs.enableValidationLayers = !mSpecs.enableValidationLayers;};
 
-        f32 getWidth() {return mSpecs.sWindow->getWidth();}
-        f32 getHeight() {return mSpecs.sWindow->getHeight();}
+        // GET //
+        const RenderSpecs& getSpecs() const {return mSpecs;}
+
+        f32 getWidth() const {return mSpecs.sWindow->getWidth();}
+        f32 getHeight() const {return mSpecs.sWindow->getHeight();}
 
         private:
+        void bindPipeline(int idx);
         void createUniformBuffers();
         void createDepthResources();
         void recordCommandBuffer();
@@ -138,11 +123,11 @@ namespace Lina{ namespace Graphics{
         private:
         RenderSpecs mSpecs;
         std::vector<Shader> mShaders;
+        i32 mCurrentShader;
         HiddenDrawData mHiddenDrawData;
         DeviceHandler* mDeviceHandler;
         SwapChain* mSwapChain;
-        bool mSwapChainRecreated;
+        b8 mSwapChainRecreated;
 
-        int currentShader;
     };
 }}
