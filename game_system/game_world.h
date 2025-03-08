@@ -26,22 +26,23 @@ namespace Lina { namespace GameSystem {
                 mRenderer(nullptr)
                 {}
 
-            void preinit();
-            void init();
+            virtual void preinit() = 0;
+            virtual void init() = 0;
+            virtual void onKeyDown(Events::KeyPress& e) = 0;
+            virtual void onKeyUp(Events::KeyRelease& e) = 0;
+            virtual void onMouseMove(Events::MouseMove& e) = 0;
+            virtual void update() = 0;
+            virtual void reset() = 0;
 
+        public:
             void addObject(const GameObject& obj) {mObjects[obj.getTag()] = obj;}
             void removeObject(std::string tag);
             void addCollisionSystem(ECS::CollisionSystem* c) {mCollisionSystems.push_back(c);};
             void addCharacterController(ECS::CharacterController* c) {mCharacterControllers.push_back(c);};
             void setRenderer(Graphics::Renderer* r) {mRenderer = r;}
 
-            void onKeyDown(Events::KeyPress& e);
-            void onKeyUp(Events::KeyRelease& e);
-            void onMouseMove(Events::MouseMove& e){};
             void removeCollisionSystem() {mCollisionSystems.pop_back();}
             void removeCharacterController() {mCharacterControllers.pop_back();}
-            void update();
-            void reset();
 
         public:
             std::unordered_map<std::string, ECS::Components::Health>&
@@ -52,29 +53,20 @@ namespace Lina { namespace GameSystem {
             std::unordered_map<std::string, ECS::Components::Material>&
                 getMaterials() {return mMaterialComponents;}
 
-        private:
+        protected:
             void fetchComponents();
-            void setCallBacks();
-        private:
+        protected:
             std::vector<ECS::CollisionSystem*> mCollisionSystems;
             std::vector<ECS::CharacterController*> mCharacterControllers;
             std::unordered_map<std::string, GameObject> mObjects;
             Graphics::Renderer* mRenderer;
-            Graphics::Shuttle mShuttle;
             std::unordered_map<std::string, ECS::Components::Health> mHealthComponents;
             std::unordered_map<std::string, ECS::Components::Material> mMaterialComponents;
             std::unordered_map<std::string, ECS::Components::Transform> mTransformComponents;
             std::unordered_map<std::string, ECS::Components::CylinderCollider> mCylinderColliderComponents;
             std::unordered_map<std::string, ECS::Components::PlaneCollider> mPlaneColliderComponents;
-
             Core::Timer mTimer;
-            f32 mVelocity = 1.2f;
-            f32 mJump = 1.2f;
-            f32 mGravity = 0.020f;
-            f32 mFrameRate = 60.0f;
-            f32 mColliderOffset = 8.0f;
-            u32 mCoinCount = 0;
-            u32 mGoal = 2;
+
     };
 }}
 #endif

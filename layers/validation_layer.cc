@@ -1,5 +1,6 @@
 #include "validation_layer.h"
 #include <cassert>
+#include <iostream>
 #include <memory>
 
 namespace Lina { namespace Graphics {
@@ -20,8 +21,68 @@ namespace Lina { namespace Graphics {
         std::cerr << "Begin Timer Validation : \n\n";
         timerValidation();
         std::cerr << "\n\nEnd Timer Validation : \n\n";
+
+        std::cerr << "Begin Physics Validation : \n\n";
+        physicsValidation();
+        std::cerr << "\n\nEnd Physics Validation : \n\n";
     }
 
+    void ValidationLayer::physicsValidation()
+    {
+        particleValidation();
+    }
+
+    void ValidationLayer::particleValidation()
+    {
+        p = new Physics::Particle();
+        p->setMass(5);
+        float timeStep = 0.001;
+        Math::Vector3D init = {0, 0, 0};
+        for (int i = 0; i < 10; i++)
+        {
+            p->update(i * timeStep);
+            assert(p->getVelocity() == init);
+            assert(p->getAcc() == init);
+            assert(p->getPos() == init);
+        }
+
+        p->setVelocity({20, 5, 0});
+
+        Math::Vector3D acc = {0, -10, 0};
+
+        for (int i = 0; i < 1000; i++)
+        {
+            p->applyImpulse({0, -50, 0});
+            p->update(timeStep);
+        }
+        assert(p->getAcc() == init);
+
+        p->applyForce({0, -50, 0});
+        for (int i = 0; i < 1000; i++)
+        {
+            p->update(timeStep);
+        }
+        assert(p->getAcc() == acc);
+
+        p->setVelocity({20, 5, 0});
+        p->setPosition({0, 0 ,0});
+
+        p->applyForce({0, 50, 0});
+        p->applyForce({0, -10, 0});
+        p->applyForce({0, -30, 0});
+        p->applyForce({0, -7, 0});
+        p->applyForce({0, -3, 0});
+
+        for (int i = 0; i < 1000; i++)
+        {
+            p->update(timeStep);
+        }
+        assert(p->getAcc() == acc);
+
+        std::cerr << p->getVelocity() << ":Vel\n"; 
+        std::cerr << p->getPos() << ":Pos\n"; 
+        delete p;
+    }
     void ValidationLayer::timerValidation()
     {
         mTimer.begin();
@@ -142,6 +203,9 @@ namespace Lina { namespace Graphics {
         assert(c1->checkCollision(p1) == true);
         cSystem.update();
         assert(c1->checkCollision(p1) == true);
+        delete c1;
+        delete c2;
+        delete p1;
     }
 
 }}

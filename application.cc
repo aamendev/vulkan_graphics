@@ -4,6 +4,7 @@
 #include "layers/test_scene.h"
 #include "layers/warmup2_layer.h"
 #include "layers/validation_layer.h"
+#include "layers/ps_layer.h"
 #include "types.h"
 #include <string>
 
@@ -34,14 +35,15 @@ namespace Lina{
 
         Graphics::TestSceneLayer* testLayer = 
             new Graphics::TestSceneLayer(mRenderer, mWindow);
+        Graphics::PSLayer* psLayer = new Graphics::PSLayer(mRenderer, mWindow);
 
         Graphics::ValidationLayer* validLayer = new Graphics::ValidationLayer();
 
-        mLayers.push_back(mainSceneLayer);
-        mLayers.push_back(testLayer);
-       mLayers.push_back(warmup);
-     //   mLayers.push_back(validLayer);
-
+        //mLayers.push_back(mainSceneLayer);
+        //mLayers.push_back(testLayer);
+      //mLayers.push_back(warmup);
+//        mLayers.push_back(validLayer);
+        mLayers.push_back(psLayer);
         mCurrentLayer = 0;
         for (int i = 0; i < mLayers.size(); i++) mLayers[i]->init();
 
@@ -104,7 +106,10 @@ namespace Lina{
             mLayers[mCurrentLayer]->run();
             mWindow->update();
 
-
         }
+       for (int i = 0; i < mLayers.size(); i++)
+       {
+            delete(mLayers[i]);
+       }
     }
 }

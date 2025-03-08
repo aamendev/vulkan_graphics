@@ -11,6 +11,7 @@
 #include "../shapes/icosphere.h"
 #include "../shuttle.h"
 #include "../shapes/cylinder.h"
+#include "../games/warmup2.h"
 #include <fstream>
 #include <sstream>
 
@@ -29,7 +30,7 @@ namespace Lina { namespace Graphics {
         private:
             Renderer* mRenderer;
             Window* mWindow;
-            GameSystem::GameWorld mGameWorld;
+            Games::W2GameWorld  mGameWorld;
     };
 }}
 #endif

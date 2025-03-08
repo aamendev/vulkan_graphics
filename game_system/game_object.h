@@ -5,8 +5,7 @@ namespace Lina { namespace GameSystem {
     class GameObject
     {
         public:
-            GameObject() = default;
-            GameObject(std::string tag): mTag(tag), 
+            GameObject(std::string tag = ""): mTag(tag), 
             mComponentAddRequests({}), mComponentRemoveRequests({}){}
 
             void addComponent(ComponentType comp);

@@ -2,7 +2,6 @@
 namespace Lina{ namespace Graphics{
     void WarmUp2Layer::init()
     {
-
         // Renderer
         Graphics::Shapes::Cylinder cyl(0.5, 1, 20, 
                 MeshMode::Pos3Col3, {.col = {1.0f, 0.2f, 0.3f}});

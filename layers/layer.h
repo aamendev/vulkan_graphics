@@ -6,6 +6,7 @@ namespace Lina { namespace Graphics {
 class Layer
 {
     public:
+        virtual ~Layer() = default;
         virtual void run() = 0;
         virtual void init() = 0;
         virtual void onKeyDown(Events::KeyPress& e) = 0;

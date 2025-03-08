@@ -20,6 +20,8 @@ namespace Lina{ namespace Graphics{
             std::vector<float> getFullVertices() const {return mFullVertices;}
             std::vector<float> getTextureDebug() const;
             std::vector<float> getDebugVertices() const {return mDebugVertices;}
+        public:
+            inline void setMeshMode(MeshMode m) {mMeshMode = m;}
         protected:
             std::vector<Math::Point3D> mVertices;
             std::vector<unsigned int> mIndices;

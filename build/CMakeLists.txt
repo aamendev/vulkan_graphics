@@ -29,6 +29,10 @@ FILE(GLOB SRC
         "../game_system/*.cc"
         "../core/*.h"
         "../core/*.cc"
+        "../physics/*.h"
+        "../physics/*.cc"
+        "../games/*.h"
+        "../games/*.cc"
     )
 add_executable(${PROJECT_NAME} ${SRC})
 set(CMAKE_BUILD_TYPE Debug)
