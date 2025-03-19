@@ -12,6 +12,7 @@ namespace Lina{ namespace Graphics{
 
             void setPosition(float x, float y, float z);
             void setPosition(Math::Point3D& p);
+            inline void setSpeed(f32 s) {mSpeed = s;}
 
             b8 update(Events::KeyPress& e);
 

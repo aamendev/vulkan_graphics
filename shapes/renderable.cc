@@ -24,6 +24,19 @@ namespace Lina{ namespace Graphics{
                 }
                 break;
 
+            case MeshMode::Pos3:
+                {
+                    std::cerr << "POS3\n";
+                    mFullVertices.resize(mVertices.size() * 3);
+                    for (int i = 0; i < mVertices.size(); i++)
+                    {
+                        mFullVertices[3 * i] = mVertices[i].x;
+                        mFullVertices[3 * i + 1] = mVertices[i].y;
+                        mFullVertices[3 * i + 2] = mVertices[i].z;
+                    }
+                }
+                break;
+
             case MeshMode::Pos3Col3:
                 {
                     mFullVertices.resize(mVertices.size() * 6);

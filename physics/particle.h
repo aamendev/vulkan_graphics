@@ -2,6 +2,7 @@
 #define PARTICLE_H
 #include "../types.h"
 #include "../Math/math.h"
+#include "force.h"
 namespace Lina { namespace Physics {
     class Particle 
     {
@@ -11,11 +12,12 @@ namespace Lina { namespace Physics {
                     Math::Vector3D&& f = {0, 0, 0},
                     f32 d = 1.0f): 
                 mInverseMass(1 / m), mPosition(p), mVelocity(v), mAcceleration(a),
-                mDamping(d), mForces(f) {}
+                mDamping(d), mForces(f), mVariableForces({}) {}
         public:
             void update(f32 t);
 
             inline void applyForce(const Math::Vector3D& f) {mForces += f;}
+            inline void addVariableForce(Force* f) {mVariableForces.push_back(f);}
             inline void resetForce() {mForces = {0, 0, 0};}
             inline void applyImpulse(const Math::Vector3D& f) 
             {mAcceleration += (f * mInverseMass);}
@@ -33,17 +35,16 @@ namespace Lina { namespace Physics {
             inline const Math::Vector3D& getAcc() const {return mAcceleration;}
             inline f32 getMass() const {return (1 / mInverseMass);}
             inline f32 getInverseMass() const {return mInverseMass;}
-        private:
-  //          void calculateVelocity();
-   //         void calculatePosition();
+        public:
+            inline Math::Point3D* getPosPointer() {return &mPosition;}
         private:
             Math::Point3D mPosition;
             Math::Vector3D mVelocity;
             Math::Vector3D mAcceleration;
             Math::Vector3D mForces;
+            std::vector<Force*> mVariableForces;
             f32 mInverseMass;
             f32 mDamping;
-            //f32 mDampingPower;
     };
 }}
 #endif

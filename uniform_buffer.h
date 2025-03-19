@@ -11,8 +11,9 @@ namespace Lina{ namespace Graphics{
         friend class VulkanInitializer;
         public:
         void init(DeviceHandler* device);
-        void constructFromUniformSize(u32 size);
-        void updateUniform(void* data);
+        void constructFromUniformSize(u32 size, u32 count = 1);
+
+        void updateUniform(void* data, u32 id = 0);
 
         private:
             void* mDataPointer;

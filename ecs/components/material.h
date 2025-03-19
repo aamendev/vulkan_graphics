@@ -5,10 +5,10 @@
 namespace Lina { namespace ECS { namespace Components {
     typedef struct RGBA
     {
-        f32 r;
-        f32 g;
-        f32 b;
-        f32 a;
+        f32 r = 1.0f;
+        f32 g = 1.0f;
+        f32 b = 1.0f;
+        f32 a = 1.0f;
     } RGBA;
     class Material : public Component
     {

@@ -2,13 +2,15 @@
 #define PLANE_COLLIDER_H
 #include "collider.h"
 
-namespace Lina { namespace ECS { namespace Components {
-    class PlaneCollider : public Collider
+namespace Lina { namespace ECS { namespace Components { namespace Colliders {
+
+    class Plane : public Collider
     {
         public:
-            PlaneCollider() = default;
-            PlaneCollider(std::string tag): mWidth(10), mLength(5) 
+            Plane() = default;
+            Plane(std::string tag): mWidth(10), mLength(5) 
             {
+                mEnabled = true;
                 mCallDefaults = true;
                 mTag = tag;
                 mRecentCollisions = {};
@@ -19,7 +21,7 @@ namespace Lina { namespace ECS { namespace Components {
                 mCollisionPersistCallback = staticDefaultOnCollisionPersist;
                 mResolveCallback = staticDefaultOnResolve;
             }
-        PlaneCollider(std::string tag, f32 h, f32 r, Math::Point3D c): 
+        Plane(std::string tag, f32 h, f32 r, Math::Point3D c): 
             mLength(r), mWidth(h)
         {
             mCallDefaults = true;
@@ -29,7 +31,11 @@ namespace Lina { namespace ECS { namespace Components {
             mGeometry = ColliderGeometry::Plane;
         };
 
-        b8 checkCollision(Collider* c) override {return true;};
+        public:
+
+        virtual Math::Point3D furthestPoint(const Math::Vector3D& d) override;
+
+        b8 checkCollision(Collider* c) override {return c->checkCollision(this);};
         virtual void onCollisionEnter(Collider* c) override;
         virtual void onCollisionExit(Collider* c) override;
         virtual void onCollisionPersist(Collider* c) override;
@@ -54,5 +60,5 @@ namespace Lina { namespace ECS { namespace Components {
         f32 mLength;
         f32 mWidth;
     };
-}}}
+}}}}
 #endif

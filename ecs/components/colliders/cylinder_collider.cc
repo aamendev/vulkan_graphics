@@ -1,28 +1,35 @@
 #include "cylinder_collider.h"
 #include "collider.h"
 #include "plane_collider.h"
-namespace Lina { namespace ECS { namespace Components {
-    b8 CylinderCollider::checkCollision(Collider* c)
+#include <cmath>
+namespace Lina { namespace ECS { namespace Components { namespace Colliders{
+    b8 Cylinder::checkCollision(Collider* c)
     {
         ColliderGeometry g = c->getColliderGeometry();
         switch (g)
         {
             case ColliderGeometry::Cylinder:
-                return cylinderCylinderCollision(dynamic_cast<CylinderCollider*>(c));
+                //return cylinderCylinderCollision(dynamic_cast<Cylinder*>(c));
+                return Helpers::Collisions::gjk(this, c);
+                break;
             case ColliderGeometry::Plane:
                 {
                     return cylinderPlaneCollision(c);
                 }
                 break;
+            case ColliderGeometry::Mesh:
+                return c->checkCollision(this);
+                break;
             default: 
                 {
-                         return false;
-                     }
-                     break;
+                    return false;
+                }
+                break;
         }
     }
 
-    void CylinderCollider::onCollisionEnter(Collider *c){
+    void Cylinder::onCollisionEnter(Collider *c){
+        //std::cerr << "Enter\n";
         mCollisionEnterCallback(this, c);
         if (mCallDefaults)
         {
@@ -31,44 +38,47 @@ namespace Lina { namespace ECS { namespace Components {
         onResolve(c);
     }
 
-    void CylinderCollider::onCollisionPersist(Collider *c)
+    void Cylinder::onCollisionPersist(Collider *c)
     {
+
+       // std::cerr << "Persist\n";
         mCollisionPersistCallback(this, c);
         if (mCallDefaults)
             defaultOnCollisionPersist(c);
     }
 
-    void CylinderCollider::onCollisionExit(Collider *c){
+    void Cylinder::onCollisionExit(Collider *c){
+       // std::cerr << "Exi\n";
         mCollisionExitCallback(this, c);
         if (mCallDefaults)
         {
             defaultOnCollisionExit(c);
         }
     }
-    void CylinderCollider::onResolve(Collider *c) 
+    void Cylinder::onResolve(Collider *c) 
     {
         mResolveCallback(this, c);
         if (mCallDefaults)
             defaultOnResolve(c);
     }
 
-    void CylinderCollider::defaultOnCollisionExit(Collider* c)
+    void Cylinder::defaultOnCollisionExit(Collider* c)
     {
 
     }
 
-    void CylinderCollider::defaultOnCollisionPersist(Collider* c)
+    void Cylinder::defaultOnCollisionPersist(Collider* c)
     {
         defaultOnCollisionEnter(c);
     }
 
-    void CylinderCollider::defaultOnCollisionEnter(Collider* c)
+    void Cylinder::defaultOnCollisionEnter(Collider* c)
     {
         switch(c->getColliderGeometry())
         {
             case ColliderGeometry::Cylinder:
                 {
-                    CylinderCollider* other = dynamic_cast<CylinderCollider*>(c);
+                    Cylinder* other = dynamic_cast<Cylinder*>(c);
                     Math::Vector3D otherCenter = other->getCenter();
 
                     Math::Vector3D proj1 = {mCenter.x, 0, mCenter.z};
@@ -78,45 +88,45 @@ namespace Lina { namespace ECS { namespace Components {
                     f32 len = mRadius + other->getRadius() - mag;
 
                     if (mag == 0) {proj1 += {0.1, 0, 0};}
-                    mCenter += ((proj1 - proj2).normalise() * len);
+                    mCenter += ((proj1 - proj2).normalise() * (len + 0.01f));
                     defaultOnResolve(c);
                 }
                 break;
             case ColliderGeometry::Plane:
                 {
-                    PlaneCollider* other = dynamic_cast<PlaneCollider*>(c);
+                    Plane* other = dynamic_cast<Plane*>(c);
                     Math::Vector3D otherCenter = other->getCenter();
                     mCenter += {0, (otherCenter.y - mCenter.y) - (mHeight / 2), 0};
                     defaultOnResolve(c);
                 }
                 break;
-            default: {std::cerr <<"WULD\n";}
+            default: {}
         }
     }
 
-    void CylinderCollider::defaultOnResolve(Collider* c)
+    void Cylinder::defaultOnResolve(Collider* c)
     {
         /*    switch(c->getColliderGeometry())
               {
               case ColliderGeometry::Cylinder:
               {
               std::cerr << "Current Center: " << mCenter << ", Other's Center" 
-              << ((CylinderCollider*)c)->getCenter() << "\n";
+              << ((Cylinder*)c)->getCenter() << "\n";
               }
               break;
               case ColliderGeometry::Plane:
               {
               std::cerr << "Current Center: " <<mCenter << "Plane's Center"
-              << ((PlaneCollider*)c)->getCenter() << "\n";
+              << ((Plane*)c)->getCenter() << "\n";
               }
               break;
               default: {std::cerr << "Just Resolved!\n";}*/
         //}
     }
 
-    b8 CylinderCollider::cylinderPlaneCollision(Collider* c)
+    b8 Cylinder::cylinderPlaneCollision(Collider* c)
     {
-        PlaneCollider* d = dynamic_cast<PlaneCollider*>(c);
+        Plane* d = dynamic_cast<Plane*>(c);
         Math::Vector3D otherCenter = d->getCenter();
 
 
@@ -130,7 +140,7 @@ namespace Lina { namespace ECS { namespace Components {
         return cond;
     }
 
-    b8 CylinderCollider::cylinderCylinderCollision(CylinderCollider* c)
+    b8 Cylinder::cylinderCylinderCollision(Cylinder* c)
     {
         Math::Vector3D otherCenter = c->getCenter();
         Math::Vector3D proj1 = {mCenter.x, 0, mCenter.z};
@@ -148,4 +158,33 @@ namespace Lina { namespace ECS { namespace Components {
 
         return circleOverlap && sideOverlap;
     }
-}}}
+
+    Math::Point3D Cylinder::furthestPoint(const Math::Vector3D &d)
+    {
+        mScale = {mRadius, mHeight, mRadius};
+        Math::Transform4D m = 
+            Math::Util::scaleMatrix(mScale)*
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
+
+        Math::Vector4D temp = 
+            ((Math::Vector4D){d.x, d.y, d.z, 0}) * m.transpose();
+
+        Math::Vector3D newDir = {temp.x, temp.y, temp.z};
+
+        f32 delta = std::sqrt(newDir.x * newDir.x + newDir.z * newDir.z);
+        f32 sgn = (newDir.y > 0) - (newDir.y < 0);
+        auto ret = (Math::Point3D){0 , 0, 0};
+        if (delta > 0)
+        {
+            ret = (
+                    (Math::Point3D){1 / delta * newDir.x, sgn * 1/2, 1 / delta * newDir.z} 
+                    * m
+                    + mCenter).toPoint();
+            return ret;
+        }
+        ret = ((Math::Point3D){0, sgn * 1 / 2, 0} 
+                * m 
+                + mCenter).toPoint();
+        return ret;
+    }
+}}}}

@@ -53,6 +53,8 @@ enum class Primitive
 enum class MeshMode
 {
     Pos3,
+    Pos3Tex2,
+    Pos3Tex2Norm3,
     Pos3Col3,
     Pos3Col4,
     Pos3Col3Tex2,
@@ -75,8 +77,15 @@ enum class ComponentType
     SphereCollider,
     CylinderCollider,
     PlaneCollider,
+    MeshCollider,
 
     Health,
+};
+
+enum class UniformType
+{
+    Static,
+    Dynamic,
 };
 
 struct PushConstant
@@ -89,9 +98,11 @@ struct PushConstant
 struct Uniform
 {
     std::string name = "";
-    u32 size;
     u32 binding;
     ShaderStage stage;
+    UniformType type = UniformType::Static;
+    u32 size;
+    u32 count = 1;
 };
 
 
@@ -101,6 +112,7 @@ enum class ColliderGeometry
    Sphere,
    Box,
    Plane,
+   Mesh,
 };
 
 enum class MeshGeometry

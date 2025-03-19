@@ -31,6 +31,13 @@ namespace Lina{ namespace Graphics{
             case Input::KeyCode::S:
                 mPos -= (mTarget * mSpeed);
                 break;
+
+            case Input::KeyCode::Up:
+                mPos -= (mUp * mSpeed);
+                break;
+            case Input::KeyCode::Down:
+                mPos += (mUp * mSpeed);
+                break;
             case Input::KeyCode::A:
                 {
                     Math::Vector3D l = mTarget.cross(mUp);

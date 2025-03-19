@@ -1,5 +1,6 @@
 #pragma once
 #include "common.h"
+#include "core/timer.h"
 #include "window.h"
 #include "index_buffer.h"
 #include "uniform_buffer.h"
@@ -12,6 +13,7 @@
 #include "./Math/Point3D.h"
 #include "./Math/Transform4D.h"
 #include <vulkan/vulkan_core.h>
+#include "core/core.h"
 #include <utility>
 namespace Lina{ namespace Graphics{
 
@@ -22,7 +24,7 @@ namespace Lina{ namespace Graphics{
             std::vector<const char*> valdiationLayers = 
             {"VK_LAYER_KHRONOS_validation"};
 
-            b8 enableValidationLayers = false;
+            b8 enableValidationLayers = true;
 
             VkInstance instance;
 
@@ -78,8 +80,8 @@ namespace Lina{ namespace Graphics{
         void createTexture(std::string& path, b8 flip);
         void createTexture(std::vector<std::pair<std::string, b8>> paths);
 
-        void updateUniform(void* data, int shaderId, int uniformId);
-        void updatePushConstant(void* data, int shaderId, int pushConstantId);
+        void updateUniform(void* data, u32 uniformId, u32 idx = 0);
+        void updatePushConstant(void* data, u32 pushConstantId);
         void render();
 
         // Options //
@@ -94,7 +96,7 @@ namespace Lina{ namespace Graphics{
         f32 getHeight() const {return mSpecs.sWindow->getHeight();}
 
         private:
-        void bindPipeline(int idx);
+        void bindPipeline();
         void createUniformBuffers();
         void createDepthResources();
         void recordCommandBuffer();
@@ -128,6 +130,6 @@ namespace Lina{ namespace Graphics{
         DeviceHandler* mDeviceHandler;
         SwapChain* mSwapChain;
         b8 mSwapChainRecreated;
-
+        Core::Timer mTimer;
     };
 }}

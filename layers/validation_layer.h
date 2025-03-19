@@ -33,9 +33,9 @@ class ValidationLayer : public Layer
     private:
         void particleValidation();
     private:
-        ECS::Components::CylinderCollider* c1; 
-        ECS::Components::CylinderCollider* c2; 
-        ECS::Components::PlaneCollider* p1;
+        ECS::Components::Colliders::Cylinder* c1; 
+        ECS::Components::Colliders::Cylinder* c2; 
+        ECS::Components::Colliders::Plane* p1;
         ECS::CollisionSystem cSystem;
         Core::Timer mTimer;
     private:

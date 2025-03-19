@@ -7,8 +7,8 @@ namespace Lina { namespace GameSystem {
     {
         for (auto& [tag, value] : mObjects)
         {
-            auto& reqs = mObjects[tag].getAddRequests();
-            auto& removeReqs = mObjects[tag].getRemoveRequests();
+            auto& reqs = value.getAddRequests();
+            auto& removeReqs = value.getRemoveRequests();
 
             for (int j = 0; j < reqs.size(); j++)
             {
@@ -16,13 +16,20 @@ namespace Lina { namespace GameSystem {
                 {
                     case ComponentType::CylinderCollider:
                         {
-                            ECS::Components::CylinderCollider cyl(tag);
+                            ECS::Components::Colliders::Cylinder cyl(tag);
                             mCylinderColliderComponents[tag] = cyl;
+                        }
+                        break;
+
+                    case ComponentType::MeshCollider:
+                        {
+                            ECS::Components::Colliders::Mesh cyl(tag);
+                            mMeshColliderComponents[tag] = cyl;
                         }
                         break;
                     case ComponentType::PlaneCollider:
                         {
-                            ECS::Components::PlaneCollider pl(tag);
+                            ECS::Components::Colliders::Plane pl(tag);
                             mPlaneColliderComponents[tag] = pl;
                         }
                         break;
@@ -47,6 +54,7 @@ namespace Lina { namespace GameSystem {
                     default: {}
                 }
             }
+            value.clearAddReqs();
             for (int j = 0; j < removeReqs.size(); j++)
             {
                 switch(removeReqs[j])
@@ -76,7 +84,9 @@ namespace Lina { namespace GameSystem {
                         break;
                     default: {}
                 }
+
             }
+            value.clearRemoveReqs();
         }
     }
 

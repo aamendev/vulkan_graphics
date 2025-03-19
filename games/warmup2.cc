@@ -67,7 +67,7 @@ namespace Lina { namespace Games {
                     mCharacterControllers[0]->setYVelocity(0);
                 }else if (c2->getTag() == "p2")
                 {
-                    auto* d = (ECS::Components::CylinderCollider*)c2;
+                    auto* d = (ECS::Components::Colliders::Cylinder*)c2;
                     d->setCallDefaults(false);
                     d->setPosition({(float) (rand() % 800) - 400, 0, (float)(rand() % 800) - 400});
                     mCoinCount++;
@@ -93,7 +93,7 @@ namespace Lina { namespace Games {
             playerCollisionExit = 
             [this](ECS::Components::Collider* c1, ECS::Components::Collider* c2) 
             mutable{
-                auto* d1 = dynamic_cast<ECS::Components::CylinderCollider*>(c1);
+                auto* d1 = dynamic_cast<ECS::Components::Colliders::Cylinder*>(c1);
                 if(c2->getTag() == "plane") mCharacterControllers[0]->setGrounded(false);
             };
 
@@ -110,7 +110,7 @@ namespace Lina { namespace Games {
     void W2GameWorld::init()
     {
         mCoinCount = 0;
-        mCylinderColliderComponents["p1"].setPosition({40, 0 ,40});
+        mCylinderColliderComponents["p1"].setPosition({40, -15 ,40});
         mCylinderColliderComponents["p1"].setHeight(10);
         mCylinderColliderComponents["p1"].setRadius(10);
         mCharacterControllers[0]->setVelocity({0, 0, 0});
@@ -120,17 +120,17 @@ namespace Lina { namespace Games {
 
         mMaterialComponents["p1"].setColour({(float)0x73 / 0xff, 
                 (float)0x87 / 0xff, (float)0x57 / 0xff, (float)0xff / 0xff});
-        mMaterialComponents["p1"].setShader(2);
+        mMaterialComponents["p1"].setShader(0);
 
         mTransformComponents["p2"].setScale({20, 20, 10});
         mMaterialComponents["p2"].setColour(
-                {(float)0xBA / 0xff,
-                (float)0xB7 / 0xff,
-                (float)0x45 / 0xff,
+                {(float)0xaa / 0xff,
+                (float)0xff / 0xff,
+                (float)0xff / 0xff,
                 (float)0xff / 0xff}
                 );
 
-        mMaterialComponents["p2"].setShader(2);
+        mMaterialComponents["p2"].setShader(0);
         mCylinderColliderComponents["p2"].setHeight(10);
         mCylinderColliderComponents["p2"].setRadius(10);
         mTransformComponents["p2"].setPosition({0, -8, 0});
@@ -141,13 +141,12 @@ namespace Lina { namespace Games {
         mTransformComponents["plane"].setScale({1000, 1, 1000});
         mMaterialComponents["plane"].setColour({(float)0x6B / 0xff, 
                 (float)0x57 / 0xff, (float)0x87 / 0xff, (float)0xff / 0xff});
-        mMaterialComponents["plane"].setShader(3);
+        mMaterialComponents["plane"].setShader(1);
 
         mTransformComponents["lose"].disable();
         mPlaneColliderComponents["lose"].setLength(2000);
         mPlaneColliderComponents["lose"].setWidth(2000);
         mPlaneColliderComponents["lose"].setPosition({0, 200, 0});
-
     }
 
     void W2GameWorld::reset()
@@ -273,8 +272,8 @@ namespace Lina { namespace Games {
                 true);
 
         mRenderer->beginDraw();
-        mRenderer->bindShader(0);
         mRenderer->setPrimitive(Primitive::Triangle);
+
 
         for (auto& [key, value] : mMaterialComponents)
         {
@@ -286,17 +285,17 @@ namespace Lina { namespace Games {
                     auto currentTransMat = proj * mShuttle.getMatrix() 
                         * mTransformComponents[key].getMatrix()
                         * Math::Util::scaleMatrix(mTransformComponents[key].getScale()); 
-                    mRenderer->updatePushConstant(&currentTransMat, value.getShaderId(), 0);
+                    mRenderer->updatePushConstant(&currentTransMat, 0);
                 }
                 auto col = value.getColour();
-                mRenderer->updateUniform(&col, value.getShaderId(), 0);
+                mRenderer->updateUniform(&col, 0, key == "p2");
                 mRenderer->render();
             }
         }
 
+        mRenderer->endDraw();
         auto followPos = mTransformComponents["p1"].getPosition();
         mShuttle.setPosition(followPos.x, followPos.y - 10, followPos.z - 15 * 4);
-        mRenderer->endDraw();
         // End Drawing System
 
         mTimer.end();

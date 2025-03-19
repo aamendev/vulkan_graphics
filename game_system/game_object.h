@@ -11,6 +11,8 @@ namespace Lina { namespace GameSystem {
             void addComponent(ComponentType comp);
             void removeComponent(ComponentType comp);
             void resetComponents();
+            inline void clearAddReqs() {mComponentAddRequests.clear();}
+            inline void clearRemoveReqs() {mComponentRemoveRequests.clear();}
 
         public:
             const std::string& getTag() const {return mTag;}

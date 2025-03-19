@@ -11,6 +11,18 @@ namespace Lina { namespace Games {
         mParticleSystem.setMaxRotation({0, 0, PI/8});
         mParticleSystem.setMinV({1.0f, 2.0f, 0.0f});
         mParticleSystem.setMaxV({1.5f, 10.0f, 0.0f});
+
+
+        //mSpring.setAnchor(mParticle2.getPosPointer());
+       // mSpring2.setAnchor(mParticle.getPosPointer());
+        //mParticle.addVariableForce(&mSpring);
+       // mParticle2.addVariableForce(&mSpring2);
+        //mParticle.setPosition({0, 20, 0});
+      //  mParticle.applyForce({1, 0, 0});
+        //mParticle2.setVelocity({1, 0, 0});
+       // mSpring.attachPoint(mParticle.getPosPointer());
+       // mSpring2.attachPoint(mParticle2.getPosPointer());
+       mShuttle.setPosition(0, -5, -20);
     }
     void PSWorld::init() 
     {
@@ -19,13 +31,14 @@ namespace Lina { namespace Games {
 
     void PSWorld::onKeyDown(Events::KeyPress& e)
     {
+        mShuttle.update(e);
         switch(e.key())
         {
             case Input::KeyCode::W:
-                mZoom -= 0.11f;
+                //mZoom -= 0.11f;
                 break;
             case Input::KeyCode::S:
-                mZoom += 0.11f;
+               // mZoom += 0.11f;
                 break;
             default:{}
         }
@@ -42,19 +55,23 @@ namespace Lina { namespace Games {
 
         Col col;
 
-        auto proj = Math::Util::projMatrix(
+       auto proj = Math::Util::projMatrix(
                 135, 
                 mRenderer->getWidth() / mRenderer->getHeight(), 
                 true);
         auto scale = Math::Util::scaleMatrix({0.1f, 1.0f, 0.1f});
+        auto scale2 = Math::Util::scaleMatrix({1, 1, 1});
         mTimer.begin();
-        mParticleSystem.update(1.0f / 60);
-        auto& ps = mParticleSystem.getParticles();
-        auto& rots = mParticleSystem.getRotations();
+       // mParticleSystem.update(1.0f / 60);
+        mParticle2.update(1 / mFrameRate);
+        mParticle.update(1.0f / mFrameRate);
+        //auto& ps = mParticleSystem.getParticles();
+       // auto& rots = mParticleSystem.getRotations();
         mRenderer->beginDraw();
-        mRenderer->updateUniform(&col, 0, 0);
+        mRenderer->updateUniform(&col, 0);
         mRenderer->setPrimitive(Primitive::Triangle);
         mRenderer->bindShader(0);
+        /*
         for (int i = 0; i < ps.size(); i++)
         {
            auto trans = proj * mShuttle.getMatrix() *
@@ -65,10 +82,22 @@ namespace Lina { namespace Games {
             mRenderer->updatePushConstant(&trans, 0, 0);
             mRenderer->render();
         }
+        */
+
+        auto trans = proj * mShuttle.getMatrix() * 
+            Math::Util::transMatrix(Math::Util::identityMatrix(),
+                    mParticle.getPos())  * Math::Util::rotationMatrix4D(
+                    0 * PI / 180, {0, 0, 1}) * 
+                        Math::Util::rotationMatrix4D(0 * PI / 180, {0, 1, 0}) *  scale2;
+        mRenderer->updatePushConstant(&trans, 0);
+        mRenderer->render();
+
+
         auto followPos = mParticleSystem.getPosition();
-        mShuttle.setPosition(followPos.x, followPos.y + 20.0f, 
-                followPos.z - mZoom * mParticleSystem.getRadius());
+       // mShuttle.setPosition(0, 100, 
+         //       - mZoom * 4);
         mRenderer->endDraw();
+
         mTimer.end();
         mTimer.wait((1000/mFrameRate) - mTimer.getTime());
     }

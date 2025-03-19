@@ -1,5 +1,6 @@
 #include "./scene_layer.h"
 #include "../ecs/components/colliders/cylinder_collider.h"
+#include "../core/obj_loader.h"
 #include <cassert>
 
 namespace Lina{ namespace Graphics{
@@ -62,11 +63,18 @@ namespace Lina{ namespace Graphics{
 
         mRenderer->createTexture(texData);
 
+        Core::ObjLoader obj;
+
+        obj.load("../assets/teapot.obj");
+
+        auto verts = obj.getFullVertices();
+        auto ind = obj.getIndices();
+
        Graphics::Shapes::Icosphere ico(3.0f);
         ico.subdivide(5);
 
-        auto verts = ico.getFullVertices();
-        auto ind = ico.getIndices();
+        //auto verts = ico.getFullVertices();
+        //auto ind = ico.getIndices();
 
         /*Graphics::Shapes::Cylinder cyl(5, 10, 20, 
                 MeshMode::Pos3Col3, {.col = {0.0f, 0.2f, 0.3f}});
@@ -104,17 +112,17 @@ namespace Lina{ namespace Graphics{
         Uniform mvpUniform = 
         {
             .name = "mvp",
-            .size = sizeof(Math::Transform4D),
             .binding = 0,
-            .stage = ShaderStage::Vertex
+            .stage = ShaderStage::Vertex,
+                .size = sizeof(Math::Transform4D),
         };
 
         Uniform effuniform = 
         {
             .name = "effect",
-            .size = sizeof(EffectUniform),
             .binding = 0,
-            .stage = ShaderStage::Fragment
+            .stage = ShaderStage::Fragment,
+                .size = sizeof(EffectUniform),
         };
         
         PushConstant mvp = 
@@ -191,8 +199,8 @@ namespace Lina{ namespace Graphics{
                 currTransforms[i] *
                 Math::Util::scaleMatrix({radii[i], radii[i], radii[i]});
 
-            mRenderer->updatePushConstant(&fulltransMat, 0, 0);
-            mRenderer->updatePushConstant(&i, 0, 1);
+            mRenderer->updatePushConstant(&fulltransMat, 0);
+            mRenderer->updatePushConstant(&i, 1);
             //mRenderer->render(nullptr, nullptr, i);
             mRenderer->render();
 

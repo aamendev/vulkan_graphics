@@ -4,3 +4,5 @@ glslang -V ../shaders/simple.frag -o  ../shaders/compiled/simple.frag.spv
 glslang -V ../shaders/simple.vert -o  ../shaders/compiled/simple.vert.spv
 glslang -V ../shaders/effect.vert -o ../shaders/compiled/effect.vert.spv
 glslang -V ../shaders/effect.frag -o ../shaders/compiled/effect.frag.spv
+glslang -V ../shaders/terrain.frag -o ../shaders/compiled/terrain.frag.spv
+glslang -V ../shaders/terrain.vert -o ../shaders/compiled/terrain.vert.spv

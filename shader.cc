@@ -37,6 +37,8 @@ namespace Lina{ namespace Graphics{
 
     void Shader::addUniform(const Uniform& uniform)
     {
+        mDynamicUniformCount += (uniform.type == UniformType::Dynamic);
+        mStaticUniformCount += (uniform.type == UniformType::Static);
         mUniforms.push_back(uniform);
     }
 

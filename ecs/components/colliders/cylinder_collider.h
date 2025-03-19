@@ -1,13 +1,14 @@
 #ifndef CYLINDER_COLLIDER_H
 #define CYLINDER_COLLIDER_H
 #include "collider.h"
+#include "collision_funcs.h"
 
-namespace Lina { namespace ECS { namespace Components {
-    class CylinderCollider : public Collider
+namespace Lina { namespace ECS { namespace Components { namespace Colliders{
+    class Cylinder : public Collider
     {
         public:
-            CylinderCollider() = default;
-            CylinderCollider(std::string tag): mHeight(10), mRadius(5)
+            Cylinder() = default;
+            Cylinder(std::string tag): mHeight(10), mRadius(5)
             {
                 mTag = tag;
                 mRecentCollisions = {};
@@ -21,7 +22,7 @@ namespace Lina { namespace ECS { namespace Components {
                 mCollisionPersistCallback = staticDefaultOnCollisionPersist;
             }
 
-        CylinderCollider(std::string tag, f32 h, f32 r, Math::Point3D c): 
+        Cylinder(std::string tag, f32 h, f32 r, Math::Point3D c): 
             mRadius(r), mHeight(h){
                 mTag = tag;
                 mRecentCollisions = {};
@@ -47,36 +48,39 @@ namespace Lina { namespace ECS { namespace Components {
         f32 getHeight() const {return mHeight;}
         f32 getRadius() const {return mRadius;}
         const Math::Vector3D& getCenter() const {return mCenter;}
+        
+        public:
+            virtual Math::Point3D furthestPoint(const Math::Vector3D &d) override;
 
         private:
-
         void defaultOnCollisionEnter(Collider* c);
         void defaultOnCollisionExit(Collider* c);
         void defaultOnResolve(Collider* c);
         void defaultOnCollisionPersist(Collider* c);
-        b8 cylinderCylinderCollision(CylinderCollider* c);
+        b8 cylinderCylinderCollision(Cylinder* c);
         b8 cylinderPlaneCollision(Collider* plane);
 
         private:
         static void staticDefaultOnCollisionEnter(Collider* c1, Collider* c2)
         {
-        //    ((CylinderCollider*)c1)->defaultOnCollision(c2);
+        //    ((Cylinder*)c1)->defaultOnCollision(c2);
         }
         static void staticDefaultOnResolve(Collider* c1, Collider* c2)
         {
-         //   ((CylinderCollider*)c1)->defaultOnCollision(c2);
+         //   ((Cylinder*)c1)->defaultOnCollision(c2);
         }
         static void staticDefaultOnCollisionExit(Collider* c1, Collider* c2)
         {
-         //   ((CylinderCollider*)c1)->defaultOnCollision(c2);
+         //   ((Cylinder*)c1)->defaultOnCollision(c2);
         }
         static void staticDefaultOnCollisionPersist(Collider* c1, Collider* c2)
         {
-         //   ((CylinderCollider*)c1)->defaultOnCollision(c2);
+         //   ((Cylinder*)c1)->defaultOnCollision(c2);
         }
         private:
         f32 mHeight;
         f32 mRadius;
+        Helpers::Collisions::Simplex mSimplex;
     };
-}}}
+}}}}
 #endif

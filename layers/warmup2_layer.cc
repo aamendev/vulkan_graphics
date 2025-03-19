@@ -4,26 +4,27 @@ namespace Lina{ namespace Graphics{
     {
         // Renderer
         Graphics::Shapes::Cylinder cyl(0.5, 1, 20, 
-                MeshMode::Pos3Col3, {.col = {1.0f, 0.2f, 0.3f}});
+                MeshMode::Pos3, {.col = {1.0f, 0.2f, 0.3f}});
 
         auto verts = cyl.getFullVertices();
         auto ind = cyl.getIndices();
 
         std::vector<float> verts2 = {
-            -0.5, 0, 0.5, 0, 0, 1,
-            0.5, 0, 0.5, 1, 0, 0,
-            -0.5, 0, -0.5, 0, 1, 0,
-            0.5, 0, -0.5, 1, 0, 0,
+            -0.5, 0, 0.5,
+            0.5, 0, 0.5,
+            -0.5, 0, -0.5,
+            0.5, 0, -0.5,
         };
 
         std::vector<u32> ind2 = {2, 1, 0, 2, 3, 1};
 
         Graphics::VertexBufferLayout layout; 
         layout.push(Graphics::Format::FLOAT3, 0);
-        layout.push(Graphics::Format::FLOAT3, 1);
+        //layout.push(Graphics::Format::FLOAT3, 1);
 
         mRenderer->createVertexBuffer(layout, verts);
         mRenderer->createIndexBuffer(ind);
+
         mRenderer->createVertexBuffer(layout, verts2);
         mRenderer->createIndexBuffer(ind2);
 
@@ -33,9 +34,21 @@ namespace Lina{ namespace Graphics{
         Uniform color = 
         {
             .name = "col",
-            .size = sizeof(f32) * 4,
             .binding = 0,
-            .stage = ShaderStage::Fragment
+            .stage = ShaderStage::Fragment,
+            .type = UniformType::Dynamic,
+            .size = sizeof(f32) * 4,
+            .count = 2,
+        };
+
+        Uniform color2 = 
+        {
+            .name = "col",
+            .binding = 0,
+            .stage = ShaderStage::Fragment,
+            .type = UniformType::Static,
+            .size = sizeof(f32) * 4,
+            .count = 1,
         };
 
         PushConstant mvp = 
@@ -53,7 +66,7 @@ namespace Lina{ namespace Graphics{
 
         defaultShader.addUniform(color);
 
-        defaultShader2.addUniform(color);
+        defaultShader2.addUniform(color2);
 
         defaultShader.addPushConstant(mvp);
         defaultShader2.addPushConstant(mvp);

@@ -13,25 +13,25 @@ namespace Lina { namespace Physics {
             mParticles.emplace_back(
                     1, 
                     Math::Point3D{
-                    randFloat(mSpecs.centre.x - mSpecs.radius, mSpecs.centre.x + mSpecs.radius),
+                    Core::Utils::randFloat(mSpecs.centre.x - mSpecs.radius, mSpecs.centre.x + mSpecs.radius),
                     mSpecs.centre.y,
-                    randFloat(mSpecs.centre.z - mSpecs.radius, mSpecs.centre.z + mSpecs.radius),
+                    Core::Utils::randFloat(mSpecs.centre.z - mSpecs.radius, mSpecs.centre.z + mSpecs.radius),
                     },
                     Math::Vector3D{
-                    randFloat(mSpecs.minVelocity.x, mSpecs.maxVelocity.x),
-                    randFloat(mSpecs.minVelocity.y, mSpecs.maxVelocity.y),
-                    randFloat(mSpecs.minVelocity.z, mSpecs.maxVelocity.z),
+                    Core::Utils::randFloat(mSpecs.minVelocity.x, mSpecs.maxVelocity.x),
+                    Core::Utils::randFloat(mSpecs.minVelocity.y, mSpecs.maxVelocity.y),
+                    Core::Utils::randFloat(mSpecs.minVelocity.z, mSpecs.maxVelocity.z),
                     },
                     Math::Vector3D{0, 0, 0},
                     Math::Vector3D{0, 0, 0},
                     1.0f
                     );
-            mSpecs.lifeTimes[i] = randFloat(0, mSpecs.maxLifeTime);
+            mSpecs.lifeTimes[i] = Core::Utils::randFloat(0, mSpecs.maxLifeTime);
             mSpecs.rotations[i] = 
             {
-                randFloat(mSpecs.minRotations.x, mSpecs.maxRotations.x),
-            randFloat(mSpecs.minRotations.y, mSpecs.maxRotations.y),
-            randFloat(mSpecs.minRotations.z, mSpecs.maxRotations.z)
+                Core::Utils::randFloat(mSpecs.minRotations.x, mSpecs.maxRotations.x),
+            Core::Utils::randFloat(mSpecs.minRotations.y, mSpecs.maxRotations.y),
+            Core::Utils::randFloat(mSpecs.minRotations.z, mSpecs.maxRotations.z)
             };
         }
     }
@@ -57,25 +57,25 @@ namespace Lina { namespace Physics {
 
         mSpecs.localElapse[idx] = 0.0f;;
         mParticles[idx].setPosition({
-                randFloat(mSpecs.centre.x - mSpecs.radius, mSpecs.centre.x + mSpecs.radius),
+                Core::Utils::randFloat(mSpecs.centre.x - mSpecs.radius, mSpecs.centre.x + mSpecs.radius),
                 mSpecs.centre.y,
-                randFloat(mSpecs.centre.z - mSpecs.radius, mSpecs.centre.z + mSpecs.radius)
+                Core::Utils::randFloat(mSpecs.centre.z - mSpecs.radius, mSpecs.centre.z + mSpecs.radius)
                 });
 
         mParticles[idx].setVelocity(
                 {
-                randFloat(mSpecs.minVelocity.x, mSpecs.maxVelocity.x),
-                randFloat(mSpecs.minVelocity.y, mSpecs.maxVelocity.y),
-                randFloat(mSpecs.minVelocity.z, mSpecs.maxVelocity.z),
+                Core::Utils::randFloat(mSpecs.minVelocity.x, mSpecs.maxVelocity.x),
+                Core::Utils::randFloat(mSpecs.minVelocity.y, mSpecs.maxVelocity.y),
+                Core::Utils::randFloat(mSpecs.minVelocity.z, mSpecs.maxVelocity.z),
                 }
                 );
-        mSpecs.lifeTimes[idx] = randFloat(0, mSpecs.maxLifeTime);
+        mSpecs.lifeTimes[idx] = Core::Utils::randFloat(0, mSpecs.maxLifeTime);
 
             mSpecs.rotations[idx] = 
             {
-            randFloat(mSpecs.minRotations.x, mSpecs.maxRotations.x),
-            randFloat(mSpecs.minRotations.y, mSpecs.maxRotations.y),
-            randFloat(mSpecs.minRotations.z, mSpecs.maxRotations.z)
+            Core::Utils::randFloat(mSpecs.minRotations.x, mSpecs.maxRotations.x),
+            Core::Utils::randFloat(mSpecs.minRotations.y, mSpecs.maxRotations.y),
+            Core::Utils::randFloat(mSpecs.minRotations.z, mSpecs.maxRotations.z)
             };
     }
 }}

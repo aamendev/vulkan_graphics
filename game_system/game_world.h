@@ -9,6 +9,7 @@
 #include "../ecs/components/material.h"
 #include "../ecs/systems/collision_system.h"
 #include "../ecs/systems/character_controller.h"
+#include "../ecs/components/colliders/mesh_collider.h"
 #include "../renderer.h"
 #include "../shuttle.h"
 #include "../core/core.h"
@@ -23,6 +24,7 @@ namespace Lina { namespace GameSystem {
                 mTransformComponents({}),
                 mCylinderColliderComponents({}),
                 mPlaneColliderComponents({}),
+                mMeshColliderComponents({}),
                 mRenderer(nullptr)
                 {}
 
@@ -63,8 +65,9 @@ namespace Lina { namespace GameSystem {
             std::unordered_map<std::string, ECS::Components::Health> mHealthComponents;
             std::unordered_map<std::string, ECS::Components::Material> mMaterialComponents;
             std::unordered_map<std::string, ECS::Components::Transform> mTransformComponents;
-            std::unordered_map<std::string, ECS::Components::CylinderCollider> mCylinderColliderComponents;
-            std::unordered_map<std::string, ECS::Components::PlaneCollider> mPlaneColliderComponents;
+            std::unordered_map<std::string, ECS::Components::Colliders::Cylinder> mCylinderColliderComponents;
+            std::unordered_map<std::string, ECS::Components::Colliders::Plane> mPlaneColliderComponents;
+            std::unordered_map<std::string, ECS::Components::Colliders::Mesh> mMeshColliderComponents;
             Core::Timer mTimer;
 
     };

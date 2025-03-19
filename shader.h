@@ -7,6 +7,14 @@ namespace Lina{ namespace Graphics{
     class Shader
     {
         public:
+            Shader():
+                mVertexShader({}),
+                mFragmentShader({}),
+                mDynamicUniformCount(0),
+                mStaticUniformCount(0),
+                mReferenceName(""),
+                mUniforms({}),
+                mPushConstant({}) {}
 
             void compileInit(
                     std::string&& vertexSource,
@@ -26,10 +34,12 @@ namespace Lina{ namespace Graphics{
             std::vector<char> getVertexShader();
             std::vector<char> getFragmentShader();
 
-            u32 getBindingSize() {return mUniforms.size();}
-            u32 getPushConstantSize() {return mPushConstant.size();}
-            const std::vector<Uniform>& getUniforms() {return mUniforms;}
-            const std::vector<PushConstant>& getPushConstants() {return mPushConstant;}
+            inline u32 getBindingSize() {return mUniforms.size();}
+            inline u32 getPushConstantSize() {return mPushConstant.size();}
+            inline const std::vector<Uniform>& getUniforms() {return mUniforms;}
+            inline const std::vector<PushConstant>& getPushConstants() {return mPushConstant;}
+            inline u32 getDynamicUniformsCount() {return mDynamicUniformCount;}
+            inline u32 getStaticUniformsCount() {return mStaticUniformCount;}
         private:
             std::vector<char> readFileBinary(const std::string& shaderSource);
         private:
@@ -38,5 +48,7 @@ namespace Lina{ namespace Graphics{
             std::vector<Uniform> mUniforms;
             std::vector<PushConstant> mPushConstant;
             std::string mReferenceName;
+            u32 mDynamicUniformCount;
+            u32 mStaticUniformCount;
     };
 }}

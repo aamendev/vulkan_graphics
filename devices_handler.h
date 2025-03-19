@@ -23,6 +23,7 @@ namespace Lina{ namespace Graphics{
         VkSurfaceKHR surface;
         VkQueue graphicsQueue;
         VkQueue presentQueue;
+        VkPhysicalDeviceLimits limits;
     };
     class DeviceHandler
     {

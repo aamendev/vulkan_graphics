@@ -1,6 +1,7 @@
 #include "application.h"
 #include "events/events.h"
 #include "events/key.h"
+#include "layers/collision_sim.h"
 #include "layers/test_scene.h"
 #include "layers/warmup2_layer.h"
 #include "layers/validation_layer.h"
@@ -31,7 +32,6 @@ namespace Lina{
 
         Graphics::SceneLayer* mainSceneLayer = 
             new Graphics::SceneLayer(mRenderer, mWindow);
-        Graphics::WarmUp2Layer* warmup = new Graphics::WarmUp2Layer(mRenderer, mWindow);
 
         Graphics::TestSceneLayer* testLayer = 
             new Graphics::TestSceneLayer(mRenderer, mWindow);
@@ -39,12 +39,22 @@ namespace Lina{
 
         Graphics::ValidationLayer* validLayer = new Graphics::ValidationLayer();
 
+        Graphics::CollisionSimLayer* simLayer = 
+            new Graphics::CollisionSimLayer(mRenderer, mWindow);
+
+        Graphics::WarmUp2Layer* warmup = new Graphics::WarmUp2Layer(mRenderer, mWindow);
         //mLayers.push_back(mainSceneLayer);
         //mLayers.push_back(testLayer);
-      //mLayers.push_back(warmup);
+    //  mLayers.push_back(warmup);
 //        mLayers.push_back(validLayer);
-        mLayers.push_back(psLayer);
+  //      mLayers.push_back(psLayer);
+        mLayers.push_back(simLayer);
+        //mBackgroundLayers.push_back(validLayer);
         mCurrentLayer = 0;
+        for (int j = 0; j < mBackgroundLayers.size(); j++)
+        {
+            mBackgroundLayers[j]->init();
+        }
         for (int i = 0; i < mLayers.size(); i++) mLayers[i]->init();
 
         mRenderer->createGraphicsPipelines();

@@ -7,7 +7,9 @@ namespace Lina{ namespace Graphics{
     {
         struct specs
         {
+            u32 count = 1;
             VkDeviceSize size;
+            u32 unAlignedSize = 0;
             VkBufferUsageFlags usage;
             VkMemoryPropertyFlags properties;
             VkBuffer buffer;
@@ -15,8 +17,9 @@ namespace Lina{ namespace Graphics{
         };
         public:
             virtual void createBuffer();
-            VkDeviceSize getSize() const{ return mSpecs.size; }
-            VkBuffer getBuffer() const { return mSpecs.buffer; }
+            inline VkDeviceSize getSize() const{ return mSpecs.size; }
+            inline VkBuffer getBuffer() const { return mSpecs.buffer; }
+            inline u32 getCount() const {return mSpecs.count;}
         protected:
             DeviceHandler* mDeviceHandler;
             specs mSpecs;

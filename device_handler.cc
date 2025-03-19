@@ -53,6 +53,9 @@ namespace Lina{ namespace Graphics{
             if (isDeviceSuitable(d, index++))
             {
                 mSpecs.physicalDevice = d;
+                VkPhysicalDeviceProperties p;
+                vkGetPhysicalDeviceProperties(mSpecs.physicalDevice, &p);
+                mSpecs.limits = p.limits;
                 return true;
             }
         }

@@ -25,6 +25,7 @@ namespace Lina { namespace Graphics {
         std::cerr << "Begin Physics Validation : \n\n";
         physicsValidation();
         std::cerr << "\n\nEnd Physics Validation : \n\n";
+
     }
 
     void ValidationLayer::physicsValidation()
@@ -132,6 +133,8 @@ namespace Lina { namespace Graphics {
         trans1.translate({1, 0, 10});
         const Math::Point3D newpos = {3, 3, 14};
         assert(trans1.getPosition() == newpos);
+
+
         
         trans1.rotate({PI, 0, 0});
         trans1.rotate({0, 20 * PI / 180, 90 * PI / 180});
@@ -149,9 +152,9 @@ namespace Lina { namespace Graphics {
 
     void ValidationLayer::collisionValidation()
     {
-        c1 = new ECS::Components::CylinderCollider("c1");
-        c2 = new ECS::Components::CylinderCollider("c2");
-        p1 = new ECS::Components::PlaneCollider("p1");
+        c1 = new ECS::Components::Colliders::Cylinder("c1");
+        c2 = new ECS::Components::Colliders::Cylinder("c2");
+        p1 = new ECS::Components::Colliders::Plane("p1");
 
         cSystem.addCollider(c1);
         cSystem.addCollider(c2);

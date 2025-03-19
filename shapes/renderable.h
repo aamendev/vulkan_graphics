@@ -26,6 +26,7 @@ namespace Lina{ namespace Graphics{
             std::vector<Math::Point3D> mVertices;
             std::vector<unsigned int> mIndices;
             std::vector<uv> mTextureCoordinates;
+            std::vector<Math::Vector3D> mNormals;
             std::vector<float> mFullVertices;
             std::vector<float> mDebugVertices;
             MeshMode mMeshMode = MeshMode::Pos3Col3Tex2;

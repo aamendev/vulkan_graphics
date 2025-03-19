@@ -5,7 +5,7 @@ namespace Lina{ namespace Graphics{
     {
         VkBufferCreateInfo bufferInfo{};
         bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-        bufferInfo.size = mSpecs.size;
+        bufferInfo.size = mSpecs.size * mSpecs.count;
         bufferInfo.usage = mSpecs.usage;
         bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 

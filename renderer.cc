@@ -1,6 +1,8 @@
 #include "renderer.h"
 #include "Math/Transform4D.h"
+#include "core/utils.h"
 #include "index_buffer.h"
+#include "types.h"
 #include "vertex_buffer.h"
 #include <vulkan/vulkan_core.h>
 namespace Lina{ namespace Graphics{
@@ -158,7 +160,7 @@ namespace Lina{ namespace Graphics{
             VkDescriptorSetLayoutBinding uboLayoutBinding
             {
                 .binding = ur.binding,
-                    .descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+                    .descriptorType = Core::Utils::toVkBufferType(ur.type), 
                     .descriptorCount = 1,
                     .stageFlags = (VkShaderStageFlags)ur.stage, 
                     .pImmutableSamplers = nullptr
@@ -210,17 +212,31 @@ namespace Lina{ namespace Graphics{
     {
 
         auto bindingsCount = mShaders[idx].getBindingSize();
+        auto& refUniforms = mShaders[idx].getUniforms();
 
         std::vector<VkDescriptorPoolSize> poolSizes;
         poolSizes.reserve(bindingsCount + 2);
 
         VkDescriptorPool vkPool;
 
+        u32 u = 0;
+        if ((u = mShaders[idx].getStaticUniformsCount()) > 0)
+        {
         poolSizes.push_back(
                 {
                 .type =  VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
-                .descriptorCount = bindingsCount
+                .descriptorCount = u 
                 });
+        }
+
+        if ((u = mShaders[idx].getDynamicUniformsCount()) > 0)
+        {
+        poolSizes.push_back(
+                {
+                .type =  VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC,
+                .descriptorCount = u 
+                });
+        }
 
         poolSizes.push_back(
                 {
@@ -284,12 +300,11 @@ namespace Lina{ namespace Graphics{
 
         for (int i = 0; i < refUniform.size(); i++)
         {
-
             bufferInfos[i] = 
             {
                 .buffer = mSpecs.uniformBuffers[uniformStartIndex + i].mSpecs.buffer,
                 .offset = 0,
-                .range = mSpecs.uniformBuffers[uniformStartIndex + i].mSpecs.size
+                .range = mSpecs.uniformBuffers[uniformStartIndex + i].getSize(),
             };
 
 
@@ -300,7 +315,7 @@ namespace Lina{ namespace Graphics{
                 .dstBinding = refUniform[i].binding,
                 .dstArrayElement = 0,
                 .descriptorCount = 1,
-                .descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+                .descriptorType = Core::Utils::toVkBufferType(refUniform[i].type),
                 .pImageInfo = nullptr,
                 .pBufferInfo = &bufferInfos[i],
                 .pTexelBufferView = nullptr,
@@ -361,9 +376,10 @@ namespace Lina{ namespace Graphics{
             {
                 mSpecs.uniformBuffers.emplace_back();
                 auto last = mSpecs.uniformBuffers.size() - 1;
+                std::cerr << last<< '\n';;
                 mSpecs.uniformBuffers[last].init(mDeviceHandler);
                 mSpecs.uniformBuffers[last]
-                    .constructFromUniformSize(refUniform[j].size);
+                    .constructFromUniformSize(refUniform[j].size, refUniform[j].count);
             }
         }
     }
@@ -571,7 +587,7 @@ namespace Lina{ namespace Graphics{
                 .framebuffer = mSwapChain->mSpecs.swapChainFrameBuffers[mHiddenDrawData.hImage],
                 .renderArea = {.offset = {0, 0}, .extent = mSwapChain->mSpecs.extent},
                 .clearValueCount = clearValues.size(),
-                .pClearValues = clearValues.data() 
+                .pClearValues = clearValues.data(),
         };
 
         vkCmdBeginRenderPass(
@@ -597,33 +613,16 @@ namespace Lina{ namespace Graphics{
         };
 
         vkCmdSetScissor(mSpecs.commandBuffer, 0, 1, &scissor);
-        vkCmdBindPipeline(
-                mSpecs.commandBuffer,
-                VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.graphicsPipelines[mCurrentShader]);
-        vkCmdBindDescriptorSets(
-                mSpecs.commandBuffer,
-                VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.pipelineLayouts[mCurrentShader],
-                0,
-                1,
-                &mSpecs.descriptorSets[mCurrentShader],
-                0,
-                nullptr);
     }
     void Renderer::bindShader(int idx)
     {
         mCurrentShader = idx;
-        bindPipeline(idx);
+        bindPipeline();
     }
 
-    void Renderer::bindPipeline(int idx)
+    void Renderer::bindPipeline()
     {
-        vkCmdBindPipeline(
-                mSpecs.commandBuffer,
-                VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.graphicsPipelines[idx]);
-        vkCmdBindDescriptorSets(
+        /*vkCmdBindDescriptorSets(
                 mSpecs.commandBuffer,
                 VK_PIPELINE_BIND_POINT_GRAPHICS,
                 mSpecs.pipelineLayouts[mCurrentShader],
@@ -631,7 +630,12 @@ namespace Lina{ namespace Graphics{
                 1,
                 &mSpecs.descriptorSets[mCurrentShader],
                 0,
-                nullptr);
+                nullptr);*/
+
+        vkCmdBindPipeline(
+                mSpecs.commandBuffer,
+                VK_PIPELINE_BIND_POINT_GRAPHICS,
+                mSpecs.graphicsPipelines[mCurrentShader]);
     }
 
     void Renderer::render()
@@ -1023,21 +1027,45 @@ namespace Lina{ namespace Graphics{
         return true;
     }
 
-    void Renderer::updateUniform(void* data, int shaderId, int uniformId)
+    void Renderer::updateUniform(void* data, u32 uniformId, u32 idx)
     {
         auto currIndex = 0;
-        for (int i = 0; i < shaderId; i++) 
+        auto& ref = mShaders[mCurrentShader].getUniforms();
+        for (int i = 0; i < mCurrentShader; i++) 
         {currIndex += mShaders[i].getBindingSize();}
 
-        mSpecs.uniformBuffers[currIndex + uniformId].updateUniform(data);
+        mSpecs.uniformBuffers[currIndex + uniformId].updateUniform(data, idx);
+        u32 dynOffset = 0;
+        u32* dynPointer;
+        u32 dynCount = 0;
+        if (ref[uniformId].type == UniformType::Dynamic)
+        {
+            dynOffset = idx * mSpecs.uniformBuffers[currIndex + uniformId].getSize();
+            dynPointer = &dynOffset;
+            dynCount = 1;
+        }
+        else 
+        {
+            dynPointer = nullptr;
+        }
+        vkCmdBindDescriptorSets(
+                mSpecs.commandBuffer,
+                VK_PIPELINE_BIND_POINT_GRAPHICS,
+                mSpecs.pipelineLayouts[mCurrentShader],
+                0,
+                1,
+                &mSpecs.descriptorSets[mCurrentShader],
+                dynCount,
+                dynPointer);
+
     }
 
-    void Renderer::updatePushConstant(void* data, int shaderId, int pushConstantId)
+    void Renderer::updatePushConstant(void* data, u32 pushConstantId)
     {
-        auto& ps = mShaders[shaderId].getPushConstants();
+        auto& ps = mShaders[mCurrentShader].getPushConstants();
         vkCmdPushConstants(
                 mSpecs.commandBuffer,
-                mSpecs.pipelineLayouts[shaderId],
+                mSpecs.pipelineLayouts[mCurrentShader],
                 (VkPipelineStageFlags)ps[pushConstantId].stage,
                 ps[pushConstantId].offset,
                 ps[pushConstantId].size,

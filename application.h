@@ -8,6 +8,7 @@
 #include "renderer.h"
 #include "shuttle.h"
 #include "./layers/test_scene.h"
+#include "layers/collision_sim.h"
 namespace Lina{
     class App
     {
@@ -42,6 +43,7 @@ namespace Lina{
             Graphics::Renderer* mRenderer;
             std::vector<Events::Event*> mEvents;
             std::vector<Graphics::Layer*> mLayers;
+            std::vector<Graphics::Layer*> mBackgroundLayers;
             int mCurrentLayer;
     };
 }
