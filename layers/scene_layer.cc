@@ -33,7 +33,7 @@ namespace Lina{ namespace Graphics{
         }
         else
         {
-            shuttles[shuttleIndex].update(e);
+            shuttles[shuttleIndex].onKeyDown(e);
         }
     }
     void SceneLayer::init()

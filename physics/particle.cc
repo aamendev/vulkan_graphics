@@ -9,9 +9,7 @@ namespace Lina { namespace Physics {
         for (int i= 0; i < mVariableForces.size(); i++)
         {
             mVariableForces[i]->calculateForce();
-            std::cerr << "Before: " << mAcceleration << '\n';
             mAcceleration += (mVariableForces[i]->getForce() * mInverseMass);
-            std::cerr << "After: " << mAcceleration << '\n';
         }
 
         mPosition += (mVelocity * t +  mAcceleration * (0.5f * t * t));

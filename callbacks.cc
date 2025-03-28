@@ -49,6 +49,14 @@ namespace Lina{ namespace Callbacks{
                 }
         }
     }
+
+    void MouseMove(GLFWwindow* window, f64 xpos, f64 ypos)
+    {
+        Graphics::Window::specs& p = 
+            *reinterpret_cast<Graphics::Window::specs*>(glfwGetWindowUserPointer(window));
+       auto* event = new Events::MouseMove(xpos, ypos);
+       p.mEvents.push_back(event);
+    }
     void WindowResize(GLFWwindow* window, int width, int height)
     {
        auto pWindow = reinterpret_cast<Graphics::Window::specs*>

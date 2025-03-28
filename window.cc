@@ -1,4 +1,5 @@
 #include "./callbacks.h"
+#include <GLFW/glfw3.h>
 #include "./window.h"
 namespace Lina{ namespace Graphics{
     Window::Window(Window::specs& s) : mSpecs(s)
@@ -54,6 +55,7 @@ namespace Lina{ namespace Graphics{
         glfwSetFramebufferSizeCallback(mWindow, Callbacks::WindowResize);
         glfwSetKeyCallback(mWindow, Callbacks::Key);
         glfwSetMouseButtonCallback(mWindow, Callbacks::MouseButton);
+        glfwSetCursorPosCallback(mWindow, Callbacks::MouseMove);
     }
     b8 Window::isResized()
     {

@@ -4,6 +4,12 @@
 namespace Lina { namespace Core {
     b8 TinyBasedObjLoader::load(std::string&& path)
     {
+        mVertices.clear();
+        mIndices.clear();
+        mFullVertices.clear();
+        mTexture.clear();
+        mColors.clear();
+        mNormals.clear();
         std::string warn, err;
         tinyobj::ObjReader r;
         r.ParseFromFile(path, {});
@@ -55,7 +61,8 @@ namespace Lina { namespace Core {
                     }
                     else
                     {
-                    mColors.push_back(materials[s.mesh.material_ids[0]].diffuse[i]);
+                    //mColors.push_back(materials[s.mesh.material_ids[0]].diffuse[i]);
+                    //
                     mFullVertices.push_back(materials[s.mesh.material_ids[0]].diffuse[i]);
                     }
                 }

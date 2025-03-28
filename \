@@ -117,46 +117,46 @@ namespace Lina{ namespace Graphics{
             case Input::KeyCode::D1:
                 {
                     std::cerr << "Looking Forward\n";
-                    mTarget = {0, 0, 1};
-                    mUp = {0, 1, 0};
+                    mHangle = 0;
+                    mVangle = 0;
                 }
                 break;
 
             case Input::KeyCode::D2:
                 {
                     std::cerr << "Looking Rightward\n";
-                    mTarget = {1, 0, 0};
-                    mUp = {0, 1, 0};
+                    mHangle = 90;
+                    mVangle = 0;
                 }
                 break;
 
             case Input::KeyCode::D3:
                 {
                     std::cerr << "Looking Left\n";
-                    mTarget = {-1, 0, 0};
-                    mUp = {0, 1, 0};
+                    mHangle = 360 - 90;
+                    mVangle = 0;
                 }
                 break;
 
             case Input::KeyCode::D4:
                 {
                     std::cerr << "Looking Backwards\n";
-                    mTarget = {0, 0, -1};
-                    mUp = {0, 1, 0};
+                    mHangle = 180;
+                    mVangle = 0;
                 }
                 break;
             case Input::KeyCode::D5:
                 {
                     std::cerr << "Looking Up\n";
-                    mTarget = {0, -1, 0};
-                    mUp = {0, 0, 1};
+                    mHangle = 0;
+                    mVangle = 270;
                 }
                 break;
             case Input::KeyCode::D6:
                 {
                     std::cerr << "Looking Down\n";
-                    mTarget = {0, 1, 0};
-                    mUp = {0, 0, -1};
+                    mHangle = 0;
+                    mVangle = 90;
                 }
                 break;
             case Input::KeyCode::Comma:

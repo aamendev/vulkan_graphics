@@ -12,7 +12,8 @@ namespace Lina { namespace Physics {
                     Math::Vector3D&& f = {0, 0, 0},
                     f32 d = 1.0f): 
                 mInverseMass(1 / m), mPosition(p), mVelocity(v), mAcceleration(a),
-                mDamping(d), mForces(f), mVariableForces({}) {}
+                mDamping(d), mForces(f), mVariableForces({}),
+                mEnabled(true){}
         public:
             void update(f32 t);
 
@@ -29,12 +30,16 @@ namespace Lina { namespace Physics {
             inline void setMass(f32 m) {mInverseMass = (1 / m);}
             inline void setDamping(f32 d) {mDamping = d;}
             inline void setInverseMass(f32 minv) {mInverseMass = minv;}
+            inline void enable() {mEnabled = true;}
+            inline void disable() {mEnabled = false;}
+            inline void toggleEnable() {mEnabled = !mEnabled;}
         public:
             inline const Math::Point3D& getPos() const {return mPosition;}
             inline const Math::Vector3D& getVelocity() const {return mVelocity;}
             inline const Math::Vector3D& getAcc() const {return mAcceleration;}
             inline f32 getMass() const {return (1 / mInverseMass);}
             inline f32 getInverseMass() const {return mInverseMass;}
+            inline b8 isEnabled() const {return mEnabled;}
         public:
             inline Math::Point3D* getPosPointer() {return &mPosition;}
         private:
@@ -45,6 +50,7 @@ namespace Lina { namespace Physics {
             std::vector<Force*> mVariableForces;
             f32 mInverseMass;
             f32 mDamping;
+            b8 mEnabled;
     };
 }}
 #endif

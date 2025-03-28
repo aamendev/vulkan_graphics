@@ -10,7 +10,7 @@ namespace Lina { namespace Games {
             virtual void init() override;
             virtual void onKeyDown(Events::KeyPress& e) override;
             virtual void onKeyUp(Events::KeyRelease& e) override {};
-            virtual void onMouseMove(Events::MouseMove& e) override {};
+            virtual void onMouseMove(Events::MouseMove& e) override;
 
         public:
             virtual void update() override;
@@ -23,8 +23,8 @@ namespace Lina { namespace Games {
             Physics::ParticleSystem mParticleSystem;
             Physics::Forces::Spring mSpring;
             Physics::Forces::Spring mSpring2;
-            Physics::Particle mParticle;
-            Physics::Particle mParticle2;
+            Physics::Forces::Gravity mGravity;
+            std::vector<Physics::Particle> mParticles;
     };
 }}
 #endif

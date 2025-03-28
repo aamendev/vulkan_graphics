@@ -6,6 +6,7 @@
 #include "layers/warmup2_layer.h"
 #include "layers/validation_layer.h"
 #include "layers/ps_layer.h"
+#include "layers/space/space.h"
 #include "types.h"
 #include <string>
 
@@ -43,13 +44,15 @@ namespace Lina{
             new Graphics::CollisionSimLayer(mRenderer, mWindow);
 
         Graphics::WarmUp2Layer* warmup = new Graphics::WarmUp2Layer(mRenderer, mWindow);
+        Graphics::Space* spaceLayer = new Graphics::Space(mRenderer, mWindow);
         //mLayers.push_back(mainSceneLayer);
         //mLayers.push_back(testLayer);
     //  mLayers.push_back(warmup);
 //        mLayers.push_back(validLayer);
-  //      mLayers.push_back(psLayer);
-        mLayers.push_back(simLayer);
+        //mLayers.push_back(psLayer);
+  //      mLayers.push_back(simLayer);
         //mBackgroundLayers.push_back(validLayer);
+        mLayers.push_back(spaceLayer);
         mCurrentLayer = 0;
         for (int j = 0; j < mBackgroundLayers.size(); j++)
         {
@@ -107,9 +110,16 @@ namespace Lina{
                         mLayers[mCurrentLayer], 
                         std::placeholders::_1);
 
+            std::function<void(Events::MouseMove&)> m1 = 
+                std::bind(
+                        &Graphics::Layer::onMouseMove, 
+                        mLayers[mCurrentLayer], 
+                        std::placeholders::_1);
+
             catSub<Events::KeyPress>(f1);
             catSub<Events::KeyPress>(appDown);
             catSub<Events::KeyRelease>(f2);
+            catSub<Events::MouseMove>(m1);
 
             handleEvents();
 

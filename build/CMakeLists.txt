@@ -17,6 +17,8 @@ FILE(GLOB SRC
         "../third_party/*.cc"
         "../layers/*.h"
         "../layers/*.cc"
+        "../layers/space/*.h"
+        "../layers/space/*.cc"
         "../ecs/*.h"
         "../ecs/*.cc"
         "../ecs/systems/*.h"
@@ -33,6 +35,8 @@ FILE(GLOB SRC
         "../physics/*.cc"
         "../games/*.h"
         "../games/*.cc"
+        "../games/space/*.h"
+        "../games/space/*.cc"
     )
 add_executable(${PROJECT_NAME} ${SRC})
 set(CMAKE_BUILD_TYPE Debug)

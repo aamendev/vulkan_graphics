@@ -4,4 +4,5 @@
 #include "particle_system.h"
 #include "force.h"
 #include "spring_force.h"
+#include "gravity.h"
 #endif

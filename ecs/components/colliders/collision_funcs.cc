@@ -41,7 +41,6 @@ namespace Lina { namespace Helpers { namespace Collisions{
             mSimplex.push_front(sup);
             if (checkNextSimplex(mSimplex, newDir)) 
             {
-                //return {.depth = 0.0, .normal = {0, 0, 0}, .collided = true};
                 return epa(mSimplex, a, b);
             };
         }

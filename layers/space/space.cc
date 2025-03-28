@@ -1,19 +1,12 @@
-#include "ps_layer.h"
-#include "../core/obj_loader.h"
+#include "space.h"
 namespace Lina { namespace Graphics {
 
-    void PSLayer::init() 
+    void Space::init() 
 	{
-        Core::ObjLoader obj;
 
-   //     obj.load("../assets/teapot.obj");
-/*        obj.load("../assets/viking.obj");
-        auto verts = obj.getFullVertices();
-        auto ind = obj.getIndices();
-*/
-        Graphics::Shapes::Icosphere s(1.1f);
+        Graphics::Shapes::Icosphere s(1.0f);
 
-        s.setMeshMode(MeshMode::Pos3Col3);
+        s.setMeshMode(MeshMode::Pos3);
         s.subdivide(5);
         auto verts = s.getFullVertices();
         auto ind = s.getIndices();
@@ -22,8 +15,6 @@ namespace Lina { namespace Graphics {
 
         Graphics::VertexBufferLayout layout; 
         layout.push(Graphics::Format::FLOAT3, 0);
-   //     layout.push(Graphics::Format::FLOAT2, 1);
-        layout.push(Graphics::Format::FLOAT3, 2);
 
         mRenderer->createVertexBuffer(layout, verts);
         mRenderer->createIndexBuffer(ind);
@@ -35,7 +26,9 @@ namespace Lina { namespace Graphics {
             .name = "col",
             .binding = 0,
             .stage = ShaderStage::Fragment,
+            .type = UniformType::Dynamic,
             .size = sizeof(f32) * 4,
+            .count = 3,
         };
 
         PushConstant mvp = 
@@ -56,20 +49,20 @@ namespace Lina { namespace Graphics {
         mGameWorld.init();
 	}
 
-    void PSLayer::run() 
+    void Space::run() 
 	{
         mGameWorld.update();
 	}
 
-    void PSLayer::onMouseMove(Events::MouseMove& m) 
+    void Space::onMouseMove(Events::MouseMove& m) 
 	{
         mGameWorld.onMouseMove(m);
 	}
-    void PSLayer::onKeyDown(Events::KeyPress& k) 
+    void Space::onKeyDown(Events::KeyPress& k) 
 	{
         mGameWorld.onKeyDown(k);
 	}
-    void PSLayer::onKeyUp(Events::KeyRelease& k) 
+    void Space::onKeyUp(Events::KeyRelease& k) 
 	{
         mGameWorld.onKeyUp(k);
 	}
