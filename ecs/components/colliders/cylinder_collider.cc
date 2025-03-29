@@ -9,8 +9,8 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         switch (g)
         {
             case ColliderGeometry::Cylinder:
-                //return cylinderCylinderCollision(dynamic_cast<Cylinder*>(c));
-                return Helpers::Collisions::gjk(this, c);
+                return cylinderCylinderCollision(dynamic_cast<Cylinder*>(c));
+        //        return Helpers::Collisions::gjk(this, c);
                 break;
             case ColliderGeometry::Plane:
                 {

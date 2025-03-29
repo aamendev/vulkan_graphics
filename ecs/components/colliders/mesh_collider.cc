@@ -186,4 +186,28 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         if (mCallDefaults)
             defaultOnResolve(c);
     }
+
+    void Mesh::computeBoundingBox()
+    {
+        f64 minX, minY, minZ = FLT_MAX;
+        f64 maxX, maxY, maxZ = -FLT_MAX;
+        for (int i = 0; i < mVertices.size(); i+=3)
+        {
+            std::cerr << "Possible Err: " << mVertices[i] << '\n';
+            minX = minX * (minX < mVertices[i]) + mVertices[i] * !(minX < mVertices[i]);
+            minY = minY * (minY < mVertices[i + 1]) + mVertices[i + 1] * !(minY < mVertices[i + 1]);
+            minZ = minZ * (minZ < mVertices[i + 2]) + mVertices[i + 2] * !(minZ < mVertices[i + 2]);
+
+            maxX = maxX * (maxX > mVertices[i]) + mVertices[i] * !(maxX > mVertices[i]);
+            maxY = maxY * (maxY > mVertices[i + 1]) + mVertices[i + 1] * !(maxY > mVertices[i + 1]);
+            maxZ = maxZ * (maxZ > mVertices[i + 2]) + mVertices[i + 2] * !(maxZ > mVertices[i + 2]);
+        }
+        mBoundingBoxExtents = {
+            minX, minY, minZ, maxX, maxY, maxZ};
+        std::cerr << "MinX: " << minX << '\n';
+        for (int i = 0; i < mBoundingBoxExtents.size(); i++)
+        {
+            std::cerr << "Bounding: " << mBoundingBoxExtents[i] << '\n';
+        }
+    }
 }}}}

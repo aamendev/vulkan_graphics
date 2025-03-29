@@ -1,4 +1,5 @@
 #include "collision_world.h"
+#include <cinttypes>
 #include <cstdlib>
 
 namespace Lina { namespace Games {
@@ -33,6 +34,13 @@ namespace Lina { namespace Games {
         losingFloor.addComponent(ComponentType::Transform);
         losingFloor.addComponent(ComponentType::PlaneCollider);
         addObject(losingFloor);
+
+
+        GameSystem::GameObject boundingBox("bound");
+        boundingBox.addComponent(ComponentType::Transform);
+        boundingBox.addComponent(ComponentType::Material);
+        addObject(boundingBox);
+
         fetchComponents(); 
 
         ECS::CollisionSystem* cSystem = new ECS::CollisionSystem();
@@ -249,6 +257,25 @@ namespace Lina { namespace Games {
 
         mMaterialComponents["env"].setShader(1);
 
+        mMeshColliderComponents["env"].computeBoundingBox();
+        auto& extents =  mMeshColliderComponents["env"].boundingBoxExtents();
+
+        mTransformComponents["bound"].setScale({rad*2, rad*2, rad*2});
+        mTransformComponents["bound"].setPosition(
+                {
+                (f32)(extents[0 + 3] + extents[0]) / 2,
+                (f32)(extents[1 + 3] + extents[1]) / 2,
+                (f32)(extents[2 + 3] + extents[2]) / 2,
+                }
+                );
+                
+        //mTransformComponents["bound"].setPosition({-20, 0, 0});
+        mTransformComponents["bound"].setRotation({0, 0, 0});
+    
+        mMaterialComponents["bound"].setColour({(float)0xef / 0xff, 
+                (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
+        mMaterialComponents["bound"].setShader(3);
+
         rad = 1.0f;
         mCylinderColliderComponents["token"].setRotation({0, 0, 0});
         mCylinderColliderComponents["token"].setHeight(1);
@@ -262,6 +289,7 @@ namespace Lina { namespace Games {
                 (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
 
         mMaterialComponents["token"].setShader(0);
+
 
 
         /*
@@ -445,6 +473,7 @@ namespace Lina { namespace Games {
         mRenderer->beginDraw();
         mRenderer->bindShader(0);
         mRenderer->setPrimitive(Primitive::Triangle);
+      //  mRenderer->setPrimitive(Primitive::LineList);
 
         for (auto& [key, value] : mMaterialComponents)
         {
@@ -457,6 +486,7 @@ namespace Lina { namespace Games {
                         * mTransformComponents[key].getMatrix()
                         * Math::Util::scaleMatrix(mTransformComponents[key].getScale()); 
                     mRenderer->updatePushConstant(&currentTransMat, 0);
+            //        std::cerr << "Key: " << key << "\n Transform:\n" << currentTransMat << '\n';
                 }
                 auto col = value.getColour();
                 mRenderer->updateUniform(&col, 0);

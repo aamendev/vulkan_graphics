@@ -19,6 +19,8 @@ namespace Lina{ namespace Graphics{
             .offset = 0,
             .size = sizeof(Math::Transform4D),
         };
+
+
         Graphics::Shapes::Cylinder cyl(1, 1, 20, 
                 MeshMode::Pos3);
         auto verts = cyl.getFullVertices();
@@ -44,6 +46,7 @@ namespace Lina{ namespace Graphics{
 
         mRenderer->addShader(defaultShader); 
 
+
         Graphics::Shapes::Icosphere ico(1.0f);
         ico.setMeshMode(MeshMode::Pos3);
         ico.subdivide(5);
@@ -64,6 +67,8 @@ namespace Lina{ namespace Graphics{
         psShader.addPushConstant(mvp);
 
         mRenderer->addShader(psShader);
+
+
 /*
         psShader.init("../shaders/compiled/simple.vert.spv",
                 "../shaders/compiled/simple.frag.spv", "shader");
@@ -99,6 +104,54 @@ namespace Lina{ namespace Graphics{
         defaultShader2.addPushConstant(mvp);
         defaultShader2.addUniform(color);
         mRenderer->addShader(defaultShader2); 
+        std::vector<f32> boundingVerts = 
+        {
+            -0.5, 0.5, -0.5,
+            0.5, 0.5, -0.5,
+            -0.5, -0.5, -0.5,
+            0.5, -0.5, -0.5,
+
+            -0.5, 0.5, 0.5,
+            0.5, 0.5, 0.5,
+            -0.5, -0.5, 0.5,
+            0.5, -0.5, 0.5,
+        };
+        std::vector<u32> boundingInds = 
+        {
+            0, 1, 2,
+            1, 3, 2,
+
+            4, 5, 6,
+            5, 7, 6,
+
+            2, 3, 6, 
+            3, 7, 6,
+
+            0, 1, 4,
+            1, 5, 4,
+
+            1, 5, 3, 
+            5, 7, 3,
+
+            4, 0, 6,
+            0, 2, 6,
+
+        };
+
+        mRenderer->createVertexBuffer(layout, boundingVerts);
+        mRenderer->createIndexBuffer(boundingInds);
+
+        Shader boundingShader;
+
+        boundingShader.init("../shaders/compiled/simple.vert.spv",
+                "../shaders/compiled/simple.frag.spv", "shader");
+
+
+        boundingShader.addUniform(color);
+
+        boundingShader.addPushConstant(mvp);
+
+        mRenderer->addShader(boundingShader); 
        /* 
         obj.load("../assets/env.obj");
         auto envpos2 = obj.getPositions();

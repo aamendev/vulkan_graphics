@@ -1,19 +1,19 @@
-#ifndef CYLINDER_COLLIDER_H
-#define CYLINDER_COLLIDER_H
+#ifndef BOX_COLLIDER_H
+#define BOX_COLLIDER_H
 #include "collider.h"
 #include "collision_funcs.h"
 
 namespace Lina { namespace ECS { namespace Components { namespace Colliders{
-    class Cylinder : public Collider
+    class Box : public Collider
     {
         public:
-            Cylinder() = default;
-            Cylinder(std::string tag): mHeight(10), mRadius(5)
+            Box() = default;
+            Box(std::string tag): mHeight(1), mLength(1), mWidth(1)
             {
                 mTag = tag;
                 mRecentCollisions = {};
                 mCallDefaults = true;
-                mGeometry = ColliderGeometry::Cylinder;
+                mGeometry = ColliderGeometry::Box;
 
                 mCenter = {0, 0 ,0};
                 mCollisionEnterCallback = staticDefaultOnCollisionEnter;
@@ -22,14 +22,17 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
                 mCollisionPersistCallback = staticDefaultOnCollisionPersist;
             }
 
-        Cylinder(std::string tag, f32 h, f32 r, Math::Point3D c): 
-            mRadius(r), mHeight(h){
+        Box(std::string tag, f32 l, f32 w, f32 h, Math::Point3D c): 
+            mLength(l), mWidth(w), mHeight(h){
                 mTag = tag;
                 mRecentCollisions = {};
                 mCallDefaults = true;
                 mGeometry = ColliderGeometry::Cylinder;
-
                 mCenter = c;
+                mCollisionEnterCallback = staticDefaultOnCollisionEnter;
+                mResolveCallback = staticDefaultOnResolve;
+                mCollisionExitCallback = staticDefaultOnCollisionExit;
+                mCollisionPersistCallback = staticDefaultOnCollisionPersist;
             };
 
         b8 checkCollision(Collider* c) override;
@@ -40,15 +43,16 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         virtual void onResolve(Collider* c) override;
 
         public:
-        void setPosition(Math::Point3D c) {mCenter = c;}
-        void setHeight(f32 h) {mHeight = h;}
-        void setRadius(f32 r) {mRadius = r;}
+        inline void setPosition(Math::Point3D c) {mCenter = c;}
+        inline void setLength(f32 l) {mLength = l;}
+        inline void setWidth(f32 w) {mWidth = w;}
+        inline void setHeight(f32 h) {mHeight = h;}
 
         public:
-        f32 getHeight() const {return mHeight;}
-        f32 getRadius() const {return mRadius;}
-        const Math::Vector3D& getCenter() const {return mCenter;}
-        
+        inline f32 getHeight() const {return mHeight;}
+        inline f32 getLength() const {return mLength;}
+        inline f32 getWidth() const {return mWidth;}
+        inline const Math::Vector3D& getCenter() const {return mCenter;}
         public:
             virtual Math::Point3D furthestPoint(const Math::Vector3D &d) override;
 
@@ -57,8 +61,6 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         void defaultOnCollisionExit(Collider* c);
         void defaultOnResolve(Collider* c);
         void defaultOnCollisionPersist(Collider* c);
-        b8 cylinderCylinderCollision(Cylinder* c);
-        b8 cylinderPlaneCollision(Collider* plane);
 
         private:
         static void staticDefaultOnCollisionEnter(Collider* c1, Collider* c2)
@@ -78,8 +80,11 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
          //   ((Cylinder*)c1)->defaultOnCollision(c2);
         }
         private:
+        f32 mLength;
+        f32 mWidth;
         f32 mHeight;
-        f32 mRadius;
+        Helpers::Collisions::Simplex mSimplex;
     };
 }}}}
 #endif
+

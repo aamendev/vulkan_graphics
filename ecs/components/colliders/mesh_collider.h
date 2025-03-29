@@ -42,6 +42,9 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         virtual void onCollisionExit(Collider* c) override;
         virtual void onCollisionPersist(Collider* c) override;
 
+        void computeBoundingBox(); 
+        inline const std::vector<f64>& boundingBoxExtents() const 
+            {return mBoundingBoxExtents;}
         public:
             virtual Math::Point3D furthestPoint(const Math::Vector3D& d) override;
             virtual b8 checkCollision(Collider* b) override 
@@ -89,6 +92,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
             std::vector<f32> mVertices;
             Helpers::Collisions::Simplex mSimplex;
             Helpers::Collisions::Info mCollisionInfo;
+            std::vector<f64> mBoundingBoxExtents;
     };
 }}}}
 #endif

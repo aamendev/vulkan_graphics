@@ -50,6 +50,5 @@ namespace Lina { namespace Helpers { namespace Collisions{
             std::vector<u32>& indices);
     void addUniqueRemoveDup(std::vector<std::pair<u32, u32>>& edges, std::vector<u32>& faces,
             u32 a, u32 b);
-    
 }}}
 #endif

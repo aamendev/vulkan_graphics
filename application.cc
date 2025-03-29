@@ -50,9 +50,9 @@ namespace Lina{
     //  mLayers.push_back(warmup);
 //        mLayers.push_back(validLayer);
         //mLayers.push_back(psLayer);
-  //      mLayers.push_back(simLayer);
+        mLayers.push_back(simLayer);
         //mBackgroundLayers.push_back(validLayer);
-        mLayers.push_back(spaceLayer);
+//        mLayers.push_back(spaceLayer);
         mCurrentLayer = 0;
         for (int j = 0; j < mBackgroundLayers.size(); j++)
         {
