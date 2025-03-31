@@ -45,4 +45,23 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         auto ret = ((Math::Point3D){sgnx / 2, 0, sgnz / 2} * m + mCenter).toPoint();
         return ret;
     }
+
+     void Plane::computeBoundingBox()
+     {
+        mScale = {mLength, 0, mWidth};
+        Math::Transform4D m = 
+            Math::Util::scaleMatrix(mScale)*
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
+
+        mBoundingBoxExtents.first = 
+            ((Math::Point3D(-0.5f, 0.0f, -0.5f) * m) + mCenter).toPoint();
+
+        mBoundingBoxExtents.second = 
+            ((Math::Point3D(0.5f, 0.0f, 0.5f) * m) + mCenter).toPoint();
+     }
+
+    void Plane::computeBVH()
+    {
+        mBvh = (BVH){this, nullptr, nullptr};
+    }
 }}}}

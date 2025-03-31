@@ -1,5 +1,6 @@
 #ifndef MESH_COLLIDER_H
 #define MESH_COLLIDER_H
+#include "box_collider.h"
 #include "collider.h"
 #include "collision_funcs.h"
 #include <iterator>
@@ -41,18 +42,23 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         virtual void onCollisionEnter(Collider *c) override; 
         virtual void onCollisionExit(Collider* c) override;
         virtual void onCollisionPersist(Collider* c) override;
+        virtual void onResolve(Collider* c) override;
+        virtual void computeBVH() override;
 
-        void computeBoundingBox(); 
-        inline const std::vector<f64>& boundingBoxExtents() const 
-            {return mBoundingBoxExtents;}
         public:
+        virtual void computeBoundingBox() override;
             virtual Math::Point3D furthestPoint(const Math::Vector3D& d) override;
             virtual b8 checkCollision(Collider* b) override 
             {
                 mCollisionInfo = Helpers::Collisions::gjkAndInfo(this, b);
                 return mCollisionInfo.collided;
             }
-            inline void setVertices(std::vector<f32>& verts) {mVertices = verts;}
+            inline void setVertices(std::vector<f32> verts) {mVertices = verts;}
+        private:
+            std::pair<Math::Point3D, Math::Point3D> computeBoundingBox(u32 idxBegin, u32 idxEnd);
+            void combineBVHs(Collider::BVH* b1, Collider::BVH* b2);
+            Collider::BVH* computeBVH(u32 idxBegin, u32 idxEnd);  
+            Collider::BVH * computeBVH(u32 idxBegin);
         private:
             b8 gjk(Collider* a, Collider* b);
             Math::Vector3D support(Collider* a, Collider* b, const Math::Vector3D& d);
@@ -61,7 +67,6 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
             b8 checkLine(Math::Vector3D& d);
             b8 checkTri(Math::Vector3D& d);
             b8 checkTetra(Math::Vector3D& d);
-            virtual void onResolve(Collider* c) override;
         private:
             void defaultOnCollisionEnter(Collider* c){};
             void defaultOnCollisionExit(Collider* c){};
@@ -92,7 +97,6 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
             std::vector<f32> mVertices;
             Helpers::Collisions::Simplex mSimplex;
             Helpers::Collisions::Info mCollisionInfo;
-            std::vector<f64> mBoundingBoxExtents;
     };
 }}}}
 #endif

@@ -1,4 +1,5 @@
 #include "cylinder_collider.h"
+#include "box_collider.h"
 #include "collider.h"
 #include "plane_collider.h"
 #include <cmath>
@@ -186,5 +187,25 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
                 * m 
                 + mCenter).toPoint();
         return ret;
+    }
+
+    void Cylinder::computeBoundingBox()
+    {
+        mScale = {mRadius, mHeight, mRadius};
+        Math::Transform4D m = 
+            Math::Util::scaleMatrix(mScale)*
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
+
+        mBoundingBoxExtents.first = 
+            ((Math::Point3D(-0.5f, -0.5f, -0.5f) * m) + mCenter).toPoint();
+
+        mBoundingBoxExtents.second = 
+            ((Math::Point3D(0.5f, 0.5f, 0.5f) * m) + mCenter).toPoint();
+    }
+
+    void Cylinder::computeBVH()
+    {
+        //mBvh = (BVH){Box("temp", mBoundingBoxExtents), nullptr, nullptr};
+        mBvh = (BVH){this, nullptr, nullptr};
     }
 }}}}

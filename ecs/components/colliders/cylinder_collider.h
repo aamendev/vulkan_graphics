@@ -32,12 +32,13 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
                 mCenter = c;
             };
 
-        b8 checkCollision(Collider* c) override;
+        virtual b8 checkCollision(Collider* c) override;
 
         virtual void onCollisionEnter(Collider *c) override; 
         virtual void onCollisionExit(Collider* c) override;
         virtual void onCollisionPersist(Collider* c) override;
         virtual void onResolve(Collider* c) override;
+        virtual void computeBVH() override;
 
         public:
         void setPosition(Math::Point3D c) {mCenter = c;}
@@ -51,6 +52,8 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         
         public:
             virtual Math::Point3D furthestPoint(const Math::Vector3D &d) override;
+            virtual void computeBoundingBox() override;
+        private:
 
         private:
         void defaultOnCollisionEnter(Collider* c);

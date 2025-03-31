@@ -116,6 +116,18 @@ enum class ColliderGeometry
    Mesh,
 };
 
+enum class ColliderType
+{
+    Static,
+    Dynamic
+};
+
+enum class CollisionOptimization
+{
+    Naive,
+    Optimized
+};
+
 enum class MeshGeometry
 {
     Cylinder,

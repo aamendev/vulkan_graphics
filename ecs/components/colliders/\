@@ -4,33 +4,26 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
 
     Box::Box(std::string tag, const std::pair<Math::Point3D, Math::Point3D>& p)
     {
-        initWithExtents(tag, p);
-    }
+            mTag = tag;
+            mRecentCollisions = {};
+            mCallDefaults = true;
+            mGeometry = ColliderGeometry::Box;
 
-    void Box::initWithExtents(std::string tag, 
-            const std::pair<Math::Point3D, Math::Point3D>& p)
-    {
-        mTag = tag;
+            mCenter = p.first.midPoint(p.second);
 
-        mCenter = p.first.midPoint(p.second);
+            mLength = (mCenter - p.first).x;
+            mLength *= (mLength >= 0) - (mLength < 0.0);
 
-        mLength = (mCenter - p.first).x;
-        mLength *= (mLength >= 0) - (mLength < 0.0);
+            mWidth = (mCenter - p.first).z;
+            mWidth *= (mWidth >= 0) - (mWidth < 0.0);
 
-        mWidth = (mCenter - p.first).z;
-        mWidth *= (mWidth >= 0) - (mWidth < 0.0);
+            mHeight = (mCenter - p.first).y;
+            mHeight *= (mHeight >= 0) - (mHeight < 0.0);
 
-        mHeight = (mCenter - p.first).y;
-        mHeight *= (mHeight >= 0) - (mHeight < 0.0);
-
-        mRecentCollisions = {};
-        mCallDefaults = true;
-        mGeometry = ColliderGeometry::Box;
-
-        mCollisionEnterCallback = staticDefaultOnCollisionEnter;
-        mResolveCallback = staticDefaultOnResolve;
-        mCollisionExitCallback = staticDefaultOnCollisionExit;
-        mCollisionPersistCallback = staticDefaultOnCollisionPersist;
+            mCollisionEnterCallback = staticDefaultOnCollisionEnter;
+            mResolveCallback = staticDefaultOnResolve;
+            mCollisionExitCallback = staticDefaultOnCollisionExit;
+            mCollisionPersistCallback = staticDefaultOnCollisionPersist;
     }
     b8 Box::checkCollision(Collider* c)
     {
@@ -111,23 +104,5 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         mResolveCallback(this, c);
         if (mCallDefaults)
             defaultOnResolve(c);
-    }
-
-    void Box::computeBoundingBox()
-    {
-        mScale = {mLength, mHeight, mWidth};
-        Math::Transform4D m = 
-            Math::Util::scaleMatrix(mScale)*
-            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
-
-        mBoundingBoxExtents.first = 
-            ((Math::Point3D(-0.5f, -0.5f, -0.5f) * m) + mCenter).toPoint();
-
-        mBoundingBoxExtents.second = 
-            ((Math::Point3D(0.5f, 0.5f, 0.5f) * m) + mCenter).toPoint();
-    }
-    void Box::computeBVH()
-    {
-        mBvh = (BVH){this, nullptr, nullptr};
     }
 }}}}

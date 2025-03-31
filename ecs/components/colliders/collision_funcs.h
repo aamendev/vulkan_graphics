@@ -26,6 +26,7 @@ namespace Lina { namespace Helpers { namespace Collisions{
             void clear()
             {size = 0; points.clear();}
         } Simplex;
+
     using namespace ECS::Components;
 
         typedef struct Info

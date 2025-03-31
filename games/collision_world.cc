@@ -1,5 +1,4 @@
 #include "collision_world.h"
-#include <cinttypes>
 #include <cstdlib>
 
 namespace Lina { namespace Games {
@@ -36,29 +35,31 @@ namespace Lina { namespace Games {
         addObject(losingFloor);
 
 
-        GameSystem::GameObject boundingBox("bound");
+       /* GameSystem::GameObject boundingBox("bound");
         boundingBox.addComponent(ComponentType::Transform);
         boundingBox.addComponent(ComponentType::Material);
         addObject(boundingBox);
+        */
 
         fetchComponents(); 
 
-        ECS::CollisionSystem* cSystem = new ECS::CollisionSystem();
+        ECS::CollisionSystem* cSystem = new ECS::CollisionSystem(CollisionOptimization::Optimized);
         addCollisionSystem(cSystem);
         for (auto& [_, value] : mCylinderColliderComponents)
         {
-            cSystem->addCollider(&value);
+            cSystem->addCollider(&value, ColliderType::Dynamic);
         }
 
         for (auto& [_, value] : mMeshColliderComponents)
         {
-            cSystem->addCollider(&value);
+            cSystem->addCollider(&value, ColliderType::Static);
         }
 
         for (auto& [_, value] : mPlaneColliderComponents)
         {
-            cSystem->addCollider(&value);
+            cSystem->addCollider(&value, ColliderType::Static);
         }
+        mMeshColliderComponents["env"].setVertices(mEnvVerts[0]);
 
         ECS::CharacterController* c = new ECS::CharacterController(&mTransformComponents["p1"]);  
         addCharacterController(c);
@@ -104,6 +105,8 @@ namespace Lina { namespace Games {
         mPlaneColliderComponents["lose"].setLength(20000);
         mPlaneColliderComponents["lose"].setWidth(20000);
         mPlaneColliderComponents["lose"].setPosition({0, 200, 0});
+
+        cSystem->optimize();
     }
     void CollisionWorld::addRamp(Math::Point3D&& p, Math::EulerAngles&& rot)
     {
@@ -116,7 +119,8 @@ namespace Lina { namespace Games {
         addObject(ramp);
 
         fetchComponents(); 
-        mCollisionSystems[0]->addCollider(&mMeshColliderComponents[rampTag]);
+        mCollisionSystems[0]->addCollider(&mMeshColliderComponents[rampTag],
+                ColliderType::Static);
 
         auto r = 1.5f;
         mMeshColliderComponents[rampTag].setPosition(p);
@@ -245,7 +249,7 @@ namespace Lina { namespace Games {
         auto rad = 40.0f;
         mMeshColliderComponents["env"].setPosition({0, 0 , 0});
         mMeshColliderComponents["env"].setScale({rad, rad, rad});
-        mMeshColliderComponents["env"].setVertices(mEnvVerts[0]);
+        //mMeshColliderComponents["env"].setVertices(mEnvVerts[0]);
         mMeshColliderComponents["env"].setRotation({0, 0, 0});
 
         mTransformComponents["env"].setPosition({0, 0, 0});
@@ -258,23 +262,19 @@ namespace Lina { namespace Games {
         mMaterialComponents["env"].setShader(1);
 
         mMeshColliderComponents["env"].computeBoundingBox();
-        auto& extents =  mMeshColliderComponents["env"].boundingBoxExtents();
+        auto& extents =  mMeshColliderComponents["env"].getBoundingBox();
 
-        mTransformComponents["bound"].setScale({rad*2, rad*2, rad*2});
-        mTransformComponents["bound"].setPosition(
-                {
-                (f32)(extents[0 + 3] + extents[0]) / 2,
-                (f32)(extents[1 + 3] + extents[1]) / 2,
-                (f32)(extents[2 + 3] + extents[2]) / 2,
-                }
+        /*mTransformComponents["bound"].setPosition(
+                extents.first.midPoint(extents.second)
                 );
                 
-        //mTransformComponents["bound"].setPosition({-20, 0, 0});
+        mTransformComponents["bound"].setScale({rad, rad, rad});
         mTransformComponents["bound"].setRotation({0, 0, 0});
     
         mMaterialComponents["bound"].setColour({(float)0xef / 0xff, 
                 (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
         mMaterialComponents["bound"].setShader(3);
+        */
 
         rad = 1.0f;
         mCylinderColliderComponents["token"].setRotation({0, 0, 0});

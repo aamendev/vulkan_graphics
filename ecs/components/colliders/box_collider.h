@@ -8,6 +8,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
     {
         public:
             Box() = default;
+            Box(std::string tag, const std::pair<Math::Point3D, Math::Point3D>& p);
             Box(std::string tag): mHeight(1), mLength(1), mWidth(1)
             {
                 mTag = tag;
@@ -34,13 +35,16 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
                 mCollisionExitCallback = staticDefaultOnCollisionExit;
                 mCollisionPersistCallback = staticDefaultOnCollisionPersist;
             };
+        void initWithExtents(std::string tag, 
+                const std::pair<Math::Point3D, Math::Point3D>& p); 
 
-        b8 checkCollision(Collider* c) override;
+        virtual b8 checkCollision(Collider* c) override;
 
         virtual void onCollisionEnter(Collider *c) override; 
         virtual void onCollisionExit(Collider* c) override;
         virtual void onCollisionPersist(Collider* c) override;
         virtual void onResolve(Collider* c) override;
+        virtual void computeBVH() override;
 
         public:
         inline void setPosition(Math::Point3D c) {mCenter = c;}
@@ -55,12 +59,14 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         inline const Math::Vector3D& getCenter() const {return mCenter;}
         public:
             virtual Math::Point3D furthestPoint(const Math::Vector3D &d) override;
+            virtual void computeBoundingBox() override;
 
         private:
-        void defaultOnCollisionEnter(Collider* c);
-        void defaultOnCollisionExit(Collider* c);
-        void defaultOnResolve(Collider* c);
-        void defaultOnCollisionPersist(Collider* c);
+        void defaultOnCollisionEnter(Collider* c){};
+        void defaultOnCollisionExit(Collider* c){};
+        void defaultOnResolve(Collider* c){};
+        void defaultOnCollisionPersist(Collider* c){};
+        
 
         private:
         static void staticDefaultOnCollisionEnter(Collider* c1, Collider* c2)
