@@ -62,6 +62,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
 
     void Plane::computeBVH()
     {
+        computeBoundingBox();
         mBvh = (BVH){this, nullptr, nullptr};
     }
 }}}}

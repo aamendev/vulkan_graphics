@@ -28,23 +28,33 @@ namespace Lina { namespace ECS {
             void optimize();
             inline void deOptimize() {mOptMode = CollisionOptimization::Naive;}
 
+            void constructGrid(Math::Point3D min, 
+                    Math::Point3D max, u32 h);
         private:
             void naiveUpdate();
             void optimizedUpdate();
             void combineBVHs();
             void combineBVH(Components::Collider::BVH* b0, 
                     Components::Collider::BVH* b1);
-            std::pair<std::set<std::string>,
-                std::set<std::string>> checkCollideBvh(Components::Collider* c,
-                        Components::Collider::BVH*);
+            
+            void checkCollideBvh(Components::Collider* c,
+                        Components::Collider::BVH*, std::set<std::string>& coll,
+                        std::set<std::string>& nCol);
+            void updateGrid(u32 colliderIdx);
         private:
             b8 mEnabled;
             b8 mBvhInit;
+            std::pair<Math::Point3D, Math::Point3D> mGridPos;
+            u32 mGridSize;
             CollisionOptimization mOptMode;
             std::vector<Components::Collider*> mStaticColliders;
             std::vector<Components::Collider*> mDynamicColliders;
             std::map<std::string, u32> mStaticRegistriy;
+            std::map<std::string, u32> mDynamicRegistry;
+            std::map<std::string, std::set<u32>> mDynamicGrid;
             Components::Collider::BVH mFullBvh;
+            std::vector<std::set<std::string>> mGrid;
+            //std::vector<std::string> movedColliders;
             
     };
 }}

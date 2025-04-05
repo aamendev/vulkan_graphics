@@ -5,8 +5,8 @@
 #include "cylinder_collider.h"
 #include "plane_collider.h"
 namespace Lina { namespace Helpers { namespace Collisions {
-    b8 boxCylinderCollision(Colliders::Box* box, Colliders::Cylinder* cyl);
-    b8 planeCylinderCollision(Colliders::Box* box, Colliders::Cylinder* cyl);
-    b8 boxPlaneCollision(Colliders::Box* box, Colliders::Plane* pl);
+    b8 boxCylinderCollision(Collider* box, Collider* cyl);
+    b8 planeCylinderCollision(Collider* box, Collider* cyl);
+    b8 boxPlaneCollision(Collider* box, Collider* pl);
 }}}
 #endif

@@ -35,6 +35,7 @@ class ValidationLayer : public Layer
     private:
         ECS::Components::Colliders::Cylinder* c1; 
         ECS::Components::Colliders::Cylinder* c2; 
+        ECS::Components::Colliders::Box* b1;
         ECS::Components::Colliders::Plane* p1;
         ECS::CollisionSystem cSystem;
         Core::Timer mTimer;

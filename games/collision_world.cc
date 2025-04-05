@@ -1,5 +1,6 @@
 #include "collision_world.h"
 #include <cstdlib>
+#include <string>
 
 namespace Lina { namespace Games {
 
@@ -10,7 +11,6 @@ namespace Lina { namespace Games {
         firstPlayer.addComponent(ComponentType::Transform);
         firstPlayer.addComponent(ComponentType::CylinderCollider);
         firstPlayer.addComponent(ComponentType::Material);
-
 
         addObject(firstPlayer);
 
@@ -35,19 +35,20 @@ namespace Lina { namespace Games {
         addObject(losingFloor);
 
 
-       /* GameSystem::GameObject boundingBox("bound");
-        boundingBox.addComponent(ComponentType::Transform);
-        boundingBox.addComponent(ComponentType::Material);
-        addObject(boundingBox);
-        */
-
         fetchComponents(); 
 
-        ECS::CollisionSystem* cSystem = new ECS::CollisionSystem(CollisionOptimization::Optimized);
+        ECS::CollisionSystem* cSystem = 
+            new ECS::CollisionSystem();
         addCollisionSystem(cSystem);
-        for (auto& [_, value] : mCylinderColliderComponents)
+        for (auto& [tag, value] : mCylinderColliderComponents)
         {
+            if (tag == "p1")
+            {
             cSystem->addCollider(&value, ColliderType::Dynamic);
+            }
+            else {
+            cSystem->addCollider(&value, ColliderType::Static);
+            }
         }
 
         for (auto& [_, value] : mMeshColliderComponents)
@@ -59,7 +60,10 @@ namespace Lina { namespace Games {
         {
             cSystem->addCollider(&value, ColliderType::Static);
         }
+        auto rad = 80.0f;
         mMeshColliderComponents["env"].setVertices(mEnvVerts[0]);
+        mMeshColliderComponents["env"].setPosition({0, 0 , 0});
+        mMeshColliderComponents["env"].setScale({rad, rad, rad});
 
         ECS::CharacterController* c = new ECS::CharacterController(&mTransformComponents["p1"]);  
         addCharacterController(c);
@@ -68,35 +72,44 @@ namespace Lina { namespace Games {
         mShuttle.setPosition(0, 0, -20);
         mShuttle.setSpeed(2);
 
-        mParticleSystem.setMaxLifeTime(20.0f);
-        mParticleSystem.setRadius(160);
-        mParticleSystem.setParticleCount(300);
+        mParticleSystem.setMaxLifeTime(15.0f);
+        mParticleSystem.setRadius(10);
+        mParticleSystem.setParticleCount(10);
         mParticleSystem.setMinRotation({0, 0, 0});
-        mParticleSystem.setMaxRotation({0, 0, PI/8});
+        mParticleSystem.setMaxRotation({0, 0, 0});
         mParticleSystem.setMinV({1.0f, 5.0f, 0.0f});
-        mParticleSystem.setMaxV({1.5f, 20.0f, 0.0f});
-        mParticleSystem.setPosition({10, -200, -10});
+        mParticleSystem.setMaxV({1.5f, 10.0f, 0.0f});
+        mParticleSystem.setPosition({0, -70, 0});
 
 
         f32 dy = -10;
         f32 dx = 10;
         f32 dz = 10;
+        u32 rampCount = 1;
         Math::Point3D curr = {0, -47, 10};
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < rampCount; i++)
         {
             curr += ((Math::Vector3D){dx, dy, dz} * (i != 0));
             addRamp(std::move(curr), {PI, 0.125f * PI * i, 0});
         }
-        /*for (int i = 1; i < 5; i++)
-        {
-
-            curr += ((Math::Vector3D){dx, dy, -dz});
-            addRamp(std::move(curr), {PI, 0.125f * PI * (i+4), 0});
-        }
-        */
-        curr += (Math::Vector3D){0, -2, 0};
+        
+        curr += (Math::Vector3D){0, -3, 0};
         mTransformComponents["token"].setPosition(curr);
-        mMeshColliderComponents["token"].setPosition(curr);
+        mCylinderColliderComponents["token"].setPosition(curr);
+
+        rad = 1.0f;
+        mCylinderColliderComponents["token"].setRotation({0, 0, 0});
+        mCylinderColliderComponents["token"].setHeight(rad);
+        mCylinderColliderComponents["token"].setRadius(rad);
+
+        mTransformComponents["token"].setScale({rad, rad, rad});
+        mTransformComponents["token"].setRotation({0, 0, 0});
+
+
+        mMaterialComponents["token"].setColour({(float)0x22 / 0xff, 
+                (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
+
+        mMaterialComponents["token"].setShader(0);
 
         mParticleSystem.init();
 
@@ -105,8 +118,39 @@ namespace Lina { namespace Games {
         mPlaneColliderComponents["lose"].setLength(20000);
         mPlaneColliderComponents["lose"].setWidth(20000);
         mPlaneColliderComponents["lose"].setPosition({0, 200, 0});
+        addPSColliders();
+       cSystem->optimize();
+       cSystem->constructGrid({-100, -150, -100}, {100, 100, 100}, 10);
+    }
+    void CollisionWorld::addPSColliders()
+    {
+        auto& ps = mParticleSystem.getParticles();
+        auto& rots = mParticleSystem.getRotations();
+        for (int i = 0; i <  mParticleSystem.getParticleCount(); i++) 
+        {
+            std::string partTag = "part" + std::to_string(i);
+            GameSystem::GameObject part(partTag);    
+            part.addComponent(ComponentType::CylinderCollider);
+            part.addComponent(ComponentType::Material);
+            part.addComponent(ComponentType::Transform);
+            addObject(part);
+            fetchComponents(); 
+            mCollisionSystems[0]->addCollider(&mCylinderColliderComponents[partTag],
+                    ColliderType::Dynamic);
+         mCylinderColliderComponents[partTag].setPosition(ps[i].getPos());
+         mCylinderColliderComponents[partTag].setRadius(2);
+         mCylinderColliderComponents[partTag].setHeight(2);
+         mCylinderColliderComponents[partTag].setRotation(rots[i]);
 
-        cSystem->optimize();
+            mTransformComponents[partTag].setPosition(ps[i].getPos());
+        mTransformComponents[partTag].setScale({2, 2, 2});
+        mTransformComponents[partTag].setRotation({0, 0, 0});
+
+
+        mMaterialComponents[partTag].setColour({(float)0x39 / 0xff, 
+                (float)0x49 / 0xff, (float)0xff / 0xff, (float)0xff / 0xff});
+        mMaterialComponents[partTag].setShader(1);
+        }
     }
     void CollisionWorld::addRamp(Math::Point3D&& p, Math::EulerAngles&& rot)
     {
@@ -118,6 +162,13 @@ namespace Lina { namespace Games {
         ramp.addComponent(ComponentType::Material);
         addObject(ramp);
 
+        auto boundTag = "rampBound" + std::to_string(mRampCount);
+
+        GameSystem::GameObject boundingBox(boundTag);
+        boundingBox.addComponent(ComponentType::Transform);
+        boundingBox.addComponent(ComponentType::Material);
+        addObject(boundingBox);
+
         fetchComponents(); 
         mCollisionSystems[0]->addCollider(&mMeshColliderComponents[rampTag],
                 ColliderType::Static);
@@ -127,14 +178,14 @@ namespace Lina { namespace Games {
         mMeshColliderComponents[rampTag].setScale({r, r, r});
         mMeshColliderComponents[rampTag].setVertices(mEnvVerts[1]);
         mMeshColliderComponents[rampTag].setRotation(rot);
+        //mMeshColliderComponents[rampTag].computeBoundingBox();
 
         mTransformComponents[rampTag].setPosition(p);
         mTransformComponents[rampTag].setScale({r, r, r});
         mTransformComponents[rampTag].setRotation(rot);
 
         mMaterialComponents[rampTag].setColour({(float)0xef / 0xff, 
-                (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
-
+                (float)0x00 / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
         mMaterialComponents[rampTag].setShader(2);
 
         mRampCount++;
@@ -152,17 +203,29 @@ namespace Lina { namespace Games {
             mutable{
                 c1->setCallDefaults(false);
                 b8 isRamp = c2->getTag().find("ramp") != std::string::npos;
+                b8 isPS = c2->getTag().find("part") != std::string::npos;
+                    //std::cerr << "StartedCollision\n";
 
                 if ((c2->getTag() == "env") || isRamp)
                 {
                     auto* d = (ECS::Components::Colliders::Mesh*)c2;
                     auto inf = d->getInfo();
                     mUp = inf.normal;
-                    slopeGravity = -inf.normal * 0.01f;
+                    slopeGravity = inf.normal * 0.01f;
                     onSlope = true;
                     mCharacterControllers[0]->setGrounded(true);
                     mCharacterControllers[0]->setYVelocity(0);
-                    mTransformComponents[c1->getTag()].translate(inf.normal * -inf.depth);
+                    if (inf.depth > 0.1f)
+                    {
+                    mTransformComponents[c1->getTag()].translate(inf.normal * inf.depth);
+                    }
+                }
+                else if (isPS) 
+                {
+                    std::cerr << "DYNAMICEnter\n";
+                    mCollectedCoins++;
+                    mTransformComponents[c2->getTag()].disable();
+                    mCylinderColliderComponents[c2->getTag()].disable();
                 }
                 else if (c2->getTag() == "lose")
                 {
@@ -183,20 +246,17 @@ namespace Lina { namespace Games {
 
                 c1->setCallDefaults(false);
                 b8 isRamp = c2->getTag().find("ramp") != std::string::npos;
+                b8 isPS = c2->getTag().find("part") != std::string::npos;
+               // std::cerr << "Persist\n";
                 if (c2->getTag() == "env" || isRamp)
                 {
                     static u32 collisionCount = 0;
                     auto* d = (ECS::Components::Colliders::Mesh*)c2;
                     auto inf = d->getInfo();
-                    mUp = inf.normal;
-                   // if (collisionCount < 10)
                     {
-                        collisionCount++;
-                        mTransformComponents[c1->getTag()].translate(inf.normal * inf.depth);
+                        mTransformComponents[c1->getTag()].translate(inf.normal * 
+                                (inf.depth));
                     }
-                    //else {
-                    //collisionCount = 0;
-                    //}
                 }
 
                 else if (c2->getTag() == "token")
@@ -211,8 +271,10 @@ namespace Lina { namespace Games {
             [this](ECS::Components::Collider* c1, ECS::Components::Collider* c2) 
             mutable{
                 auto* d1 = dynamic_cast<ECS::Components::Colliders::Cylinder*>(c1);
+               // std::cerr << "EndedCollision\n";
 
                 b8 isRamp = c2->getTag().find("ramp") != std::string::npos;
+                b8 isPS = c2->getTag().find("part") != std::string::npos;
                 if(c2->getTag() == "env" || isRamp) 
                 {
                     slopeGravity = {0, 0, 0};
@@ -237,7 +299,8 @@ namespace Lina { namespace Games {
         mCylinderColliderComponents["p1"].setRadius(1);
         mCylinderColliderComponents["p1"].setRotation({0, 0, 0});
 
-        mTransformComponents["p1"].setPosition({0, -43, 0});
+       // mTransformComponents["p1"].setPosition({2.35454, -44.6821, 6.74587});
+        mTransformComponents["p1"].setPosition({0, -47, 0});
         mTransformComponents["p1"].setScale({1, 2, 1});
         mTransformComponents["p1"].setRotation({0, 0, 0});
 
@@ -246,11 +309,7 @@ namespace Lina { namespace Games {
         mMaterialComponents["p1"].setShader(0);
 
 
-        auto rad = 40.0f;
-        mMeshColliderComponents["env"].setPosition({0, 0 , 0});
-        mMeshColliderComponents["env"].setScale({rad, rad, rad});
-        //mMeshColliderComponents["env"].setVertices(mEnvVerts[0]);
-        mMeshColliderComponents["env"].setRotation({0, 0, 0});
+        auto rad = 80.0f;
 
         mTransformComponents["env"].setPosition({0, 0, 0});
         mTransformComponents["env"].setScale({rad, rad, rad});
@@ -260,76 +319,26 @@ namespace Lina { namespace Games {
                 (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
 
         mMaterialComponents["env"].setShader(1);
-
-        mMeshColliderComponents["env"].computeBoundingBox();
-        auto& extents =  mMeshColliderComponents["env"].getBoundingBox();
-
-        /*mTransformComponents["bound"].setPosition(
-                extents.first.midPoint(extents.second)
-                );
-                
-        mTransformComponents["bound"].setScale({rad, rad, rad});
-        mTransformComponents["bound"].setRotation({0, 0, 0});
-    
-        mMaterialComponents["bound"].setColour({(float)0xef / 0xff, 
-                (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
-        mMaterialComponents["bound"].setShader(3);
-        */
-
-        rad = 1.0f;
-        mCylinderColliderComponents["token"].setRotation({0, 0, 0});
-        mCylinderColliderComponents["token"].setHeight(1);
-        mCylinderColliderComponents["token"].setRadius(1.0f);
-
-        mTransformComponents["token"].setScale({rad, rad, rad});
-        mTransformComponents["token"].setRotation({0, 0, 0});
-        
-
-        mMaterialComponents["token"].setColour({(float)0xef / 0xff, 
-                (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
-
-        mMaterialComponents["token"].setShader(0);
-
-
-
-        /*
-           mCylinderColliderComponents["env"].setPosition({0, 0 , 0});
-        //mCylinderColliderComponents["env"].setScale({1, 2, 1});
-        mCylinderColliderComponents["env"].setHeight(2);
-        mCylinderColliderComponents["env"].setRadius(1);
-        //mCylinderColliderComponents["nv"].setVertices(mEnvVerts);
-        mCylinderColliderComponents["env"].setRotation({0, 0, PI / 2});
-
-        mTransformComponents["env"].setPosition({10, 0, 0});
-        mTransformComponents["env"].setRotation({0, 0, PI / 2});
-        mTransformComponents["env"].setScale({1, 2, 1});
-
-        mMaterialComponents["env"].setColour({(float)0x22 / 0xff, 
-        (float)0x17 / 0xff, (float)0xff / 0xff, (float)0xff / 0xff});
-
-        mMaterialComponents["env"].setShader(1);*/
-
     }
 
     void CollisionWorld::move()
     {
         auto oldv = mCharacterControllers[0]->getVelocity();
-        auto dirz = Math::Util::zAxis().planeProject(mUp);
+        auto dirz = Math::Util::zAxis().reject(mUp);
         auto newvz = (dirz.normalise() * translationRate) * (zMove);
 
-        auto dirx = Math::Util::xAxis().planeProject(mUp);
+       auto dirx = Math::Util::xAxis().reject(mUp);
         auto newvx = (dirx.normalise() * translationRate) * (xMove);
 
-        mCharacterControllers[0]->setVelocity(newvx + newvz + slopeGravity * onSlope
-                + (Math::Vector3D){0, oldv.y, 0} * !onSlope);
+        auto newV = newvx + newvz + slopeGravity * onSlope
+                + (Math::Vector3D){0, oldv.y, 0} * !onSlope;
+        mCharacterControllers[0]->setVelocity(newV);
         mCharacterControllers[0]->updateVelocity({0, -mJump * isJump, 0});
         isJump = false;
     }
 
-
     void CollisionWorld::onKeyDown(Events::KeyPress& e)
     {
-
         auto& v = mCharacterControllers[0]->getVelocity();
         switch(e.key())
         {
@@ -413,9 +422,10 @@ namespace Lina { namespace Games {
     }
     void CollisionWorld::update()
     {
-        if (!won)[[likely]]
-        {
         mTimer.begin();
+        if (!won && mCollectedCoins < 10)[[likely]]
+        {
+           std::cerr << "CurrentCoins: " << mCollectedCoins << '\n';
         for (auto& col : mCollisionSystems)
             col->update();
 
@@ -469,6 +479,13 @@ namespace Lina { namespace Games {
         mParticleSystem.update(1.0f / 60);
         auto& ps = mParticleSystem.getParticles();
         auto& rots = mParticleSystem.getRotations();
+       /* for (int i = 0; i < mParticleSystem.getParticleCount(); i++)
+        {
+            auto partTag = "part" + std::to_string(i);
+             mCylinderColliderComponents[partTag].setPosition(ps[i].getPos());
+            mCylinderColliderComponents[partTag].setScale({1, 1, 1});
+            mCylinderColliderComponents[partTag].setRotation(rots[i]);
+        }*/
 
         mRenderer->beginDraw();
         mRenderer->bindShader(0);
@@ -477,44 +494,45 @@ namespace Lina { namespace Games {
 
         for (auto& [key, value] : mMaterialComponents)
         {
-            if (value.isEnabled())
+            if (value.isEnabled() && mTransformComponents[key].isEnabled())
             {
                 mRenderer->bindShader(value.getShaderId());
-                if (mTransformComponents[key].isEnabled())
-                {
                     auto currentTransMat = proj * mShuttle.getMatrix() 
                         * mTransformComponents[key].getMatrix()
                         * Math::Util::scaleMatrix(mTransformComponents[key].getScale()); 
                     mRenderer->updatePushConstant(&currentTransMat, 0);
-            //        std::cerr << "Key: " << key << "\n Transform:\n" << currentTransMat << '\n';
-                }
                 auto col = value.getColour();
-                mRenderer->updateUniform(&col, 0);
+
+                b8 isPS = key.find("part") != std::string::npos;
+                mRenderer->updateUniform(&col, 0, key == "token" || isPS);
                 mRenderer->render();
             }
         }
 
         // Draw Particle System
-        
         mRenderer->bindShader(1);
         auto scale = Math::Util::scaleMatrix({0.3f, 1.5f, 0.3f});
-        Col col;
-        mRenderer->updateUniform(&col, 0);
+        auto col = mMaterialComponents["part1"].getColour();
+        mRenderer->updateUniform(&(col), 0, 1);
         for (int i = 0; i < ps.size(); i++)
         {
+                auto partTag = "part" + std::to_string(i);
+            mTransformComponents[partTag].setPosition(ps[i].getPos());
+            mTransformComponents[partTag].setRotation(rots[i]);
+           /* 
+
            auto trans = proj * mShuttle.getMatrix() *
                Math::Util::transMatrix(Math::Util::identityMatrix(), 
                    ps[i].getPos()) 
                * Math::Util::transMatrix((Math::Quatrenion::angleToQuat(rots[i])).getRotationMatrix(),
                         {0, 0, 0}) * scale; 
+
             mRenderer->updatePushConstant(&trans, 0);
-            mRenderer->render();
+            mRenderer->render();*/
         }
 
         // End Draw Particle System
         //
-        
-        
 
         auto followPos = mTransformComponents["p1"].getPosition();
         mShuttle.setPosition(followPos.x, followPos.y, followPos.z - 10);
@@ -522,7 +540,6 @@ namespace Lina { namespace Games {
         // End Drawing System
 
         mTimer.end();
-        //std::cerr << "Normal: " << mUp << '\n';
 
         mTimer.wait((1000/mFrameRate) - mTimer.getTime());
     }

@@ -5,11 +5,22 @@ namespace Lina{ namespace Graphics{
     {
         // Renderer
 
-        Uniform color = 
+        Uniform DynamicColour = 
+        {
+
+            .name = "col",
+            .binding = 0,
+            .stage = ShaderStage::Fragment,
+            .type = UniformType::Dynamic,
+            .size = sizeof(f32) * 4,
+            .count = 3,
+        };
+        Uniform StaticColour = 
         {
             .name = "col",
             .binding = 0,
             .stage = ShaderStage::Fragment,
+            .type = UniformType::Static,
             .size = sizeof(f32) * 4,
         };
 
@@ -40,14 +51,14 @@ namespace Lina{ namespace Graphics{
                 "../shaders/compiled/simple.frag.spv", "shader");
 
 
-        defaultShader.addUniform(color);
+        defaultShader.addUniform(DynamicColour);
 
         defaultShader.addPushConstant(mvp);
 
         mRenderer->addShader(defaultShader); 
 
 
-        Graphics::Shapes::Icosphere ico(1.0f);
+        Graphics::Shapes::Icosphere ico(0.5f);
         ico.setMeshMode(MeshMode::Pos3);
         ico.subdivide(5);
         auto icoverts = ico.getFullVertices();
@@ -62,7 +73,7 @@ namespace Lina{ namespace Graphics{
                 "../shaders/compiled/simple.frag.spv", "shader");
 
 
-        psShader.addUniform(color);
+        psShader.addUniform(DynamicColour);
 
         psShader.addPushConstant(mvp);
 
@@ -102,7 +113,7 @@ namespace Lina{ namespace Graphics{
         "../shaders/compiled/terrain.frag.spv", "shader");
 
         defaultShader2.addPushConstant(mvp);
-        defaultShader2.addUniform(color);
+        defaultShader2.addUniform(StaticColour);
         mRenderer->addShader(defaultShader2); 
         std::vector<f32> boundingVerts = 
         {
@@ -135,7 +146,6 @@ namespace Lina{ namespace Graphics{
 
             4, 0, 6,
             0, 2, 6,
-
         };
 
         mRenderer->createVertexBuffer(layout, boundingVerts);
@@ -147,7 +157,7 @@ namespace Lina{ namespace Graphics{
                 "../shaders/compiled/simple.frag.spv", "shader");
 
 
-        boundingShader.addUniform(color);
+        boundingShader.addUniform(StaticColour);
 
         boundingShader.addPushConstant(mvp);
 

@@ -1,6 +1,9 @@
 #include "mesh_collider.h"
 #include "box_collider.h"
+#include "collider.h"
+#include <algorithm>
 #include <cfloat>
+#include <cmath>
 namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
     Math::Point3D Mesh::furthestPoint(const Math::Vector3D& d)
     {
@@ -191,36 +194,41 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
     std::pair<Math::Point3D, Math::Point3D> Mesh::computeBoundingBox(u32 idxBegin, u32 idxEnd)
     {
         Math::Transform4D transform = 
-             Math::Util::scaleMatrix(mScale)*
-                    Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D();
-        f64 minX, minY, minZ = FLT_MAX;
-        f64 maxX, maxY, maxZ = -FLT_MAX;
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D()*
+             Math::Util::scaleMatrix(mScale);
+        f32 minX = FLT_MAX; 
+        f32 minY = FLT_MAX; 
+        f32 minZ = FLT_MAX; 
+        f32 maxX = -FLT_MAX; 
+        f32 maxY = -FLT_MAX; 
+        f32 maxZ = -FLT_MAX; 
+        Math::Vector3D point;
         for (int i = idxBegin; i < idxEnd - 2; i+=3)
         {
-            minX = minX * (minX < mVertices[i]) + mVertices[i] * !(minX < mVertices[i]);
-            minY = minY * (minY < mVertices[i + 1]) + mVertices[i + 1] * !(minY < mVertices[i + 1]);
-            minZ = minZ * (minZ < mVertices[i + 2]) + mVertices[i + 2] * !(minZ < mVertices[i + 2]);
+            point = 
+              //  (Math::Point3D(mVertices[i], mVertices[i+1], mVertices[i+2]) * transform);
+                (Math::Point3D(mVertices[i], mVertices[i+1], mVertices[i+2]) * transform);
 
-            maxX = maxX * (maxX > mVertices[i]) + mVertices[i] * !(maxX > mVertices[i]);
-            maxY = maxY * (maxY > mVertices[i + 1]) + mVertices[i + 1] * !(maxY > mVertices[i + 1]);
-            maxZ = maxZ * (maxZ > mVertices[i + 2]) + mVertices[i + 2] * !(maxZ > mVertices[i + 2]);
+             minX = minX * (minX < point.x) + point.x * !(minX < point.x);
+            minY = minY * (minY < point.y) + point.y * !(minY < point.y);
+            minZ = minZ * (minZ < point.z) + point.z * !(minZ < point.z);
+
+            maxX = maxX * (maxX > point.x) + point.x * !(maxX > point.x);
+            maxY = maxY * (maxY > point.y) + point.y * !(maxY > point.y);
+            maxZ = maxZ * (maxZ > point.z) + point.z * !(maxZ > point.z);
         }
         auto boundingBoxExtentsFirst = 
-            (((Math::Point3D){(f32)minX, (f32)minY, (f32)minZ} *
-            transform) + mCenter).toPoint();
+            (((Math::Point3D){minX, minY, minZ}) + mCenter).toPoint();
 
         auto BoundingBoxExtentsSecond = 
-            (((Math::Point3D){(f32)maxX, (f32)maxY, (f32)maxZ} *
-            transform) + mCenter).toPoint();
+            (((Math::Point3D){maxX, maxY, maxZ}) + mCenter).toPoint();
 
         return std::make_pair(boundingBoxExtentsFirst, BoundingBoxExtentsSecond);
     }
 
     void Mesh::computeBoundingBox()
     {
-        //std::cerr << "Begin";
         mBoundingBoxExtents = computeBoundingBox(0, mVertices.size());
-       // std::cerr << "End";
     }
 
     Collider::BVH* Mesh::computeBVH(u32 begin, u32 end)
@@ -232,20 +240,49 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         node->root = boundCollider;
         return node;
     }
+
     Collider::BVH* Mesh::computeBVH(u32 begin)
     {
         Mesh* leaf = new Mesh(mTag);
-        Math::Transform4D m = 
-            Math::Util::scaleMatrix(mScale)*
-            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
+        std::vector<f32> verts;
+        verts.reserve(9);
+        
+        for (int i = 0; i < 9; i++)
+        {
+            verts.push_back(mVertices[begin + i]);
+        }
 
-        leaf->setVertices({mVertices[begin], mVertices[begin+1], mVertices[begin+2]});
-        leaf->setScale(getScale());
-        leaf->setPosition((
-                    (Math::Point3D){mVertices[begin], mVertices[begin+1], mVertices[begin+2]} 
-                    * 1.0f/3 *  m 
-                    + mCenter).toPoint());
-        leaf->setRotation(getRotation());
+        /*std::vector<Math::Point3D> mPoints;
+        mPoints.reserve(3);
+        auto m = 
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D()*
+            Math::Util::scaleMatrix(mScale);
+        for (int i = 0; i < 9; i+=3)
+        {
+            mPoints.emplace_back(verts[i], verts[i+1], verts[i+2]);
+            mPoints[i/3] = (mPoints[i/3] * m + mCenter).toPoint();
+            verts[i] = mPoints[i/3].x;
+            verts[i+1] = mPoints[i/3].y;
+            verts[i+2] = mPoints[i/3].z;
+        }*/
+        
+        leaf->setVertices(
+                {
+                verts.at(0),
+                verts.at(1),
+                verts.at(2),
+                verts.at(3),
+                verts.at(4),
+                verts.at(5),
+                verts.at(6),
+                verts.at(7),
+                verts.at(8)
+                }
+                );
+
+        leaf->setScale(mScale);
+        leaf->setRotation(mRotation);
+        leaf->setPosition(mCenter);
         leaf->computeBoundingBox();
         BVH* node = new BVH;
         node->root = leaf;
@@ -255,8 +292,8 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
     void Mesh::computeBVH()
     {
         std::vector<BVH*> mbvhs;
-        mbvhs.reserve(mVertices.size() / 3 + 1);
-        for (int i = 0; i < mVertices.size(); i+=3)
+        mbvhs.reserve(mVertices.size() / 9 + 1);
+        for (int i = 0; i < mVertices.size(); i+=9)
         {
            mbvhs.push_back(computeBVH(i)); 
         }
@@ -264,14 +301,26 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         int n = mbvhs.size();
         int power = 1;
         b8 reverse = false; // to balance tree
-        while (n > power)
+        int final = 0;
+        while (power < n)
         {
             if (!reverse)
             {
-                for (int i = 0; i < n - power; i += power<<1)
+                for (int i = 0; i < n; i += power<<1)
                 {
-                    combineBVHs(mbvhs[i], mbvhs[i + power]);
+
+                 if (i + power < n)
+                 {
+                    combineBVHs(i, i + power, mbvhs);
+                    final = i+1;
+                 }
+                 else 
+                 {
+                    combineBVHs(0, i, mbvhs);
+                    final = i - (power<<1) + 1;
+                 }
                 }
+                n = final;
             }
             else if (reverse)
             {
@@ -280,11 +329,47 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
                     combineBVHs(mbvhs[i-power], mbvhs[i]);
                 }
             }
-            reverse = !reverse;
             power <<= 1;
         }
         mBvh = *mbvhs[0];
         delete mbvhs[0];
+    }
+    void Mesh::computeBBCompound()
+    {
+        computeBVH();
+        mBoundingBoxExtents = mBvh.root->getBoundingBox();
+    }
+void Mesh::combineBVHs(u32 idx0, u32 idx1, std::vector<Collider::BVH*>& mbvhs)
+    {
+        if (mbvhs[idx1] == nullptr) return;
+        if (mbvhs[idx0] == nullptr || mbvhs[idx0]->root == nullptr)
+        {
+            std::cerr << "Fatal Error, b1 is nullptr\n";
+            exit(1);
+        }
+        BVH* newLeft = new BVH;
+        auto leftBoundingBox = mbvhs[idx0]->root->getBoundingBox();
+        auto rightBoundingBox = mbvhs[idx1]->root->getBoundingBox();
+
+        std::pair<Math::Point3D, Math::Point3D> combinedBound = 
+            std::make_pair(Math::Point3D(
+                        std::fmin(leftBoundingBox.first.x, rightBoundingBox.first.x),
+                        std::fmin(leftBoundingBox.first.y, rightBoundingBox.first.y),
+                        std::fmin(leftBoundingBox.first.z, rightBoundingBox.first.z)
+                        ), Math::Point3D(
+                        std::fmax(leftBoundingBox.second.x, rightBoundingBox.second.x),
+                        std::fmax(leftBoundingBox.second.y, rightBoundingBox.second.y),
+                        std::fmax(leftBoundingBox.second.z, rightBoundingBox.second.z)
+                            ));
+        
+        Box* boundCollider = new Box(mTag, combinedBound);
+        boundCollider->computeBoundingBox();
+        newLeft->root = mbvhs[idx0]->root;
+        newLeft->left = mbvhs[idx0]->left;
+        newLeft->right = mbvhs[idx0]->right;
+        mbvhs[idx0]->left = newLeft;
+        mbvhs[idx0]->right = mbvhs[idx1];
+        mbvhs[idx0]->root = boundCollider;
     }
     void Mesh::combineBVHs(BVH* b1, BVH* b2)
     {
@@ -308,11 +393,14 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
                         std::fmax(leftBoundingBox.second.y, rightBoundingBox.second.y),
                         std::fmax(leftBoundingBox.second.z, rightBoundingBox.second.z)
                             ));
+
+
+
         Box* boundCollider = new Box(mTag, combinedBound);
         boundCollider->computeBoundingBox();
         newLeft->root = b1->root;
         newLeft->left = b1->left;
-        newLeft->right =b1->right;
+        newLeft->right = b1->right;
         b1->left = newLeft;
         b1->right = b2;
         b1->root = boundCollider;

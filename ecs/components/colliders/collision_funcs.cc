@@ -1,10 +1,13 @@
 #include "collision_funcs.h"
+#include <cmath>
 #include <vector>
 namespace Lina { namespace Helpers { namespace Collisions{
     using namespace ECS::Components;
 
     Math::Vector3D support(Collider* a, Collider* b, const Math::Vector3D& d)
     {
+        auto fa = a->furthestPoint(d);
+        auto fb = b->furthestPoint(d);
        return a->furthestPoint(d) - b->furthestPoint(-d);
     }
 
@@ -33,17 +36,23 @@ namespace Lina { namespace Helpers { namespace Collisions{
         Math::Vector3D sup = support(a, b, {0, 1, 0});
         mSimplex.push_front(sup); 
         Math::Vector3D newDir = -sup;
+        int iter = 20;
 
-        while(true)
+        while(iter != 0)
         {
             sup = support(a, b, newDir);
-            if (sup.dot(newDir) <= 0) {mSimplex.clear(); return {.collided = false};}
+            //std::cerr << "Support: " << sup << '\n';
+            if (std::isnan(sup.x)) return {.collided = false};
+            if (sup.dot(newDir) <= 0) {return {.collided = false};}
+            //std::cerr << "Support: " << sup << '\n';
             mSimplex.push_front(sup);
             if (checkNextSimplex(mSimplex, newDir)) 
             {
-                return epa(mSimplex, a, b);
+                return  epa(mSimplex, a, b);
             };
+            iter--;
         }
+        return {.collided = false};
     }
 
 
@@ -51,12 +60,19 @@ namespace Lina { namespace Helpers { namespace Collisions{
     {
         switch(mSimplex.size)
         {
-            case 2: return checkLine(mSimplex, d);
-            case 3: return checkTri(mSimplex, d);
-            case 4: return checkTetra(mSimplex, d); break;
+            case 2:{
+        //std::cerr << "Inline\n";
+                       return checkLine(mSimplex, d);}
+            case 3:{
+         //              std::cerr << "InTri\n";
+                       return checkTri(mSimplex, d);}
+            case 4: {
+
+          //             std::cerr << "InTetra\n";
+                        return checkTetra(mSimplex, d);} break;
             default:
                     {
-            //            std::cerr << "Error, Simplex with bad size: " << mSimplex.size;
+                        std::cerr << "Error, Simplex with bad size: " << mSimplex.size;
                         std::cerr << "\n";
                         return false;
                     }
@@ -169,9 +185,10 @@ namespace Lina { namespace Helpers { namespace Collisions{
 
         auto [normals, minFace] = normalAndMin(verts, ind);
         Math::Vector3D minNormal;
-        f32 minDist = 0.0f;
+        f32 minDist = FLT_MAX;
         f32 oldDist = 0.0f;
         u32 iterations = 10;
+        int count = 0;
         while (iterations > 0)
         {
             minNormal = {normals[minFace].x, normals[minFace].y, normals[minFace].z};
@@ -182,14 +199,17 @@ namespace Lina { namespace Helpers { namespace Collisions{
 
             if (fabs(dist - minDist) > COLLISION_EPSILON)
             {
+                //Statbility
                 if (fabs(dist - oldDist) < COLLISION_EPSILON)
                 {
                     iterations--;
                 }
                 else {
                     oldDist = dist;
-                iterations = 10;
+                    iterations = 10;
                 }
+                // End Stavility
+
                 std::vector<std::pair<u32, u32>> edges;
                 for (u32 i = 0; i < normals.size(); i++)
                 {
@@ -219,6 +239,8 @@ namespace Lina { namespace Helpers { namespace Collisions{
                 verts.push_back(sup);
                 auto [newNormals, newMinFace] = normalAndMin(verts, newInd);
 
+                if (newNormals.empty()) break;
+
                 f32 oldMin = FLT_MAX;
                 for (u32 i = 0; i < normals.size(); i++)
                 {
@@ -228,7 +250,7 @@ namespace Lina { namespace Helpers { namespace Collisions{
                         minFace = i;
                     }
                 }
-                if (newNormals[minFace].w < oldMin)
+                if (newNormals[newMinFace].w < oldMin)
                 {
                     minFace = newMinFace + normals.size();
                 }
@@ -239,6 +261,8 @@ namespace Lina { namespace Helpers { namespace Collisions{
             {
                 break;
             }
+            count++;
+            //std::cerr << "StillIn: " << count <<'\n';
         }
        // minDist = minDist * (iterations > 0) + oldDist * !(iterations > 0);
         Info inf {
@@ -266,11 +290,9 @@ namespace Lina { namespace Helpers { namespace Collisions{
             norm *= (-(dist < 0) + !(dist < 0));
             dist *= (-(dist < 0) + !(dist < 0));
             normals.emplace_back(norm.x, norm.y, norm.z, dist);
-            if (dist < minDist)
-            {
-                minFace = i/3 * (dist < minDist) + minFace * !(dist < minDist);
-                minDist = dist * (dist < minDist) + dist * !(dist < minDist);
-            }
+
+            minFace = i/3 * (dist < minDist) + minFace * !(dist < minDist);
+            minDist = dist * (dist < minDist) + dist * !(dist < minDist);
         }
         return {normals, minFace};
     }

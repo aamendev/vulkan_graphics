@@ -5,6 +5,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
     Box::Box(std::string tag, const std::pair<Math::Point3D, Math::Point3D>& p)
     {
         initWithExtents(tag, p);
+        mScale = {mLength, mWidth, mHeight};
     }
 
     void Box::initWithExtents(std::string tag, 
@@ -14,14 +15,15 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
 
         mCenter = p.first.midPoint(p.second);
 
-        mLength = (mCenter - p.first).x;
-        mLength *= (mLength >= 0) - (mLength < 0.0);
+        mLength = (mCenter - p.first).x * 2;
+        mLength *= ((mLength >= 0) - (mLength < 0.0));
 
-        mWidth = (mCenter - p.first).z;
-        mWidth *= (mWidth >= 0) - (mWidth < 0.0);
+        mWidth = (mCenter - p.first).z * 2;
+        mWidth *= ((mWidth >= 0) - (mWidth < 0.0));
 
-        mHeight = (mCenter - p.first).y;
-        mHeight *= (mHeight >= 0) - (mHeight < 0.0);
+        mHeight = (mCenter - p.first).y * 2;
+        mHeight *= ((mHeight >= 0) - (mHeight < 0.0));
+        mRotation = {0, 0, 0};
 
         mRecentCollisions = {};
         mCallDefaults = true;
@@ -38,11 +40,11 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         switch (g)
         {
             case ColliderGeometry::Cylinder:
-                return Helpers::Collisions::boxCylinderCollision(this, (Cylinder*) c);
+                return Helpers::Collisions::boxCylinderCollision(this, c);
                 break;
             case ColliderGeometry::Plane:
                 {
-                    return Helpers::Collisions::boxPlaneCollision(this, (Plane*) c);
+                    return Helpers::Collisions::boxPlaneCollision(this, c);
                 }
                 break;
             case ColliderGeometry::Mesh:
@@ -117,8 +119,8 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
     {
         mScale = {mLength, mHeight, mWidth};
         Math::Transform4D m = 
-            Math::Util::scaleMatrix(mScale)*
-            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D()*
+        Math::Util::scaleMatrix(mScale);
 
         mBoundingBoxExtents.first = 
             ((Math::Point3D(-0.5f, -0.5f, -0.5f) * m) + mCenter).toPoint();
@@ -128,6 +130,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
     }
     void Box::computeBVH()
     {
+        computeBoundingBox();
         mBvh = (BVH){this, nullptr, nullptr};
     }
 }}}}

@@ -155,10 +155,12 @@ namespace Lina { namespace Graphics {
         c1 = new ECS::Components::Colliders::Cylinder("c1");
         c2 = new ECS::Components::Colliders::Cylinder("c2");
         p1 = new ECS::Components::Colliders::Plane("p1");
+        b1 = new ECS::Components::Colliders::Box("b1"); 
 
         cSystem.addCollider(c1);
         cSystem.addCollider(c2);
         cSystem.addCollider(p1);
+        cSystem.addCollider(b1);
 
         c1->setHeight(10);
         c1->setRadius(5);
@@ -167,6 +169,10 @@ namespace Lina { namespace Graphics {
         c2->setHeight(10);
         c2->setRadius(5);
         c2->setPosition({1, 0, 0});
+
+        b1->setLength(5);
+        b1->setWidth(10);
+        b1->setHeight(2);
 
         assert(c1->checkCollision((ECS::Components::Collider*)c2) == true);
         cSystem.update();
@@ -206,9 +212,52 @@ namespace Lina { namespace Graphics {
         assert(c1->checkCollision(p1) == true);
         cSystem.update();
         assert(c1->checkCollision(p1) == true);
+        
+        c1->setPosition({0, 0, 0});
+        b1->setPosition({0, 0, 0});
+        assert(c1->checkCollision(b1) == true);
+        c1->setPosition({0, 2 + 5, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({0, 1 + 5, 0});
+        assert(c1->checkCollision(b1) == true);
+        c1->setPosition({0, 1.1 + 5, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({0, -2 - 5, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({0, -1 - 5, 0});
+        assert(c1->checkCollision(b1) == true);
+        c1->setPosition({0, -1.1 - 5, 0});
+        assert(c1->checkCollision(b1) == false);
+
+        c1->setPosition({6 + 5, 0, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({2.5 + 5, 0, 0});
+        assert(c1->checkCollision(b1) == true);
+        c1->setPosition({2.6 + 5, 0, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({-2.5 - 5, 0, 0});
+        assert(c1->checkCollision(b1) == true);
+        c1->setPosition({-2.6 - 5, 0, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({-6 - 5, 0, 0});
+        assert(c1->checkCollision(b1) == false);
+
+        c1->setPosition({6 + 5, 6.1, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({2.5 + 5, 6.1, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({2.6 + 5, 6.1, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({-2.5 - 5, 6.1, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({-2.6 - 5, 6.1, 0});
+        assert(c1->checkCollision(b1) == false);
+        c1->setPosition({-6 - 5, 6.1, 0});
+        assert(c1->checkCollision(b1) == false);
         delete c1;
         delete c2;
         delete p1;
+        delete b1;
     }
 
 }}

@@ -4,4 +4,5 @@
 #include "cylinder_collider.h"
 #include "plane_collider.h"
 #include "box_collider.h"
+#include "mesh_collider.h"
 #endif

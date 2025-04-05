@@ -1,7 +1,7 @@
 #include "cylinder_collider.h"
-#include "box_collider.h"
 #include "collider.h"
 #include "plane_collider.h"
+#include "primitive_collisions.h"
 #include <cmath>
 namespace Lina { namespace ECS { namespace Components { namespace Colliders{
     b8 Cylinder::checkCollision(Collider* c)
@@ -11,7 +11,6 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         {
             case ColliderGeometry::Cylinder:
                 return cylinderCylinderCollision(dynamic_cast<Cylinder*>(c));
-        //        return Helpers::Collisions::gjk(this, c);
                 break;
             case ColliderGeometry::Plane:
                 {
@@ -20,6 +19,9 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
                 break;
             case ColliderGeometry::Mesh:
                 return c->checkCollision(this);
+                break;
+            case ColliderGeometry::Box:
+                return Helpers::Collisions::boxCylinderCollision(c, this);
                 break;
             default: 
                 {
@@ -150,7 +152,6 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         b8 circleOverlap = (proj1 - proj2).squaredMagnitude() < 
             (mRadius + c->getRadius()) * (mRadius + c->getRadius());
 
-
         b8 sideOverlap = 
             ((mCenter.y - mHeight / 2) < 
              (c->getCenter().y + c->getHeight() / 2)) && 
@@ -178,12 +179,13 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         if (delta > 0)
         {
             ret = (
-                    (Math::Point3D){1 / delta * newDir.x, sgn * 1/2, 1 / delta * newDir.z} 
+                    (Math::Point3D){1.0f / delta * newDir.x, sgn * 1.0f/2, 1.0f / delta * newDir.z} 
                     * m
                     + mCenter).toPoint();
+          //  std::cerr << "CylFurt " << ret << '\n';
             return ret;
         }
-        ret = ((Math::Point3D){0, sgn * 1 / 2, 0} 
+        ret = ((Math::Point3D){0, sgn * 1.0f / 2, 0} 
                 * m 
                 + mCenter).toPoint();
         return ret;
@@ -191,7 +193,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
 
     void Cylinder::computeBoundingBox()
     {
-        mScale = {mRadius, mHeight, mRadius};
+        mScale = {mRadius*2, mHeight, mRadius*2};
         Math::Transform4D m = 
             Math::Util::scaleMatrix(mScale)*
             Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
@@ -206,6 +208,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
     void Cylinder::computeBVH()
     {
         //mBvh = (BVH){Box("temp", mBoundingBoxExtents), nullptr, nullptr};
+        computeBoundingBox();
         mBvh = (BVH){this, nullptr, nullptr};
     }
 }}}}

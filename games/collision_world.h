@@ -2,6 +2,7 @@
 #define PS_COLLISION_WORLD_H
 #include "../game_system/game_world.h"
 #include "../physics/physics.h"
+#include <unordered_map>
 namespace Lina { namespace Games {
     class CollisionWorld : public GameSystem::GameWorld
     {
@@ -21,6 +22,7 @@ namespace Lina { namespace Games {
         private:
             void addRamp(Math::Point3D&& p, Math::EulerAngles&& rot);
             void move();
+            void addPSColliders();
 
         private:
             Physics::ParticleSystem mParticleSystem;
@@ -45,6 +47,8 @@ namespace Lina { namespace Games {
             u32 mCoinCount = 0;
             u32 mGoal = 2;
             u32 mRampCount = 0;
+            u32 mCollectedCoins = 0;
+            std::unordered_map<std::string, u32> mColMap;
     };
 }}
 #endif

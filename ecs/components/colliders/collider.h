@@ -46,8 +46,14 @@ namespace Lina{ namespace ECS { namespace Components {
             {mCollisionPersistCallback = f;}
 
             inline void setTag(std::string tag) {mTag = tag;}
-            inline void setPosition(const Math::Point3D& newPos) {mCenter = newPos;}
-            inline void setScale(const Math::Vector3D& s) {mScale = s;}
+            inline void setPosition(const Math::Point3D& newPos) {
+                mTransformed = ((mCenter - newPos).squaredMagnitude() > 0.001f);
+                mCenter = newPos;
+            }
+            inline void setScale(const Math::Vector3D& s) {
+                mTransformed =(mScale != s);
+                mScale = s;
+            }
             inline void setScale(f32 s) {mScale  = {s, s, s};}
             inline void scale(f32 s) {mScale *= s;}
             inline virtual void setStatus(
@@ -58,8 +64,10 @@ namespace Lina{ namespace ECS { namespace Components {
 
             inline virtual void setCallDefaults(b8 c) {mCallDefaults = c;}
             inline void setBoundingBoxId(u32 id) {mBoundingBoxId = id;}
+            inline void cohere() {mTransformed = false;}
 
         public:
+            b8 checkMoved() const {return mTransformed;}
             const Math::Point3D& getPosition() const {return mCenter;}
             const Math::EulerAngles getRotation() const {return mRotation;}
             const Math::Vector3D& getScale() const {return mScale;}
@@ -84,6 +92,7 @@ namespace Lina{ namespace ECS { namespace Components {
             Math::Point3D mCenter;                
             Math::Vector3D mScale;
             Math::EulerAngles mRotation;
+            b8 mTransformed;
 
             std::function<void (Collider* c, Collider* c2)> mCollisionEnterCallback;
             std::function<void (Collider* c, Collider* c2)> mResolveCallback;

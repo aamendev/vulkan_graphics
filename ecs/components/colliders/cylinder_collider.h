@@ -10,10 +10,12 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
             Cylinder() = default;
             Cylinder(std::string tag): mHeight(10), mRadius(5)
             {
+                mTransformed = false;
                 mTag = tag;
                 mRecentCollisions = {};
                 mCallDefaults = true;
                 mGeometry = ColliderGeometry::Cylinder;
+                mRotation = {0, 0, 0};
 
                 mCenter = {0, 0 ,0};
                 mCollisionEnterCallback = staticDefaultOnCollisionEnter;
@@ -25,6 +27,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         Cylinder(std::string tag, f32 h, f32 r, Math::Point3D c): 
             mRadius(r), mHeight(h){
                 mTag = tag;
+                mRotation = {0, 0, 0};
                 mRecentCollisions = {};
                 mCallDefaults = true;
                 mGeometry = ColliderGeometry::Cylinder;
@@ -41,7 +44,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         virtual void computeBVH() override;
 
         public:
-        void setPosition(Math::Point3D c) {mCenter = c;}
+     //   void setPosition(Math::Point3D c) {mCenter = c;}
         void setHeight(f32 h) {mHeight = h;}
         void setRadius(f32 r) {mRadius = r;}
 

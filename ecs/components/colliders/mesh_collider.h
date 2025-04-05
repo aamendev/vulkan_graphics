@@ -16,6 +16,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
                 mRecentCollisions = {};
                 mCallDefaults = true;
                 mGeometry = ColliderGeometry::Mesh;
+                mCollisionInfo = {false, {0, 0, 0}, 0};
 
                 mCenter = {0, 0 ,0};
                 mCollisionEnterCallback = staticDefaultOnCollisionEnter;
@@ -32,6 +33,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
                 mGeometry = ColliderGeometry::Mesh;
 
                 mCenter = {0, 0 ,0};
+                mCollisionInfo = {false, {0, 0, 0}, 0};
                 mCollisionEnterCallback = staticDefaultOnCollisionEnter;
                 mResolveCallback = staticDefaultOnResolve;
                 mCollisionExitCallback = staticDefaultOnCollisionExit;
@@ -47,15 +49,20 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
 
         public:
         virtual void computeBoundingBox() override;
+        virtual void computeBBCompound(); 
             virtual Math::Point3D furthestPoint(const Math::Vector3D& d) override;
             virtual b8 checkCollision(Collider* b) override 
             {
-                mCollisionInfo = Helpers::Collisions::gjkAndInfo(this, b);
+                mCollisionInfo =  Helpers::Collisions::gjkAndInfo(this, b);
+
                 return mCollisionInfo.collided;
             }
             inline void setVertices(std::vector<f32> verts) {mVertices = verts;}
+            inline void setCollisionInfo(const Helpers::Collisions::Info& inf)
+            {mCollisionInfo = inf;}
         private:
             std::pair<Math::Point3D, Math::Point3D> computeBoundingBox(u32 idxBegin, u32 idxEnd);
+            void combineBVHs(u32 idx0, u32 idx1, std::vector<Collider::BVH*>& mbvhs);
             void combineBVHs(Collider::BVH* b1, Collider::BVH* b2);
             Collider::BVH* computeBVH(u32 idxBegin, u32 idxEnd);  
             Collider::BVH * computeBVH(u32 idxBegin);
