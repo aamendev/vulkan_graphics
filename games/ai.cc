@@ -62,6 +62,12 @@ namespace Lina { namespace Games {
             }
             cSystem->addCollider(&value);
         }
+        f32 rad = 20.0f;
+        mMeshColliderComponents["plane"].setScale({rad, rad, rad});
+        mMeshColliderComponents["plane"].setRotation({0, 0, PI});
+        mMeshColliderComponents["plane"].setVertices(mEnvVerts);
+        mTransformComponents["plane"].setScale({rad, rad, rad});
+        mTransformComponents["plane"].setRotation({0, 0, PI});
 
         for (auto& [_, value] : mPlaneColliderComponents)
         {
@@ -72,12 +78,6 @@ namespace Lina { namespace Games {
             cSystem->addCollider(&value, ColliderType::Static);
         }
 
-        f32 rad = 20.0f;
-        mMeshColliderComponents["plane"].setScale({rad, rad, rad});
-        mMeshColliderComponents["plane"].setRotation({0, 0, PI});
-        mMeshColliderComponents["plane"].setVertices(mEnvVerts);
-        mTransformComponents["plane"].setScale({rad, rad, rad});
-        mTransformComponents["plane"].setRotation({0, 0, PI});
 
         cSystem->optimize();
         cSystem->constructGrid({-200, -200, -200}, {200, 200, 200}, 50);
@@ -100,7 +100,7 @@ namespace Lina { namespace Games {
                     auto inf = d->getInfo();
                     mUp = inf.normal;
                     slopeGravity = inf.normal * 0.01f;
-                    //onSlope = true;
+                    onSlope = true;
                     mCharacterControllers[0]->setGrounded(true);
                     mCharacterControllers[0]->setYVelocity(0);
                     if (inf.depth > 0.1f)
@@ -114,13 +114,29 @@ namespace Lina { namespace Games {
                 }
             };
         std::function<void(ECS::Components::Collider*, ECS::Components::Collider*)>
+            p3CollisionEnter = 
+            [this](ECS::Components::Collider* c1, ECS::Components::Collider* c2) 
+            mutable{
+                c1->setCallDefaults(false);
+                if (c2->getTag() == "plane")
+                {
+                    auto* d = (ECS::Components::Colliders::Mesh*)c2;
+                    auto inf = d->getInfo();
+                    mTransformComponents["p2"].translate(inf.normal * inf.depth);
+                }
+            };
+        std::function<void(ECS::Components::Collider*, ECS::Components::Collider*)>
             tokenCollisionEnter = 
             [this](ECS::Components::Collider* c1, ECS::Components::Collider* c2) 
             mutable{
                 c1->setCallDefaults(false);
                 if (c2->getTag() == "p3")
                 {
+                    u32 oldColl = currentCollectible;
+                    while (oldColl == currentCollectible)
+                    {
                     currentCollectible = rand() % (mAiGraphs[0].getSize());
+                    }
 
                     auto currNode = mAiGraphs[0][currentCollectible].first;
                     auto scale = mTransformComponents["plane"].getScale();
@@ -178,7 +194,6 @@ namespace Lina { namespace Games {
                 auto* d1 = dynamic_cast<ECS::Components::Colliders::Cylinder*>(c1);
                 if(c2->getTag() == "plane") 
                 {
-                    std::cerr << "Exit\n";
                     slopeGravity = {0, 0, 0};
                     onSlope = false;
                     mCharacterControllers[0]->setGrounded(false);
@@ -194,6 +209,7 @@ namespace Lina { namespace Games {
                 playerCollisionPersist);
         mCylinderColliderComponents["p1"].setOnCollisionExit(playerCollisionExit);
         mCylinderColliderComponents["token"].setOnCollisionEnter(tokenCollisionEnter);
+        mCylinderColliderComponents["p3"].setOnCollisionEnter(p3CollisionEnter);
 
 
         using namespace Helpers::AI;
@@ -202,7 +218,7 @@ namespace Lina { namespace Games {
             public:
                 Follow(ECS::Components::Transform* aiTrans,
                         ECS::Components::Transform* followTrans,
-                        u32 maxSpeed = 1.0f):
+                        f32 maxSpeed = 1.0f):
                     mAiTrans(aiTrans), mFollowTrans(followTrans),
                     mMaxSpeed(maxSpeed){}
                 Helpers::AI::BehaviourStatus run() override 
@@ -383,6 +399,7 @@ namespace Lina { namespace Games {
                 {
                     if (finished)
                     {
+                        std::cerr << "HERE\n";
                         mEnd = *mNext;
                         mGraph->setStart(mStart);
                         mGraph->setEnd(mEnd);
@@ -394,14 +411,13 @@ namespace Lina { namespace Games {
                     {
                         if (mPath[mCurrent] == mEnd)
                         {
-                            std::cerr << "FOUND: " << mEnd << '\n';
                             auto dir =
                                 (mFollowTrans->getPosition() - mAiTrans->getPosition())
                                 .normalise();  
                             auto mag = (mFollowTrans->getPosition() 
                                     - mAiTrans->getPosition()).magnitude();
                             mAiTrans->translate(dir * fmin(mag, mMaxSpeed));
-                            if (mag <= 0.01f)
+                            if (*mNext != mEnd)
                             {
                             finished = true;
                             mStart = mEnd;
@@ -412,7 +428,7 @@ namespace Lina { namespace Games {
                         }
                         else [[likely]]
                         {
-                         //   std::cerr << "NFOUND: " << mPath[mCurrent] << ", " << mEnd << '\n';
+                            std::cerr << "NFOUND: " << mPath[mCurrent] << ", " << mEnd << '\n';
                             auto scale = mNavMesh->getScale();
                             auto rot = mNavMesh->getRotation();
                             auto meshPos = mNavMesh->getPosition();
@@ -513,7 +529,7 @@ namespace Lina { namespace Games {
         mMaterialComponents["p2"].setShader(0);
         mCylinderColliderComponents["p2"].setHeight(20);
         mCylinderColliderComponents["p2"].setRadius(10);
-        mTransformComponents["p2"].setPosition({0, -8, 0});
+        mTransformComponents["p2"].setPosition({0, -10, 0});
         mCylinderColliderComponents["p2"].setPosition({0, 0 ,0});
 
         mTransformComponents["p3"].setScale({5, 20, 10});
@@ -526,11 +542,12 @@ namespace Lina { namespace Games {
 
         mMaterialComponents["p3"].setShader(0);
         mCylinderColliderComponents["p3"].setHeight(20);
-        mCylinderColliderComponents["p3"].setRadius(10);
+        mCylinderColliderComponents["p3"].setRadius(20);
         mTransformComponents["p3"].setPosition({0, -8, 0});
         mCylinderColliderComponents["p3"].setPosition({0, 0 ,0});
 
-        mTransformComponents["token"].setScale({5, 5, 5});
+        auto rad = 5.0f;
+        mTransformComponents["token"].setScale({rad, rad, rad});
         mMaterialComponents["token"].setColour(
                 {(float)0xaa / 0xff,
                 (float)0xff / 0xff,
@@ -539,8 +556,8 @@ namespace Lina { namespace Games {
                 );
 
         mMaterialComponents["token"].setShader(0);
-        mCylinderColliderComponents["token"].setHeight(5);
-        mCylinderColliderComponents["token"].setRadius(5);
+        mCylinderColliderComponents["token"].setHeight(rad);
+        mCylinderColliderComponents["token"].setRadius(rad);
         currentCollectible = 0;
         auto currNode = mAiGraphs[0][currentCollectible].first;
         auto scale = mTransformComponents["plane"].getScale();
@@ -550,6 +567,7 @@ namespace Lina { namespace Games {
         auto finalPos = trans * Math::Point3D(currNode->x, currNode->y, currNode->z)
             + meshPos;
         mTransformComponents["token"].setPosition(finalPos);
+        mCylinderColliderComponents["token"].setPosition(finalPos);
 
         // mPlaneColliderComponents["plane"].setLength(1000);
         // mPlaneColliderComponents["plane"].setWidth(1000);
@@ -699,8 +717,11 @@ namespace Lina { namespace Games {
 
         for (auto& [key, _] : mCylinderColliderComponents)
         {
+            if (key != "p1")
+            {
             mTransformComponents[key].setPosition(
                     mCylinderColliderComponents[key].getPosition().toPoint());
+            }
         }
 
         for (auto& [key, _] : mPlaneColliderComponents)
@@ -708,6 +729,11 @@ namespace Lina { namespace Games {
             auto vv = 
                 (mPlaneColliderComponents[key].getPosition()); 
             mTransformComponents[key].setPosition(vv);
+        }
+        for (auto& [key, _] : mMeshColliderComponents)
+        {
+            mMeshColliderComponents[key].setPosition(
+                    mTransformComponents[key].getPosition().toPoint());
         }
 
         for (auto& [_, value] : mAIComponents)
@@ -767,7 +793,7 @@ namespace Lina { namespace Games {
 
         mRenderer->endDraw();
         auto followPos = mTransformComponents["p1"].getPosition();
-        mShuttle.setPosition(followPos.x, followPos.y - 20, followPos.z - 15 * 4);
+        mShuttle.setPosition(followPos.x, followPos.y - 3, followPos.z - 4*15);
         // End Drawing System
 
         mTimer.end();

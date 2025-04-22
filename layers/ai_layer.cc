@@ -60,7 +60,7 @@ namespace Lina{ namespace Graphics{
           std::vector<u32> ind2 = {2, 1, 0, 2, 3, 1};*/
 
         Core::TinyBasedObjLoader objLoader;
-        objLoader.load("../assets/env.obj");
+        objLoader.load("../assets/env_nav.obj");
         objLoader.setNavPath("../assets/env_nav.obj");
 
         auto verts2 = objLoader.getPositions();

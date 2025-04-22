@@ -48,11 +48,15 @@ namespace Lina { namespace Helpers { namespace AI{
     void Graph::traverse()
     {
         mPath.clear();
+        mVisited.clear();
         std::vector<u32> openPath = {};
         mVisited.resize(mNodes.size());
         for (int i = 0; i < mNodes.size(); i++)
         {
             mVisited[i] = false; 
+            mNodes[i].first->localCost = INFINITY;
+            mNodes[i].first->totalCost = INFINITY;
+            mNodes[i].first->parent = nullptr;
         }
         mVisited[mStart] = true;
         openPath.push_back(mStart);

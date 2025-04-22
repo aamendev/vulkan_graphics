@@ -29,7 +29,7 @@ namespace Lina { namespace Games {
             std::vector<f32> mEnvVerts;
             f32 mVelocity = 1.2f;
             f32 mJump = 1.2f;
-            f32 mGravity = 0.020f;
+            f32 mGravity = 0.040f;
             f32 mFrameRate = 60.0f;
 
             f32 translationRate = 1.2f;
@@ -37,6 +37,7 @@ namespace Lina { namespace Games {
             Math::Vector3D mForward;
             Math::Vector3D mSide;
             Math::Vector3D slopeGravity;
+            b8 tokenColldected = false;
             i32 xMove = 0;
             i32 zMove = 0;
             b8 isJump = false;
