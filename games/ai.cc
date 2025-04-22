@@ -399,7 +399,6 @@ namespace Lina { namespace Games {
                 {
                     if (finished)
                     {
-                        std::cerr << "HERE\n";
                         mEnd = *mNext;
                         mGraph->setStart(mStart);
                         mGraph->setEnd(mEnd);
@@ -428,7 +427,6 @@ namespace Lina { namespace Games {
                         }
                         else [[likely]]
                         {
-                            std::cerr << "NFOUND: " << mPath[mCurrent] << ", " << mEnd << '\n';
                             auto scale = mNavMesh->getScale();
                             auto rot = mNavMesh->getRotation();
                             auto meshPos = mNavMesh->getPosition();
@@ -786,7 +784,7 @@ namespace Lina { namespace Games {
                     mRenderer->updatePushConstant(&currentTransMat, 0);
                 }
                 auto col = value.getColour();
-                mRenderer->updateUniform(&col, 0, key == "p2");
+                mRenderer->updateUniform(&col, 0, (key == "plane"));
                 mRenderer->render();
             }
         }

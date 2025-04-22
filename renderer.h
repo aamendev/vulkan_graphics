@@ -63,6 +63,9 @@ namespace Lina{ namespace Graphics{
 
         public:
         void init(std::string& name, Window* window);
+        inline void addMap(u32 shaderId, u32 vertexId) 
+        {mShaderDataMap.emplace_back(shaderId, vertexId);}
+
         void beginDraw();
         void endDraw();
         void bindShader(int idx); 
@@ -125,7 +128,9 @@ namespace Lina{ namespace Graphics{
         private:
         RenderSpecs mSpecs;
         std::vector<Shader> mShaders;
+        std::vector<std::pair<u32, u32>> mShaderDataMap;
         i32 mCurrentShader;
+        i32 mCurrentDataMap;
         HiddenDrawData mHiddenDrawData;
         DeviceHandler* mDeviceHandler;
         SwapChain* mSwapChain;

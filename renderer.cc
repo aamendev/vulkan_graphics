@@ -386,8 +386,8 @@ namespace Lina{ namespace Graphics{
 
     void Renderer::createGraphicsPipelines()
     {
-        mSpecs.graphicsPipelines.resize(mShaders.size());
-        mSpecs.pipelineLayouts.resize(mShaders.size());
+        mSpecs.graphicsPipelines.resize(mShaderDataMap.size());
+        mSpecs.pipelineLayouts.resize(mShaderDataMap.size());
         mSpecs.descriptorSetLayout.resize(mShaders.size());
         mSpecs.descriptorSets.resize(mShaders.size());
         mSpecs.descriptorPool.resize(mShaders.size());
@@ -395,15 +395,21 @@ namespace Lina{ namespace Graphics{
 
         for (int i = 0; i < mShaders.size(); i++)
         {
-            auto uniformStart = (i > 0) * mShaders[i - 1].getBindingSize();
+            auto uniformStart = (i > 0) ? mShaders[i - 1].getBindingSize() : 0;
             createDescriptorSetLayout(i);
             createDescriptorPool(i);
             createDescriptorSet(i, uniformStart);
+            std::cerr << "ShaderDoone: " << i << '\n';
+        }
+        for (int i = 0; i < mShaderDataMap.size(); i++)
+        {
+            auto [shaderId, vertexDataId] = mShaderDataMap[i];
+            std::cerr << "ShaderStart: " << shaderId << '\n';
             VkPipelineShaderStageCreateInfo vertShaderCreateInfo
             {
                 .sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
                     .stage = VK_SHADER_STAGE_VERTEX_BIT,
-                    .module = mSpecs.vertexShaderModules[i],
+                    .module = mSpecs.vertexShaderModules[shaderId],
                     .pName = "main"
             };
 
@@ -411,15 +417,15 @@ namespace Lina{ namespace Graphics{
             {
                 .sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
                     .stage = VK_SHADER_STAGE_FRAGMENT_BIT,
-                    .module = mSpecs.fragmentShaderModules[i],
+                    .module = mSpecs.fragmentShaderModules[shaderId],
                     .pName = "main"
             };
 
             VkPipelineShaderStageCreateInfo shaderStages[] = {vertShaderCreateInfo, fragShaderCreateInfo};
 
             /* Vertex Buffer */
-            auto attributeDescriptions = mSpecs.vertexBuffer[i].getAttributeDescriptions();
-            auto bindingDescription = mSpecs.vertexBuffer[i].getBindingDescription();
+            auto attributeDescriptions = mSpecs.vertexBuffer[vertexDataId].getAttributeDescriptions();
+            auto bindingDescription = mSpecs.vertexBuffer[vertexDataId].getBindingDescription();
 
             VkPipelineVertexInputStateCreateInfo vertexInputInfo
             {
@@ -505,8 +511,8 @@ namespace Lina{ namespace Graphics{
             dynamicState.pDynamicStates = dynamicStates.data();
 
             std::vector<VkPushConstantRange> psRanges;
-            psRanges.reserve(mShaders[i].getPushConstantSize());
-            auto& refPs = mShaders[i].getPushConstants();
+            psRanges.reserve(mShaders[shaderId].getPushConstantSize());
+            auto& refPs = mShaders[shaderId].getPushConstants();
             for (auto& rps : refPs)
             {
                 VkPushConstantRange psRange =
@@ -521,7 +527,7 @@ namespace Lina{ namespace Graphics{
             VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
             pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
             pipelineLayoutInfo.setLayoutCount = 1;
-            pipelineLayoutInfo.pSetLayouts = &mSpecs.descriptorSetLayout[i];
+            pipelineLayoutInfo.pSetLayouts = &mSpecs.descriptorSetLayout[shaderId];
             pipelineLayoutInfo.pushConstantRangeCount = psRanges.size();
             pipelineLayoutInfo.pPushConstantRanges = &psRanges[0];
 
@@ -561,11 +567,14 @@ namespace Lina{ namespace Graphics{
                     nullptr,
                     &(mSpecs.graphicsPipelines[i])
                     );
-            vkDestroyShaderModule(mDeviceHandler->mSpecs.device,
-                    mSpecs.vertexShaderModules[i], nullptr);
-            vkDestroyShaderModule(
-                    mDeviceHandler->mSpecs.device,
-                    mSpecs.fragmentShaderModules[i], nullptr);
+        }
+        for (int i = 0; i < mShaders.size(); i++)
+        {
+        vkDestroyShaderModule(mDeviceHandler->mSpecs.device,
+                mSpecs.vertexShaderModules[i], nullptr);
+        vkDestroyShaderModule(
+                mDeviceHandler->mSpecs.device,
+                mSpecs.fragmentShaderModules[i], nullptr);
         }
     }
 
@@ -617,7 +626,8 @@ namespace Lina{ namespace Graphics{
     }
     void Renderer::bindShader(int idx)
     {
-        mCurrentShader = idx;
+        mCurrentDataMap = idx;
+        mCurrentShader = mShaderDataMap[idx].first;
         bindPipeline();
     }
 
@@ -636,13 +646,14 @@ namespace Lina{ namespace Graphics{
         vkCmdBindPipeline(
                 mSpecs.commandBuffer,
                 VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.graphicsPipelines[mCurrentShader]);
+                mSpecs.graphicsPipelines[mCurrentDataMap]);
     }
 
     void Renderer::render()
     {
-        auto vb = &mSpecs.vertexBuffer[mCurrentShader];
-        auto ib = &mSpecs.indexBuffer[mCurrentShader];
+        auto vertId = mShaderDataMap[mCurrentDataMap].second;
+        auto vb = &mSpecs.vertexBuffer[vertId];
+        auto ib = &mSpecs.indexBuffer[vertId];
         VkBuffer vertexBuffers[] = {vb->mSpecs.buffer};
         VkDeviceSize offsets[] = {0};
 
@@ -1052,7 +1063,7 @@ namespace Lina{ namespace Graphics{
         vkCmdBindDescriptorSets(
                 mSpecs.commandBuffer,
                 VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.pipelineLayouts[mCurrentShader],
+                mSpecs.pipelineLayouts[mCurrentDataMap],
                 0,
                 1,
                 &mSpecs.descriptorSets[mCurrentShader],

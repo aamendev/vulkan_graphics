@@ -13,7 +13,7 @@ namespace Lina{ namespace Graphics{
             .count = 2,
         };
 
-        Uniform color2 = 
+        /*Uniform color2 = 
         {
             .name = "col",
             .binding = 0,
@@ -21,7 +21,7 @@ namespace Lina{ namespace Graphics{
             .type = UniformType::Static,
             .size = sizeof(f32) * 4,
             .count = 1,
-        };
+        };*/
 
         PushConstant mvp = 
         {
@@ -60,7 +60,7 @@ namespace Lina{ namespace Graphics{
           std::vector<u32> ind2 = {2, 1, 0, 2, 3, 1};*/
 
         Core::TinyBasedObjLoader objLoader;
-        objLoader.load("../assets/env_nav.obj");
+        objLoader.load("../assets/env.obj");
         objLoader.setNavPath("../assets/env_nav.obj");
 
         auto verts2 = objLoader.getPositions();
@@ -69,17 +69,20 @@ namespace Lina{ namespace Graphics{
 
         mRenderer->createVertexBuffer(layout, verts2);
         mRenderer->createIndexBuffer(ind2);
-
+/*
         Shader defaultShader2;
 
         defaultShader2.init("../shaders/compiled/simple.vert.spv",
                 "../shaders/compiled/simple.frag.spv", "shader");
 
-        defaultShader2.addUniform(color2);
+        defaultShader2.addUniform(color);
 
         defaultShader2.addPushConstant(mvp);
 
         mRenderer->addShader(defaultShader2); 
+*/
+        mRenderer->addMap(0, 0);
+        mRenderer->addMap(0, 1);
         
         // Game World
         mGameWorld.setGraphs({graph});
