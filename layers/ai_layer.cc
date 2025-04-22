@@ -10,18 +10,9 @@ namespace Lina{ namespace Graphics{
             .stage = ShaderStage::Fragment,
             .type = UniformType::Dynamic,
             .size = sizeof(f32) * 4,
-            .count = 2,
+            .count = 5,
         };
 
-        /*Uniform color2 = 
-        {
-            .name = "col",
-            .binding = 0,
-            .stage = ShaderStage::Fragment,
-            .type = UniformType::Static,
-            .size = sizeof(f32) * 4,
-            .count = 1,
-        };*/
 
         PushConstant mvp = 
         {
@@ -50,14 +41,6 @@ namespace Lina{ namespace Graphics{
         defaultShader.addPushConstant(mvp);
         mRenderer->addShader(defaultShader); 
 
-        /*std::vector<float> verts2 = {
-          -0.5, 0, 0.5,
-          0.5, 0, 0.5,
-          -0.5, 0, -0.5,
-          0.5, 0, -0.5,
-          };
-
-          std::vector<u32> ind2 = {2, 1, 0, 2, 3, 1};*/
 
         Core::TinyBasedObjLoader objLoader;
         objLoader.load("../assets/env.obj");
@@ -69,18 +52,7 @@ namespace Lina{ namespace Graphics{
 
         mRenderer->createVertexBuffer(layout, verts2);
         mRenderer->createIndexBuffer(ind2);
-/*
-        Shader defaultShader2;
 
-        defaultShader2.init("../shaders/compiled/simple.vert.spv",
-                "../shaders/compiled/simple.frag.spv", "shader");
-
-        defaultShader2.addUniform(color);
-
-        defaultShader2.addPushConstant(mvp);
-
-        mRenderer->addShader(defaultShader2); 
-*/
         mRenderer->addMap(0, 0);
         mRenderer->addMap(0, 1);
         

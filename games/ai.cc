@@ -532,9 +532,9 @@ namespace Lina { namespace Games {
 
         mTransformComponents["p3"].setScale({5, 20, 10});
         mMaterialComponents["p3"].setColour(
-                {(float)0xaa / 0xff,
-                (float)0xff / 0xff,
-                (float)0xff / 0xff,
+                {(float)0xff / 0xff,
+                (float)0x44 / 0xff,
+                (float)0x22 / 0xff,
                 (float)0xff / 0xff}
                 );
 
@@ -547,9 +547,9 @@ namespace Lina { namespace Games {
         auto rad = 5.0f;
         mTransformComponents["token"].setScale({rad, rad, rad});
         mMaterialComponents["token"].setColour(
-                {(float)0xaa / 0xff,
-                (float)0xff / 0xff,
-                (float)0xff / 0xff,
+                {(float)0x78 / 0xff,
+                (float)0xa6 / 0xff,
+                (float)0x58 / 0xff,
                 (float)0xff / 0xff}
                 );
 
@@ -566,12 +566,6 @@ namespace Lina { namespace Games {
             + meshPos;
         mTransformComponents["token"].setPosition(finalPos);
         mCylinderColliderComponents["token"].setPosition(finalPos);
-
-        // mPlaneColliderComponents["plane"].setLength(1000);
-        // mPlaneColliderComponents["plane"].setWidth(1000);
-        //
-
-
 
         mMaterialComponents["plane"].setColour({(float)0x6B / 0xff, 
                 (float)0x57 / 0xff, (float)0x87 / 0xff, (float)0xff / 0xff});
@@ -784,7 +778,11 @@ namespace Lina { namespace Games {
                     mRenderer->updatePushConstant(&currentTransMat, 0);
                 }
                 auto col = value.getColour();
-                mRenderer->updateUniform(&col, 0, (key == "plane"));
+                mRenderer->updateUniform(&col, 0, 
+                        (key == "plane")
+                        + 2 * (key == "p2")
+                        + 3 * (key == "p3")
+                        + 4 * (key == "token"));
                 mRenderer->render();
             }
         }
