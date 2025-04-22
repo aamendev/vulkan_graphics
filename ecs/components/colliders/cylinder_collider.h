@@ -63,8 +63,6 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         void defaultOnCollisionExit(Collider* c);
         void defaultOnResolve(Collider* c);
         void defaultOnCollisionPersist(Collider* c);
-        b8 cylinderCylinderCollision(Cylinder* c);
-        b8 cylinderPlaneCollision(Collider* plane);
 
         private:
         static void staticDefaultOnCollisionEnter(Collider* c1, Collider* c2)

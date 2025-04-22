@@ -1,6 +1,7 @@
 #include "application.h"
 #include "events/events.h"
 #include "events/key.h"
+#include "layers/ai_layer.h"
 #include "layers/collision_sim.h"
 #include "layers/test_scene.h"
 #include "layers/warmup2_layer.h"
@@ -44,13 +45,15 @@ namespace Lina{
             new Graphics::CollisionSimLayer(mRenderer, mWindow);
 
         Graphics::WarmUp2Layer* warmup = new Graphics::WarmUp2Layer(mRenderer, mWindow);
+        Graphics::AiLayer* ai = new Graphics::AiLayer(mRenderer, mWindow);
         Graphics::Space* spaceLayer = new Graphics::Space(mRenderer, mWindow);
         //mLayers.push_back(mainSceneLayer);
         //mLayers.push_back(testLayer);
-    //  mLayers.push_back(warmup);
+//      mLayers.push_back(warmup);
 //        mLayers.push_back(validLayer);
         //mLayers.push_back(psLayer);
-        mLayers.push_back(simLayer);
+//        mLayers.push_back(simLayer);
+        mLayers.push_back(ai);
         //mBackgroundLayers.push_back(validLayer);
 //        mLayers.push_back(spaceLayer);
         mCurrentLayer = 0;

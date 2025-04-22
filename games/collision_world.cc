@@ -60,10 +60,11 @@ namespace Lina { namespace Games {
         {
             cSystem->addCollider(&value, ColliderType::Static);
         }
-        auto rad = 80.0f;
+        auto rad = 5.0f;
         mMeshColliderComponents["env"].setVertices(mEnvVerts[0]);
         mMeshColliderComponents["env"].setPosition({0, 0 , 0});
         mMeshColliderComponents["env"].setScale({rad, rad, rad});
+        mMeshColliderComponents["env"].setRotation({0, 0, PI});
 
         ECS::CharacterController* c = new ECS::CharacterController(&mTransformComponents["p1"]);  
         addCharacterController(c);
@@ -204,7 +205,6 @@ namespace Lina { namespace Games {
                 c1->setCallDefaults(false);
                 b8 isRamp = c2->getTag().find("ramp") != std::string::npos;
                 b8 isPS = c2->getTag().find("part") != std::string::npos;
-                    //std::cerr << "StartedCollision\n";
 
                 if ((c2->getTag() == "env") || isRamp)
                 {
@@ -309,16 +309,16 @@ namespace Lina { namespace Games {
         mMaterialComponents["p1"].setShader(0);
 
 
-        auto rad = 80.0f;
+        auto rad = 5.0f;
 
         mTransformComponents["env"].setPosition({0, 0, 0});
         mTransformComponents["env"].setScale({rad, rad, rad});
-        mTransformComponents["env"].setRotation({0, 0, 0});
+        mTransformComponents["env"].setRotation({0, 0, PI});
 
         mMaterialComponents["env"].setColour({(float)0xef / 0xff, 
                 (float)0xbf / 0xff, (float)0x04 / 0xff, (float)0xff / 0xff});
 
-        mMaterialComponents["env"].setShader(1);
+        mMaterialComponents["env"].setShader(3);
     }
 
     void CollisionWorld::move()
@@ -504,7 +504,7 @@ namespace Lina { namespace Games {
                 auto col = value.getColour();
 
                 b8 isPS = key.find("part") != std::string::npos;
-                mRenderer->updateUniform(&col, 0, key == "token" || isPS);
+                mRenderer->updateUniform(&col, 0, key == "token");
                 mRenderer->render();
             }
         }

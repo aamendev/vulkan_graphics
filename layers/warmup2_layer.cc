@@ -1,4 +1,5 @@
 #include "warmup2_layer.h"
+#include "../core/tiny_based_obj_loader.h"
 namespace Lina{ namespace Graphics{
     void WarmUp2Layer::init()
     {
@@ -9,14 +10,19 @@ namespace Lina{ namespace Graphics{
         auto verts = cyl.getFullVertices();
         auto ind = cyl.getIndices();
 
-        std::vector<float> verts2 = {
+        /*std::vector<float> verts2 = {
             -0.5, 0, 0.5,
             0.5, 0, 0.5,
             -0.5, 0, -0.5,
             0.5, 0, -0.5,
-        };
+        };*/
+        Core::TinyBasedObjLoader obj;
+        obj.load("../assets/env.obj");
 
-        std::vector<u32> ind2 = {2, 1, 0, 2, 3, 1};
+        auto verts2 = obj.getPositions();
+        auto ind2 = obj.getIndices();
+
+        //std::vector<u32> ind2 = {2, 1, 0, 2, 3, 1};
 
         Graphics::VertexBufferLayout layout; 
         layout.push(Graphics::Format::FLOAT3, 0);
@@ -75,6 +81,7 @@ namespace Lina{ namespace Graphics{
         mRenderer->addShader(defaultShader2); 
         
         // Game World
+        mGameWorld.setEnvVertes(verts2);
         mGameWorld.setRenderer(mRenderer);
         mGameWorld.preinit();
         mGameWorld.init();

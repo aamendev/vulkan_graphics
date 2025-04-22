@@ -24,7 +24,8 @@ namespace Lina { namespace Games {
         secondPlayer.addComponent(ComponentType::Material);
 
         plane.addComponent(ComponentType::Transform);
-        plane.addComponent(ComponentType::PlaneCollider);
+       // plane.addComponent(ComponentType::PlaneCollider);
+        plane.addComponent(ComponentType::MeshCollider);
         plane.addComponent(ComponentType::Material);
 
         losingFloor.addComponent(ComponentType::Transform);
@@ -46,6 +47,10 @@ namespace Lina { namespace Games {
         for (auto& [_, value] : mPlaneColliderComponents)
         {
             cSystem->addCollider(&value);
+        }
+        for (auto& [_, value] : mMeshColliderComponents)
+        {
+            cSystem->addCollider(&value, ColliderType::Static);
         }
 
         ECS::CharacterController* c = new ECS::CharacterController(&mTransformComponents["p1"]);  
@@ -136,9 +141,14 @@ namespace Lina { namespace Games {
         mTransformComponents["p2"].setPosition({0, -8, 0});
         mCylinderColliderComponents["p2"].setPosition({0, 0 ,0});
 
-        mPlaneColliderComponents["plane"].setLength(1000);
-        mPlaneColliderComponents["plane"].setWidth(1000);
-        mTransformComponents["plane"].setScale({1000, 1, 1000});
+       // mPlaneColliderComponents["plane"].setLength(1000);
+        //mPlaneColliderComponents["plane"].setWidth(1000);
+        mTransformComponents["plane"].setScale({50, 50, 50});
+        mTransformComponents["plane"].setRotation({0, 0, PI});
+        
+        mMeshColliderComponents["plane"].setVertices(mEnvVertices);
+        mMeshColliderComponents["plane"].setScale({50, 50, 50});
+        mMeshColliderComponents["plane"].setRotation({0,0, PI});
         mMaterialComponents["plane"].setColour({(float)0x6B / 0xff, 
                 (float)0x57 / 0xff, (float)0x87 / 0xff, (float)0xff / 0xff});
         mMaterialComponents["plane"].setShader(1);

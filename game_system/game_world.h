@@ -10,6 +10,7 @@
 #include "../ecs/systems/collision_system.h"
 #include "../ecs/systems/character_controller.h"
 #include "../ecs/components/colliders/mesh_collider.h"
+#include "../ecs/components/ai.h"
 #include "../renderer.h"
 #include "../shuttle.h"
 #include "../core/core.h"
@@ -68,6 +69,7 @@ namespace Lina { namespace GameSystem {
             std::unordered_map<std::string, ECS::Components::Colliders::Cylinder> mCylinderColliderComponents;
             std::unordered_map<std::string, ECS::Components::Colliders::Plane> mPlaneColliderComponents;
             std::unordered_map<std::string, ECS::Components::Colliders::Mesh> mMeshColliderComponents;
+            std::unordered_map<std::string, ECS::Components::AI> mAIComponents;
             Core::Timer mTimer;
 
     };

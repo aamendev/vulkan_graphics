@@ -8,5 +8,7 @@ namespace Lina { namespace Helpers { namespace Collisions {
     b8 boxCylinderCollision(Collider* box, Collider* cyl);
     b8 planeCylinderCollision(Collider* box, Collider* cyl);
     b8 boxPlaneCollision(Collider* box, Collider* pl);
+    b8 planePlaneCollision(Collider* p1, Collider* p2);
+    b8 cylinderCylinderCollision(Collider* c1, Collider* c2);
 }}}
 #endif

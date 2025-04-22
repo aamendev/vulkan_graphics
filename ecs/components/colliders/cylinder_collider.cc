@@ -10,11 +10,11 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         switch (g)
         {
             case ColliderGeometry::Cylinder:
-                return cylinderCylinderCollision(dynamic_cast<Cylinder*>(c));
+                return Helpers::Collisions::cylinderCylinderCollision(this, c);
                 break;
             case ColliderGeometry::Plane:
                 {
-                    return cylinderPlaneCollision(c);
+                    return Helpers::Collisions::planeCylinderCollision(c, this);
                 }
                 break;
             case ColliderGeometry::Mesh:
@@ -127,39 +127,6 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         //}
     }
 
-    b8 Cylinder::cylinderPlaneCollision(Collider* c)
-    {
-        Plane* d = dynamic_cast<Plane*>(c);
-        Math::Vector3D otherCenter = d->getCenter();
-
-
-        b8 cond = mCenter.x > (otherCenter.x - d->getLength() / 2) && 
-            mCenter.x < (otherCenter.x + d->getLength() / 2) &&
-            mCenter.z > (otherCenter.z - d->getWidth() / 2) && 
-            mCenter.z < (otherCenter.z + d->getWidth() / 2) &&
-            otherCenter.y > (mCenter.y - mHeight / 2) && 
-            otherCenter.y < (mCenter.y + mHeight / 2);
-
-        return cond;
-    }
-
-    b8 Cylinder::cylinderCylinderCollision(Cylinder* c)
-    {
-        Math::Vector3D otherCenter = c->getCenter();
-        Math::Vector3D proj1 = {mCenter.x, 0, mCenter.z};
-        Math::Vector3D proj2 = {otherCenter.x, 0, otherCenter.z};
-
-        b8 circleOverlap = (proj1 - proj2).squaredMagnitude() < 
-            (mRadius + c->getRadius()) * (mRadius + c->getRadius());
-
-        b8 sideOverlap = 
-            ((mCenter.y - mHeight / 2) < 
-             (c->getCenter().y + c->getHeight() / 2)) && 
-            ((mCenter.y + mHeight / 2) > 
-             (c->getCenter().y - c->getHeight() / 2));
-
-        return circleOverlap && sideOverlap;
-    }
 
     Math::Point3D Cylinder::furthestPoint(const Math::Vector3D &d)
     {

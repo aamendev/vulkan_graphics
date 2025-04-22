@@ -14,11 +14,13 @@ namespace Lina { namespace Games {
         public:
             virtual void update() override;
             virtual void reset() override;
+            void setEnvVertes(std::vector<f32> vs) {mEnvVertices = vs;}
 
         private:
             void setCallBacks();
         private:
             Graphics::Shuttle mShuttle;
+            std::vector<f32> mEnvVertices;
             f32 mVelocity = 1.2f;
             f32 mJump = 1.2f;
             f32 mGravity = 0.020f;

@@ -96,9 +96,9 @@ namespace Lina{ namespace Graphics{
         Core::TinyBasedObjLoader obj;
 
         obj.load("../assets/ramp.obj");
-        auto envpos = obj.getPositions();
-        auto envverts = obj.getFullVertices();
-        auto envind = obj.getIndices();
+        auto ramppos = obj.getPositions();
+        auto rampverts = obj.getFullVertices();
+        auto rampind = obj.getIndices();
         Graphics::VertexBufferLayout layout2;
         layout2.push(Graphics::Format::FLOAT3, 0);
         layout2.push(Graphics::Format::FLOAT2, 1);
@@ -106,8 +106,8 @@ namespace Lina{ namespace Graphics{
         layout2.push(Graphics::Format::FLOAT3, 3);
 
 
-        mRenderer->createVertexBuffer(layout2, envverts);
-        mRenderer->createIndexBuffer(envind);
+        mRenderer->createVertexBuffer(layout2, rampverts);
+        mRenderer->createIndexBuffer(rampind);
         Shader defaultShader2;
         defaultShader2.init("../shaders/compiled/terrain.vert.spv",
         "../shaders/compiled/terrain.frag.spv", "shader");
@@ -115,6 +115,7 @@ namespace Lina{ namespace Graphics{
         defaultShader2.addPushConstant(mvp);
         defaultShader2.addUniform(StaticColour);
         mRenderer->addShader(defaultShader2); 
+/*
         std::vector<f32> boundingVerts = 
         {
             -1.0, 1.0, -1.0,
@@ -161,7 +162,7 @@ namespace Lina{ namespace Graphics{
 
         boundingShader.addPushConstant(mvp);
 
-        mRenderer->addShader(boundingShader); 
+        mRenderer->addShader(boundingShader); */
        /* 
         obj.load("../assets/env.obj");
         auto envpos2 = obj.getPositions();
@@ -180,9 +181,28 @@ namespace Lina{ namespace Graphics{
         mRenderer->addShader(defaultShader3); 
        */ 
         // Game World
+        Core::TinyBasedObjLoader tloader2;
+        tloader2.load("../assets/env.obj");
+        auto envverts = tloader2.getPositions();
+        auto envind = tloader2.getIndices();
+
+        mRenderer->createVertexBuffer(layout, envverts);
+        mRenderer->createIndexBuffer(envind);
+
+        Shader envShader;
+
+        envShader.init("../shaders/compiled/simple.vert.spv",
+                "../shaders/compiled/simple.frag.spv", "shader");
+
+
+        envShader.addUniform(DynamicColour);
+
+        envShader.addPushConstant(mvp);
+
+        mRenderer->addShader(envShader);
         
 //        mGameWorld.setEnvVerts({icoverts, envpos, envpos2});
-        mGameWorld.setEnvVerts({icoverts, envpos});
+        mGameWorld.setEnvVerts({envverts, ramppos});
         mGameWorld.setRenderer(mRenderer);
         mGameWorld.preinit();
         mGameWorld.init();

@@ -20,7 +20,6 @@ namespace Lina { namespace ECS {
                 {
                     mDynamicColliders.push_back(c);
                     mDynamicRegistry[c->getTag()] = mDynamicColliders.size() - 1;
-                 //   mDynamicGrid[c->getTag()] = {};
                 }
         }
     }
@@ -46,7 +45,7 @@ namespace Lina { namespace ECS {
     void CollisionSystem::naiveUpdate()
     {
         // Dynamic Collider Checks
-        for (int i = 0; i < mDynamicColliders.size(); i++)
+        for (int i = 0; !mDynamicColliders.empty() && i < mDynamicColliders.size() - 1; i++)
         {
             for (int j = i + 1; j < mDynamicColliders.size(); j++)
             {
@@ -247,10 +246,6 @@ namespace Lina { namespace ECS {
                     if (mDynamicColliders[i]->checkCollision(mDynamicColliders[j]) &&
                             mDynamicColliders[i]->isEnabled() && mDynamicColliders[j]->isEnabled())
                     {
-                        if (tagi == "p1" || tagj == "p1")
-                        {
-                        std::cerr << tagi << ", " << tagj << "Collided!!\n";
-                        }
                         switch(mDynamicColliders[i]->getStatus(tagj))
                         {
                             case Components::CollisionStatus::None:
@@ -337,7 +332,7 @@ namespace Lina { namespace ECS {
         // Dynamic with Static: Bvh
         static int k =0;
         //for (int i = 0; i < mDynamicColliders.size(); i++)
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < mDynamicColliders.size(); i++)
         {
             auto tagi = mDynamicColliders[i]->getTag();
             std::set<std::string> tagsj;
@@ -625,17 +620,6 @@ namespace Lina { namespace ECS {
                 mGrid[fxIdx + syIdx * xCount +szIdx * xCount * yCount].insert(tag);
 
                 mGrid[sxIdx + syIdx * xCount +szIdx * xCount * yCount].insert(tag);
-                
-                /*
-                mDynamicGrid[tag].insert(fxIdx + fyIdx * xCount +fzIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(sxIdx + fyIdx * xCount +fzIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(fxIdx + syIdx * xCount +fzIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(sxIdx + syIdx * xCount +fzIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(fxIdx + fyIdx * xCount +szIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(sxIdx + fyIdx * xCount +szIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(fxIdx + syIdx * xCount +szIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(sxIdx + syIdx * xCount +szIdx * xCount * yCount);
-                */
         }
     }
     void CollisionSystem::constructGrid(Math::Point3D min, 
@@ -675,16 +659,6 @@ namespace Lina { namespace ECS {
                 mGrid[fxIdx + syIdx * xCount +szIdx * xCount * yCount].insert(tag);
 
                 mGrid[sxIdx + syIdx * xCount +szIdx * xCount * yCount].insert(tag);
-/*
-                mDynamicGrid[tag].insert(fxIdx + fyIdx * xCount +fzIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(sxIdx + fyIdx * xCount +fzIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(fxIdx + syIdx * xCount +fzIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(sxIdx + syIdx * xCount +fzIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(fxIdx + fyIdx * xCount +szIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(sxIdx + fyIdx * xCount +szIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(fxIdx + syIdx * xCount +szIdx * xCount * yCount);
-                mDynamicGrid[tag].insert(sxIdx + syIdx * xCount +szIdx * xCount * yCount);
-                */
         }
     }
     void CollisionSystem::enable()

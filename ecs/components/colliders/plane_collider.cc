@@ -1,11 +1,39 @@
 #include "collider.h"
+#include "primitive_collisions.h"
 #include "plane_collider.h"
 namespace Lina { namespace ECS { namespace Components { namespace Colliders{
+
+    b8 Plane::checkCollision(Collider* c) 
+    {
+        ColliderGeometry g = c->getColliderGeometry();
+        switch (g)
+        {
+            case ColliderGeometry::Cylinder:
+                return Helpers::Collisions::planeCylinderCollision(this, c);
+                break;
+            case ColliderGeometry::Plane:
+                {
+                    return Helpers::Collisions::planePlaneCollision(this, c);
+                }
+                break;
+            case ColliderGeometry::Mesh:
+                return c->checkCollision(this);
+                break;
+            case ColliderGeometry::Box:
+                return Helpers::Collisions::boxPlaneCollision(c, this);
+                break;
+            default: 
+                {
+                    return false;
+                }
+                break;
+        }
+    }
     void Plane::onCollisionEnter(Collider *c){
         mCollisionEnterCallback(this, c);
         if (mCallDefaults)
         {
-           // defaultOnCollisionEnter(c);
+            // defaultOnCollisionEnter(c);
         }
         onResolve(c);
     }
@@ -19,14 +47,14 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         mCollisionExitCallback(this, c);
         if (mCallDefaults)
         {
-           // defaultOnCollisionExit(c);
+            // defaultOnCollisionExit(c);
         }
     }
     void Plane::onResolve(Collider *c) 
     {
         mResolveCallback(this, c);
         if (mCallDefaults){}
-           // defaultOnResolve(c);
+        // defaultOnResolve(c);
     }
     Math::Point3D Plane::furthestPoint(const Math::Vector3D& d)
     {
@@ -46,8 +74,8 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
         return ret;
     }
 
-     void Plane::computeBoundingBox()
-     {
+    void Plane::computeBoundingBox()
+    {
         mScale = {mLength, 0, mWidth};
         Math::Transform4D m = 
             Math::Util::scaleMatrix(mScale)*
@@ -58,7 +86,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
 
         mBoundingBoxExtents.second = 
             ((Math::Point3D(0.5f, 0.0f, 0.5f) * m) + mCenter).toPoint();
-     }
+    }
 
     void Plane::computeBVH()
     {

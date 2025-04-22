@@ -35,7 +35,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders {
 
         virtual Math::Point3D furthestPoint(const Math::Vector3D& d) override;
 
-        virtual b8 checkCollision(Collider* c) override {return c->checkCollision(this);};
+        virtual b8 checkCollision(Collider* c) override;
         virtual void onCollisionEnter(Collider* c) override;
         virtual void onCollisionExit(Collider* c) override;
         virtual void onCollisionPersist(Collider* c) override;

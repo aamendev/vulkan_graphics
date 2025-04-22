@@ -33,6 +33,12 @@ namespace Lina { namespace GameSystem {
                             mPlaneColliderComponents[tag] = pl;
                         }
                         break;
+                    case ComponentType::AI:
+                        {
+                            ECS::Components::AI ai;
+                            mAIComponents[tag] = ai;
+                        }
+                        break;
                     case ComponentType::Health:
                         {
                             ECS::Components::Health health;

@@ -74,6 +74,7 @@ enum class ComponentType
     None,
     Transform,
     Material,
+    AI,
 
     SphereCollider,
     CylinderCollider,
