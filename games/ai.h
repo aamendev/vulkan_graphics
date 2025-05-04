@@ -9,6 +9,7 @@ namespace Lina { namespace Games {
             inline void setGraphs(std::vector<Helpers::AI::Graph> gs)
             {mAiGraphs = gs;}
             inline void setEnvVerts(std::vector<f32> evns) {mEnvVerts = evns;}
+            inline void setEnvInds(std::vector<u32> inds) {mEnvInds = inds;}
         public:
             virtual void preinit() override;
             virtual void init() override;
@@ -27,6 +28,7 @@ namespace Lina { namespace Games {
             Graphics::Shuttle mShuttle;
             std::vector<Helpers::AI::Graph> mAiGraphs;
             std::vector<f32> mEnvVerts;
+            std::vector<u32> mEnvInds;
             f32 mVelocity = 1.2f;
             f32 mJump = 1.2f;
             f32 mGravity = 0.040f;
@@ -43,6 +45,7 @@ namespace Lina { namespace Games {
             b8 isJump = false;
             b8 onSlope = false;
             u32 currentCollectible = 0;
+            f32 ticks = 0.0f;
 
     };
 }}

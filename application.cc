@@ -8,6 +8,7 @@
 #include "layers/validation_layer.h"
 #include "layers/ps_layer.h"
 #include "layers/space/space.h"
+#include "layers/final_layer.h"
 #include "types.h"
 #include <string>
 
@@ -23,7 +24,7 @@ namespace Lina{
             .name="Lina Main Screen",
             .width = 700,
             .height = 600,
-            .resizable = true,
+            .resizable = false,
             .mEvents = {}
         };
         mWindow = new Graphics::Window(s);
@@ -46,6 +47,7 @@ namespace Lina{
 
         Graphics::WarmUp2Layer* warmup = new Graphics::WarmUp2Layer(mRenderer, mWindow);
         Graphics::AiLayer* ai = new Graphics::AiLayer(mRenderer, mWindow);
+        Graphics::FinalLayer* final = new Graphics::FinalLayer(mRenderer, mWindow);
         Graphics::Space* spaceLayer = new Graphics::Space(mRenderer, mWindow);
         //mLayers.push_back(mainSceneLayer);
         //mLayers.push_back(testLayer);
@@ -53,7 +55,8 @@ namespace Lina{
 //        mLayers.push_back(validLayer);
         //mLayers.push_back(psLayer);
 //        mLayers.push_back(simLayer);
-        mLayers.push_back(ai);
+        //mLayers.push_back(ai);
+        mLayers.push_back(final);
         //mBackgroundLayers.push_back(validLayer);
 //        mLayers.push_back(spaceLayer);
         mCurrentLayer = 0;

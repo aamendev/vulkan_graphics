@@ -2,4 +2,5 @@
 #define CORE_H
 #include "timer.h"
 #include "tiny_based_obj_loader.h"
+#include "colors.h"
 #endif

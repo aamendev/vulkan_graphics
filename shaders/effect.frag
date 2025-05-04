@@ -36,6 +36,7 @@ layout(binding = 0 ) uniform TIME
 
 layout(push_constant) uniform pushConstant
 {
+  //layout(offset = 64)  vec2 dim;
     vec2 dim;
     float time;
 } uniforms;
@@ -417,12 +418,13 @@ void main()
     uv.x *= exp(-uniforms.time * 5);
     float c = fractalSum(uv.x * fac, uv.y * fac);
     vec3[4] cols = {PALE_BLUE, MEDIUM_BLUE, DARK_BLUE, DARKER_BLUE};
-    //vec3 col = palette(c * 2, 4, cols);
+    //vec3 col2 = palette(c * 2, 4, cols);
     //vec3 col = vec3(c , c , c );
     vec3 col2 = vec3(c / 2, c / 2, c / 2);
     
-    //vec4 col2 = mandelbrot();
+    //vec4 col2 = julia();
     //col2.a = 0.75;
    FragColor = vec4(col2, 0.5);
+   //FragColor = col2;
 }
 

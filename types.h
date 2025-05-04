@@ -54,6 +54,7 @@ enum class Primitive
 enum class MeshMode
 {
     Pos3,
+    Pos3Norm3,
     Pos3Tex2,
     Pos3Tex2Norm3,
     Pos3Col3,
@@ -126,7 +127,8 @@ enum class ColliderType
 enum class CollisionOptimization
 {
     Naive,
-    Optimized
+    Optimized,
+    StaticOptimized,
 };
 
 enum class MeshGeometry

@@ -58,6 +58,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
                 return mCollisionInfo.collided;
             }
             inline void setVertices(std::vector<f32> verts) {mVertices = verts;}
+            inline void setIndices(std::vector<u32> verts) {mIndices = verts;}
             inline void setCollisionInfo(const Helpers::Collisions::Info& inf)
             {mCollisionInfo = inf;}
         private:
@@ -102,6 +103,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
             const Helpers::Collisions::Info& getInfo() const {return mCollisionInfo;}
         private:
             std::vector<f32> mVertices;
+            std::vector<u32> mIndices;
             Helpers::Collisions::Simplex mSimplex;
             Helpers::Collisions::Info mCollisionInfo;
     };

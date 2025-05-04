@@ -66,6 +66,7 @@ namespace Lina { namespace Games {
         mMeshColliderComponents["plane"].setScale({rad, rad, rad});
         mMeshColliderComponents["plane"].setRotation({0, 0, PI});
         mMeshColliderComponents["plane"].setVertices(mEnvVerts);
+        mMeshColliderComponents["plane"].setIndices(mEnvInds);
         mTransformComponents["plane"].setScale({rad, rad, rad});
         mTransformComponents["plane"].setRotation({0, 0, PI});
 
@@ -413,9 +414,15 @@ namespace Lina { namespace Games {
                             auto dir =
                                 (mFollowTrans->getPosition() - mAiTrans->getPosition())
                                 .normalise();  
-                            auto mag = (mFollowTrans->getPosition() 
-                                    - mAiTrans->getPosition()).magnitude();
+                            auto myPos = mFollowTrans->getPosition();
+                            auto pos = mAiTrans->getPosition();
+                            auto mag = (myPos - pos).magnitude();
                             mAiTrans->translate(dir * fmin(mag, mMaxSpeed));
+                            /*if (fabs(myPos.x - pos.x) < 0.01f && 
+                                    fabs(myPos.z - pos.z) < 0.01f)
+                                {
+                                    mCurrent++;
+                                }*/
                             if (*mNext != mEnd)
                             {
                             finished = true;
@@ -502,14 +509,14 @@ namespace Lina { namespace Games {
 
     void AiGameWorld::init()
     {
-        mCylinderColliderComponents["p1"].setPosition({0, -15, 0});
+        mCylinderColliderComponents["p1"].setPosition({0, -50, 0});
         mCylinderColliderComponents["p1"].setHeight(20);
         mCylinderColliderComponents["p1"].setRadius(10);
         mCylinderColliderComponents["p1"].setCallDefaults(false);
         mCharacterControllers[0]->setVelocity({0, 0, 0});
         mCharacterControllers[0]->setRotationVelocity({0, 0, 0});
 
-        mTransformComponents["p1"].setPosition({0, -15, 0});
+        mTransformComponents["p1"].setPosition({0, -50, 0});
         mTransformComponents["p1"].setScale({5, 20, 10});
 
         mMaterialComponents["p1"].setColour({(float)0x73 / 0xff, 
@@ -786,6 +793,22 @@ namespace Lina { namespace Games {
                 mRenderer->render();
             }
         }
+        /*
+        mRenderer->bindShader(2);
+        struct Time 
+        {
+            f32 w;
+            f32 h;
+            f32 t;
+        };
+        Time currTime;
+        currTime.h = mRenderer->getHeight();
+        currTime.w = mRenderer->getWidth();
+        currTime.t = ticks;
+        ticks += 0.001f;
+        mRenderer->updatePushConstant(&currTime, 0);
+        mRenderer->render();
+        */
 
         mRenderer->endDraw();
         auto followPos = mTransformComponents["p1"].getPosition();

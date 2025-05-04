@@ -1,5 +1,7 @@
 #include "icosphere.h"
 #include <cmath>
+#include <map>
+#include <set>
 namespace Lina{ namespace Graphics { namespace Shapes{
     Icosphere::Icosphere(float radius): mRadius(radius)
     {
@@ -75,7 +77,7 @@ namespace Lina{ namespace Graphics { namespace Shapes{
         8, 11, 9,
         9, 11, 10
         };
-        fixSeam();
+        //fixSeam();
         computeFullVertices();
     }
     void Icosphere::fixSeam()
@@ -220,19 +222,20 @@ namespace Lina{ namespace Graphics { namespace Shapes{
     {
         mFullVertices.clear();
         mTextureCoordinates.clear();
+        mNormals.clear();
         for (int l = 0; l < layers; l++)
         {
             std::vector<Math::Point3D> tmpVerts;
             std::vector<unsigned int> tmpIndices;
             std::vector<Math::Point3D> triangleVerts;
             std::vector<Math::Point3D> midPoints;
-            int index;
             tmpVerts = mVertices;
             tmpIndices = mIndices;
             mVertices.clear();
             mIndices.clear();
-            index = 0;
             mVertices.reserve(tmpIndices.size() * 4);
+            std::map<Math::Point3D, u32> pointIndex;
+            int index = 0;
             for (int currentIndex = 0; currentIndex < tmpIndices.size(); currentIndex +=3)
             {
                 triangleVerts.reserve(3);
@@ -244,38 +247,100 @@ namespace Lina{ namespace Graphics { namespace Shapes{
                 computeMidPoint(triangleVerts[1], triangleVerts[2], midPoints[1]);
                 computeMidPoint(triangleVerts[0], triangleVerts[2], midPoints[2]);
 
-                mVertices.emplace_back(triangleVerts[0]);
-                mVertices.emplace_back(midPoints[0]);
-                mVertices.emplace_back(midPoints[2]);
-                mVertices.emplace_back(midPoints[0]);
-                mVertices.emplace_back(triangleVerts[1]);
-                mVertices.emplace_back(midPoints[1]);
-                mVertices.emplace_back(midPoints[0]);
-                mVertices.emplace_back(midPoints[1]);
-                mVertices.emplace_back(midPoints[2]);
-                mVertices.emplace_back(midPoints[2]);
-                mVertices.emplace_back(midPoints[1]);
-                mVertices.emplace_back(triangleVerts[2]);
-                for (int i = 0; i < 12; i++)
-                    mIndices.emplace_back(index + i);
-                index += 12;
+                if (pointIndex.count(triangleVerts[0]) == 0)
+                {
+                    pointIndex[triangleVerts[0]] = index++;
+                    mVertices.emplace_back(triangleVerts[0]);
+                }
+
+                if (pointIndex.count(midPoints[0]) == 0)
+                {
+                    pointIndex[midPoints[0]] = index++;
+                    mVertices.emplace_back(midPoints[0]);
+                }
+
+                if (pointIndex.count(midPoints[2]) == 0)
+                {
+                    pointIndex[midPoints[2]] = index++;
+                    mVertices.emplace_back(midPoints[2]);
+                }
+
+
+                mIndices.push_back(pointIndex[triangleVerts[0]]);
+                mIndices.push_back(pointIndex[midPoints[0]]);
+                mIndices.push_back(pointIndex[midPoints[2]]);
+
+
+                if (pointIndex.count(triangleVerts[1]) == 0)
+                {
+                    pointIndex[triangleVerts[1]] = index++;
+                    mVertices.emplace_back(triangleVerts[1]);
+                }
+
+                if (pointIndex.count(midPoints[1]) == 0)
+                {
+                    pointIndex[midPoints[1]] = index++;
+                    mVertices.emplace_back(midPoints[1]);
+                }
+
+                mIndices.push_back(pointIndex[midPoints[0]]);
+                mIndices.push_back(pointIndex[triangleVerts[1]]);
+                mIndices.push_back(pointIndex[midPoints[1]]);
+
+                if (pointIndex.count(triangleVerts[2]) == 0)
+                {
+                    pointIndex[triangleVerts[2]] = index++;
+                    mVertices.emplace_back(triangleVerts[2]);
+                }
+
+                mIndices.push_back(pointIndex[midPoints[2]]);
+                mIndices.push_back(pointIndex[midPoints[1]]);
+                mIndices.push_back(pointIndex[triangleVerts[2]]);
+
+                mIndices.push_back(pointIndex[midPoints[0]]);
+                mIndices.push_back(pointIndex[midPoints[1]]);
+                mIndices.push_back(pointIndex[midPoints[2]]);
             }
         }
-        mTextureCoordinates.resize(mVertices.size());
+        /*mTextureCoordinates.resize(mVertices.size());
         for (int i = 0; i < mVertices.size(); i++)
         { 
             mTextureCoordinates[i].u = atan2f(mVertices[i].normalise().z, mVertices[i].normalise().x) / (2 * PI);
             mTextureCoordinates[i].v = acosf(mVertices[i].normalise().y) / PI;
+        }*/
+        
+        mNormals.resize(mVertices.size());  
+        
+        for (int i = 0; i < mIndices.size(); i+=3)
+        {
+            auto currVert = mIndices[i];
+            auto currVert2 = mIndices[i+1];
+            auto currVert3 = mIndices[i+2];
+            Math::Point3D a;
+            Math::Point3D b;
+            Math::Point3D c;
+            a = mVertices[currVert];
+            b = mVertices[currVert2];
+            c = mVertices[currVert3];
+            auto newNormal = (a-c).cross(a-b).normalise();
+
+            mNormals[currVert] += newNormal;
+            mNormals[currVert2] += newNormal;
+            mNormals[currVert3] += newNormal;
         }
-        fixSeam();
-        fixPoles();
+        for (int i = 0; i < mNormals.size(); i++)
+        {
+            mNormals[i] = mNormals[i].normalise();
+        }
+        //fixSeam();
+        //fixPoles();
         computeFullVertices();
     }
     void Icosphere::computeMidPoint(Math::Point3D& v1,
                              Math::Point3D& v2, Math::Point3D& newV){
-        newV.x = (v1.x + v2.x) / 2;
-        newV.y = (v1.y + v2.y) / 2;
-        newV.z = (v1.z + v2.z) / 2;
+        newV.x = (v1.x + v2.x) / 2.0;
+        newV.y = (v1.y + v2.y) / 2.0;
+        newV.z = (v1.z + v2.z) / 2.0;
         Math::Vector3D vectorNewV = newV.normalise() * mRadius;
         newV = *(Math::Point3D*)(&vectorNewV.x);
     }

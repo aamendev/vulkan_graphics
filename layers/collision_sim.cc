@@ -80,19 +80,6 @@ namespace Lina{ namespace Graphics{
         mRenderer->addShader(psShader);
 
 
-/*
-        psShader.init("../shaders/compiled/simple.vert.spv",
-                "../shaders/compiled/simple.frag.spv", "shader");
-
-
-        psShader.addUniform(color);
-
-        psShader.addPushConstant(mvp);
-
-        mRenderer->addShader(psShader);
-        */
-
-
         Core::TinyBasedObjLoader obj;
 
         obj.load("../assets/ramp.obj");
@@ -115,71 +102,7 @@ namespace Lina{ namespace Graphics{
         defaultShader2.addPushConstant(mvp);
         defaultShader2.addUniform(StaticColour);
         mRenderer->addShader(defaultShader2); 
-/*
-        std::vector<f32> boundingVerts = 
-        {
-            -1.0, 1.0, -1.0,
-            1.0, 1.0, -1.0,
-            -1.0, -1.0, -1.0,
-            1.0, -1.0, -1.0,
 
-            -1.0, 1.0, 1.0,
-            1.0, 1.0, 1.0,
-            -1.0, -1.0, 1.0,
-            1.0, -1.0, 1.0,
-        };
-        std::vector<u32> boundingInds = 
-        {
-            0, 1, 2,
-            1, 3, 2,
-
-            4, 5, 6,
-            5, 7, 6,
-
-            2, 3, 6, 
-            3, 7, 6,
-
-            0, 1, 4,
-            1, 5, 4,
-
-            1, 5, 3, 
-            5, 7, 3,
-
-            4, 0, 6,
-            0, 2, 6,
-        };
-
-        mRenderer->createVertexBuffer(layout, boundingVerts);
-        mRenderer->createIndexBuffer(boundingInds);
-
-        Shader boundingShader;
-
-        boundingShader.init("../shaders/compiled/simple.vert.spv",
-                "../shaders/compiled/simple.frag.spv", "shader");
-
-
-        boundingShader.addUniform(StaticColour);
-
-        boundingShader.addPushConstant(mvp);
-
-        mRenderer->addShader(boundingShader); */
-       /* 
-        obj.load("../assets/env.obj");
-        auto envpos2 = obj.getPositions();
-        auto envverts2 = obj.getFullVertices();
-        auto envind2 = obj.getIndices();
-
-
-        mRenderer->createVertexBuffer(layout2, envverts2);
-        mRenderer->createIndexBuffer(envind2);
-        Shader defaultShader3;
-        defaultShader3.init("../shaders/compiled/terrain.vert.spv",
-        "../shaders/compiled/terrain.frag.spv", "shader");
-
-        defaultShader3.addPushConstant(mvp);
-        defaultShader3.addUniform(color);
-        mRenderer->addShader(defaultShader3); 
-       */ 
         // Game World
         Core::TinyBasedObjLoader tloader2;
         tloader2.load("../assets/env.obj");

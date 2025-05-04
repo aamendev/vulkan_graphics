@@ -25,6 +25,7 @@ namespace Lina{ namespace Graphics{
             {"VK_LAYER_KHRONOS_validation"};
 
             b8 enableValidationLayers = true;
+//            b8 enableValidationLayers = false;
 
             VkInstance instance;
 
@@ -42,6 +43,8 @@ namespace Lina{ namespace Graphics{
             std::vector<Texture> textures;
             std::vector<VkImageView> textureImageViews;
             VkSampler textureSampler;
+            Texture mainTexture;
+            VkImageView mainTextureImageView;
 
             std::vector<UniformBuffer> uniformBuffers;
 
@@ -66,9 +69,14 @@ namespace Lina{ namespace Graphics{
         inline void addMap(u32 shaderId, u32 vertexId) 
         {mShaderDataMap.emplace_back(shaderId, vertexId);}
 
+        void beginPasses();
+        void nextPass();
         void beginDraw();
         void endDraw();
-        void bindShader(int idx); 
+        void endPass();
+        void present();
+        void bindShader(int idx, int subpass = 0); 
+        void submitUniformUpdates();
         void addShader(std::string&&, std::string&&);
         void addShader(const Shader& shader);
 
@@ -81,6 +89,7 @@ namespace Lina{ namespace Graphics{
         void createGraphicsPipelines();
 
         void createTexture(std::string& path, b8 flip);
+        void loadMainTexture();
         void createTexture(std::vector<std::pair<std::string, b8>> paths);
 
         void updateUniform(void* data, u32 uniformId, u32 idx = 0);
@@ -99,7 +108,7 @@ namespace Lina{ namespace Graphics{
         f32 getHeight() const {return mSpecs.sWindow->getHeight();}
 
         private:
-        void bindPipeline();
+        void bindPipeline(int subpass = 0);
         void createUniformBuffers();
         void createDepthResources();
         void recordCommandBuffer();
@@ -112,12 +121,19 @@ namespace Lina{ namespace Graphics{
         VkCommandBuffer beginSingleTimeCommands();
         void endSingleTimeCommands(VkCommandBuffer buffer);
 
-        void copyBufferToBuffer(VkBuffer src, VkBuffer dst, VkDeviceSize size);
+        void copyBufferToBuffer(VkBuffer& src, VkBuffer& dst, VkDeviceSize size);
         void copyBufferToImage(VkBuffer src, Image& image);
+        void copyImageToImage(VkImage src, VkImage& dst);
 
         void transitionImageLayout(VkImage&, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout);
+        void transitionImageLayout(VkImage&, 
+                VkImageLayout oldLayout, 
+                VkImageLayout newLayout,
+                VkPipelineStageFlags, VkPipelineStageFlags,
+                VkAccessFlagBits srcAccessMask, VkAccessFlagBits dstAccessMask);
 
         void createImageView(VkImage&, VkFormat, VkImageAspectFlags, int);
+        void createMainImageView(VkImage&, VkFormat, VkImageAspectFlags);
         void createTextureSampler();
         void createCommandBuffer();
         void createCommandPool();

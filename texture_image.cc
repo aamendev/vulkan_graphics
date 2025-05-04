@@ -8,7 +8,8 @@ namespace Lina{ namespace Graphics{
         mSpecs.height = height;
         mSpecs.format = VK_FORMAT_R8G8B8A8_SRGB;
         mSpecs.tiling = VK_IMAGE_TILING_OPTIMAL;
-        mSpecs.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+        mSpecs.usage = 
+            VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
         mSpecs.properties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
         mSpecs.image = &image;
         mSpecs.imageMemory = &memory;

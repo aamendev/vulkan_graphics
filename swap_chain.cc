@@ -1,4 +1,5 @@
 #include "swap_chain.h"
+#include <vulkan/vulkan_core.h>
 namespace Lina{ namespace Graphics{
     b8 SwapChain::init(SwapChainSupportDetails* details, VkSurfaceKHR* surface,
             Window* window, DeviceHandler* d)
@@ -11,6 +12,7 @@ namespace Lina{ namespace Graphics{
             createSwapChain()
             && createImageViews()
             && createRenderPass()
+            && createColorResources()
             && createDepthResources()
             && createFramebuffers()
             && createSyncObjects();
@@ -44,7 +46,8 @@ namespace Lina{ namespace Graphics{
                 .imageColorSpace = mSpecs.format.colorSpace,
                 .imageExtent = mSpecs.extent,
                 .imageArrayLayers = 1,
-                .imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT,
+                .imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | 
+                    VK_IMAGE_USAGE_TRANSFER_SRC_BIT,
 
                 .imageSharingMode = VK_SHARING_MODE_EXCLUSIVE,
                 .queueFamilyIndexCount = 0,
@@ -107,11 +110,46 @@ namespace Lina{ namespace Graphics{
         {
             .srcSubpass = VK_SUBPASS_EXTERNAL,
                 .dstSubpass = 0,
-                .srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT,
-                .dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT,
+                .srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | 
+                    VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT,
+                .dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | 
+                    VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT,
                 .srcAccessMask = 0,
-                .dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
+                .dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT 
+                    | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
         };
+
+        VkSubpassDependency subpassDeps
+        {
+            .srcSubpass = 0,
+                .dstSubpass = 1,
+                .srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | 
+                    VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT,
+                .dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | 
+                    VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT,
+                .srcAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT | 
+                    VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
+                .dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT 
+                    | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
+        };
+        std::array<VkSubpassDependency, 2> deps = {dependency, subpassDeps};
+        VkAttachmentDescription finalColAttachment
+        {
+            .format = mSpecs.format.format,
+                .samples = VK_SAMPLE_COUNT_1_BIT,
+                .loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR,
+                .storeOp = VK_ATTACHMENT_STORE_OP_STORE,
+                .stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE,
+                .stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE,
+                .initialLayout = VK_IMAGE_LAYOUT_UNDEFINED,
+                .finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR
+        };
+        VkAttachmentReference finalColRef
+        {
+            .attachment = 0,
+                .layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+        };
+
         VkAttachmentDescription colorAttachment
         {
             .format = mSpecs.format.format,
@@ -125,10 +163,9 @@ namespace Lina{ namespace Graphics{
         };
         VkAttachmentReference colorAttachementReference
         {
-            .attachment = 0,
+            .attachment = 1,
                 .layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
         };
-
         VkAttachmentDescription depthAttachment
         {
             .format = VK_FORMAT_D32_SFLOAT,
@@ -142,9 +179,10 @@ namespace Lina{ namespace Graphics{
         };
         VkAttachmentReference depthAttachmentReference
         {
-            .attachment = 1,
+            .attachment = 2,
             .layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL
         };
+
 
         VkSubpassDescription subpass
         {
@@ -153,17 +191,39 @@ namespace Lina{ namespace Graphics{
             .pColorAttachments = &colorAttachementReference,
             .pDepthStencilAttachment = &depthAttachmentReference
         };
+        std::array<VkAttachmentReference, 2> inputRefs;
+        inputRefs[0] = 
+        {
+            .attachment = 1,
+            .layout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
+        };
+        inputRefs[1] = 
+        {
+            .attachment = 2,
+            .layout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
+        };
 
-        std::array<VkAttachmentDescription, 2> attachments = {colorAttachment, depthAttachment};
+        VkSubpassDescription subpass2
+        {
+            .pipelineBindPoint=VK_PIPELINE_BIND_POINT_GRAPHICS,
+                .inputAttachmentCount = 2,
+                .pInputAttachments = inputRefs.data(),
+            .colorAttachmentCount = 1,
+            .pColorAttachments = &finalColRef,
+        };
+
+        std::array<VkSubpassDescription, 2> sps = {subpass, subpass2};
+
+        std::array<VkAttachmentDescription, 3> attachments = {finalColAttachment, colorAttachment, depthAttachment};
         VkRenderPassCreateInfo renderPassInfo
         {
             .sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO,
                 .attachmentCount = attachments.size(),
                 .pAttachments = attachments.data(),
-                .subpassCount = 1,
-                .pSubpasses = &subpass,
-                .dependencyCount = 1,
-                .pDependencies = &dependency,
+                .subpassCount = 2,
+                .pSubpasses = &sps[0],
+                .dependencyCount = deps.size(),
+                .pDependencies = deps.data(),
         };
         return vkCreateRenderPass(
                 mDeviceHandler->mSpecs.device,
@@ -175,10 +235,11 @@ namespace Lina{ namespace Graphics{
     {
         mSpecs.swapChainFrameBuffers.resize(mSpecs.swapImageViews.size());
         for (size_t i = 0; i < mSpecs.swapImageViews.size(); i++) {
-            std::array<VkImageView,2> att = 
+            std::array<VkImageView,3> att = 
             {
                 mSpecs.swapImageViews[i],
-                mSpecs.depthImageView
+                mSpecs.colImageView,
+                mSpecs.depthImageView,
             };
 
             VkFramebufferCreateInfo framebufferInfo =
@@ -203,6 +264,35 @@ namespace Lina{ namespace Graphics{
         return true;
     }
 
+    b8 SwapChain::createColorResources()
+    {
+        VkImage* colIm = new VkImage;
+        mSpecs.colImage.setFormat(mSpecs.format.format);
+        mSpecs.colImage.init
+            (
+             mDeviceHandler,
+               colIm,
+             &mSpecs.colMemory,
+             mSpecs.extent.width,
+             mSpecs.extent.height
+            );
+
+        VkImageViewCreateInfo viewInfo{};
+        viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+        viewInfo.image = *(mSpecs.colImage.getImage());
+        viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+        viewInfo.format = mSpecs.format.format;
+        viewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+        viewInfo.subresourceRange.baseMipLevel = 0;
+        viewInfo.subresourceRange.levelCount = 1;
+        viewInfo.subresourceRange.baseArrayLayer = 0;
+        viewInfo.subresourceRange.layerCount = 1;
+
+        if (vkCreateImageView(mDeviceHandler->mSpecs.device, &viewInfo, nullptr, &mSpecs.colImageView) != VK_SUCCESS) {
+            throw std::runtime_error("failed to create texture image view!");
+        }
+        return true;
+    }
     b8 SwapChain::createDepthResources()
     {
         VkImage* vDepthImage = new VkImage;
@@ -277,7 +367,7 @@ namespace Lina{ namespace Graphics{
     {
         for (const auto& availableFormat : mSpecs.swapChainDetails->formats)
         {
-            if (availableFormat.format == VK_FORMAT_B8G8R8A8_SRGB
+            if (availableFormat.format == VK_FORMAT_R8G8B8A8_SRGB
                     && availableFormat.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR)
             {
                 return availableFormat;
@@ -322,6 +412,7 @@ namespace Lina{ namespace Graphics{
         clean();
         createSwapChain();
         createImageViews();
+        createColorResources();
         createDepthResources();
         createFramebuffers();
     }

@@ -25,7 +25,9 @@ namespace Lina { namespace Physics {
         public:
             inline void setForces(const Math::Vector3D& f) {mForces = f;}
             inline void setPosition(Math::Point3D&& p) {mPosition = p;}
+            inline void updatePosition(Math::Point3D&& p) {mPosition += p;}
             inline void setVelocity(Math::Vector3D&& v) {mVelocity = v;}
+            inline void updateVelocity(Math::Vector3D&& v) {mVelocity += v;}
             inline void setAcceleration(Math::Vector3D&& a) {mAcceleration = a;}
             inline void setMass(f32 m) {mInverseMass = (1 / m);}
             inline void setDamping(f32 d) {mDamping = d;}

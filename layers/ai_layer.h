@@ -2,6 +2,7 @@
 #define AI_LAYER_H
 #include "../game_system/game_world.h"
 #include "./layer.h"
+#include "../modifier.h"
 #include "../Math/Matrix4D.h"
 #include "../Math/Vector3D.h"
 #include "../events/key.h"
@@ -13,6 +14,7 @@
 #include "../shapes/cylinder.h"
 #include "../games/ai.h"
 #include "../core/core.h"
+#include "../geo_modifier.h"
 #include <fstream>
 #include <sstream>
 
@@ -32,6 +34,7 @@ namespace Lina { namespace Graphics {
             Renderer* mRenderer;
             Window* mWindow;
             Games::AiGameWorld  mGameWorld;
+            GeoModifier mGeoModifier;
     };
 }}
 #endif

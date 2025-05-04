@@ -1,5 +1,6 @@
 #include "tiny_based_obj_loader.h"
 #include <vector>
+#include <set>
 
 namespace Lina { namespace Core {
     b8 TinyBasedObjLoader::load(std::string&& path)
@@ -17,52 +18,59 @@ namespace Lina { namespace Core {
         tinyobj::attrib_t attrib = r.GetAttrib();
         std::vector<tinyobj::shape_t> shapes = r.GetShapes();
         std::vector<tinyobj::material_t> materials = r.GetMaterials();
+        std::set<u32> tempIndices = {};
+        mVertices.resize(attrib.GetVertices().size());
         for (const auto& s : shapes)
         {
             for (const auto& idx : s.mesh.indices)
             {
-                mIndices.push_back(mIndices.size());
-                for (int i = 0; i < 3; i++)
+                auto [_, inserted] = tempIndices.insert(idx.vertex_index);
+                mIndices.push_back(idx.vertex_index);
+                auto currIdx = 3 * idx.vertex_index;
+                if (inserted)
                 {
-                    mVertices.push_back(attrib.vertices[3 * idx.vertex_index + i]);
-                    mFullVertices.push_back(attrib.vertices[3 * idx.vertex_index + i]);
-                }
-                for (int i = 0; i < 2; i++)
-                {
-                    if (attrib.texcoords.empty())
+                    for (int i = 0; i < 3; i++)
                     {
-                        mTexture.push_back(0);
-                        mFullVertices.push_back(0);
+                        mVertices[currIdx+i] = attrib.vertices[currIdx + i];
+                        mFullVertices.push_back(attrib.vertices[3 * idx.vertex_index + i]);
                     }
-                    else 
+                    for (int i = 0; i < 2; i++)
                     {
-                        mTexture.push_back(attrib.texcoords[2 * idx.texcoord_index + i]);
-                        mFullVertices.push_back(attrib.texcoords[2 * idx.texcoord_index + i]);
+                        if (attrib.texcoords.empty())
+                        {
+                            mTexture.push_back(0);
+                            mFullVertices.push_back(0);
+                        }
+                        else 
+                        {
+                            mTexture.push_back(attrib.texcoords[2 * idx.texcoord_index + i]);
+                            mFullVertices.push_back(attrib.texcoords[2 * idx.texcoord_index + i]);
+                        }
                     }
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    if (attrib.normals.empty())
+                    for (int i = 0; i < 3; i++)
                     {
-                        mNormals.push_back(0);
-                        mFullVertices.push_back(0);
+                        if (attrib.normals.empty())
+                        {
+                            mNormals.push_back(0);
+                            mFullVertices.push_back(0);
+                        }
+                        else
+                        {
+                            mNormals.push_back(attrib.normals[3 * idx.normal_index + i]);
+                            mFullVertices.push_back(attrib.normals[3 * idx.normal_index + i]);
+                        }
                     }
-                    else
+                    for (int i = 0; i < 3; i++)
                     {
-                        mNormals.push_back(attrib.normals[3 * idx.normal_index + i]);
-                        mFullVertices.push_back(attrib.normals[3 * idx.normal_index + i]);
-                    }
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    if (s.mesh.material_ids.empty() || materials.empty())
-                    {
-                        mColors.push_back(1);
-                        mFullVertices.push_back(1);
-                    }
-                    else
-                    {
-                        mFullVertices.push_back(materials[s.mesh.material_ids[0]].diffuse[i]);
+                        if (s.mesh.material_ids.empty() || materials.empty())
+                        {
+                            mColors.push_back(1);
+                            mFullVertices.push_back(1);
+                        }
+                        else
+                        {
+                            mFullVertices.push_back(materials[s.mesh.material_ids[0]].diffuse[i]);
+                        }
                     }
                 }
             }
@@ -70,15 +78,28 @@ namespace Lina { namespace Core {
         return true;
     }
 
+    void TinyBasedObjLoader::debug()
+    {
+        std::cerr << "VERTS: \n";
+        for (int i = 0; i < mVertices.size(); i++)
+        {
+            std::cerr << mVertices[i] << ", ";
+            if (i%3 == 2) std::cerr << '\n';
+        }
+        std::cerr << "END VERTS\n";
+
+        std::cerr << "Inds: \n";
+        for (int i = 0; i < mIndices.size(); i++)
+        {
+            std::cerr << mIndices[i] << ", ";
+            if (i%3 == 2) std::cerr << '\n';
+        }
+        std::cerr << "END Inds\n";
+    }
+
     Helpers::AI::Graph TinyBasedObjLoader::getGraph()
     {
         using namespace Helpers::AI;
-        mVertices.clear();
-        mIndices.clear();
-        mFullVertices.clear();
-        mTexture.clear();
-        mColors.clear();
-        mNormals.clear();
         std::string warn, err;
         tinyobj::ObjReader r;
         r.ParseFromFile(mNavPath, {});

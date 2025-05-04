@@ -20,7 +20,7 @@ namespace Lina { namespace Games {
             Graphics::Shuttle mShuttle;
             f32 mFrameRate = 60.0f;
             f32 mZoom = 15.0f;
-            Physics::ParticleSystem mParticleSystem;
+            Physics::CircularParticleSystem mParticleSystem;
             Physics::Forces::Spring mSpring;
             Physics::Forces::Spring mSpring2;
             Physics::Forces::Gravity mGravity;

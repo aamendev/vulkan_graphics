@@ -25,7 +25,7 @@ namespace Lina { namespace Games {
             void addPSColliders();
 
         private:
-            Physics::ParticleSystem mParticleSystem;
+            Physics::CircularParticleSystem mParticleSystem;
             std::vector<std::vector<f32>> mEnvVerts;
             Graphics::Shuttle mShuttle;
             f32 mFrameRate = 60.0f;

@@ -10,8 +10,11 @@ namespace Lina { namespace Graphics{
             b8 init(DeviceHandler* deviceHandler);
             b8 createImageFromPath(std::string&& path, bool flip = false);
             b8 createImageFromPath(std::string& path, bool flip = false);
+            b8 createMainTexture(u32 width, u32 height);
+            void recreate(u32 width, u32 height);
         public:
-            std::string getPath() const {return mPath;}
+            inline std::string getPath() const {return mPath;}
+            inline VkBuffer& getStagingBuffer() {return mStagingBuffer.getBuffer();}
         private:
             b8 setTextureFromPath(std::string&& path, bool flip);
         private:

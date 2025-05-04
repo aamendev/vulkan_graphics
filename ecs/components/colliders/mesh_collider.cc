@@ -206,7 +206,6 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         for (int i = idxBegin; i < idxEnd - 2; i+=3)
         {
             point = 
-              //  (Math::Point3D(mVertices[i], mVertices[i+1], mVertices[i+2]) * transform);
                 (Math::Point3D(mVertices[i], mVertices[i+1], mVertices[i+2]) * transform);
 
              minX = minX * (minX < point.x) + point.x * !(minX < point.x);
@@ -245,41 +244,28 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
     {
         Mesh* leaf = new Mesh(mTag);
         std::vector<f32> verts;
+        std::vector<u32> inds;
         verts.reserve(9);
-        
-        for (int i = 0; i < 9; i++)
+        inds.reserve(3);
+        for (int i = 0; i < 3; i++)
         {
-            verts.push_back(mVertices[begin + i]);
+        inds[i] = mIndices[begin + i];
+        }
+        auto max = std::max_element(inds.begin(), inds.end());
+        auto min = std::min_element(inds.begin(), inds.end());
+        
+        for (int j = 0; j < 3; j++)
+        {
+            auto idx = mIndices[begin + j];
+            inds[j] = 2 * (idx == *max) + (idx != *max && idx != *min);
+        for (int i = 0; i < 3; i++)
+        {
+            verts.push_back(mVertices[3 * idx + i]);
+        }
         }
 
-        /*std::vector<Math::Point3D> mPoints;
-        mPoints.reserve(3);
-        auto m = 
-            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D()*
-            Math::Util::scaleMatrix(mScale);
-        for (int i = 0; i < 9; i+=3)
-        {
-            mPoints.emplace_back(verts[i], verts[i+1], verts[i+2]);
-            mPoints[i/3] = (mPoints[i/3] * m + mCenter).toPoint();
-            verts[i] = mPoints[i/3].x;
-            verts[i+1] = mPoints[i/3].y;
-            verts[i+2] = mPoints[i/3].z;
-        }*/
-        
-        leaf->setVertices(
-                {
-                verts.at(0),
-                verts.at(1),
-                verts.at(2),
-                verts.at(3),
-                verts.at(4),
-                verts.at(5),
-                verts.at(6),
-                verts.at(7),
-                verts.at(8)
-                }
-                );
-
+        leaf->setVertices(verts);
+        leaf->setIndices(inds);
         leaf->setScale(mScale);
         leaf->setRotation(mRotation);
         leaf->setPosition(mCenter);
@@ -292,8 +278,8 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
     void Mesh::computeBVH()
     {
         std::vector<BVH*> mbvhs;
-        mbvhs.reserve(mVertices.size() / 9 + 1);
-        for (int i = 0; i < mVertices.size(); i+=9)
+        mbvhs.reserve(mIndices.size() / 3 + 1);
+        for (int i = 0; i < mIndices.size(); i+=3)
         {
            mbvhs.push_back(computeBVH(i)); 
         }

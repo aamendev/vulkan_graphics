@@ -13,9 +13,11 @@ namespace Lina { namespace Core {
             b8 load(std::string&& path);
         public:
             inline void setNavPath(std::string&& path) {mNavPath = path;}
+            void debug();
         public:
             const std::vector<f32>& getFullVertices() const {return mFullVertices;};
             const std::vector<f32>& getPositions() const {return mVertices;}
+            const std::vector<f32>& getNormals() const {return mNormals;}
             const std::vector<u32>& getIndices() const {return mIndices;}
             MeshMode getMeshMode() const {return mMode;}
             Helpers::AI::Graph getGraph();

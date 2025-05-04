@@ -52,6 +52,20 @@ namespace Lina{ namespace Graphics{
                     }
                 }
                 break;
+            case MeshMode::Pos3Norm3:
+                {
+                    mFullVertices.resize(mVertices.size() * 6);
+                    int currIndex = 0;
+                    for (int i = 0; i < mVertices.size(); i++)
+                    {
+                        mFullVertices[currIndex++] = mVertices[i].x;
+                        mFullVertices[currIndex++] = mVertices[i].y;
+                        mFullVertices[currIndex++] = mVertices[i].z;
+                        mFullVertices[currIndex++] = mNormals[i].x;
+                        mFullVertices[currIndex++] = mNormals[i].y; 
+                        mFullVertices[currIndex++] = mNormals[i].z; 
+                    }
+                }
             default: 
                 {
 

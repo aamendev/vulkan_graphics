@@ -5,16 +5,16 @@ namespace Lina { namespace Physics{ namespace Forces {
 
     void Gravity::calculateForce() 
     {
+        mForce = {0, 0, 0};
         if (mEnabled)[[likely]]
         {
-            mForce = {0, 0, 0};
             for (u32 i = 0; i < mParticles.size(); i++)
             {
                 if (i == mMainBody || !mParticles[i]->isEnabled()) continue;
 
                 auto diff = mParticles[i]->getPos() - mParticles[mMainBody]->getPos();
                 f32 r2 = diff.squaredMagnitude();
-                if (r2 >= mMinDistance && r2 <= mMaxDistance)
+                if (r2 >= mMinDistance * mMinDistance && r2 <= mMaxDistance * mMaxDistance)
                 {
                     mForce += 
                         diff.normalise() * 

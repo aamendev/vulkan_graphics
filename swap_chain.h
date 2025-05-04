@@ -1,8 +1,10 @@
 #pragma once
+#include "color_image.h"
 #include "common.h"
 #include "devices_handler.h"
 #include "window.h"
 #include "./depth_image.h"
+#include <vulkan/vulkan_core.h>
 namespace Lina{ namespace Graphics{
     struct SwapChainSpecs
     {
@@ -17,6 +19,10 @@ namespace Lina{ namespace Graphics{
         DepthImage depthImage;
         VkDeviceMemory depthImageMemory;
         VkImageView depthImageView;
+
+        ColorImage colImage;
+        VkImageView colImageView;
+        VkDeviceMemory colMemory;
 
         VkRenderPass renderPass;
         std::vector<VkFramebuffer> swapChainFrameBuffers;
@@ -38,6 +44,7 @@ namespace Lina{ namespace Graphics{
         private:
             b8 createSwapChain();
             b8 createDepthResources();
+            b8 createColorResources();
             b8 createImageViews();
             b8 createRenderPass();
             b8 createFramebuffers();

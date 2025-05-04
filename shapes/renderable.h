@@ -16,6 +16,7 @@ namespace Lina{ namespace Graphics{
         public:
             std::vector<Math::Point3D> getVertices() const {return mVertices;}
             std::vector<unsigned int> getIndices() const {return mIndices;}
+            std::vector<Math::Vector3D> getNormals() const {return mNormals;}
             std::vector<uv> getTextureCoordinates() const {return mTextureCoordinates;}
             std::vector<float> getFullVertices() const {return mFullVertices;}
             std::vector<float> getTextureDebug() const;

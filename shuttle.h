@@ -25,6 +25,8 @@ namespace Lina{ namespace Graphics{
 
         public:
             inline const Math::Point3D& getPos() const {return mPos;}
+            inline const Math::Vector3D& getTarget() const {return mTarget;}
+            inline const Math::Vector3D& getUp() const {return mUp;}
             inline const Math::Quatrenion& getRotation() const {return mRotation;}
             inline const Math::EulerAngles getRotationAngle() const {
                 return mRotation.toAngles();}

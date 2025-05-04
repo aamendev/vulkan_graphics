@@ -37,6 +37,10 @@ namespace Lina { namespace ECS {
                 {
                     optimizedUpdate();
                 }
+            case CollisionOptimization::StaticOptimized:
+            {
+                staticOptimizedUpdate();
+            }
                 break;
         }
     }
@@ -226,6 +230,116 @@ namespace Lina { namespace ECS {
             }
         }
 
+    }
+
+    void CollisionSystem::staticOptimizedUpdate()
+    {
+        static int k = 0;
+        for (int i = 0; i < mDynamicColliders.size(); i++)
+        {
+            auto tagi = mDynamicColliders[i]->getTag();
+            std::set<std::string> tagsj;
+            std::set<std::string> temp;
+            std::vector<std::string> ntagsj;
+            checkCollideBvh(mDynamicColliders[i], &mFullBvh,
+                    tagsj, temp);
+
+            ntagsj.reserve(tagsj.size() +  temp.size());
+            std::set_difference(temp.begin(), temp.end(), 
+                    tagsj.begin(), tagsj.end(), std::back_inserter(ntagsj));
+
+            for (const auto& tagj : tagsj)
+            {
+                k++;
+                auto collidedIdx = mStaticRegistriy[tagj];
+                switch(mDynamicColliders[i]->getStatus(tagj))
+                {
+                    case Components::CollisionStatus::None:
+                    case Components::CollisionStatus::Exit:
+                        {
+                            mDynamicColliders[i]->setStatus(
+                                    tagj, Components::CollisionStatus::Enter);
+                            mDynamicColliders[i]->onCollisionEnter(
+                                    mStaticColliders[collidedIdx]);
+                        }
+                        break;
+                    case Components::CollisionStatus::Enter:
+                        {
+                            mDynamicColliders[i]->setStatus(
+                                    tagj, Components::CollisionStatus::Persist);
+
+                        }
+                    case Components::CollisionStatus::Persist:
+                        {
+                            mDynamicColliders[i]->onCollisionPersist(
+                                    mStaticColliders[collidedIdx]);
+                        }
+                        break;
+                }
+
+                switch(mStaticColliders[collidedIdx]->getStatus(tagi))
+                {
+                    case Components::CollisionStatus::None:
+                    case Components::CollisionStatus::Exit:
+                        {
+                            mStaticColliders[collidedIdx]->setStatus(
+                                    tagi, Components::CollisionStatus::Enter);
+                            mStaticColliders[collidedIdx]->onCollisionEnter(
+                                    mDynamicColliders[i]);
+                        }
+                        break;
+                    case Components::CollisionStatus::Enter:
+                        {
+                            mStaticColliders[collidedIdx]->setStatus(
+                                    tagi, Components::CollisionStatus::Persist);
+                        }
+                    case Components::CollisionStatus::Persist:
+                        {
+                            mStaticColliders[collidedIdx]->onCollisionPersist(mDynamicColliders[i]);
+                        }
+                        break;
+                }
+            }
+            for (const auto& tagj : ntagsj) 
+            {
+                k++;
+                if (tagj == "temp") continue;
+
+                auto collidedIdx = mStaticRegistriy[tagj];
+                switch(mDynamicColliders[i]->getStatus(tagj))
+                {
+                    case Components::CollisionStatus::None:
+                    case Components::CollisionStatus::Exit:
+                        {mDynamicColliders[i]->removeStatus(tagj);}
+                        break;
+                    case Components::CollisionStatus::Enter:
+                    case Components::CollisionStatus::Persist:
+                        {
+                            mDynamicColliders[i]->setStatus(
+                                    tagj, Components::CollisionStatus::Exit);
+                            mDynamicColliders[i]->onCollisionExit(
+                                    mStaticColliders[collidedIdx]);
+                        }
+                        break;
+                }
+
+                switch(mStaticColliders[collidedIdx]->getStatus(tagi))
+                {
+                    case Components::CollisionStatus::None:
+                    case Components::CollisionStatus::Exit:
+                        {mStaticColliders[collidedIdx]->removeStatus(tagi);}
+                        break;
+                    case Components::CollisionStatus::Enter:
+                    case Components::CollisionStatus::Persist:
+                        {
+                            mStaticColliders[collidedIdx]->setStatus(
+                                    tagi, Components::CollisionStatus::Exit);
+                            mStaticColliders[collidedIdx]->onCollisionExit(mDynamicColliders[i]);
+                        }
+                        break;
+                }
+            }
+        }
     }
 
     void CollisionSystem::optimizedUpdate()

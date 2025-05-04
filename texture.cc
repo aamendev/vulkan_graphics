@@ -1,4 +1,5 @@
 #include "./texture.h"
+#include <vulkan/vulkan_core.h>
 
 namespace Lina { namespace Graphics{
 
@@ -39,5 +40,19 @@ namespace Lina { namespace Graphics{
             std::cerr<<"a7a";
         }
         return false;
+    }
+
+    b8 Texture::createMainTexture(u32 width, u32 height)
+    {
+        mWidth = width;
+        mHeight = height;
+        mTextureImage.init(mDeviceHandler, mImage, mImageMemory, width, height);
+        return true;
+    }
+    void Texture::recreate(u32 width, u32 height)
+    {
+        mWidth = width;
+        mHeight = height;
+        mTextureImage.init(mDeviceHandler, mImage, mImageMemory, width, height);
     }
 }}

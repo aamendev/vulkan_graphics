@@ -37,9 +37,16 @@ namespace Lina{ namespace Graphics{
 
     void Shader::addUniform(const Uniform& uniform)
     {
-        mDynamicUniformCount += (uniform.type == UniformType::Dynamic);
-        mStaticUniformCount += (uniform.type == UniformType::Static);
-        mUniforms.push_back(uniform);
+        if (uniform.type == UniformType::Static)
+        {
+            mStaticUniformCount++;
+            mStaticUniforms.push_back(uniform);
+        }
+        else if (uniform.type == UniformType::Dynamic) 
+        {
+            mDynamicUniformCount ++;
+            mDynamicUniforms.push_back(uniform);
+        }
     }
 
     std::vector<char> Shader::readFileBinary(const std::string& shaderSource)

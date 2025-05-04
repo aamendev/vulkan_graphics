@@ -18,7 +18,7 @@ namespace Lina{ namespace Graphics{
         public:
             virtual void createBuffer();
             inline VkDeviceSize getSize() const{ return mSpecs.size; }
-            inline VkBuffer getBuffer() const { return mSpecs.buffer; }
+            inline VkBuffer& getBuffer() { return mSpecs.buffer; }
             inline u32 getCount() const {return mSpecs.count;}
         protected:
             DeviceHandler* mDeviceHandler;

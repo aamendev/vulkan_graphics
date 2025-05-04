@@ -26,6 +26,10 @@ namespace Lina { namespace ECS {
                     ColliderType t = ColliderType::Dynamic);
 
             void optimize();
+    inline void staticOptimize(){
+        optimize();
+        mOptMode = CollisionOptimization::StaticOptimized;
+    }
             inline void deOptimize() {mOptMode = CollisionOptimization::Naive;}
 
             void constructGrid(Math::Point3D min, 
@@ -34,6 +38,7 @@ namespace Lina { namespace ECS {
             void naiveUpdate();
             void optimizedUpdate();
             void combineBVHs();
+            void staticOptimizedUpdate();
             void combineBVH(Components::Collider::BVH* b0, 
                     Components::Collider::BVH* b1);
             
