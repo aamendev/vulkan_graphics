@@ -18,10 +18,18 @@ namespace Lina{ namespace Graphics{
             void setPosition(float x, float y, float z);
             void setPosition(Math::Point3D& p);
             inline void setSpeed(f32 s) {mSpeed = s;}
+            inline void setSenitivity(f32 s) {mSensitivity = s;}
             inline void setRotation(Math::Quatrenion&& quat) {mRotation = quat;}
             inline void setRotation(f32 h, f32 v) {mHangle = h; mVangle = v;};
             inline void rotate(f32 h, f32 v) {mHangle += h; mVangle += v;}
             void setRotation(Math::EulerAngles&& angle);
+            inline void enableRotations() {mEnableRotations = true;}
+            inline void disableRotations() {mEnableRotations = false;}
+            inline void toggleRotations() {mEnableRotations = !mEnableRotations;}
+
+            inline void enableMovement() {mEnableMovement = true;}
+            inline void disableMovement() {mEnableMovement = false;}
+            inline void toggleMovement() {mEnableMovement = !mEnableMovement;}
 
         public:
             inline const Math::Point3D& getPos() const {return mPos;}
@@ -56,6 +64,8 @@ namespace Lina{ namespace Graphics{
             Math::Quatrenion mRotation;
             b8 mMouesRotation = false;
             Math::Transform4D mCamMatrix;
+            b8 mEnableRotations = true;
+            b8 mEnableMovement = false;
     };
 }}
 #endif

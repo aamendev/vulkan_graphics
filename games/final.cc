@@ -201,6 +201,8 @@ namespace Lina { namespace Games {
 
     void FinalGameWorld::init()
     {
+        mShuttle.enableRotations();
+        mShuttle.setSenitivity(2.0f);
         mParticleSystem.init();
         translationRate = 0.2f * !physicsMode + 3.2f * physicsMode; 
         mJump = 1.2f * !physicsMode + 200.0f * physicsMode; 
@@ -326,6 +328,7 @@ namespace Lina { namespace Games {
     void FinalGameWorld::onKeyDown(Events::KeyPress& e)
     {
         auto& v = mCharacterControllers[0]->getVelocity();
+        mShuttle.onKeyDown(e);
         switch(e.key())
         {
             case Input::KeyCode::W:
@@ -405,15 +408,25 @@ namespace Lina { namespace Games {
     void FinalGameWorld::update()
     {
         mTimer.begin();
+        auto proj = Math::Util::projMatrix(
+                135, 
+                mRenderer->getWidth() / mRenderer->getHeight(), 
+                true);
+
         auto followPos = mTransformComponents["p1"].getPosition();
         auto zoom = 40.0f;
-        mShuttle.setPosition(followPos.x, followPos.y - 3, followPos.z - zoom);
+        mShuttle.setPosition(followPos.x, followPos.y - 0, followPos.z - zoom);
         auto& pos = mShuttle.getPos();
-        auto& dir = mShuttle.getTarget();
+        auto dir = pos + mShuttle.getTarget();
         auto& up = mShuttle.getUp();
         mTraceData.rayOrg = Math::Vector4D(pos.x, pos.y, pos.z, 0.0f);
         mTraceData.rayDirection = Math::Vector4D(dir.x, dir.y, dir.z, 0.0f);
         mTraceData.rayUp = Math::Vector4D(up.x, up.y, up.z, 0.0f);
+        mTraceData.sphereOrg =  Math::Vector4D(
+                0, 0, 0, 100.0f);
+        mTraceData.w = mRenderer->getWidth();
+        mTraceData.h = mRenderer->getHeight();
+
         for (auto& col : mCollisionSystems)
             col->update();
 
@@ -453,10 +466,6 @@ namespace Lina { namespace Games {
         mParticleSystem.update(1/mFrameRate);
         //Begin Pass System
 
-        auto proj = Math::Util::projMatrix(
-                135, 
-                mRenderer->getWidth() / mRenderer->getHeight(), 
-                true);
 
 
         mRenderer->beginPasses();
@@ -525,6 +534,9 @@ namespace Lina { namespace Games {
                 mTransformComponents["planet"].getPosition());
         mRenderer->updatePushConstant(&trans, 0);
         mRenderer->render();
+
+        auto spherec = Math::Vector3D(mTraceData.sphereOrg.x, mTraceData.sphereOrg.y,
+                mTraceData.sphereOrg.z);
 
         /*
            mRenderer->render();

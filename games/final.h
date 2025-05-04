@@ -15,9 +15,10 @@ namespace Lina { namespace Games {
         {
             Math::Vector4D rayOrg = {0, 0, 0, 0};
             Math::Vector4D rayDirection = {0, 0, 1, 0};
-            Math::Vector4D rayUp = {0,-1,0,0};
-            Math::Vector4D sphereOrg = {-50.0f, 50.0f, 0, 0};
-            f32 sphereRad = 50.0f;
+            Math::Vector4D rayUp = {0,1,0,0};
+            Math::Vector4D sphereOrg = {0, 0, 0, 200.0f};
+            f32 w;
+            f32 h;
         } TraceData;
         public:
             inline void setEnvVerts(std::vector<f32> evns) {mEnvVerts = evns;}

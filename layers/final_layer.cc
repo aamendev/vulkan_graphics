@@ -7,7 +7,7 @@ namespace Lina{ namespace Graphics{
         {
             .stage = ShaderStage::Fragment,
             .offset = 0, 
-            .size = sizeof(f32) * (4*4 + 1)
+            .size = sizeof(f32) * (4*4 + 2)
         };
         Uniform color = 
         {
