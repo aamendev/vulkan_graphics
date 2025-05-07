@@ -15,6 +15,8 @@ namespace Lina { namespace Helpers { namespace Collisions {
             ((b->getLength()/2 + c->getRadius()) * (b->getLength()/2 + c->getRadius()));
         b8 zCheck = pos.z * pos.z > 
             ((b->getWidth()/2 + c->getRadius()) * (b->getWidth()/2 + c->getRadius()));
+            
+     //   return gjk(box, cyl);
         return !yCheck && !xCheck && !zCheck;
     }
     b8 planeCylinderCollision(Collider* plane, Collider* cyl)

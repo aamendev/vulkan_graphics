@@ -30,6 +30,7 @@ namespace Lina{ namespace Graphics{
 
             void addPushConstant(const PushConstant& ps);
             void addUniform(const Uniform& uniform);
+            inline void addTexture(const TextureData& td) {mTextureData.push_back(td);}
             inline void combineUniforms()
             {
                mUniforms.reserve(mStaticUniforms.size() + mDynamicUniforms.size());
@@ -52,7 +53,11 @@ namespace Lina{ namespace Graphics{
             std::vector<char> getFragmentShader();
 
             inline u32 getBindingSize() {return mStaticUniforms.size() + 
+                mDynamicUniforms.size() + mTextureData.size();}
+
+            inline u32 getUniformSize() {return mStaticUniforms.size() + 
                 mDynamicUniforms.size();}
+
             inline u32 getPushConstantSize() {return mPushConstant.size();}
             inline const std::vector<Uniform>& getStaticUniforms() {return mStaticUniforms;}
             inline const std::vector<Uniform>& getDynamicUniforms() {return mDynamicUniforms;}
@@ -60,6 +65,11 @@ namespace Lina{ namespace Graphics{
             {
                return mUniforms;
             }
+            inline std::vector<TextureData>& getTextureData()
+            {
+                return mTextureData;
+            }
+            inline u32 getTextureCount() {return mTextureData.size();}
             inline const std::vector<PushConstant>& getPushConstants() {return mPushConstant;}
             inline u32 getDynamicUniformsCount() {return mDynamicUniformCount;}
             inline u32 getStaticUniformsCount() {return mStaticUniformCount;}
@@ -73,6 +83,7 @@ namespace Lina{ namespace Graphics{
             std::vector<Uniform> mDynamicUniforms;
             std::vector<Uniform> mUniforms;
             std::vector<PushConstant> mPushConstant;
+            std::vector<TextureData> mTextureData;
             std::string mReferenceName;
             u32 mDynamicUniformCount;
             u32 mStaticUniformCount;

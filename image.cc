@@ -7,13 +7,14 @@ namespace Lina{ namespace Graphics{
             {
                 .sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO,
                     .flags = 0,
-                .imageType = VK_IMAGE_TYPE_2D,
+                .imageType = (VkImageType)(VK_IMAGE_TYPE_2D * (mSpecs.depth == 1)
+                    + VK_IMAGE_TYPE_3D * !(mSpecs.depth == 1)),
                 .format = mSpecs.format,
                 .extent =
                     {
                         .width = mSpecs.width,
                         .height = mSpecs.height,
-                        .depth = 1
+                        .depth = mSpecs.depth
                     },
                 .mipLevels = 1,
                 .arrayLayers = 1,

@@ -22,14 +22,19 @@ namespace Lina { namespace Physics {
         }
         mRb.particle->update(t);
 
+        mRb.particle->clearVariableForces();
+
         auto currRotation = mRb.rotation.toAngles();
          auto update = (mRb.angularVelocity * t 
                 + mRb.angularAcceleration * (0.5f * t *t));
 
-         currRotation.x += update.x;
+         /*currRotation.x += update.x;
          currRotation.y += update.y;
          currRotation.z += update.z;
-         mRb.rotation = Math::Quatrenion::angleToQuat(currRotation).normalise();
+         */
+         Math::Quatrenion newRot =
+             Math::Quatrenion::angleToQuat({update.x, update.y, update.z});
+         mRb.rotation = mRb.rotation * newRot; 
          mRb.angularVelocity += mRb.angularAcceleration * t;
         mRb.angularVelocity *= mRb.angularDamping;
         auto inTens = mRb.invInertiaTensor.inverse();

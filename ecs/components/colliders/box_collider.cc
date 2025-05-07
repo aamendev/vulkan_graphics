@@ -5,7 +5,7 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
     Box::Box(std::string tag, const std::pair<Math::Point3D, Math::Point3D>& p)
     {
         initWithExtents(tag, p);
-        mScale = {mLength, mWidth, mHeight};
+        mScale = {mLength, mHeight, mWidth};
     }
 
     void Box::initWithExtents(std::string tag, 
@@ -60,19 +60,20 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
 
     Math::Point3D Box::furthestPoint(const Math::Vector3D &d)
     {
-        mScale = {mLength, mWidth, mHeight};
+        mScale = {mLength, mHeight, mWidth};
         Math::Transform4D m = 
-            Math::Util::scaleMatrix(mScale)*
-            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D() *
+            Math::Util::scaleMatrix(mScale);
 
         Math::Vector4D temp = 
-            ((Math::Vector4D){d.x, d.y, d.z, 0}) * m.transpose();
+            ((Math::Vector4D){d.x, d.y, d.z, 1}) * m.transpose();
 
         Math::Vector3D newDir = {temp.x, temp.y, temp.z};
 
-        f32 sgnx = (newDir.x > 0) - (newDir.x < 0);
-        f32 sgny = (newDir.y > 0) - (newDir.y < 0);
-        f32 sgnz = (newDir.z > 0) - (newDir.z < 0);
+
+        f32 sgnx = !(newDir.x < 0) - (newDir.x < 0);
+        f32 sgny = !(newDir.y < 0) - (newDir.y < 0);
+        f32 sgnz = !(newDir.z < 0) - (newDir.z < 0);
         Math::Point3D ret;
             ret = (
                     (Math::Point3D){sgnx / 2, sgny / 2, sgnz / 2} 
@@ -122,11 +123,34 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
             Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D()*
         Math::Util::scaleMatrix(mScale);
 
-        mBoundingBoxExtents.first = 
+        auto first = 
             ((Math::Point3D(-0.5f, -0.5f, -0.5f) * m) + mCenter).toPoint();
-
-        mBoundingBoxExtents.second = 
+        auto second = 
             ((Math::Point3D(0.5f, 0.5f, 0.5f) * m) + mCenter).toPoint();
+
+        f32 minX = fmin(first.x, second.x);
+        f32 minY = fmin(first.y, second.y);
+        f32 minZ = fmin(first.z, second.z);
+
+        f32 maxX = fmax(first.x, second.x);
+        f32 maxY = fmax(first.y, second.y);
+        f32 maxZ = fmax(first.z, second.z);
+
+        first = {minX, minY, minZ};
+        second = {maxX, maxY, maxZ};
+        
+        /*
+        mScale = {mLength, mHeight, mWidth};
+        f32 maxExt = fmax(fmax(mLength, mWidth), mHeight);
+        auto first = 
+            ((Math::Point3D(-0.5f, -0.5f, -0.5f) * maxExt) + mCenter).toPoint();
+        auto second = 
+            ((Math::Point3D(0.5f, 0.5f, 0.5f) * maxExt) + mCenter).toPoint();
+        */
+
+        mBoundingBoxExtents.first = first;
+
+        mBoundingBoxExtents.second = second;
     }
     void Box::computeBVH()
     {

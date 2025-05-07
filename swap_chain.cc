@@ -432,6 +432,20 @@ namespace Lina{ namespace Graphics{
                 mSpecs.depthImageMemory,
                 nullptr
                 );
+
+        vkDestroyImageView(mDeviceHandler->mSpecs.device,
+                mSpecs.colImageView,
+                nullptr);
+        vkDestroyImage(
+                mDeviceHandler->mSpecs.device,
+                *mSpecs.colImage.getImage(),
+                nullptr
+                );
+        vkFreeMemory(
+                mDeviceHandler->mSpecs.device,
+                mSpecs.colMemory,
+                nullptr
+                );
         for (u32 i = 0; i < mSpecs.swapChainFrameBuffers.size(); i++)
         {
             vkDestroyFramebuffer(

@@ -15,3 +15,9 @@ glslang -V ../shaders/effect3.frag -o ../shaders/compiled/effect3.frag.spv
 
 glslang -V ../shaders/postprocess.vert -o ../shaders/compiled/postprocess.vert.spv
 glslang -V ../shaders/postprocess.frag -o ../shaders/compiled/postprocess.frag.spv
+
+glslang -V ../shaders/simplestpostprocess.vert -o ../shaders/compiled/simplestpostprocess.vert.spv
+glslang -V ../shaders/simplestpostprocess.frag -o ../shaders/compiled/simplestpostprocess.frag.spv
+
+glslang -V ../shaders/simplest.vert -o ../shaders/compiled/simplest.vert.spv
+glslang -V ../shaders/simplest.frag -o ../shaders/compiled/simplest.frag.spv

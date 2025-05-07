@@ -130,23 +130,25 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
 
     Math::Point3D Cylinder::furthestPoint(const Math::Vector3D &d)
     {
-        mScale = {mRadius, mHeight, mRadius};
+        mScale = {mRadius * 2, mHeight, mRadius * 2};
         Math::Transform4D m = 
-            Math::Util::scaleMatrix(mScale)*
-            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D() * 
+        Math::Util::scaleMatrix(mScale);
 
         Math::Vector4D temp = 
-            ((Math::Vector4D){d.x, d.y, d.z, 0}) * m.transpose();
+            ((Math::Vector4D){d.x, d.y, d.z, 1}) * m.transpose();
 
         Math::Vector3D newDir = {temp.x, temp.y, temp.z};
+        newDir = newDir.normalise();
 
         f32 delta = std::sqrt(newDir.x * newDir.x + newDir.z * newDir.z);
-        f32 sgn = (newDir.y > 0) - (newDir.y < 0);
+        f32 sgn = !(newDir.y < 0) - (newDir.y < 0);
         auto ret = (Math::Point3D){0 , 0, 0};
         if (delta > 0)
         {
             ret = (
-                    (Math::Point3D){1.0f / delta * newDir.x, sgn * 1.0f/2, 1.0f / delta * newDir.z} 
+                    (Math::Point3D){(1.0f / delta) 
+                    * newDir.x * 1.0f/2, sgn * 1.0f/2, (1.0f / delta) * newDir.z * 1.0f/2} 
                     * m
                     + mCenter).toPoint();
           //  std::cerr << "CylFurt " << ret << '\n';
@@ -162,8 +164,8 @@ namespace Lina { namespace ECS { namespace Components { namespace Colliders{
     {
         mScale = {mRadius*2, mHeight, mRadius*2};
         Math::Transform4D m = 
-            Math::Util::scaleMatrix(mScale)*
-            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D(); 
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D() * 
+        Math::Util::scaleMatrix(mScale);
 
         mBoundingBoxExtents.first = 
             ((Math::Point3D(-0.5f, -0.5f, -0.5f) * m) + mCenter).toPoint();

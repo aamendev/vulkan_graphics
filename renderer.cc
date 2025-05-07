@@ -1,10 +1,10 @@
 #include "renderer.h"
-#include "Math/Transform4D.h"
 #include "core/utils.h"
 #include "index_buffer.h"
 #include "types.h"
 #include "vertex_buffer.h"
 #include <stdexcept>
+#include <utility>
 #include <vulkan/vulkan_core.h>
 namespace Lina{ namespace Graphics{
     void Renderer::init(std::string& name, Window* window) {
@@ -12,6 +12,7 @@ namespace Lina{ namespace Graphics{
         mDeviceHandler = new DeviceHandler();
         mSwapChain = new SwapChain(); 
         mCurrentShader = 0;
+        mNoiseGenerator.init();
         if (createVulkanInstance(name))
         {
             window->createWindowSurface(mSpecs.instance, &mSpecs.surface);
@@ -39,13 +40,6 @@ namespace Lina{ namespace Graphics{
 
         mSpecs.fragmentShaderModules[last] =
             createShaderModule(mShaders[last].getFragmentShader());
-       /* if (mShaders[last].checkLoadMainTexture()) [[unlikely]]
-        {
-            mSpecs.mainTexture.init(mDeviceHandler);
-            mSpecs.mainTexture.createMainTexture(getWidth(), getHeight());
-            createTextureSampler();
-            loadMainTexture();
-        }*/
     }
 
     void Renderer::addShader(std::string&& vertexPath, std::string&& fragPath)
@@ -60,12 +54,6 @@ namespace Lina{ namespace Graphics{
             createShaderModule(mShaders[last].getVertexShader());
         mSpecs.fragmentShaderModules[last] = 
             createShaderModule(mShaders[last].getFragmentShader());
-        if (mShaders[last].checkLoadMainTexture()) [[unlikely]]
-        {
-            mSpecs.mainTexture.init(mDeviceHandler);
-            mSpecs.mainTexture.createMainTexture(getWidth(), getHeight());
-            createTextureSampler();
-        }
     }
 
     b8 Renderer::createVulkanInstance(std::string& name)
@@ -163,9 +151,11 @@ namespace Lina{ namespace Graphics{
     void Renderer::createDescriptorSetLayout(int idx)
     {
         auto bindingsCount = mShaders[idx].getBindingSize();
+        auto uniformCount = mShaders[idx].getUniformSize();
         auto& uniformRef = mShaders[idx].getUniforms();
+        auto& texData = mShaders[idx].getTextureData(); 
         std::vector<VkDescriptorSetLayoutBinding> bindings;
-        bindings.reserve(bindingsCount + 2);
+        bindings.reserve(bindingsCount);
 
         VkDescriptorSetLayout setLayout;
 
@@ -182,11 +172,11 @@ namespace Lina{ namespace Graphics{
             bindings.push_back(uboLayoutBinding);
         }
 
-        if(mSpecs.textures.size() > 0)[[unlikely]]
+        if(texData.size() > 0)[[unlikely]]
         {
             VkDescriptorSetLayoutBinding samplerLayoutBinding
             {
-                .binding = bindingsCount,
+                .binding = (u32)bindings.size(),
                     .descriptorType = VK_DESCRIPTOR_TYPE_SAMPLER,
                     .descriptorCount = 1,
                     .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
@@ -196,9 +186,9 @@ namespace Lina{ namespace Graphics{
 
             VkDescriptorSetLayoutBinding textureLayoutBinding
             {
-                .binding = bindingsCount + 1,
+                .binding = (u32)bindings.size(),
                     .descriptorType = VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE,
-                    .descriptorCount = (u32)mSpecs.textures.size(),
+                    .descriptorCount = (u32)texData.size(),
                     .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
                     .pImmutableSamplers = nullptr
             };
@@ -208,7 +198,7 @@ namespace Lina{ namespace Graphics{
         {
             VkDescriptorSetLayoutBinding colorAttachment
             {
-                .binding = bindingsCount,
+                .binding = (u32)bindings.size(),
                     .descriptorType = VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT,
                     .descriptorCount = 1,
                     .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
@@ -218,7 +208,7 @@ namespace Lina{ namespace Graphics{
 
             VkDescriptorSetLayoutBinding depthAttachment
             {
-                .binding = bindingsCount + 1,
+                .binding = (u32)bindings.size(),
                     .descriptorType =VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT,
                     .descriptorCount = 1,
                     .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT,
@@ -248,9 +238,10 @@ namespace Lina{ namespace Graphics{
 
         auto bindingsCount = mShaders[idx].getBindingSize();
         auto& refUniforms = mShaders[idx].getUniforms();
+        auto& texData = mShaders[idx].getTextureData();
 
         std::vector<VkDescriptorPoolSize> poolSizes;
-        poolSizes.reserve(bindingsCount + 2);
+        poolSizes.reserve(bindingsCount);
 
         VkDescriptorPool vkPool;
 
@@ -273,7 +264,7 @@ namespace Lina{ namespace Graphics{
                 });
         }
 
-        if (mSpecs.textures.size() > 0)[[unlikely]]
+        if (texData.size() > 0)[[unlikely]]
         {
             poolSizes.push_back(
                     {
@@ -283,7 +274,7 @@ namespace Lina{ namespace Graphics{
             poolSizes.push_back(
                     {
                     .type = VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE,
-                    .descriptorCount = (u32)mSpecs.textures.size()
+                    .descriptorCount = (u32)texData.size()
                     });
         }
         if (mShaders[idx].checkLoadMainTexture())[[unlikely]]
@@ -311,7 +302,8 @@ namespace Lina{ namespace Graphics{
         mSpecs.descriptorPool[idx] = vkPool;
     }
 
-    void Renderer::createDescriptorSet(int shaderIndex, int uniformStartIndex)
+    void Renderer::createDescriptorSet(int shaderIndex, int uniformStartIndex,
+            int textureStartIndex)
     {
         std::vector<VkDescriptorSetLayout> layouts(1, 
                 mSpecs.descriptorSetLayout[shaderIndex]);
@@ -330,28 +322,28 @@ namespace Lina{ namespace Graphics{
             std::cerr<<"Failed to allocate sets\n";
 
         std::vector<VkDescriptorImageInfo> imageInfos;
-        imageInfos.resize(mSpecs.textures.size() + 
+        imageInfos.resize(mShaders[shaderIndex].getTextureCount() + 
                 2 * mShaders[shaderIndex].checkLoadMainTexture());
 
         std::vector<VkWriteDescriptorSet> descriptorWrite;
-        auto bindingCount = mShaders[shaderIndex].getBindingSize();
-        descriptorWrite.resize(bindingCount + 2 * (mSpecs.textures.size() > 0)
+        auto uniformCount = mShaders[shaderIndex].getUniformSize();
+        descriptorWrite.resize(uniformCount + 
+                2 * (mShaders[shaderIndex].getTextureCount() > 0)
                 + 2 * mShaders[shaderIndex].checkLoadMainTexture());
 
         std::vector<VkDescriptorBufferInfo> bufferInfos;
-        bufferInfos.resize(bindingCount);
+        bufferInfos.resize(uniformCount);
 
         auto& refUniform = mShaders[shaderIndex].getUniforms();
 
         for (int i = 0; i < refUniform.size(); i++)
         {
-            bufferInfos[i] = 
+            bufferInfos[i] =  
             {
                 .buffer = mSpecs.uniformBuffers[uniformStartIndex + i].mSpecs.buffer,
                 .offset = 0,
-                .range = mSpecs.uniformBuffers[uniformStartIndex + i].getSize(),
+                .range = mSpecs.uniformBuffers[uniformStartIndex + i].getSize() 
             };
-
 
             descriptorWrite[i] = 
             {
@@ -365,45 +357,48 @@ namespace Lina{ namespace Graphics{
                 .pBufferInfo = &bufferInfos[i],
                 .pTexelBufferView = nullptr,
             };
-
         }
-
-        if (mSpecs.textures.size() > 0)
+        int currentBinding = uniformCount;
+        if (mShaders[shaderIndex].getTextureCount() > 0)
         {
+
             for (int i = 0; i < imageInfos.size(); i++)
             {
                 imageInfos[i] = 
                 {
                     .sampler = mSpecs.textureSampler,
-                    .imageView = mSpecs.textureImageViews[i],
+                    .imageView = mSpecs.textureImageViews[textureStartIndex + i],
                     .imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
                 };
             }
 
-            descriptorWrite[bindingCount] = 
+            descriptorWrite[uniformCount] = 
             {
                 .sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
                 .dstSet = mSpecs.descriptorSets[shaderIndex],
-                .dstBinding = bindingCount,
+                .dstBinding = uniformCount,
                 .dstArrayElement = 0,
                 .descriptorCount = 1, 
                 .descriptorType = VK_DESCRIPTOR_TYPE_SAMPLER,
-                .pImageInfo = &imageInfos[0],
+                .pImageInfo = &imageInfos[textureStartIndex],
             };
+            currentBinding++;
 
 
-            descriptorWrite[bindingCount + 1] = 
+            descriptorWrite[uniformCount + 1] = 
             {
                 .sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
                 .dstSet = mSpecs.descriptorSets[shaderIndex],
-                .dstBinding = bindingCount + 1,
+                .dstBinding = uniformCount + 1,
                 .dstArrayElement = 0,
-                .descriptorCount = (u32)mSpecs.textures.size(), 
+                .descriptorCount = mShaders[shaderIndex].getTextureCount(), 
                 .descriptorType = VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE,
-                .pImageInfo = &imageInfos[0],
+                .pImageInfo = &imageInfos[textureStartIndex],
             };
-        }
+            currentBinding++;
 
+        }
+            
         if (mShaders[shaderIndex].checkLoadMainTexture())
         {
             auto last = imageInfos.size() - 2*!imageInfos.empty();
@@ -421,28 +416,29 @@ namespace Lina{ namespace Graphics{
                 .imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
             };
 
-            descriptorWrite[bindingCount] = 
+            descriptorWrite[currentBinding] = 
             {
                 .sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
                 .dstSet = mSpecs.descriptorSets[shaderIndex],
-                .dstBinding = bindingCount,
+                .dstBinding = (u32)currentBinding,
                 .dstArrayElement = 0,
                 .descriptorCount = 1, 
                 .descriptorType = VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT,
                 .pImageInfo = &imageInfos[last],
             };
 
-            descriptorWrite[bindingCount + 1] = 
+            descriptorWrite[currentBinding + 1] = 
             {
                 .sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
                 .dstSet = mSpecs.descriptorSets[shaderIndex],
-                .dstBinding = bindingCount + 1,
+                .dstBinding = (u32)currentBinding + 1,
                 .dstArrayElement = 0,
                 .descriptorCount = 1, 
                 .descriptorType = VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT,
                 .pImageInfo = &imageInfos[last + 1],
             };
         }
+        
 
         vkUpdateDescriptorSets(
                 mDeviceHandler->mSpecs.device,
@@ -457,6 +453,7 @@ namespace Lina{ namespace Graphics{
         {
             mShaders[i].combineUniforms();
             auto& refUniform = mShaders[i].getUniforms();
+            auto& texes = mShaders[i].getTextureData();
             for (int j = 0; j < refUniform.size(); j++)
             {
                 mSpecs.uniformBuffers.emplace_back();
@@ -464,6 +461,23 @@ namespace Lina{ namespace Graphics{
                 mSpecs.uniformBuffers[last].init(mDeviceHandler);
                 mSpecs.uniformBuffers[last]
                     .constructFromUniformSize(refUniform[j].size, refUniform[j].count);
+            }
+            for ( int j = 0; j < texes.size(); j++)
+            {
+                switch (texes[j].source)
+                {
+                    case TextureSource::ImageFile:
+                        {
+                        createTexture(texes[j].path, texes[j].flip);
+                        }
+                        break;
+                    case TextureSource::Noise:
+                        {
+                            createNosieTexture();
+                        }
+                        break;
+                    default:{}
+                }
             }
         }
     }
@@ -476,12 +490,15 @@ namespace Lina{ namespace Graphics{
         createUniformBuffers();
 
         auto uniformStart = 0;
+        auto textStart = 0;
         for (int i = 0; i < mShaders.size(); i++)
         {
             uniformStart += ((i > 0) * mShaders[i - 1].getBindingSize());
+            textStart += ((i > 0) * mShaders[i - 1].getTextureCount());
+            
             createDescriptorSetLayout(i);
             createDescriptorPool(i);
-            createDescriptorSet(i, uniformStart);
+            createDescriptorSet(i, uniformStart, textStart);
         }
         for (int i = 0; i < mShaderDataMap.size(); i++)
         {
@@ -684,8 +701,10 @@ namespace Lina{ namespace Graphics{
     }
     void Renderer::bindShader(int idx, int subpass)
     {
+        mDynamicOffsets.clear();
         mCurrentDataMap = idx;
         mCurrentShader = mShaderDataMap[idx].first;
+        mDynamicOffsets.resize(mShaders[mCurrentShader].getDynamicUniformsCount());
         bindPipeline(subpass);
     }
 
@@ -725,9 +744,71 @@ namespace Lina{ namespace Graphics{
                 ib->mCount, 1, 0, 0, 0);
     }
 
+
+    void Renderer::createNosieTexture()
+    {
+        mNoiseGenerator.setWidth(getWidth() / 4);
+        mNoiseGenerator.setHeight(getWidth() / 4);
+        mNoiseGenerator.setDepth(getWidth() / 4);
+        mNoiseGenerator.generateTexture();
+
+        mSpecs.textures.emplace_back();
+        mSpecs.textureImageViews.emplace_back();
+        auto& last = mSpecs.textures.back();
+
+            last.init(mDeviceHandler);
+            if(last.createImageFromNoise(mNoiseGenerator))
+            {
+                transitionImageLayout(
+                        last.mImage,
+                        VK_FORMAT_R32_SFLOAT,
+                        VK_IMAGE_LAYOUT_UNDEFINED,
+                        VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
+                        );
+                copyBufferToImage(last.mStagingBuffer.mSpecs.buffer, last.mTextureImage);
+                transitionImageLayout(
+                        last.mImage,
+                        VK_FORMAT_R32_SFLOAT,
+                        VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+                        VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
+                        );
+                createImageView(last.mImage, VK_FORMAT_R32_SFLOAT,
+                        VK_IMAGE_ASPECT_COLOR_BIT, mSpecs.textures.size() - 1, 3);
+            }
+    if (mSpecs.textures.size() == 1)
+    {
+        createTextureSampler();
+    }
+    }
     void Renderer::createTexture(std::string& path, b8 flip)
     {
-        createTexture({{std::move(path), flip}});
+        mSpecs.textures.emplace_back();
+        mSpecs.textureImageViews.emplace_back();
+        auto& last = mSpecs.textures.back();
+
+            last.init(mDeviceHandler);
+            if(last.createImageFromPath(path, flip))
+            {
+                transitionImageLayout(
+                        last.mImage,
+                        VK_FORMAT_R8G8B8A8_SRGB,
+                        VK_IMAGE_LAYOUT_UNDEFINED,
+                        VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
+                        );
+                copyBufferToImage(last.mStagingBuffer.mSpecs.buffer, last.mTextureImage);
+                transitionImageLayout(
+                        last.mImage,
+                        VK_FORMAT_R8G8B8A8_SRGB,
+                        VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+                        VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
+                        );
+                createImageView(last.mImage, VK_FORMAT_R8G8B8A8_SRGB,
+                        VK_IMAGE_ASPECT_COLOR_BIT, mSpecs.textures.size() - 1);
+            }
+    if (mSpecs.textures.size() == 1)
+    {
+        createTextureSampler();
+    }
     }
 
     void Renderer::createTexture(std::vector<std::pair<std::string, b8>> paths)
@@ -945,7 +1026,7 @@ namespace Lina{ namespace Graphics{
     }
     void Renderer::present()
     {
-        //VkSemaphore signalSemaphores[] = {mSwapChain->mSpecs.renderFinishedSemaphore};
+        VkSemaphore signalSemaphores[] = {mSwapChain->mSpecs.renderFinishedSemaphore};
 
 
         VkSwapchainKHR swapChains[] = {mSwapChain->mSpecs.swapChain};
@@ -954,8 +1035,8 @@ namespace Lina{ namespace Graphics{
         {
             .sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
 
-          //  .waitSemaphoreCount = 1,
-         //   .pWaitSemaphores = signalSemaphores,
+            .waitSemaphoreCount = 1,
+            .pWaitSemaphores = signalSemaphores,
 
             .swapchainCount = 1,
             .pSwapchains = swapChains,
@@ -1209,13 +1290,14 @@ namespace Lina{ namespace Graphics{
             VkImage& image,
             VkFormat format,
             VkImageAspectFlags aspFlags,
-            int index)
+            int index, int dim)
     {
         VkImageViewCreateInfo imageCreateInfo
         {
             .sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO,
             .image = image,
-            .viewType = VK_IMAGE_VIEW_TYPE_2D,
+            .viewType = (VkImageViewType)(VK_IMAGE_VIEW_TYPE_2D * (dim == 2) +
+                VK_IMAGE_VIEW_TYPE_3D * (dim == 3)),
             .format = format,
             .subresourceRange =
             {
@@ -1300,52 +1382,17 @@ namespace Lina{ namespace Graphics{
         {currIndex += mShaders[i].getBindingSize();}
         mSpecs.uniformBuffers[currIndex + uniformId].updateUniform(data, idx);
 
-       /* if (ref[uniformId].type == UniformType::Dynamic)
+        if (ref[uniformId].type == UniformType::Dynamic)
         {
-            dynOffset = idx * mSpecs.uniformBuffers[currIndex + uniformId].getSize();
-            dynPointer = &dynOffset;
-            dynCount = 1;
+             u32 dynOffset = idx * 
+                mSpecs.uniformBuffers[currIndex + uniformId].getSize();
+             mDynamicOffsets[
+                 uniformId - mShaders[mCurrentShader].getStaticUniformsCount()
+             ] = dynOffset;
         }
-        else 
-        {
-            dynPointer = nullptr;
-        }
-        std::cerr << "OFFSET: "<< dynOffset << '\n';
-        vkCmdBindDescriptorSets(
-                mSpecs.commandBuffer,
-                VK_PIPELINE_BIND_POINT_GRAPHICS,
-                mSpecs.pipelineLayouts[mCurrentDataMap],
-                0,
-                1,
-                &mSpecs.descriptorSets[mCurrentShader],
-                dynCount,
-                dynPointer);*/
-
     }
     void Renderer::submitUniformUpdates()
     {
-        auto dynCount = mShaders[mCurrentShader].getDynamicUniformsCount();
-        auto& dynRefs = mShaders[mCurrentShader].getDynamicUniforms();
-        int currIndex = 0;
-        for (int i = 0; i < mCurrentShader; i++) 
-        {currIndex += mShaders[i].getBindingSize();}
-
-        std::vector<u32> offsets;
-        offsets.reserve(dynCount);
-
-        for (int i = 0; i < dynCount; i++)
-        {
-            u32 dynOffset = mSpecs.uniformBuffers[currIndex + 
-                mShaders[mCurrentShader].getStaticUniformsCount() + i].getSize();
-            for (int j = 0; j < dynRefs[i].count; j++)
-            {
-                offsets.push_back(j * dynOffset);
-            }
-        }
-        dynCount = offsets.size();
-
-        u32* dynPointer = (dynCount == 0) ? nullptr : offsets.data();
-
         vkCmdBindDescriptorSets(
                 mSpecs.commandBuffer,
                 VK_PIPELINE_BIND_POINT_GRAPHICS,
@@ -1353,8 +1400,8 @@ namespace Lina{ namespace Graphics{
                 0,
                 1,
                 &mSpecs.descriptorSets[mCurrentShader],
-                dynCount,
-                dynPointer);
+                mDynamicOffsets.size(),
+                mDynamicOffsets.data());
     }
 
     void Renderer::updatePushConstant(void* data, u32 pushConstantId)

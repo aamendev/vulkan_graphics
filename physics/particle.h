@@ -19,6 +19,7 @@ namespace Lina { namespace Physics {
 
             inline void applyForce(const Math::Vector3D& f) {mForces += f;}
             inline void addVariableForce(Force* f) {mVariableForces.push_back(f);}
+            inline void clearVariableForces() {mVariableForces.clear();}
             inline void resetForce() {mForces = {0, 0, 0};}
             inline void applyImpulse(const Math::Vector3D& f) 
             {mAcceleration += (f * mInverseMass);}

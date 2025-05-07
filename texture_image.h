@@ -8,6 +8,6 @@ namespace Lina{ namespace Graphics{
         public:
             //void init(u32 width, u32 height, VkImage& image, VkDeviceMemory& memory);
        // void init(DeviceHandler* deviceHandler,i32 width, i32 height);
-        void init(DeviceHandler* deviceHandler,VkImage& image, VkDeviceMemory& memory, i32 width, i32 height);
+        void init(DeviceHandler* deviceHandler,VkImage& image, VkDeviceMemory& memory, i32 width, i32 height, i32 depth = 1);
     };
 }}

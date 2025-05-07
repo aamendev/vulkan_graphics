@@ -21,11 +21,18 @@ namespace Lina{ namespace Graphics{
         Uniform planetColours = 
         {
             .name = "planetcols",
-            .binding = 0,
+            .binding = 1,
             .stage = ShaderStage::Fragment,
             .type = UniformType::Dynamic,
             .size = sizeof(f32) * 4 * 3,
-            .count = 1,
+            .count = 3,
+        };
+        TextureData noiseTexture = 
+        {
+            .name = "noise",
+            .binding = 0,
+            .stage = ShaderStage::Fragment,
+            .source = TextureSource::Noise,
         };
 
         PushConstant separateMvp = 
@@ -37,9 +44,9 @@ namespace Lina{ namespace Graphics{
         Uniform planetLights =
         {
             .name = "planetlights",
-            .binding = 1,
+            .binding = 0,
             .stage = ShaderStage::Fragment,
-            .type = UniformType::Dynamic,
+            .type = UniformType::Static,
             .size = sizeof(Math::Vector4D) * 3,
             .count = 1
         };
@@ -87,9 +94,10 @@ namespace Lina{ namespace Graphics{
         mRenderer->addShader(defaultShader); 
 
 
-        Graphics::Shapes::Icosphere ico(0.5f);
+        Graphics::Shapes::Icosphere ico(0.4f);
         ico.setMeshMode(MeshMode::Pos3);
         ico.subdivide(5);
+
         auto verts2 = ico.getFullVertices();
         auto colverts = ico.getFullVertices();
         auto ind2 = ico.getIndices();
@@ -99,12 +107,13 @@ namespace Lina{ namespace Graphics{
         layout2.push(Graphics::Format::FLOAT3, 0);
         layout2.push(Graphics::Format::FLOAT3, 1);
         mGeoModifier.setVertices(verts2);
+        
         mGeoModifier.setNormals(planetnorms);
         mGeoModifier.setNormalMode(ModifierNormals::Provided);
         mGeoModifier.init();
         mGeoModifier.setThreshold(0.75f);
         mGeoModifier.setMulFactor(0.1f);
-        mGeoModifier.warp(0.8f, 1.2f, 8, 0.2f);
+        mGeoModifier.warp(1.8f, 1.2f, 12, 0.7f);
         mGeoModifier.combineVertices();
         verts2 = mGeoModifier.getVertices();
         auto planetVerts = mGeoModifier.getFullVertices();
@@ -160,6 +169,7 @@ namespace Lina{ namespace Graphics{
         postprocessShader.init("../shaders/compiled/postprocess.vert.spv",
                 "../shaders/compiled/postprocess.frag.spv", "shader");
         postprocessShader.addPushConstant(rayTracer);
+        postprocessShader.addTexture(noiseTexture);
         postprocessShader.loadMainTexture();
         mRenderer->addShader(postprocessShader); 
 

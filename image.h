@@ -7,6 +7,7 @@ namespace Lina{ namespace Graphics{
     {
         u32 width;
         u32 height;
+        u32 depth = 1;
         VkFormat format;
         VkImageTiling tiling;
         VkImageUsageFlags usage;

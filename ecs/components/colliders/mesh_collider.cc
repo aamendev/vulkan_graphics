@@ -8,8 +8,8 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
     Math::Point3D Mesh::furthestPoint(const Math::Vector3D& d)
     {
         Math::Transform4D transform = 
-             Math::Util::scaleMatrix(mScale)*
-                    Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D();
+            Math::Quatrenion::angleToQuat(mRotation).getRotationMatrix4D() *
+             Math::Util::scaleMatrix(mScale);
 
         Math::Vector4D temp = (Math::Vector4D){d.x, d.y, d.z, 1} * transform.transpose();
         Math::Vector3D newDir = {temp.x, temp.y, temp.z};
@@ -18,7 +18,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         Math::Point3D current = {0, 0, 0};
         f32 maxDistance = -FLT_MAX;
 
-        for (int i = 0; i < mVertices.size(); i+=3)
+        for (int i = 0; i + 2 < mVertices.size(); i+=3)
         {
             current = {mVertices[i], mVertices[i + 1], mVertices[i + 2]};
            f32 dotProd = current.dot(newDir); 
@@ -206,7 +206,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         for (int i = idxBegin; i < idxEnd - 2; i+=3)
         {
             point = 
-                (Math::Point3D(mVertices[i], mVertices[i+1], mVertices[i+2]) * transform);
+                (Math::Point3D(mVertices[i], mVertices[i+1], mVertices[i+2])) * transform + mCenter;
 
              minX = minX * (minX < point.x) + point.x * !(minX < point.x);
             minY = minY * (minY < point.y) + point.y * !(minY < point.y);
@@ -217,10 +217,10 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
             maxZ = maxZ * (maxZ > point.z) + point.z * !(maxZ > point.z);
         }
         auto boundingBoxExtentsFirst = 
-            (((Math::Point3D){minX, minY, minZ}) + mCenter).toPoint();
+            (((Math::Point3D){minX, minY, minZ})).toPoint();
 
         auto BoundingBoxExtentsSecond = 
-            (((Math::Point3D){maxX, maxY, maxZ}) + mCenter).toPoint();
+            (((Math::Point3D){maxX, maxY, maxZ})).toPoint();
 
         return std::make_pair(boundingBoxExtentsFirst, BoundingBoxExtentsSecond);
     }
@@ -247,17 +247,12 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
         std::vector<u32> inds;
         verts.reserve(9);
         inds.reserve(3);
-        for (int i = 0; i < 3; i++)
-        {
-        inds[i] = mIndices[begin + i];
-        }
-        auto max = std::max_element(inds.begin(), inds.end());
-        auto min = std::min_element(inds.begin(), inds.end());
-        
+
         for (int j = 0; j < 3; j++)
         {
+            inds[j] = j;
             auto idx = mIndices[begin + j];
-            inds[j] = 2 * (idx == *max) + (idx != *max && idx != *min);
+            //inds[j] = 2 * (idx == *max) + (idx != *max && idx != *min);
         for (int i = 0; i < 3; i++)
         {
             verts.push_back(mVertices[3 * idx + i]);
@@ -278,7 +273,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
     void Mesh::computeBVH()
     {
         std::vector<BVH*> mbvhs;
-        mbvhs.reserve(mIndices.size() / 3 + 1);
+        mbvhs.reserve(mIndices.size() / 3);
         for (int i = 0; i < mIndices.size(); i+=3)
         {
            mbvhs.push_back(computeBVH(i)); 
@@ -295,7 +290,7 @@ namespace Lina{ namespace ECS { namespace Components { namespace Colliders{
                 for (int i = 0; i < n; i += power<<1)
                 {
 
-                 if (i + power < n)
+                 if (i + power < n)[[likely]]
                  {
                     combineBVHs(i, i + power, mbvhs);
                     final = i+1;
@@ -334,6 +329,8 @@ void Mesh::combineBVHs(u32 idx0, u32 idx1, std::vector<Collider::BVH*>& mbvhs)
             exit(1);
         }
         BVH* newLeft = new BVH;
+        mbvhs[idx0]->root->computeBoundingBox();
+        mbvhs[idx1]->root->computeBoundingBox();
         auto leftBoundingBox = mbvhs[idx0]->root->getBoundingBox();
         auto rightBoundingBox = mbvhs[idx1]->root->getBoundingBox();
 
@@ -366,6 +363,8 @@ void Mesh::combineBVHs(u32 idx0, u32 idx1, std::vector<Collider::BVH*>& mbvhs)
             exit(1);
         }
         BVH* newLeft = new BVH;
+        b1->root->computeBoundingBox();
+        b2->root->computeBoundingBox();
         auto leftBoundingBox = b1->root->getBoundingBox();     
         auto rightBoundingBox = b2->root->getBoundingBox();     
 

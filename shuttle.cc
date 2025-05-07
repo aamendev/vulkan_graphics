@@ -65,14 +65,14 @@ namespace Lina{ namespace Graphics{
                     break;
                 case Input::KeyCode::LeftBracket:
                     {
-                        if (mSpeed > 0.10f)
+                        if (mSpeed > 1.10f)
                         {
-                            mSpeed-= 0.01f;
+                            mSpeed-= 1.00f;
                         }
                     }
                     break;
                 case Input::KeyCode::RightBracket:
-                    mSpeed+= 0.01f;
+                    mSpeed+= 1.00f;
                     break;
                 default:
                     {}

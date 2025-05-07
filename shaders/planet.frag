@@ -7,11 +7,11 @@ layout (location = 1) in vec3 fragNorm;
 layout (location = 2) in vec3 fragPos; 
 
 
-layout(binding = 0) uniform fullColor{
+layout(binding = 1) uniform fullColor{
     vec4[3] col;
 } fullColour;
 
-layout (binding = 1) uniform lights
+layout (binding = 0) uniform lights
 {
     vec4 ambLight;
     vec4 lightPos;
@@ -21,10 +21,14 @@ layout (binding = 1) uniform lights
 void main() {
     int val = int(idx.x);
     vec3 dirToLight = light.lightPos.xyz - fragPos;
+    float distToLight = dot(dirToLight, dirToLight);
     float atten = 1.0f / dot(dirToLight, dirToLight);
-    //atten = 0.5f;
     vec3 lightColour = light.lightCol.xyz * light.lightCol.w * atten;
     vec3 ambient = light.ambLight.xyz * light.ambLight.w;
+    if (distToLight <= light.lightPos.w * light.lightPos.w)
+    {
+        ambient = vec3(1.0f, 1.0f, 1.0f);
+    }
     vec3 diffuse = lightColour * max(dot(normalize(-fragNorm), normalize(dirToLight)), 0);
     outColor = vec4((diffuse+ambient) * fullColour.col[val].xyz, fullColour.col[val].w);
 }

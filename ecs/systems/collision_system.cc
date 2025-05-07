@@ -241,8 +241,39 @@ namespace Lina { namespace ECS {
             std::set<std::string> tagsj;
             std::set<std::string> temp;
             std::vector<std::string> ntagsj;
-            checkCollideBvh(mDynamicColliders[i], &mFullBvh,
-                    tagsj, temp);
+            std::vector<Components::Collider::BVH*> stack;
+            stack.push_back(&mFullBvh);
+            while (!stack.empty())
+            {
+                auto curr = stack.back();
+                stack.pop_back();
+                b8 cond = mDynamicColliders[i]->checkCollision(curr->root);
+                if (cond)
+                {
+                        if (curr->left == nullptr && curr->right == nullptr)
+                        {
+                            if (curr->root->getColliderGeometry() 
+                                    == ColliderGeometry::Mesh)
+                            {
+                                auto colTag = curr->root->getTag();
+                                auto* meshCastRoot = (Components::Colliders::Mesh*)(curr->root);
+                                auto* meshCast = (Components::Colliders::Mesh*)
+                                    (mStaticColliders[mStaticRegistriy[colTag]]);
+                                meshCast->setCollisionInfo((meshCastRoot->getInfo()));
+                            }
+                            tagsj.insert(curr->root->getTag());
+                        }
+                        else 
+                        { 
+                            stack.push_back(curr->right);
+                            stack.push_back(curr->left);
+                        }
+                }
+                else 
+                {
+                    temp.insert(curr->root->getTag());
+                }
+            }
 
             ntagsj.reserve(tagsj.size() +  temp.size());
             std::set_difference(temp.begin(), temp.end(), 

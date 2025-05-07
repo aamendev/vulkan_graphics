@@ -19,6 +19,25 @@ namespace Lina { namespace Graphics{
         return setTextureFromPath(std::move(path), flip);
     }
 
+    b8 Texture::createImageFromNoise(Core::NoiseGenerator& ng)
+    {
+        void* d = (void*)ng.getData().data();
+        if (d)
+        {
+            mWidth = ng.getWidth(); 
+            mHeight = ng.getHeight();
+            mDepth = ng.getDepth();
+            mStagingBuffer.mapMemory(mWidth * mHeight * mDepth * 4);
+            mStagingBuffer.copyMemory(d);
+            mTextureImage.init(mDeviceHandler, mImage, mImageMemory, mWidth, mHeight, mDepth);
+            return true;
+        }
+        else
+        {
+            std::cerr<<"a7a";
+        }
+        return false;
+    }
     b8 Texture::setTextureFromPath(std::string&& path, bool flip)
     {
         i32 width, height, channels;

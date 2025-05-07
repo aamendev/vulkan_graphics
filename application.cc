@@ -6,6 +6,7 @@
 #include "layers/test_scene.h"
 #include "layers/warmup2_layer.h"
 #include "layers/validation_layer.h"
+#include "layers/simple.h"
 #include "layers/ps_layer.h"
 #include "layers/space/space.h"
 #include "layers/final_layer.h"
@@ -22,8 +23,8 @@ namespace Lina{
     {
         Graphics::Window::specs s= {
             .name="Lina Main Screen",
-            .width = 700,
-            .height = 600,
+            .width = 800,
+            .height = 800,
             .resizable = false,
             .mEvents = {}
         };
@@ -49,6 +50,7 @@ namespace Lina{
         Graphics::AiLayer* ai = new Graphics::AiLayer(mRenderer, mWindow);
         Graphics::FinalLayer* final = new Graphics::FinalLayer(mRenderer, mWindow);
         Graphics::Space* spaceLayer = new Graphics::Space(mRenderer, mWindow);
+        Graphics::SimpleLayer* simpleLayer = new Graphics::SimpleLayer(mRenderer, mWindow);
         //mLayers.push_back(mainSceneLayer);
         //mLayers.push_back(testLayer);
 //      mLayers.push_back(warmup);
@@ -57,6 +59,7 @@ namespace Lina{
 //        mLayers.push_back(simLayer);
         //mLayers.push_back(ai);
         mLayers.push_back(final);
+        //mLayers.push_back(simpleLayer);
         //mBackgroundLayers.push_back(validLayer);
 //        mLayers.push_back(spaceLayer);
         mCurrentLayer = 0;

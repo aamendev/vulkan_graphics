@@ -1,5 +1,6 @@
 #pragma once
 #include "common.h"
+#include "core/noise_generator.h"
 #include "core/timer.h"
 #include "window.h"
 #include "index_buffer.h"
@@ -15,6 +16,8 @@
 #include <vulkan/vulkan_core.h>
 #include "core/core.h"
 #include <utility>
+
+
 namespace Lina{ namespace Graphics{
 
     class Renderer
@@ -89,6 +92,7 @@ namespace Lina{ namespace Graphics{
         void createGraphicsPipelines();
 
         void createTexture(std::string& path, b8 flip);
+        void createNosieTexture();
         void loadMainTexture();
         void createTexture(std::vector<std::pair<std::string, b8>> paths);
 
@@ -116,7 +120,8 @@ namespace Lina{ namespace Graphics{
 
         void createDescriptorSetLayout(int idx);
         void createDescriptorPool(int idx);
-        void createDescriptorSet(int shaderIndex, int uniformStartIndex);
+        void createDescriptorSet(int shaderIndex, int uniformStartIndex = 0,
+                int textureStartIndex = 0);
 
         VkCommandBuffer beginSingleTimeCommands();
         void endSingleTimeCommands(VkCommandBuffer buffer);
@@ -132,7 +137,7 @@ namespace Lina{ namespace Graphics{
                 VkPipelineStageFlags, VkPipelineStageFlags,
                 VkAccessFlagBits srcAccessMask, VkAccessFlagBits dstAccessMask);
 
-        void createImageView(VkImage&, VkFormat, VkImageAspectFlags, int);
+        void createImageView(VkImage&, VkFormat, VkImageAspectFlags, int, int dim = 2);
         void createMainImageView(VkImage&, VkFormat, VkImageAspectFlags);
         void createTextureSampler();
         void createCommandBuffer();
@@ -152,5 +157,7 @@ namespace Lina{ namespace Graphics{
         SwapChain* mSwapChain;
         b8 mSwapChainRecreated;
         Core::Timer mTimer;
+        std::vector<u32> mDynamicOffsets;
+        Core::NoiseGenerator mNoiseGenerator;
     };
 }}

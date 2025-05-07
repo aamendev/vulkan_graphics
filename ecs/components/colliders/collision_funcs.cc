@@ -36,15 +36,15 @@ namespace Lina { namespace Helpers { namespace Collisions{
         Math::Vector3D sup = support(a, b, {0, 1, 0});
         mSimplex.push_front(sup); 
         Math::Vector3D newDir = -sup;
-        int iter = 20;
+        int iter = 200;
 
         while(iter != 0)
         {
             sup = support(a, b, newDir);
-            //std::cerr << "Support: " << sup << '\n';
-            if (std::isnan(sup.x)) return {.collided = false};
-            if (sup.dot(newDir) <= 0) {return {.collided = false};}
-            //std::cerr << "Support: " << sup << '\n';
+            if (std::isnan(sup.x)
+                    || std::isnan(sup.y) || std::isnan(sup.z))
+                return {.collided = false};
+            if (!sup.sameDirection(newDir)) {return {.collided = false};}
             mSimplex.push_front(sup);
             if (checkNextSimplex(mSimplex, newDir)) 
             {
@@ -187,7 +187,7 @@ namespace Lina { namespace Helpers { namespace Collisions{
         Math::Vector3D minNormal;
         f32 minDist = FLT_MAX;
         f32 oldDist = 0.0f;
-        u32 iterations = 10;
+        u32 iterations = 100;
         int count = 0;
         while (iterations > 0)
         {

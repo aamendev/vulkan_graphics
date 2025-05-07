@@ -2,6 +2,7 @@
 #include "./third_party/stb_image.h"
 #include "./staging_buffer.h"
 #include "./texture_image.h"
+#include "core/noise_generator.h"
 namespace Lina { namespace Graphics{
     class Texture
     {
@@ -10,6 +11,7 @@ namespace Lina { namespace Graphics{
             b8 init(DeviceHandler* deviceHandler);
             b8 createImageFromPath(std::string&& path, bool flip = false);
             b8 createImageFromPath(std::string& path, bool flip = false);
+            b8 createImageFromNoise(Core::NoiseGenerator& ng);
             b8 createMainTexture(u32 width, u32 height);
             void recreate(u32 width, u32 height);
         public:
@@ -21,6 +23,7 @@ namespace Lina { namespace Graphics{
             std::string mPath;
             i32 mWidth;
             i32 mHeight;
+            i32 mDepth;
             StagingBuffer mStagingBuffer;
             DeviceHandler* mDeviceHandler;
             TextureImage mTextureImage;

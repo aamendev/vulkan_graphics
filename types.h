@@ -108,6 +108,22 @@ struct Uniform
     u32 count = 1;
 };
 
+enum class TextureSource
+{
+    ImageFile,
+    Noise,
+    None,
+};
+
+struct TextureData
+{
+    std::string name = "";
+    u32 binding;
+    ShaderStage stage = ShaderStage::Fragment;
+    b8 flip = false;
+    TextureSource source = TextureSource::ImageFile;
+    std::string path;
+};
 
 enum class ColliderGeometry
 {
