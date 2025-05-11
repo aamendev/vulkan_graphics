@@ -21,10 +21,6 @@ namespace Lina { namespace Core {
     {
         fbm(0.8f, 1.2f, 12);
         normalize();
-        for (auto i : mData)
-        {
-            std::cerr << i << '\n';
-        }
     }
     void NoiseGenerator::fbm(f32 h, f32 lac, f32 octaves)
     {
