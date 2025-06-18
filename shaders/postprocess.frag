@@ -30,7 +30,7 @@ layout (push_constant) uniform raytracedata
 
 vec3 getDir(vec2 p)
 {
-    float d = 0.21f;
+    float d = 0.17e3f;
     vec3 raybase = tracedata.rayOrigin.xyz;
     vec3 rayLookAt = tracedata.rayLookAt.xyz;
     vec3 rayUp = tracedata.rayUp.xyz;
@@ -47,11 +47,13 @@ vec3 getDir(vec2 p)
 
 vec2 sphere_intersects()
 {
-    float oldDepth = get_depth(subpassLoad(inputDepth).r, 0.0f, 100.0f);
+    float oldDepth = get_depth(subpassLoad(inputDepth).r, 0.0f, 1000.0f);
     vec3 center = tracedata.sphere.xyz;
     vec3 raybase = tracedata.rayOrigin.xyz;
-    vec3 rayDir = getDir(vec2(-(gl_FragCoord.x + 0.5f - tracedata.dim.x/2) / tracedata.dim.x, 
-    (gl_FragCoord.y + 0.5f - tracedata.dim.y/2) / tracedata.dim.y));
+    //vec3 rayDir = getDir(vec2(-(gl_FragCoord.x - tracedata.dim.x/2) / tracedata.dim.x, 
+    //(gl_FragCoord.y + 0.5f - tracedata.dim.y/2) / tracedata.dim.y));
+    vec3 rayDir = getDir(vec2(-(gl_FragCoord.x - 0.5f * (tracedata.dim.x - 1)), 
+    (gl_FragCoord.y - 0.5f * (tracedata.dim.y - 1))));
     float rad = tracedata.sphere.w; 
     vec2 ret;
 
@@ -71,7 +73,7 @@ vec2 sphere_intersects()
     {
         ret.x = tca - thc;
         ret.y = tca + thc;
-        if (ret.x > oldDepth)
+        if (ret.x > oldDepth || ret.y > oldDepth)
         {
             ret = vec2(-1./0, -1./0);
         }
@@ -83,32 +85,28 @@ vec2 sphere_intersects()
     return ret; 
 }
 
-float getDensity(vec2 intDistance, int numSamples)
+float getDensity(vec2 intDistance, int numSamples, vec2 threshold, float multiplier,
+vec3 cloudScale, vec3 cloudOffset)
 {
     float range = intDistance.y - intDistance.x;
     float d = tracedata.sphere.w * 2;
     float curr = 0;
     vec3 raybase = tracedata.rayOrigin.xyz;
-    vec3 rayDir = normalize(tracedata.rayLookAt.xyz - tracedata.rayOrigin.xyz);
+    vec3 rayDir = getDir(vec2(-(gl_FragCoord.x - 0.5f * (tracedata.dim.x - 1)), 
+    (gl_FragCoord.y - 0.5f * (tracedata.dim.y - 1))));
     for (int i = 0; i < numSamples; i++)
     {
         float current = intDistance.x + i * (range / float(numSamples - 1));
         vec3 tp1 = tracedata.rayOrigin.xyz + rayDir * current;
         vec3 fromOrg = tp1 - tracedata.sphere.xyz;
-        float zCoord =  i * (range / float(numSamples - 1)) / d;
-        vec3 texCoords = vec3((fromOrg.x + d/2) / d, (fromOrg.y + d/2)/d, zCoord);
+        vec3 texCoords = (fromOrg / d + 0.5f) * cloudScale 
+        + cloudOffset * 0.01f;
         float texval = texture(sampler3D(textures, texSampler), texCoords).r; 
-        if (texval == 0)
-        {
-            break;
-        }
-        curr = texval + (1-texval) * curr;
+        texval = max(0, texval - threshold.x);
+        curr += (texval) * multiplier;
+        curr *= (numSamples / range);
     }
-    if (curr == 0)
-    {
-        curr = -1/0;
-    }
-    return 1 - curr;
+    return curr;
 }
 void main() {
     vec3 oldCol;
@@ -118,13 +116,19 @@ void main() {
     float alpha = 1.0f;
     if (!isinf(ret.x))
     {
-        float dens = getDensity(ret, 8);
+        //(vec2 intDistance, int numSamples, float threshold, float multiplier,
+        float dens = getDensity(ret, 10, vec2(0.7f, 0.8f), 8.0f, 
+        vec3(1.0f, 1.0f, 1.0f) * 1, 
+        vec3(20.0f, 0.0f, 0.0f));
         if (!isinf(dens))
         {
-            alpha = exp(-dens);
-            oldCol.x = LERP(alpha, oldCol.x, dens);
-            oldCol.y = LERP(alpha, oldCol.y, dens);
-            oldCol.z = LERP(alpha, oldCol.z, dens);
+            float temp = exp(-dens);
+            //float temp = 1/(dens + 1);
+            vec3 cloudCol = vec3(1.0f, 1.0f, 1.0f);
+            oldCol.x = LERP(temp, cloudCol.x, oldCol.x);
+            oldCol.y = LERP(temp, cloudCol.y, oldCol.y);
+            oldCol.z = LERP(temp, cloudCol.z, oldCol.z);
+            alpha = LERP(temp, 0.6f, 1.0f);
         }
         else 
         {
@@ -132,6 +136,8 @@ void main() {
             oldCol.y = 0.0f;
             oldCol.z = 0.0f;
         }
+        //oldCol = vec3(ret.x, ret.x, ret.x);
+    //    oldCol = getDensityDebug(ret, 100, 0.0f, 5.0f, 10.0f, vec3(0.2f, 1.0f, 0.0f), 70);
     }
     outColor = vec4(oldCol, alpha);
 }

@@ -747,9 +747,10 @@ namespace Lina{ namespace Graphics{
 
     void Renderer::createNosieTexture()
     {
-        mNoiseGenerator.setWidth(getWidth() / 4);
-        mNoiseGenerator.setHeight(getWidth() / 4);
-        mNoiseGenerator.setDepth(getWidth() / 4);
+        f32 currScale = 64.0f;
+        mNoiseGenerator.setWidth(currScale);
+        mNoiseGenerator.setHeight(currScale);
+        mNoiseGenerator.setDepth(currScale);
         mNoiseGenerator.generateTexture();
 
         mSpecs.textures.emplace_back();
@@ -1133,7 +1134,7 @@ namespace Lina{ namespace Graphics{
                 .layerCount = 1
             },
             .imageOffset = {0, 0, 0},
-            .imageExtent = {image.getWidth(), image.getHeight(), 1}
+            .imageExtent = {image.getWidth(), image.getHeight(), image.getDepth()}
         };
 
         vkCmdCopyBufferToImage(
@@ -1326,9 +1327,14 @@ namespace Lina{ namespace Graphics{
             .magFilter = VK_FILTER_LINEAR,
             .minFilter = VK_FILTER_LINEAR,
             .mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR,
+            /*.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT,
+            .addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT,
+            .addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT,
+            */
             .addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT,
             .addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT,
             .addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT,
+            
             .mipLodBias = 0.0f,
             .anisotropyEnable = VK_TRUE,
             .maxAnisotropy = pdProperties.limits.maxSamplerAnisotropy,

@@ -311,7 +311,7 @@ namespace Lina { namespace Games {
             mTransformComponents["earth"].getPosition();
 
         mTraceData.rayOrg = Math::Vector4D(pos.x, pos.y, pos.z, 0.0f);
-        //mTraceData.rayUp = Math::Vector4D(up.x, up.y, up.z, 0.0f);
+        mTraceData.rayUp = Math::Vector4D(up.x, up.y, up.z, 0.0f);
         mTraceData.sphereOrg = {earthPos.x, earthPos.y, earthPos.z, 
             mPlanets[1].rad};
         //mTraceData.rayDirection = Math::Vector4D(earthPos.x, earthPos.y, earthPos.z, 0.0f);

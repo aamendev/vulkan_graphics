@@ -27,7 +27,7 @@ namespace Lina { namespace Graphics{
             mWidth = ng.getWidth(); 
             mHeight = ng.getHeight();
             mDepth = ng.getDepth();
-            mStagingBuffer.mapMemory(mWidth * mHeight * mDepth * 4);
+            mStagingBuffer.mapMemory(mWidth * mHeight * mDepth * sizeof(f32));
             mStagingBuffer.copyMemory(d);
             mTextureImage.init(mDeviceHandler, mImage, mImageMemory, mWidth, mHeight, mDepth);
             return true;

@@ -24,6 +24,7 @@ namespace Lina{ namespace Graphics{
             VkImage* getImage() const;
             u32 getWidth() const;
             u32 getHeight() const;
+            inline u32 getDepth() const {return mSpecs.depth;}
             const ImageSpecs& getSpecs() const;
         protected:
             DeviceHandler* mDeviceHandler;

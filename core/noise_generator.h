@@ -6,11 +6,16 @@ namespace Lina { namespace Core {
     {
         public:
         NoiseGenerator(u32 w = 512, u32 h = 512, u32 d = 1): 
-            mWidth(w), mHeight(h), mDepth(d), mData({}) {init();}
+            mWidth(w), mHeight(h), mDepth(d), mData({}) {init(); 
+                mMulFactor = 1.0f;}
 
         public:
             void generateTexture();
             virtual void fbm(f32 h, f32 lac, f32 octaves) override;
+            void warp(f32 h, f32 lac, f32 octaves, f32 dist);
+            void zeroData();
+            void worley(int n);
+            void initWorley(int n);
         public:
             inline void setWidth(u32 f) {mWidth = f;}
             inline void setHeight(u32 f) {mHeight = f;}
@@ -29,6 +34,7 @@ namespace Lina { namespace Core {
             void normalize();
         private:
             std::vector<f32> mData;
+            std::vector<Math::Point3D> mPoints;
             u32 mWidth;
             u32 mHeight;
             u32 mDepth;

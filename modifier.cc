@@ -101,11 +101,11 @@ namespace Lina{ namespace Graphics{
         auto temp = p;
         Math::Point3D distortedPoint;
         distortedPoint.x = perPointFbm(temp, h, lac, octaves);
-        //    temp.x += 10.5f;
-        temp.x += 0.0f;
+            temp.x += 10.5f;
+        //temp.x += 0.0f;
         distortedPoint.y = perPointFbm(temp, h, lac, octaves);
-        //temp.y += 10.5f;
-        temp.y += 0.0f;
+        temp.y += 10.5f;
+        //temp.y += 0.0f;
         distortedPoint.z = perPointFbm(temp, h, lac, octaves);
         p.x += dist * distortedPoint.x;
         p.y += dist * distortedPoint.y;

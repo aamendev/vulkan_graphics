@@ -113,7 +113,8 @@ namespace Lina{ namespace Graphics{
         mGeoModifier.init();
         mGeoModifier.setThreshold(0.75f);
         mGeoModifier.setMulFactor(0.1f);
-        mGeoModifier.warp(1.8f, 1.2f, 12, 0.7f);
+        mGeoModifier.warp(0.8f, 1.2f, 12, 0.7f);
+       // mGeoModifier.fbm(1.8f, 1.2f, 12);
         mGeoModifier.combineVertices();
         verts2 = mGeoModifier.getVertices();
         auto planetVerts = mGeoModifier.getFullVertices();
